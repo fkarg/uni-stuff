@@ -1,0 +1,103 @@
+
+
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fontenc, lmodern}
+
+\title{Testing}
+\author{michi }
+\date{\today}
+
+% Einrückung null nach absatz:
+% \setlength{\parindent}{0em}
+
+
+
+\begin{document}
+
+\maketitle
+
+\section{Leaning}
+You can \textsl{lean} on me!
+
+\section{whitespaces}
+New \TeX users may miss whitespaces
+after a command. % renders wrong
+Experienced \TeX{} users are
+\TeX perts, and know how to use
+whitespaces. % renders correct
+
+
+\section{Example (Comments)}
+This is an % stupid
+% Better: instructive <----
+example: Supercal%
+ifragilist%
+icexpialidocious
+
+
+
+
+\section{Latex-Kurs-1}
+% \usepackage[ngeman]{babel}
+% \usepackage[utf8]{inputenc} %!
+% % packete: fontenc -> lmodern
+% \usepackage[T1]{fontenc}
+% \usepackage{eurosym, selinput, lmodern}
+
+% \hspace{Maß} % wird am Zeilenanfang ignoriert
+Bsp.: Wort2\hspace{2cm}Wort2 \\
+Newline
+
+
+\noindent
+Noindent-Absatz
+
+
+Absatz danach
+
+
+
+\section{Latex-Kurs-2}
+% \smallskip % (ca 1/4 Zeile)
+% \medskip   % (ca 1/2 Zeile)
+% \bigskip   % (ca 1   Zeile)
+%% eigenes Skip:
+% \parskip \addtolength{\parskip}{Maß}
+0 \\
+\smallskip
+1 \\
+\medskip
+2 \\
+\bigskip
+3 \\
+
+\noindent
+Sinnloser text \marginpar{Randnotiz}
+
+
+\newpage
+
+nächste Seite ?!
+
+% % Schriftgröße:
+% \tiny
+% ...
+% \normalsize
+% ...
+% \Huge
+%%%%%%%%%%%%%%%%%%%%%%
+%% {\größe Text} % (!)
+%% \größe Text \normalsize % (!)
+%% begin{größe}
+%% ...
+%% end{größe}
+
+
+
+% \verb % (verbatim)
+
+% \begin{verbatim} ... \end{verbatim}
+
+\end{document}

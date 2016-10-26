@@ -1,0 +1,179 @@
+\documentclass{scrartcl}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{amssymb} % what does it do?
+\usepackage{graphicx} % I can't do that yet
+\usepackage{fancyhdr} % what does it do?
+\usepackage{lastpage} % what does it do?
+\setlength{\parskip}{\medskipamount} % thats reasonable
+\setlength{\parindent}{0pt} % whatever that does
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf- und Fusszeilen %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\lhead{
+    \begin{tabular}{ll}
+        Felix Karg \\
+    \end{tabular}
+}
+\chead{Systeme I}
+\rhead{
+    \begin{tabular}{rr}
+        \today{} \\
+        Seite \thepage{} von \pageref{LastPage}
+    \end{tabular}
+}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Anfang des Dokuments %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+\section*{Antworten zu Übungsblatt Nr. 1}
+
+\subsection*{Aufgabe a)}
+\begin{itemize}
+\item cal  : Kalender
+\item df   : Informationen über Dateisystem-verwendung
+\item w    : Zeigt an, wer gerade auf welchem TTY seit wann angemeldet ist und was derjenige nutzer 'gerade tut'
+\item id   : Zeigt informationen zu Nutzer- und Systemgruppen-Informationen zum Aktuellen Benutzer an
+\item last : Ähnlich wie 'cat', zeigt aber nur den ersten Teil einer Datei an, default: 10 Zeilen
+\end{itemize}
+
+\subsection*{Aufgabe b)}
+\begin{itemize}
+\item uptime: Zeigt die Uhrzeit, die Aktuelle Uhrzeit, die aktuelle 'uptime',
+sowie die angemeldeten Benutzer und die Load der letzten [1, 5, 15] min an.
+\item date : Zeigt die Aktuelle Uhrzeit sowie das Datum an.
+\item top  : Ähnlich wie htop, aber mit weniger Funktionen und farben.
+Zeigt die Momentane Hardware-auslastung (Also CPU, RAM, SWAP, etc, aber ohne GPU),
+und die aufteilung auf verschiedene Threads und Prozesse an.
+\item uname -a : Zeigt Systeminformationen - Kernel-version, hostname, Betriebssystem,
+Hardware-Plattform, Architektur und anderes - an.
+\end{itemize}
+Um die aktuelle Uhrzeit genau im Format \verb+"Datum: 29.10.2016, Zeit: 13:25:40"+
+zu erhalten, gibt man folgenden befehl ein: \verb!date +'Datum: %d.%m.%y, Zeit: %T!
+(was dasselbe ist wie \verb!date +'Datum: %d.%m.%y, Zeit: %H:%M:%S!), man verwendet also
+nur einen Parameter, den Parameter +FORMAT. \\
+\\
+(Fals das nicht die beabsichtigte Parameter-Zählweise sein sollte, sind es entweder
+\verb!%d,%m,%y,%T! oder \verb!%d,%m,%y,%H,%M,%S!.)
+
+
+\subsection*{Aufgabe d)}
+\begin{verbatim}
+$ id
+uid=46971(fk265) gid=1001(uni) Gruppen=1001(uni)
+\end{verbatim}
+Numerische Benutzer-id: 46971, Ich bin mitglied der Gruppe 'uni' mit der id 1001. \\
+Verfügbarer RAM: "\verb!KiB Mem:   8175976 total, ..!", also 8175976KiB.
+
+\newpage
+
+\subsection*{Aufgabe c)}
+\begin{itemize}
+
+\item\begin{verbatim}
+$ pwd         # Zeigt aktuellen absoluten pfad an (1)
+/home/fk265
+$ cd ..       # wechseln in das oberverzeichnis
+$ pwd         # Zeigt aktuellen absoluten pfad an (2)
+/home
+$ ls -l       # listet alle in diesem Verzeichnis sichtbaren dateien und ordner
+insgesamt 336
+[...]
+dr-xr-xr-x   2 root    root    0 25. Okt 22:22 es865
+dr-xr-xr-x   2 root    root    0 26. Okt 10:58 fb131
+dr-xr-xr-x   2 root    root    0 25. Okt 09:15 fb249
+dr-xr-xr-x   2 root    root    0 25. Okt 16:18 fk255
+drwx------   3 fk265   uni    82 26. Okt 17:37 fk265
+dr-xr-xr-x   2 root    root    0 26. Okt 14:13 fm213
+dr-xr-xr-x   2 root    root    0 26. Okt 10:21 ft48
+dr-xr-xr-x   2 root    root    0 26. Okt 09:49 ge1001
+[...]
+$ cd          # wechseln des verzeichnisses
+$ # (da kein relativer oder absoluter Pfad angegeben wird, wird nach ~ gewechselt)
+$ pwd         # Zeigt aktuellen absoluten pfad an (3)
+/home/fk265
+$ mkdir test  # Erstelle Verzeichnis 'test' im momentanen Verzeichnis ~
+$ cd /        # Wechsle nach '/'
+$ pwd         # Zeigt aktuellen absoluten pfad an (4)
+/
+$ cd ~/test   # Wechsle zum gerade erstellten, leeren Verzeichnis
+$ pwd         # Zeigt aktuellen absoluten pfad an (5)
+/home/fk265/test
+$
+\end{verbatim}
+
+\item\verb!ls -1  :! Zeigt alle sichtbaren Elemente eines Verzeichnisses, jedes in einer neuen Zeile. \\
+\verb!ls -a  :! Zeigt wirklich Alle Elemente eines Verzeichnisses (also mit versteckten elementen, eigem Verzeichnis (.) und Oberverzeichnis (..) inklusive). \\
+\verb!ls -a1 :! Zeigt alle Elemente an, jeweils in einer neuen Zeile.
+
+\item \verb!$ find /usr/share/doc -name '*.pdf'!
+
+\item\verb!cat  :! 'Pipe' oder 'Streame' den inhalt einer Datei an stdout. (Default: wird angezeigt) \\
+\verb!more :! Einfaches Unterteilendes Anzeigen, dass man immer nur Display-Größe-Viel sieht. \\
+\verb!less :! Weiterentwicklung von more, mit mehr optionen und performance-verbesserungen
+
+\end{itemize}
+
+
+\end{document}
+
+\section*{Latex-Template}
+\subsection*{Aufgabe 1}
+
+Beispiel für Text, der aus einem Terminal kopiert wurde:
+
+\begin{verbatim}
+osswald@tfpool17 / $ df -h
+Filesystem                           Size  Used Avail Use% Mounted on
+/dev/sda4                            375G   41G  316G  12% /
+dev                                  3.9G     0  3.9G   0% /dev
+run                                  3.9G  480K  3.9G   1% /run
+tmpfs                                3.9G     0  3.9G   0% /dev/shm
+\end{verbatim}
+
+Aufzählungen sind mit \verb_enumerate_ möglich:
+\begin{enumerate}
+\item Erster Punkt
+\item Zweiter Punkt
+\item Dritter Punkt
+\end{enumerate}
+
+\subsection*{Aufgabe 2}
+
+Mathematische Formeln:
+\begin{equation}\label{gauss}
+    \sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+\end{equation}
+
+
+Formel \ref{gauss} wird auch \emph{Gaußsche Summenformel} genannt.
+
+Formeln können auch im Text eingebunden werden, z.B. $E = mc^{2}$.
+
+\subsection*{Aufgabe 3}
+
+Tabellen können mit \verb_tabular_-Umgebungen eingegeben werden:
+
+\begin{center}
+\begin{tabular}{l|l|l}
+Datei             & Dateirechte        & Größe   \\
+\hline
+dokument.txt      & \verb_-rw-r--r--_  & 300 KB  \\
+programm.exe      & \verb_-rwxr-x---_  & 450 KB  \\
+mein\_verzeichnis & \verb_drwxr-xr-x_  & ---     \\
+\end{tabular}
+\end{center}
+
+\end{document}
+
+
