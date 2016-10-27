@@ -1,0 +1,13 @@
+Path: .
+Working Copy Root Path: /home/bez/Coding/uni-info-i/infoI1617
+URL: https://daphne.informatik.uni-freiburg.de/ws1617/InformatikI/svn/fk265
+Relative URL: ^/fk265
+Repository Root: https://daphne.informatik.uni-freiburg.de/ws1617/InformatikI/svn
+Repository UUID: cd1fe3c8-fa7c-4079-99b5-f5f327571224
+Revision: 128
+Node Kind: directory
+Schedule: normal
+Last Changed Author: daphne
+Last Changed Rev: 127
+Last Changed Date: 2016-10-22 12:17:11 +0200 (Sat, 22 Oct 2016)
+

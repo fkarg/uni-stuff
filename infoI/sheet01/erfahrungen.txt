@@ -1,0 +1,22 @@
+Aufgabe 1.4
+===========
+
+Probleme: nichts nennenswertes
+
+Benötigter Zeitaufwand (komplett): ca 3h 10min
+Benötigter Zeitaufwand 1.1: ~120min # Hauptsächlich in svn einlesen
+Benötigter Zeitaufwand 1.2: ~30min
+Benötigter Zeitaufwand 1.3: ~30min
+Benötigter Zeitaufwand 1.4: ~10min
+
+Interessantes:
+Es war interessant mal ein anderes VCS zu verwenden,
+allerdings fühlt es sich überhaupt nicht ausgereift,
+und im vergleich zu git/darcs/mercurial weniger intuitiv an
+(was natürlich auch an der ungewohnheit liegen kann).
+
+Kritik: svn status ist nicht selbsterklärend,
+daher ist der vorletzte Hinweis eher missverständlich als hilfreich.
+(mein empfinden)
+Was nerft ist auch dass dass Dateisystem-operationen die nicht durch svn
+ausgeführt werden anscheinend zeug durcheinanderbringen können.

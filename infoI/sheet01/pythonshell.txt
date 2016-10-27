@@ -1,0 +1,24 @@
+Aufgabe 1.3
+===========
+
+Aufgabe 1.3(a)
+--------------
+
+>>> print(25* '=' + '\n H', 'e', 'l', 'l', 'o W', 'o', 'r', 'l', 'd !!!',
+          sep='+', end='\n' + 25 * '=')   # umbruch wegen der 79 Zeichen
+=========================
+ H+e+l+l+o W+o+r+l+d !!!
+=========================
+>>>
+
+
+Aufgabe 1.3(b)
+--------------
+
+>>> days = int(365.25 * 17) - 22 + 2 # Hinzuzählen des start- und Endtages
+>>> days           # 01.Jan'17 - 1Tag = 31.Dez'16; 31.Dez - 10.Dez = 21Tage -> -22 Tage
+6189               # Anzahl Tage
+>>> int(days / 7)  # Eine Woche hat Sieben Tage
+884                # Anzahl Wochen
+>>> days % 7       # 'Abziehen' aller vollen Wochen
+1                  # Anzahl zusätzlicher Tage

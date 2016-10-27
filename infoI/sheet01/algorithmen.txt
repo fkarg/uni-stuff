@@ -1,0 +1,23 @@
+Aufgabe 1.2
+===========
+
+PrÃ¤zision
+---------
+Ja
+
+EffektivitÃ¤t
+------------
+Ja
+
+Statische Finitheit
+-------------------
+Ja
+
+Dynamische Finitheit
+--------------------
+Ja
+
+Terminierung
+------------
+Ja
+

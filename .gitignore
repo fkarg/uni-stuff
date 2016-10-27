@@ -2,3 +2,6 @@
 *.aux
 *.log
 *.tex~
+*.svn
+.svn
+*.tmp
