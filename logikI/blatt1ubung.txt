@@ -1,0 +1,36 @@
+RPN:
+
+nF -> up(F)n
+(F1oF2) -> up(F1)up(F2)o
+
+
+Aufgabe 2:
+Sei F eine auss. Formel der Länge n und F' /= F ein echtes Anfangsstück der Länge m.
+Beh.: F' ist keine auss. Formel.
+Bew.: Induktion über n.
+
+IA: n = 1  Dann ist F' leer und somit keine Formel.
+        -- Abstrakter formulieren: eigene Formulierung: über echtes Anf. von "A0",
+        -- was nicht alle auss. F. (T, ⊥) gilt.
+IV: Sei n ∈ ℕ \ {0} die Beh. bereits gezeigt   für (alle k<=)n (k ∈ ℕ \{0})
+IS: n -> n + 1:  Da lg(F)>1, genügt es die folgenden Fälle zu betrachten:
+    Fall 1: F = ¬G für eine Formel.
+        Dann ist F' leer (und damit keine Formel) oder F' = ¬G' für eine Zeichenfolge G' /= G.
+        Nach IV ang. auf G -> G' ist keine Formel.* Somit ist F' keine Formel.
+    Fall 2: F = (G1 o G2) für  Formeln G1, G2 und o ∈ {∨,∧,->,<=>}
+        Sei k := k(F) und k' := k(F')
+        Ang. F' ist eine Formel. Dann gilt
+        Kt(k', lg(k')) =0
+        => Kt(k,lg(k')) , Da F' /= F => k' /= k
+        Lemma 2.1.3 ang. auf k: lg(k') ∈ {o, lg(k) }
+    Fall 2.1: lg(k') = 0 => k' lang. Da F mit '(' beginnt, muss also F' leer sein !.
+    Fall 2.2: lg(k') = lg(k) => k' = k. Da F auf ')' endet, muss F' = F ! zu F' /= F.
+
+
+*: Ang. F' eine Formel. Da F' mit ¬ beginnt, ist F' = ¬H, H Formel.
+Nun: ¬H = ¬G' => H = G' !          /
+      ^              ^             \
+      Formel         Nichtformel   /
+                                   V
+
+

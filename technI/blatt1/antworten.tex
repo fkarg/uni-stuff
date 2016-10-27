@@ -64,22 +64,42 @@ Felix  Karg   & 4342014
    & => x * y * z = x * y * z \\
           \Box
         \end{eqnarray}
+\newpage
     \item[b)] Absorption : \\
         \begin{eqnarray}
    & x \vee ( x \wedge y) = x \\
    & x + (x * y) - x * (x * y) = x \\
    & x + x * y - x * x * y = x \\
-   & x + x * (1 - x * y) = x \\
-          % nothing going on here ...
-   & x = x \\
-     \Box
+   & x + x * (1 - x * y) = x
         \end{eqnarray}
+        $ x * (1 - x * y) $ kann nur dann überhaupt 1 werden, wenn $x = 1$ ist,
+        0 dann nur noch wenn außerdem  $y = 0$.
+        In beiden Fällen wird jeweils entweder der Wert von x oder weniger zu x addiert, was man mit
+        \[ x + z = x \] zusammenfassen kann, wobei $z \leq x$ ist,
+        und auch wenn dann nur addiert wird.
+        Daher ist es Äquivalent zu \[ x = x \]. $\Box$\\
+        \\
+        Teil 2: \\
         \begin{eqnarray}
    & x \wedge ( x \vee y) = x \\
    & x * (x + y - x * y) = x \\
    & x * x + x * y - x * x * y = x
         \end{eqnarray}
+        Da wir in $\mathbb{B}$ sind, ist $x^2 = x$, woraus folgt dass \[ x + x * y - x * y = x \]
+        Was gekürzt auch nur \[x = x\] ist. $\Box$
     \item[c)] Komplementregel : \\
+        \begin{eqnarray}
+        & x \vee ( y \wedge \neg y) = x \\
+        & x + (y * (-y)) - x * (y * (-y)) = x \\
+        & x - y ^ 2 * (1 - x) = x
+        \end{eqnarray}
+        Da wir in $\mathbb{B}$ sind, und $y^2 = y$ ist, ist der ausdruck $ y ^ 2 * (1 - x) $
+        zwingend kleiner x: bei $x = 0$ ist das einzige Nicht-Null-Ergebnis von y 
+        $-1 \notin \mathbb{B}$, und daher 0. Bei $x = 1$ fällt der hintere teil durch das $(1 - x)$
+        heraus, und wieder steht \[x = x\] da. $\Box$ \\
+        Teil 2:
+        \begin{eqnarray}
+        \end{eqnarray}
 \end{itemize}
 
 \newpage
