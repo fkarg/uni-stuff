@@ -3,21 +3,20 @@ Aufgabe 1.2
 
 PrÃ¤zision
 ---------
-Ja
+Ja, es gibt keinen schritt der nicht eindeutig ist.
 
 EffektivitÃ¤t
 ------------
-Ja
+Ja, kein schritt beinhaltet unausführbare situationen/bedingungen.
 
 Statische Finitheit
 -------------------
-Ja
+Ja, Der Text ist genau 436 Zeichen lang.
 
 Dynamische Finitheit
 --------------------
-Ja
+Ja, wir legen genau z Zahlen in den Arbeitsspeicher.
 
 Terminierung
 ------------
-Ja
-
+Ja, irgendwann ist k das siebenfache von p, spätestens dann wird terminiert.

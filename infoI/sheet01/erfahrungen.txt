@@ -20,3 +20,4 @@ daher ist der vorletzte Hinweis eher missverständlich als hilfreich.
 (mein empfinden)
 Was nerft ist auch dass dass Dateisystem-operationen die nicht durch svn
 ausgeführt werden anscheinend zeug durcheinanderbringen können.
+2. Kritikpunkt: Der bei 1.2 Beschriebene Algorithmus ist leicht unverständlich / nicht direkt eindeutig interpretierbar beschrieben.

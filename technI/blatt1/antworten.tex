@@ -33,11 +33,23 @@ Felix  Karg   & 4342014
 \section*{Antworten zum Übungsblatt Nr. 1}
 
 \subsection*{Aufgabe 1}
+Sei $P(a,b)$ der beschriebene Russische-Bauern-Multiplikations-Algorithmus. \\ \\
+IA : Für $P(a,1) = a * 1$ ist die Ausgabe also direkt a. \\
+IV : Sei $P(a,b) = a * b$. \\
+IS : Dann ist auch $P(a,b + 1) = a * (b + 1)$. \\
+Ist $b$ gerade, wird bei $b + 1$ nun außerdem der momentane Wert addiert, also
+\[P(a,b) + a = a * b + a = a * (b + 1) \]. \\
+Ist $b$ ungerade, wird bei $b + 1$ nun nicht mehr $a$ addiert, stattdessen gibt es einen weiteren
+schritt bei dem a mit zwei multipliziert wird. Also: \[P(a,b + 1) = P(a, b - 1) + 2 * a = 
+a * (b - 1) + 2 * a = a * (b + 1)\]
+
 
 \subsection*{Aufgabe 2}
 \begin{itemize}
     \item[a)] $A \cap B = \emptyset$
-    \item[b)] $A^3 = \{ (1, 1, 1), (1, 2, 1), (1, 1, 3) \} $
+    \item[b)] $A^3 = AxAxA = \{ (1,1,1),(1,1,2),(1,1,3),(1,2,1),(1,2,2),(1,2,3),(1,3,1),(1,3,2),(1,3,3), \\
+    (2,1,1),(2,1,2),(2,1,3),(2,2,1),(2,2,2),(2,2,3),(2,3,1),(2,3,2),(2,3,3),(3,1,1), \\
+    (3,1,2),(3,1,3),(3,2,1),(3,2,2),(3,2,3),(3,3,1),(3,3,2),(3,3,3) \} $
     \item[c)] $B \setminus (A \cup B) = \emptyset$
     \item[d)] $Pot(B) \setminus \{B\} = \{ \emptyset, \{a\},\{b\},\{c\},\{a,b\},\{a,c\},\{b,c\} \} $
 \end{itemize}
@@ -58,13 +70,13 @@ Felix  Karg   & 4342014
    & => x + y + z + x * z - y * z - 2 * x * y = x + y + z + x * z - y * z - 2 * x * y \\
         \Box
         \end{eqnarray}
+        Teil 2:
         \begin{eqnarray}
    & x \wedge ( y \wedge z) = (x \wedge y) \wedge z \\
    & => x * (y * z) = (x * y) * z \\
    & => x * y * z = x * y * z \\
           \Box
         \end{eqnarray}
-\newpage
     \item[b)] Absorption : \\
         \begin{eqnarray}
    & x \vee ( x \wedge y) = x \\
@@ -91,16 +103,23 @@ Felix  Karg   & 4342014
         \begin{eqnarray}
         & x \vee ( y \wedge \neg y) = x \\
         & x + (y * (-y)) - x * (y * (-y)) = x \\
-        & x - y ^ 2 * (1 - x) = x
         \end{eqnarray}
-        Da wir in $\mathbb{B}$ sind, und $y^2 = y$ ist, ist der ausdruck $ y ^ 2 * (1 - x) $
-        zwingend kleiner x: bei $x = 0$ ist das einzige Nicht-Null-Ergebnis von y 
-        $-1 \notin \mathbb{B}$, und daher 0. Bei $x = 1$ fällt der hintere teil durch das $(1 - x)$
-        heraus, und wieder steht \[x = x\] da. $\Box$ \\
+        Da wir in $\mathbb{B}$ sind, ist $y * (-y)$ zwingendermaßen $0$.
+        Gekürzt steht also \[x = x\] da. $\Box$ \\
         Teil 2:
         \begin{eqnarray}
+        & x \wedge (y \vee \neg y) = x \\
+        & x * (y + (-y) - y * (-y)) = x
+        \end{eqnarray}
+        Da $y * (-y)$ immer $0$, und $y + (-y)$ immer 1 ist, ist es gekürzt also:
+        \begin{eqnarray}
+        & x * 1 = x \\
+        & x = x \\
+        \Box
         \end{eqnarray}
 \end{itemize}
+
+\end{document}
 
 \newpage
 \newpage
@@ -109,7 +128,10 @@ Felix  Karg   & 4342014
 
 \subsection*{Aufgabe 1}
 \begin{itemize}
-\item[a)] Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent adipiscing. Curabitur diam. Ut ligula lacus, luctus eu, varius ac, lobortis sagittis, mauris. Aliquam facilisis, nibh et blandit vestibulum, ligula sem volutpat nulla, eu adipiscing velit nibh sit amet augue. Sed magna. Nullam eget orci vitae dui viverra vestibulum.
+\item[a)] Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent adipiscing.
+Curabitur diam. Ut ligula lacus, luctus eu, varius ac, lobortis sagittis, mauris. Aliquam facilisis,
+nibh et blandit vestibulum, ligula sem volutpat nulla, eu adipiscing velit nibh sit amet augue.
+Sed magna. Nullam eget orci vitae dui viverra vestibulum.
 
 \item[b)] Gaußsche Summenformel:
   \begin{eqnarray}
