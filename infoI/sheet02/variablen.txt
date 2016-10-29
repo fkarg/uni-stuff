@@ -1,0 +1,13 @@
+Aufgabe 2.2
+===========
+
+Wert
+ \ bei  #1        #2            #3
+spam  "spam"    "spam"        "spamhamspamspamspamham"
+egg   "spam"    "spam"        "spamspam"
+foo   function  function      function
+ham   N/A       N/A           "spamspamspamham"
+bar   N/A       function      function
+eve   N/A       "spamspam"    2
+
+

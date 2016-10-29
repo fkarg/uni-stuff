@@ -1,0 +1,30 @@
+Aufgabe 2.1
+===========
+
+
+Aufgabe 2.1(a)
+--------------
+Der Typ von res ist Float, da zu einem Int (hervorgehend aus der Funktion int())
+ein Float (2 ** abs(1 + 1j) '=' 2 ^ sqrt(2) '=' 2.665...) addiert wird,
+und Python Dynamisch Typisiert ist.
+
+
+Aufgabe 2.1(b)
+--------------
+Dieses mal ist res :: Int. Bei der zuweisung von res steht sinngemäß folgendes da:
+"res = (a :: Int) or ((b :: Str) and (c :: Int))". Da bei 'and' das erste falsche bzw.
+das zweite richtige ausgegeben wird, und der String b nicht leer (und damit ~truthy ist),
+Wird egal ob truthy oder nicht, entweder a :: Int oder c :: Int zurückgegeben.
+
+
+Aufgabe 2.1(c)
+--------------
+Effektiv wird die 6 :: Int mit dem ergebnis von isClose() :: Bool multipliziert.
+Da wir in einer Dynamisch Typisierten sprache sind, ist es möglich Bools mit
+Zahlen zu multiplizieren, wobei als ergebnis wieder eine Zahl dieses Typs zurück-
+gegeben wird, in unserem Fall also eine Zahl vom Typ Int.
+
+
+
+Anmerkung: "a :: B", lies "a vom Typ B"
+"f :: a -> b", lies "Funktion f von Typ a nach Typ b"

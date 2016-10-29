@@ -1,0 +1,24 @@
+Aufgabe 2.3
+===========
+
+# (Kopiert aus: ipython3)
+
+In [3]: duodec(3 + 5j)
+
+In [4]: duodec(3 + 5j) is None
+Out[4]: True
+
+In [5]: duodec("abc")
+
+In [6]: duodec(0)
+Out[6]: '0'
+
+In [7]: duodec(-1)
+
+In [8]: duodec(15)
+Out[8]: '13'
+
+In [11]: duodec(143)
+Out[11]: 'ᘔᘔ'
+
+

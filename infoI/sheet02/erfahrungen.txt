@@ -1,0 +1,14 @@
+Aufgabe 2.5
+===========
+
+
+Arbeitsaufwand komplett: ca 2h 10min
+
+Aufgabe   Zeit       Kritik / Anmerkungen
+  2.1   ca 20min     hauptsächlich formulierung
+  2.2   ca 20min     Hoher Konzentrationsaufwand
+  2.3   ca 40min     IDLE als Notwendigkeit? VIM!
+  2.4   ca 40min     viel zu schreiben
+  2.5   ca 10min     Formatierung + Überlegung alle .txt Dateien in LaTeX zu schreiben -
+                     Zeitaufwand rentiert sich tendenziell nicht für so kurze Dateien.
+
