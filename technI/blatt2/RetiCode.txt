@@ -1,0 +1,22 @@
+LoadI 6
+Store 30
+
+LoadI 0
+Store 33
+LoadI 1
+Store 0
+Store 1
+Jump LE 12
+Load 0
+Add 1
+Store 2
+Load 1
+Store 0
+Load 2
+Store 1
+Load 30
+SubI 1
+Store 30
+Jump -11
+Load 0
+Store 33
