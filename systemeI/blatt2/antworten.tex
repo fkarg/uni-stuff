@@ -1,0 +1,203 @@
+\documentclass{scrartcl}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{amssymb} % what does it do?
+\usepackage{graphicx} % I can't do that yet
+\usepackage{fancyhdr} % what does it do?
+\usepackage{lastpage} % what does it do?
+\setlength{\parskip}{\medskipamount} % thats reasonable
+\setlength{\parindent}{0pt} % whatever that does
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf- und Fusszeilen %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\lhead{
+    \begin{tabular}{ll}
+        Felix Karg \\
+    \end{tabular}
+}
+\chead{Systeme I}
+\rhead{
+    \begin{tabular}{rr}
+        \today{} \\
+        Seite \thepage{} von \pageref{LastPage}
+    \end{tabular}
+}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Anfang des Dokuments %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\section*{Antworten zu Übungsblatt Nr. 2}
+
+\subsection*{Aufgabe 1}
+\begin{itemize}
+  \item[a)] das \verb$d$ steht dafür dass '\verb$meine_dateien$' ein Verzeichnis ist,
+    die folgenden \verb$rwx$ dafür dass der Owner alles darf, die folgenden \verb!r-x! dafür dass
+    andere Aus dieser Gruppe Lesen und Ausführen (= im Verzeichnis dinge ändern) dürfen,
+    und das letzte \verb$--x$ bedeuted dass alle das Verzeichnis Löschen/Bearbeiten
+    aber nicht lesen oder schreiben dürfen.
+  \item[b)]
+\begin{verbatim}
+bez@bez-home ~> ssh fk265@login.uni-freiburg.de
+fk265@login.uni-freiburg.de's password:
+Last login: Tue Nov  1 20:16:06 2016 from -----redacted------
+Have a lot of fun...
+Linux login1 4.1.34-33-default x86_64
+$ cd /tmp
+$ vi begruessung_fk265.sh
+$ la begruessung_fk265.sh
+-rw-r--r-- 1 fk265 uni 84 Nov  1 20:37 begruessung_fk265.sh
+$ ./begruessung_fk265.sh
+-bash: ./begruessung_fk265.sh: Permission denied
+$ chmod u+x begruessung_fk265.sh
+$ la begruessung_fk265.sh
+-rwxr--r-- 1 fk265 uni 84 Nov  1 20:42 begruessung_fk265.sh
+$ ./begruessung_fk265.sh
+Bitte geben Sie Ihren Namen ein: Felix
+Hallo Felix.
+$
+\end{verbatim}
+  \item[c)]
+\begin{verbatim}
+$ cd /tmp
+$ cp /usr/bin/whoami werbinich_fk265
+$ ./werbinich_fk265
+fk265
+$ echo $NAME
+
+$ export NAME="fk265"
+$ echo $NAME
+fk265
+$ ls -la /usr/bin/whoami
+-rwxr-xr-x 1 root root 27360 Sep 29  2015 /usr/bin/whoami
+$ ls -la werbinich_$NAME
+-rwxr-xr-x 1 fk265 uni 27360 Nov  1 20:46 werbinich_fk265
+$ # Die Berechtigungen sind gleich - das war nicht das erwünschte oder?
+$ # Alle der Gruppe uni dürfen die Datei bereits ausführen, ihnen wird ihr jeweiliger Benutzername angezeigt.
+$ chmod u+s werbinich_fk265
+$ ls -la werbinich_$NAME
+-rwsr-xr-x 1 fk265 uni 27360 Nov  1 20:46 werbinich_fk265
+$
+$\end{verbatim}
+  \item[d)]
+\begin{verbatim}
+$ cd /tmp
+$ mkdir mein_verzeichnis_$NAME
+$ touch mein_verzeichnis_$NAME/loesche_mich.txt
+$ chmod a=r mein_verzeichnis_$NAME/loesche_mich.txt
+$ chmod a=r mein_verzeichnis_$NAME
+$
+$ rm mein_verzeichnis_$NAME/loesche_mich.txt
+rm: cannot remove ‘mein_verzeichnis_fk265/loesche_mich.txt’: Permission denied
+$ la mein_verzeichnis_$NAME
+ls: cannot access mein_verzeichnis_fk265/.: Permission denied
+ls: cannot access mein_verzeichnis_fk265/..: Permission denied
+ls: cannot access mein_verzeichnis_fk265/loesche_mich.txt: Permission denied
+total 0
+d????????? ? ? ? ?            ? .
+d????????? ? ? ? ?            ? ..
+-????????? ? ? ? ?            ? loesche_mich.txt
+$ chmod u=rwx mein_verzeichnis_$NAME/
+$ la mein_verzeichnis_$NAME
+total 0
+drwxr--r-- 1 fk265 uni     32 Nov  1 21:02 .
+drwxrwxrwt 1 root  root 15896 Nov  1 21:07 ..
+-r--r--r-- 1 fk265 uni      0 Nov  1 21:02 loesche_mich.txt
+$ rm mein_verzeichnis_$NAME/loesche_mich.txt
+rm: remove write-protected regular empty file ‘mein_verzeichnis_fk265/loesche_mich.txt’? y
+$ la mein_verzeichnis_$NAME
+total 0
+drwxr--r-- 1 fk265 uni      0 Nov  1 21:08 .
+drwxrwxrwt 1 root  root 15896 Nov  1 21:07 ..
+\end{verbatim}
+  \item[e)]
+\begin{verbatim}
+$ echo "You can." > $NAME\_readmeifyoucan.txt
+$ cat $NAME\_readmeifyoucan.txt
+You can.
+$ chmod u-rwx $NAME\_readmeifyoucan.txt
+$ cat $NAME\_readmeifyoucan.txt
+cat: fk265_readmeifyoucan.txt: Permission denied
+$ # Ja die Ausgabe würde sich unterscheiden, da benutzer der 
+\end{verbatim}
+  \item[f)]
+\begin{verbatim}
+$ cd
+$ mkdir systeme-public
+$ chmod og+x .
+$ # Ausreichend? TODO: Could not test ...
+\end{verbatim}
+
+\end{itemize}
+
+\subsection*{Aufgabe 3}
+\begin{itemize}
+\item[a)] Interne Fragmentierung; Bei manchen Dateisystemen möglicherweise schon, aber eigentlich nicht.
+\item[b)] 'Schreiben Sie die neue Belegung auf.' ist es nicht wert in \LaTeX eine Stunde zu investieren. \\ \\
+Ein Block ist noch komplett frei, und drei sind als 'gelöscht' markiert, bzw es existiert keine
+referenz mehr auf sie. Ja es ist möglich eine 100 KiB datei zu erstellen,
+diese wird auf die ersten drei und entweder in das ende von 3 bzw. 4 geschrieben,
+ oder belegt alleine die letzte freie Zelle.
+
+\end{itemize}
+\end{document}
+
+\section*{Lösungen zu Übungsblatt Nr. 0}
+
+\subsection*{Aufgabe 1}
+
+Beispiel für Text, der aus einem Terminal kopiert wurde:
+
+\begin{verbatim}
+osswald@tfpool17 / $ df -h
+Filesystem                           Size  Used Avail Use% Mounted on
+/dev/sda4                            375G   41G  316G  12% /
+dev                                  3.9G     0  3.9G   0% /dev
+run                                  3.9G  480K  3.9G   1% /run
+tmpfs                                3.9G     0  3.9G   0% /dev/shm
+\end{verbatim}
+
+Aufzählungen sind mit \verb_enumerate_ möglich:
+\begin{enumerate}
+\item Erster Punkt
+\item Zweiter Punkt
+\item Dritter Punkt
+\end{enumerate}
+
+\subsection*{Aufgabe 2}
+
+Mathematische Formeln:
+\begin{equation}\label{gauss}
+    \sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+\end{equation}
+
+
+Formel \ref{gauss} wird auch \emph{Gaußsche Summenformel} genannt.
+
+Formeln können auch im Text eingebunden werden, z.B. $E = mc^{2}$.
+
+\subsection*{Aufgabe 3}
+
+Tabellen können mit \verb_tabular_-Umgebungen eingegeben werden:
+
+\begin{center}
+\begin{tabular}{l|l|l}
+Datei             & Dateirechte        & Größe   \\
+\hline
+dokument.txt      & \verb_-rw-r--r--_  & 300 KB  \\
+programm.exe      & \verb_-rwxr-x---_  & 450 KB  \\
+mein\_verzeichnis & \verb_drwxr-xr-x_  & ---     \\
+\end{tabular}
+\end{center}
+
+\end{document}
+
+
