@@ -46,12 +46,11 @@ def duodec(n):
             return str(n)
 
     acc = ""
-    if n == 0:
-        return "0"
+    if n == 0:  # Possible, because equality-checks do not require them to be
+        return "0"   # of the same or similiar type
 
-    if isInstance(n, int) or n < 0:
-        pass
-    else:
+    # checking for wether it is really an int > 0
+    if isinstance(n, int) and n > 0:
         while n > 0:
             acc = strDozen(n) + acc
             n //= 12
