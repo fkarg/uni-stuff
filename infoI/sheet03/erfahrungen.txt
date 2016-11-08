@@ -1,0 +1,9 @@
+Aufgabe 3.3
+===========
+
+
+Aufgabe 3.1  ~2h, hauptsächlich in Docs zu Python (lists, sets, reduce, verschiedenes) einlesen
+Aufgabe 3.2  ~3h, >2h davon das Diagramm erstellen. Notiz: nächstes mal in LaTeX?
+Aufgabe 3.3  ~5min  Das hier schreiben ...
+
+

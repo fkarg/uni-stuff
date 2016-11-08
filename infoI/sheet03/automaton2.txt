@@ -1,0 +1,9 @@
+Aufgabe 3.3 (d)
+===============
+
+Man müsste bis zu Fünf neue zustände hinzufügen, wenn man auch möchte dass auch höhere beträge zurückgegeben werden können.
+Die übergangsfunktion würde sich kaum verändern, es würden nur +10 für den neuen input gesetzt, bzw der auf 0 beim nächsten mal.
+(Aufpassen dass nicht 0 auf 10 gesetzt wird, ansonsten alles ok)
+
+
+
