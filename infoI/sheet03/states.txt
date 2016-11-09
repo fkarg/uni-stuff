@@ -1,0 +1,43 @@
+
+
+[State 0|0ct{bg:orange}]
+[State 1|50ct]
+[State 2|100ct]
+[State 3|150ct]
+[State 4|200ct]
+[State 5|250ct]
+[State 6|0ct;COKE]
+[State 7|50ct;COKE]
+[State 8|100ct;COKE]
+[State 9|0ct;ENERGY]
+[State 10|50ct;ENERGY]
+
+
+
+
+[State 0|0ct]-inp50 >[State 1|50ct]
+[State 1|50ct]-inp50 >[State 2|100ct]
+[State 2|100ct]-inp50 >[State 3|150ct]
+[State 3|150ct]-inp50 >[State 4|200ct]
+
+[State 0|0ct]-inp100->[State 2|100ct]
+[State 1|50ct]-inp100->[State 3|150ct]
+[State 2|100ct]-inp100->[State 4|200ct]
+[State 3|150ct]-inp100->[State 5|250ct]
+
+
+[State 5|250ct]-reqEnergy-.->[State 10|50ct;ENERGY]
+[State 5|250ct]-reqCoke-.->[State 8|100ct;COKE]
+
+[State 4|200ct]-reqEnergy-.->[State 9|0ct;ENERGY]
+[State 4|200ct]-reqCoke-.->[State 7|50ct;COKE]
+
+[State 3|150ct]-reqCoke-.->[State 6|0ct;COKE]
+
+
+[State 6|0ct;COKE]-.->[State 0|0ct]
+[State 7|50ct;COKE]-.->[State 1|50ct]
+[State 8|100ct;COKE]-.->[State 2|100ct]
+[State 9|0ct;ENERGY]-.->[State 0|0ct]
+[State 10|50ct;ENERGY]-.->[State 1|50ct]
+

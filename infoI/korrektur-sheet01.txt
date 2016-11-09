@@ -1,0 +1,42 @@
+Hallo Felix,
+
+Aufgabe 1.1
+===========
+Richtig
+
+Aufgabe 1.2
+===========
+Effektivität, statische Finitheit und Terminierung sind okay.
+Die Präzision ist fraglich: Wie überprüfe ich, ob eine Zahl ein Vielfaches
+einer anderen ist? Das kommt in der Beschreibung des Verfahrens nicht vor und
+ist nicht trivial (-0.5 P.)
+Es stimmt, dass es nur endlich viele Variablen gibt, aber damit die dynamische
+Finitheit gegeben ist, darf es keine geben, die unendlich groß werden kann. Ist
+das gegeben? (-0.5 P.)
+
+Aufgabe 1.3
+===========
+Aufgabe 1.3(a)
+--------------
+Korrekt :)
+
+Aufgabe 1.3(b)
+--------------
+Auch richtig
+Es fehlen "allgemein verständliche" Ausgaben (mit print) (-0.5 P.)
+
+Aufgabe 1.4
+===========
+Vorhanden und vollständig
+
+
+Wenn es Fragen zur Korrektur gibt (Punktabzüge usw.), dann schreibt eine Mail
+oder fragt mich persönlich in der Übungsgruppe.
+
+Johanna <johanna.goetz@uranus.uni-freiburg.de>
+
+
+Gesamt
+======
+7 + 4 + (3 + 2.5) + 2 =
+18.5/20 P.
