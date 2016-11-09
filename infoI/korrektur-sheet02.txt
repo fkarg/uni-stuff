@@ -1,0 +1,35 @@
+Hallo Felix,
+
+Aufgabe 2.1
+===========
+Alles richtig :)
+
+Aufgabe 2.2
+===========
+Auch alles richtig
+
+Aufgabe 2.3
+===========
+Richtig
+Die Testfälle sind okay, sollten aber aus der normalen Pythonshell kopiert
+werden (mit den >>>).
+
+Aufgabe 2.4
+===========
+Beides richtig, aber der Tag sollte immer zweistellig sein (-0.5 P.)
+
+Aufgabe 2.5
+===========
+Vorhanden und vollständig
+
+
+Wenn es Fragen zur Korrektur gibt (Punktabzüge usw.), dann schreibt eine Mail
+oder fragt mich persönlich in der Übungsgruppe.
+
+Johanna <johanna.goetz@uranus.uni-freiburg.de>
+
+
+Gesamt
+======
+(1 + 1 + 1) + 5 + 5 + (3 + 1.5) + 2 =
+19.5/20 P.

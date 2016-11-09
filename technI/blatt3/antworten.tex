@@ -1,15 +1,16 @@
 \documentclass{scrartcl}
 \usepackage{german}
-\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
 
-% zus�tzliche mathematische Symbole, AMS=American Mathematical Society
+% zusätzliche mathematische Symbole, AMS=American Mathematical Society
 \usepackage{amssymb}
 
-% f�rs Einbinden von Graphiken
+% fürs Einbinden von Graphiken
 \usepackage{graphicx}
 
-% f�r Namen etc. in Kopf- oder Fu�zeile
+% für Namen etc. in Kopf- oder Fußzeile
 \usepackage{fancyhdr}
 
 % erlaubt benutzerdefinierte Kopfzeilen
@@ -17,10 +18,10 @@
 
 % Definition der Kopfzeile
 \lhead{
-\begin{tabular}{ll}
-Fisnik Zeqiri & 4306430 \\
-Felix  Karg   & 4342014
-\end{tabular}
+	\begin{tabular}{ll}
+		Fisnik Zeqiri & 4306430 \\
+		Felix  Karg   & 4342014
+	\end{tabular}
 }
 \chead{}
 \rhead{\today{}}
@@ -29,60 +30,104 @@ Felix  Karg   & 4342014
 \rfoot{}
 
 \begin{document}
-\section*{Antworten zum �bungsblatt Nr. 3}
+	\section*{Antworten zum Übungsblatt Nr. 3}
 
-\subsection*{Aufgabe 1}
-\subsection*{Aufgabe 2}
+	\subsection*{Aufgabe 1}
+	\begin{itemize}
+	\item[a)] Funktionstabelle:
 
-\subsection*{Aufgabe 3}
-\subsection*{Aufgabe 4}
+		\begin{table}[h]
 
-\end{document}
+			\begin{tabular}{c|c|c}
+				Eingang & Ausgang & Realisierung \\
+				\hline
+				0,0 & 0 & AND \\
+				0,0 & 1 & NAND \\
+				0,1 & 0 & NOR \\
+				0,1 & 1 & OR \\
+				1,0 & 0 & NOR \\
+				1,0 & 1 & OR \\
+				1,1 & 0 & NAND \\
+				1,1 & 1 & AND \\
 
-\begin{itemize}
-\item[a)] Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent adipiscing. Curabitur diam. Ut ligula lacus, luctus eu, varius ac, lobortis sagittis, mauris. Aliquam facilisis, nibh et blandit vestibulum, ligula sem volutpat nulla, eu adipiscing velit nibh sit amet augue. Sed magna. Nullam eget orci vitae dui viverra vestibulum.
 
-\item[b)] Gau�sche Summenformel:
-  \begin{eqnarray}
-    \sum_{i=1}^{n}{i} & = & 1 + 2 + 3 + \ldots + (n-2) + (n-1) + n \\
-                      & = & (1 + n) + (2 + (n-1)) + (3 + (n-2) ) + \ldots \\
-                      & = & (n + 1) + (n + 1) + (n + 1) + \ldots \\
-                      & = & \frac{n \cdot (n+1)}{2}
-  \end{eqnarray}
+			\end{tabular}
+		\end{table}
 
-\item[c)] Suspendisse potenti. Proin placerat ante sed lacus. Nunc dignissim velit nec metus. Phasellus at augue. In ipsum dui, laoreet vitae, mattis nec, aliquam ut, mauris. Nulla facilisi. Sed ut nisi. Maecenas at arcu. In non nibh vehicula mauris cursus dictum.
-\end{itemize}
+	\item[b)] Gatter:
 
-\subsection*{Aufgabe 2}
-\begin{itemize}
-\item[a)] Maecenas id risus. Suspendisse tincidunt, leo eu suscipit gravida, tellus sem aliquet neque, nec porta massa nulla eget augue. Suspendisse vitae urna quis pede vestibulum interdum. Fusce urna.
-\item[b)] Nulla facilisi. Proin porttitor condimentum lorem. Nunc hendrerit dignissim erat. Quisque et dui vel turpis accumsan pulvinar. Integer tincidunt sollicitudin tellus. Pellentesque quam augue, scelerisque in, blandit hendrerit, sodales ac, erat. Maecenas aliquam elit. Nunc quis erat. Ut id quam ut leo varius volutpat. Aenean quis odio.
-\end{itemize}
 
-% \begin{figure}[h!]
-% \centering
-% \includegraphics[scale=0.5]{grafik.pdf}
-% \caption{Eine Grafik}
-% \end{figure}
 
-\subsection*{Aufgabe 3}
-Morbi in purus. Sed magna enim, fermentum nec, fringilla a, facilisis in, elit. Vivamus id justo eget felis iaculis adipiscing. Fusce pede pede, mattis condimentum, vestibulum vel, convallis vel, pede. Donec viverra, nisl in blandit pharetra, dolor risus tempus orci, et porta nisl dolor eu lorem. Nunc aliquam. In facilisis lacinia justo. Etiam iaculis congue nibh. Nunc non metus. Nulla facilisi. Quisque a mauris non ante tristique sagittis. Aliquam aliquet. Curabitur dapibus lorem at neque.
+	\end{itemize}
+	\subsection*{Aufgabe 2}
+	Da [sext\((y)] = [00000000y_1...y_n] \) ist, und eine Positive Binäre Zahl egal in welcher
+	Darstellung (Binärbetrag mit Vorzeichen, Einer- bzw. Zweierkomplement) gleich dargestellt
+	wird, solange das erste bit 0 ist, ist eindeutig [sext\((y)] = [y] \). \hfill $\Box$
+        \\ \\
 
-\begin{table}[h]
-\centering
-\begin{tabular}{c|cc}
-Spalte 1 & Spalte 2 & Spalte 3 \\
-\hline
-1 & 2 & 3 \\
-1 & 2 & 3 \\
-1 & 2 & 3 \\
-1 & 2 & 3 \\
-1 & 2 & 3 \\
-\end{tabular}
-\caption{Eine Tabelle}
-\end{table}
+        Zu beachten ist ist dass es nicht möglich ist, eine 24-bit große Zahl in einer 23-bit
+        großen Zahl mit Vorzeichen (-> 24bit) darzustellen, sollte das bit mit dem größten Wert
+        ($2^{24} = 16777216$) belegt sein, da die Zahl dann bereits größer ist als alles andere
+        was mit $2^{23}$ bits dargestellt werden kann.
 
-\subsection*{Aufgabe 4}
-Curabitur consectetuer, mauris nec varius sollicitudin, lacus nunc adipiscing urna, sit amet ornare enim mi sed risus. Maecenas ac enim id dui iaculis dictum. Sed consequat euismod metus. Donec congue odio sed sem. Curabitur non neque. Pellentesque facilisis mauris et turpis. Suspendisse potenti. Duis gravida eros eget velit. Sed rhoncus, elit in facilisis fringilla, elit neque consectetuer urna, in gravida est lorem ornare elit. Nam erat. In facilisis lobortis erat.
+	% Done ?
+
+
+	\subsection*{Aufgabe 3}
+
+	\begin{table}[h]
+
+		\begin{tabular}{c|c|c|c}
+			Zahl & Betrag mit Vorzeichen & Einerkomplement & Zweierkomplement \\
+			\hline
+			2342\textsubscript{10} & 0100100100110 & 0100100100110 & 0100100100110 \\
+
+			-BFCD\textsubscript{16} & 11011111111001101 & 10100000000110010 & 10100000000110011 \\
+			-10\textsubscript{16} & 110000 & 101111 & 10000 \\
+			255\textsubscript{8} & 010101101 & 010101101 & 010101101 \\
+
+		\end{tabular}
+	\end{table}
+
+
+
+	\subsection*{Aufgabe 4}
+		\begin{itemize}
+
+                \item[a)] Zwei Darstellungen für Null:\\
+                Das Erste Bit d\textsubscript{n} gibt an, ob die Binärzahl komplementiert werden
+                soll. Ist dies nicht der fall (d\textsubscript{n} = 0), ist die darstellung für
+                die 0: \\
+                \centerline{00. (beliebige anzahl an Nullen.)}\\
+                ist d\textsubscript{n} = 1, so muss die Binärzahl komplementiert werden.
+                Daher ist eine weitere Darstellunng für 0:\\
+                \centerline{11. (beliebige anzahl an Einsen, da sie beim komplementieren zu Nullen
+                werden.)}\\
+                Also ergeben sich bei der Einer-Komplement-Darstellung genau zwei Darstellungen für
+                die Null. \hfill $\Box$
+
+                \item[b)]
+                Gegeben ist dass die Zahl $$(\sum^{n-1}_{i=-k}2^i d_i) - d_n(2^n - 2^k)$$ ist,
+                also die Summe von $-k$ bis $n-1$ über $2^id_i$. Die eindeutig Größte Zahl abhängig
+                von diesen Parametern ist also die, bei der alle $d_i = 1$ sind und $d_n=0$. \\
+                Da die in $n$ bits größte darstellbare Zahl $2^n -1$ ist, und die über die
+                Nachkommerstellen ($k$) maximal darstellbare zahl von $0$ an $1$ annähert
+                (Genauigkeit $2^{-k}$, also max: $1 - 2^{-k}$), ist die allgemein Größte
+                darstellbare Zahl die Summe der beiden, also $2^n -1 + 1 - 2^{-k} = 2^n - 2^{-k}$.
+                \\
+
+                Die Kleinste darstellbare Zahl ist hingegen die bei der möglichst viele $d_i = 0$
+                sind und $d_n = 1$, da dann die Summe null ergibt und $2^n - 2^{-k}$ abgezogen
+                werden, ist die kleinste mit $n,k$ bits darstellbare Zahl (im Einserkomplement)
+                $-(2^n - 2^{-k})$. \hfill $\Box$
+
+
+		\item[c)]  % TODO
+                Wenn man alle bits $[d_n...d_0...d_{-k}]$ negiert ($b = 1 - b$) erhält man das
+                absolute komplement zu dieser Zahl. Da das Einserkomplement symmetrisch ist,
+                also jeweils die größte Darstellbare Zahl von der Restzahl subtrahiert wird,
+                sowie die Restzahl auch quasi von der größte Darstellbaren
+                Zahl subtrahiert wird (das komplement), ehrhält man nun direkt $-d$. \hfill $\Box$
+		\end{itemize}
 
 \end{document}
