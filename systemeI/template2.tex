@@ -1,0 +1,142 @@
+\documentclass{scrartcl}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{pgf,tikz}
+\usetikzlibrary{positioning,shapes,arrows,decorations.pathreplacing,backgrounds,snakes}
+
+\newcolumntype{x}{>{\centering\hspace{0pt}}p{1.5em}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf- und Fusszeilen %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\lhead{
+    \begin{tabular}{ll}
+        Felix Karg \\
+    \end{tabular}
+}
+\chead{Systeme I}
+\rhead{
+    \begin{tabular}{rr}
+        \today{} \\
+        Seite \thepage{} von \pageref{LastPage}
+    \end{tabular}
+}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+
+
+\begin{document}
+
+\tikzstyle{h}=[]
+\tikzstyle{arrow}=[->, >=triangle 60, thick]
+\tikzstyle{ve}=[rectangle split, rectangle split parts=2, draw=black, thick, text width=4cm]
+\tikzstyle{inode}=[rectangle split, rectangle split parts=2, draw=black, thick, text width=4cm]
+\tikzstyle{db}=[rectangle split, rectangle split parts=2, draw=black, thick, text width=5.5cm]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Aufgabe 1}
+% linke Spalte
+\begin{minipage}[t]{0.4\columnwidth}%
+  \vspace{1cm}
+  \textbf{FAT:}
+
+  \begin{tabular}{c|c|}
+    \cline{2-2}
+    Plattenblock  0 &      \\\cline{2-2}
+    Plattenblock  1 &      \\\cline{2-2}
+    Plattenblock  2 & $10$ \\\cline{2-2}
+    Plattenblock  3 & $11$ \\\cline{2-2}
+    Plattenblock  4 & $ 7$ \\\cline{2-2}
+    Plattenblock  5 &      \\\cline{2-2}
+    Plattenblock  6 & $ 3$ \\\cline{2-2}
+    Plattenblock  7 & $ 2$ \\\cline{2-2}
+    Plattenblock  8 &      \\\cline{2-2}
+    Plattenblock  9 &      \\\cline{2-2}
+    Plattenblock 10 & $12$ \\\cline{2-2}
+    Plattenblock 11 & $14$ \\\cline{2-2}
+    Plattenblock 12 & $-1$ \\\cline{2-2}
+    Plattenblock 13 &      \\\cline{2-2}
+    Plattenblock 14 & $-1$ \\\cline{2-2}
+    Plattenblock 15 &      \\\cline{2-2}
+    $\vdots$        & $\vdots$\\
+  \end{tabular}%
+  \vspace{1cm}
+\end{minipage}%
+%
+% rechte Spalte
+\begin{minipage}[t]{0.6\columnwidth}%
+  \vspace{1cm}
+  \textbf{Liste freier Plattenbl\"{o}cke:}
+
+  \begin{tabular}{|c|c|c|c|c|c|c|c}
+    \hline
+    15 & 13 & 1 & 8 & 9 & 5 & 0 & $\dots$\\
+    \hline
+  \end{tabular}
+
+  \vspace{2cm}
+
+  \textbf{Verzeichniseintr\"{a}ge:}
+
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    Dateiname       & Erwei-       & Datei-    & Erster       & Datei-           \\
+                    & terung       & Attribute & Plattenblock & gr\"{o}\ss{}e    \\\hline
+    \texttt{BRIEF}  & \texttt{TXT} & ($\dots$) & \texttt{4}   & \texttt{129 KiB} \\
+    \texttt{EDITOR} & \texttt{EXE} & ($\dots$) & \texttt{6}   & \texttt{101 KiB} \\
+    $\vdots$        & $\vdots$     & $\vdots$  & $\vdots$     & $\vdots$         \\
+  \end{tabular}%
+\end{minipage}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Aufgabe 3}
+
+\begin{figure}[h!]
+\begin{tikzpicture}
+
+% Header
+\node[right,h] at ( 0, -0) {\textbf{Verzeichniseinträe}};
+\node[right,h] at ( 5.5, -0) {\textbf{I-Nodes}};
+\node[right,h] at (11, -0) {\textbf{DatenblÃ¶cke}};
+
+% Table lines
+\draw (0, -0.5) -- (16.8, -0.5);
+\draw[dashed,gray] (5, 0.5) -- (5, -13);
+\draw[dashed,gray] (10.5, 0.5) -- (10.5, -13);
+
+% VerzeichniseintrÃ¤ge
+\node[right,ve] at ( 0, -2) (VB1) {\textbf{Verzeichniseintrag 1}\nodepart{second}\verb+brief.doc+};
+\node[right,ve] at ( 0, -4) (VB2) {\textbf{Verzeichniseintrag x}\nodepart{second}\verb+text+};
+\node[right,ve] at ( 0, -6) (VB3) {\textbf{Hier kÃ¶nnte}\nodepart{second}\verb+Ihre Werbung stehen+};
+
+% I-Nodes
+\node[right,inode] at ( 5.5, -2) (IB1) {\textbf{I-Node 1}\nodepart{second}Typ: Datei};
+\node[right,inode] at ( 5.5, -6) (IB2) {\textbf{I-Node z}\nodepart{second}Typ: ?};
+
+% DatenblÃ¶cke
+\node[right,db] at (11, -2) (DB1) {\textbf{Datenblock 1}\nodepart{second}(Anfang Inhalt von \verb+brief.doc+)};
+\node[right,db] at (11, -6) (DB2) {\textbf{Datenblock u}\nodepart{second}\verb_/dev/zero_};
+
+% Verbindungslinien
+\draw[arrow] (VB1.east) -> (IB1.west);
+\draw[arrow] (VB2.north east) -> (IB1.south west);
+\draw[arrow] (VB3.east) -> (IB2.west);
+\draw[arrow] (IB1.east) -> (DB1.west);
+\draw[arrow] (IB2.east) -> (DB2.west);
+
+\end{tikzpicture}
+\caption{Realisierung der Dateien im Dateisystem}
+\end{figure}
+
+\pageref
+\end{document}
