@@ -54,21 +54,33 @@
 			\end{tabular}
 		\end{table}
 
-	\item[b)] Gatter:
+    \newpage
+
+	\item[b)] Gatter: \\
+    \includegraphics[width=14cm]{1b.jpg}
 
 
 
 	\end{itemize}
 	\subsection*{Aufgabe 2}
-	Da [sext\((y)] = [00000000y_1...y_n] \) ist, und eine Positive Binäre Zahl egal in welcher
-	Darstellung (Binärbetrag mit Vorzeichen, Einer- bzw. Zweierkomplement) gleich dargestellt
-	wird, solange das erste bit 0 ist, ist eindeutig [sext\((y)] = [y] \). \hfill $\Box$
-        \\ \\
+  sext\((y)\) ist die sign extension von y, d.h. egal in welcher darstellung y ist,
+  wird y um die erwünschte (in diesem Fall 8) Anzahl bits erweitert, ohne den wert
+  der eigentlichen Zahl zu verändern. Dadurch gilt war streng genommen
+  $[$sext$(y)$]$ = $[$y$] nicht, da die sign extension immer $\geq$ Bits hat als die
+  Ursprüngliche Zahl, allerdings muss der dergestellte Wert der Zahl gleich bleiben$^{[1]}$.
+  \\ \\
+  \verb![1] : https://en.wikipedia.org/wiki/Sign_extension!
 
-        Zu beachten ist ist dass es nicht möglich ist, eine 24-bit große Zahl in einer 23-bit
-        großen Zahl mit Vorzeichen (-> 24bit) darzustellen, sollte das bit mit dem größten Wert
-        ($2^{24} = 16777216$) belegt sein, da die Zahl dann bereits größer ist als alles andere
-        was mit $2^{23}$ bits dargestellt werden kann.
+
+%  Da [sext\((y)] = [00000000y_1...y_n] \) ist, und eine Positive Binäre Zahl egal in welcher
+%  Darstellung (Binärbetrag mit Vorzeichen, Einer- bzw. Zweierkomplement) gleich dargestellt
+%  wird, solange das erste bit 0 ist, ist eindeutig [sext\((y)] = [y] \). \hfill $\Box$
+%         \\ \\
+%
+%         Zu beachten ist ist dass es nicht möglich ist, eine 24-bit große Zahl in einer 23-bit
+%         großen Zahl mit Vorzeichen (-> 24bit) darzustellen, sollte das bit mit dem größten Wert
+%         ($2^{24} = 16777216$) belegt sein, da die Zahl dann bereits größer ist als alles andere
+%         was mit $2^{23}$ bits dargestellt werden kann.
 
 	% Done ?
 
