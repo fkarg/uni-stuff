@@ -102,32 +102,43 @@
 
 
 \subsection*{Aufgabe 1 b)}
-Dateisystemgröße Fat32 mit 28bit zur addressierung von Blöcken und 32KiB blockgröße, max. Dateisystemgröße?
-
+% Dateisystemgröße Fat32 mit 28bit zur Addressierung von Blöcken und 32KiB Blockgröße, max. Dateisystemgröße?
+Die maximale Dateisystemgröße ist abhängig von der Anzahl der verschiedenen Addressierbaren Blöcke
+($2^{28}$) und der jeweiligen Blockgröße ($32KiB$), die größte Addressierbare größe ist also
+$2^{28} * 32KiB = 8589934592KiB = 8388608MiB = 8192GiB = 8TiB.$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection*{Aufgabe 2}
 
 \begin{itemize}
-  \item[a)] Hardlinks referenzieren die Datei direkt, Softlinks referenzieren einen relativen Dateipfad.
-    Nachteile von Hardlinks: man kann keine Ordner 'linken', und: je nach zählweise zählt man so verlinkte Dateien mehrfach.
-    Vorteile: Ein und dieselbe Datei muss nicht mehrfach existieren um vollständig referenzierbar bzw. verwendbar zu sein.
-    Außerdem ...
+  \item[a)] Hardlinks referenzieren die Datei direkt, Softlinks referenzieren einen relativen Dateipfad. \\
+    Nachteile von Hardlinks: man kann keine Ordner 'verlinken', und: je nach zählweise zählt man
+    so verlinkte Dateien mehrfach. \\
+    Vorteile: Ein und dieselbe Datei muss nicht mehrfach existieren um vollständig referenzierbar
+    bzw. verwendbar zu sein. Außerdem ist es möglich die Zugriffsrechte für alle Hardlinks
+    gleichzeitig zu ändern
+
+  \item[b)] Hardlinks zeigen direkt auf die Datei innerhalb des Dateisystems, da die Datei
+  außerhalb des Dateisystems tendenziell nicht existiert ist es nicht möglich diese zu
+  referenzieren.
+
+  \item[c)] Hardlinks auf Verzeichnisse wären Problematisch, da diese im Normalfall nur eine liste
+  von Hardlinks sind, und nicht im normalen speicher des Dateisystems gespeichert sind.
 
 
 \end{itemize}
 
 
-\subsection*{Aufgabe 3}
+\subsection*{Aufgabe 3 a)}
 
 \begin{figure}[h!]
 \begin{tikzpicture}
 
 % Header
-\node[right,h] at ( 0, -0) {\textbf{Verzeichniseinträe}};
+\node[right,h] at ( 0, -0) {\textbf{Verzeichniseinträge}};
 \node[right,h] at ( 5.5, -0) {\textbf{I-Nodes}};
-\node[right,h] at (11, -0) {\textbf{DatenblÃ¶cke}};
+\node[right,h] at (11, -0) {\textbf{Datenblöcke}};
 
 % Table lines
 \draw (0, -0.5) -- (16.8, -0.5);
@@ -135,30 +146,78 @@ Dateisystemgröße Fat32 mit 28bit zur addressierung von Blöcken und 32KiB bloc
 \draw[dashed,gray] (10.5, 0.5) -- (10.5, -13);
 
 % VerzeichniseintrÃ¤ge
-\node[right,ve] at ( 0, -2) (VB1) {\textbf{Verzeichniseintrag 1}\nodepart{second}\verb+brief.doc+};
-\node[right,ve] at ( 0, -4) (VB2) {\textbf{Verzeichniseintrag x}\nodepart{second}\verb+text+};
-\node[right,ve] at ( 0, -6) (VB3) {\textbf{Hier könnte}\nodepart{second}\verb+Ihre Werbung stehen+};
+\node[right,ve] at ( 0, -2) (VB1) {\textbf{hardlink1}\nodepart{second}\verb+brief.doc+};
+\node[right,ve] at ( 0, -4) (VB4) {\textbf{hardlink2}\nodepart{second}\verb+brief.doc+};
+\node[right,ve] at ( 0, -6) (VB5) {\textbf{hardlink3}\nodepart{second}\verb+brief.doc+};
+\node[right,ve] at ( 0, -8) (VB2) {\textbf{brief.doc}\nodepart{second}\verb+brief.doc+};
+
+% \node[right,ve] at ( 0, -10) (VB3) {\textbf{Hier könnte}\nodepart{second}\verb+Ihre Werbung stehen+};
+\node[right,ve] at ( 0, -10) (VB6) {\textbf{symlink1}\nodepart{second}\verb+./brief.doc+};
+\node[right,ve] at ( 0, -12) (VB7) {\textbf{symlink2}\nodepart{second}\verb+./brief.doc+};
 
 % I-Nodes
-\node[right,inode] at ( 5.5, -2) (IB1) {\textbf{I-Node 1}\nodepart{second}Typ: Datei};
-\node[right,inode] at ( 5.5, -6) (IB2) {\textbf{I-Node z}\nodepart{second}Typ: ?};
+\node[right,inode] at ( 5.5, -4) (IB1) {\textbf{I-Node 1}\nodepart{second}Typ: Datei, linkcount: 4};
+\node[right,inode] at ( 5.5, -10) (IB2) {\textbf{I-Node 2}\nodepart{second}Typ: Link};
+\node[right,inode] at ( 5.5, -12) (IB3) {\textbf{I-Node 3}\nodepart{second}Typ: Link};
 
-% DatenblÃ¶cke
+% Datenblöcke
 \node[right,db] at (11, -2) (DB1) {\textbf{Datenblock 1}\nodepart{second}(Anfang Inhalt von \verb+brief.doc+)};
-\node[right,db] at (11, -6) (DB2) {\textbf{Datenblock u}\nodepart{second}\verb_/dev/zero_};
+\node[right,db] at (11, -4) (DB3) {\textbf{Datenblock 2}\nodepart{second}(weiterführung von \verb+brief.doc+)};
+% \node[right,db] at (11, -10) (DB2) {\textbf{Datenblock u}\nodepart{second}\verb_/dev/zero_};
 
 % Verbindungslinien
-\draw[arrow] (VB1.east) -> (IB1.west);
+\draw[arrow] (VB1.east) -> (IB1.north west);
+\draw[arrow] (VB4.east) -> (IB1.west);
+\draw[arrow] (VB5.east) -> (IB1.south west);
+%\draw[arrow] (VB1.east) -> (IB1.west);
 \draw[arrow] (VB2.north east) -> (IB1.south west);
-\draw[arrow] (VB3.east) -> (IB2.west);
+% \draw[arrow] (VB3.east) -> (IB2.west);
 \draw[arrow] (IB1.east) -> (DB1.west);
-\draw[arrow] (IB2.east) -> (DB2.west);
+% \draw[arrow] (IB2.east) -> (DB2.west);
+\draw[arrow] (IB1.east) -> (DB3.west);
+\draw[arrow] (VB6.east) -> (IB2.west);
+\draw[arrow] (VB7.east) -> (IB3.west);
+\draw[arrow] (IB2.north west) -> (VB2.south east);
+\draw[arrow] (IB3.north west) -> (VB2.south east);
+
 
 \end{tikzpicture}
 \caption{Realisierung der Dateien im Dateisystem}
 \end{figure}
 
-\newpage
+\begin{itemize}
+
+\item[b)]
+Es werden mindestens 6 Datenblöcke gebraucht, also 6KiB, die allerdings vermutlich nicht vollständing belegt sind.
+Insgesamt werden 4 INodes und 5 Verzeichniseinträge benötigt, das INode des Verzeichnisses mitgerechnet.
+
+
+\item[c)]
+Die Berechtigungen der Hardlinks und der brief.doc sind immer gleich, auch wenn bzw. nachdem sie 
+geändert werden. die Symlinks sind unabhängig davon, und lassen sich auch rechtemäßig nicht
+einfach modifizieren.
+
+\item[d)]
+Es passiert nichts, es haben immernoch alle alle rechte, dieses verhalten ist Sinnvoll da nur indirekt auf die Datei
+verlinkt ist, also die rechte der Datei selber nicht modifiziert bzw. angezeigt werden.
+
+\end{itemize}
+
 \subsection*{Aufgabe 4}
+\begin{itemize}
+\item[a)] $N_b = 10 + b / z + (b / z)^2 + (b / z)^3 $ \\
+    also 10 direkt referenzierbare + ein indirekter Block der $b/z$ viele weitere direkte Adressen hat + ein 
+    zweifach indirekter Block der $(b/z)*(b/z)$ viele weitere Adressen beinhaltet + ein dreifach indirekter
+    Block der bis zu $(b/z)^3$ Adressen bereitstellen kann.
+
+\item[b)] Die maximale Zahl der referenzierbaren Datenblöcke beträgt
+    $2^{4*8bit} = 2^{32} = 4294967296$.
+    \item Blockgröße 1KiB: $10 + 256 + 256^2 + 256^3 = 16843018$ referzierbare Blöcke, also
+    bis zu $16843018KiB \cong 16448MiB \cong 16GiB$ maximale Dateigröße.
+    \item Blockgröße 4KiB: $(10 + 1024 + 1024^2 + 1024^3) * 4KiB = 1074791434$ Blöcke $* 4KiB \cong
+    4299165736KiB \cong 4198404MiB \cong 4100GiB \cong 4TiB$, die Maximal referenzierbare
+    Dateigröße beträgt also etwas über $4TiB$.
+
+\end{itemize}
 
 \end{document}
