@@ -1,0 +1,44 @@
+Aufgabe 4.4
+===========
+
+4.1 10min plan ausdenken und prisoner-description schreiben.
+4.1 20min implementation + 20min parameter tuning
+4.2 30min Algorithmus nachvollziehen (+Kuchen essen) + 10min Aufgaben bearbeiten
+4.3 5min implementation + 20min Tests + doc schreiben
+4.4 5min + 20min richtige formulierung der Anmerkung
+
+
+Anmerkungen:
+Ich verstehe dass das eine elegante lösung des Hanoi-Algorithmus in python ist,
+daher sollten entsprechende Kommentare auch erkenntlich und verständlich machen
+was passiert! Bsp:
+https://hackage.haskell.org/package/parallel-3.2.1.0/docs/src/Control-Parallel-Strategies.html#Eval
+. In den Kommentaren wird sogar bewiesen dass Eval eine Monade ist!!
+
+( https://hackage.haskell.org/package/parallel-3.2.1.0/docs/Control-Parallel-Strategies.html
+ist die haddock-variante)
+
+Hanoi-löser in Haskell mit fast selbem output:
+
+"""
+hanoi :: Integer -> a -> a -> a -> [(a, a)]
+hanoi 0 _ _ _ = []
+hanoi n a b c = hanoi (n-1) a c b ++ [(a,b)] ++ hanoi (n-1) c b a
+
+hanoiIO :: Integer -> IO ()
+hanoiIO n = mapM_ f $ hanoi n 1 2 3 where
+  f (x,y) = putStrLn $ "Bewege " ++ show x ++ " nach " ++ show y
+"""
+=> 2 Zeilen die das effektiv lösen, und 2 Zeilen ums auszugeben ...
+Kommentare wären schon hilfreich. Effektiv passiert dasselbe.
+sogar die imperative (lange) variante ist kürzer:
+"""
+hanoiM :: Integer -> IO ()
+hanoiM n = hanoiM' n 1 2 3 where
+  hanoiM' 0 _ _ _ = return ()
+  hanoiM' n a b c = do
+    hanoiM' (n-1) a c b
+    putStrLn $ "Bewege " ++ show a ++ " nach " ++ show b
+    hanoiM' (n-1) c b a
+"""
+

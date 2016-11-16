@@ -1,0 +1,7 @@
+Aufgabe 4.1 (a)
+===============
+
+Die zugrundeliegende idee ist eine Tit-for-Tat variante bei der durchschnittlich nach 25 runden ein Defekt bis zum Ende passiert.
+(Die hoffnung ist dass in der runde direkt nach dem defekt, sollte er passieren, ende ist.)
+Anfangs wird Kooperiert.
+

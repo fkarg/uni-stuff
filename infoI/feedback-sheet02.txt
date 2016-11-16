@@ -32,4 +32,4 @@ Johanna <johanna.goetz@uranus.uni-freiburg.de>
 Gesamt
 ======
 (1 + 1 + 1) + 5 + 5 + (3 + 1.5) + 2 =
-19.5/20 P.
+19.5/20

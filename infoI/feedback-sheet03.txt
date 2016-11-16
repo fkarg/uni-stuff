@@ -1,0 +1,56 @@
+Hallo Felix,
+
+Aufgabe 3.1
+===========
+Aufgabe 3.1(a)
+--------------
+Richtig
+
+Eine Typprüfung für Argumente is bei Python im allgemeinen unüblich (war auch
+nicht verlangt, man durfte davon ausgehen, dass immer nur ints eingegeben
+werden).
+
+Aufgabe 3.1(b)
+--------------
+Richtig, geht aber auch einfacher :)
+
+Aufgabe 3.2
+===========
+Aufgabe 3.2(a)
+--------------
+Fast richtig, aber wenn 0ct übrig bleiben, dann bleibt man einfach in dem Zu-
+stand, in dem das Getränk ausgegeben wurde, und wenn wieder Geld eingeworfen
+wird, geht man einfach zu den entsprechenden Guthaben-Zuständen (-0.5 P.)
+
+Zu q0 sollte noch ein Pfeil hinzeigen, damit klar ist, dass das der Anfangs-
+zustand ist.
+
+Aufgabe 3.2(b)
+--------------
+Richtig, auch wenn das Rechnen mit den Zuständen eigentlich nicht der
+Funktionsweise des Moore-Automaten entspricht.
+
+Aufgabe 3.2(c)
+--------------
+Richtig
+
+Aufgabe 3.2(d)
+--------------
+Die Idee mit den 5 Zuständen ist gut. Das mit dem auf 10 setzen ist mir leider
+nicht ganz klar geworden.
+
+Aufgabe 3.3
+===========
+Vorhanden und vollständig
+
+
+Wenn es Fragen zur Korrektur gibt (Punktabzüge usw.), dann schreibt eine Mail
+oder fragt mich persönlich in der Übungsgruppe.
+
+Johanna <johanna.goetz@uranus.uni-freiburg.de>
+
+
+Gesamt
+======
+(4 + 4) + (1.5 + 5 + 2 + 1) + 2 =
+19.5/20

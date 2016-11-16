@@ -1,0 +1,14 @@
+Aufgabe 4.2 (a)
+===============
+
+Es werden abhängig vom argument n jeweils n 'disks' von der ursprünglichen Quelle
+zum ursprünglichen Ziel 'versetzt', bei n < Anzahl disks in source werden nicht alle verschoben,
+bei n > anzahl disks in source kommt gegen ende ein index-error, disks die anfangs in helper oder
+target sind werden komplett ignoriert.
+
+
+Aufgabe 4.2 (c)
+===============
+
+nope.
+
