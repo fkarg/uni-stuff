@@ -17,11 +17,15 @@ Examples:
     True
     >>> deriv((1, 2, 3), 0)
     (1, 2, 3)
+    >>> first_deriv(first_integral((3,4,5)))
+    (3.0, 4.0, 5.0)
 
 """
 
+from typing import Tuple
 
-def first_deriv(t):
+
+def first_deriv(t: Tuple[int]) -> Tuple[int]:
     """Deriving the polynominal function.
 
     Args:
@@ -48,7 +52,7 @@ def first_deriv(t):
     return tuple([p*i for i, p in enumerate(t)][1:])
 
 
-def deriv(t, k):
+def deriv(t: Tuple[int], k: int) -> Tuple[int]:
     """Deriving the polynominal t k-times.
 
     Args:
@@ -80,3 +84,29 @@ def deriv(t, k):
         return deriv(first_deriv(t), k-1)
 
     pass
+
+
+def first_integral(t: Tuple[int]) -> Tuple[int]:
+    """Integrating this function with c = 0
+
+    Args:
+        t (n-tuple number): the function to be integrated
+
+    Returns:
+        t (n+1-tuple number): the integrated function with c=0.
+
+    Notes:
+        Inverse to first_deriv()
+
+    Examples:
+        >>> first_integral((2,3,6))
+        (0, 2.0, 1.5, 2.0)
+        >>> first_deriv(first_integral((3,4,5)))
+        (3.0, 4.0, 5.0)
+        >>> first_integral((3,))
+        (0, 3.0)
+        >>> first_integral((-3,))
+        (0, -3.0)
+    """
+
+    return tuple([0] + [e/(i+1) for i, e in enumerate(t)])

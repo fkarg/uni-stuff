@@ -12,7 +12,58 @@ seed()
 ROUNDS = 20
 
 
-def next_state(state, inp):
+def next_state(state: int, inp: str) -> int:
+    """Calculate the successor state for a given state and a input.
+
+    Args:
+      state (int): a natural number, representing the automaton's current state
+      inp (string): either 'C' or 'D', representing the opponent's
+                    last action
+
+    Returns:
+      int: a natural number, representing the automaton's successor state
+
+    """
+    def isCoop(n):
+        return n % 2 == 0
+
+    new = state
+    new += 2
+
+    if inp == 'D' and isCoop(state):
+        new -= 1
+
+    if inp == 'C' and not isCoop(state):
+        new += 1
+
+    if state >= 36:
+        new = 41
+
+    return new
+
+
+def output(state: int) -> str:
+    """Calculate the output in a given state.
+
+    Args:
+      state (int): a natural number, representing the automaton's current state
+
+    Returns:
+      string: the output of the automaton (either 'C' or 'D'),
+              representing the next action to perform
+
+    """
+    if state % 2 == 0:
+        return 'C'
+    return 'D'
+
+
+###############################################################################
+#   YOUR DEFINITIONS FOR EXERCISE 4.1 (c)                                     #
+###############################################################################
+
+
+def next_state_opponent(state: int, inp: str) -> int:
     """Calculate the successor state for a given state and a input.
 
     Args:
@@ -39,47 +90,14 @@ def next_state(state, inp):
 
     return new
 
-
-def output(state):
-    """Calculate the output in a given state.
-
-    Args:
-      state (int): a natural number, representing the automaton's current state
-
-    Returns:
-      string: the output of the automaton (either 'C' or 'D'),
-              representing the next action to perform
-
-    """
-    if state % 2 == 0:
-        return 'C'
-    else:
-        return 'D'
-
-
-###############################################################################
-#   YOUR DEFINITIONS FOR EXERCISE 4.1 (c)                                     #
-###############################################################################
-
-
-def next_state_opponent(state, inp):
-    """Calculate the successor state for a given state and a input.
-
-    Args:
-      state (int): a natural number, representing the automaton's current state
-      inp (string): either 'C' or 'D', representing the opponent's
-                    last action
-
-    Returns:
-      int: a natural number, representing the automaton's successor state
-
-    """
+"""
     if inp == 'C':
         return 0
     return 1
+"""
 
 
-def output_opponent(state):
+def output_opponent(state: int) -> str:
     """Calculate the output in a given state.
 
     Args:
@@ -101,7 +119,7 @@ def output_opponent(state):
 ###############################################################################
 
 
-def years(a1, a2):
+def years(a1: str, a2: str):
     if a1 == 'C' and a2 == 'C':
         return 1
     elif a1 == 'C' and a2 == 'D':
@@ -132,7 +150,7 @@ def simulate(fnext1, fout1, fnext2, fout2, n):
     return y1, y2, h
 
 
-def test_simulate(n):
+def test_simulate(n: int) -> None:
     # check if main strategy is implemented
     if not is_implemented('next_state', 'output'):
         print('Main strategy not implemented yet, or one of the functions ' +
@@ -192,7 +210,7 @@ def is_implemented(fnext, fout):
             globals()[fout](0) is not None)
 
 
-def getRounds(n=0):
+def getRounds(n: int = 0) -> int:
     if randint(0, 20) == 0:
         return n
     else:
