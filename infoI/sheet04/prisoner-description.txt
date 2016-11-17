@@ -5,3 +5,4 @@ Die zugrundeliegende idee ist eine Tit-for-Tat variante bei der durchschnittlich
 (Die hoffnung ist dass in der runde direkt nach dem defekt, sollte er passieren, ende ist.)
 Anfangs wird Kooperiert.
 
+Update: Defect ab der 20. Runde, Alte Zufalls-strategie bei gegner.
