@@ -27,21 +27,28 @@ def flatten(lst: list) -> list:
 
     """
 
-    retval = []
+    ret = []
 
-    for i in lst:
-        if isinstance(i, list):
-            retval.extend(flatten(i))
+    if len(lst) > 0:
+        if isinstance(lst[0], list):
+            ret.extend(flatten(lst[0]))
         else:
-            retval.append(i)
+            ret.append(lst[0])
+        ret.extend(lst[1:])
 
-    return retval
-
+    return ret
 
 
 
 def flatten_in_place(lst: list) -> list:
-    pass
+
+    if len(lst) > 0:
+        if isinstance(lst[0], list):
+            pass
+        else:
+            pass
+
+    return lst
 
 
 
