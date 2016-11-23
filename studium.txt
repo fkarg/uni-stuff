@@ -7,7 +7,7 @@ Semester 1
 Übungsblatt   01   |    02   |    03   |    04   |    05   |    06   |    07   |    08   |    09   |    10   |    11   |    12   |
 Fach     |         |         |         |         |         |         |         |         |         |         |         |         |
 Logik    | 10.5/16 | 11.5/16 |  7.0/16 |    N/20 |     N/A |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
-InfoI    | 18.5/20 | 19.5/20 | 19.5/20 |    N/A  |     N/A |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+InfoI    | 18.5/20 | 19.5/20 | 19.5/20 | 16.5/20 |     N/A |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
 MatheI   | 11.5/16 | 11.0/16 |    N/A  |    N/A  |     N/A |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
 TechnI   | 11.0/20 | 19.5/20 | 10.5/20 |    N/A  |     N/A |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
 SystemeI | 11.0/12 |  5.5/12 |    N/A  |    N/A  |     N/A |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |

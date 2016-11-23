@@ -1,0 +1,63 @@
+Hallo Felix,
+
+Aufgabe 4.1
+===========
+Aufgabe 4.1(a)
+--------------
+Beides richtig, aber Moore-Automaten haben eigentlich keine randomisierten
+Übergänge.
+
+Aufgabe 4.1(b)
+--------------
+Richtig, verwendet aber anders als in deiner Skizze kein random.
+
+Aufgabe 4.1(c)
+--------------
+Funktioniert, aber siehe (a).
+
+Aufgabe 4.2
+===========
+Aufgabe 4.2(a)
+--------------
+Richtig
+
+Aufgabe 4.2(b)
+--------------
+Deine Beschreibungen (außer für (2), die ist gut) sind ziemlich unpräzise
+(-0.5 P.)
+
+Aufgabe 4.2(c)
+--------------
+Nicht bearbeitet
+
+Aufgabe 4.3
+===========
+Aufgabe 4.3(a)
+--------------
+Richtig. Wäre super, wenn du hier zum Vorrechnen noch eine Lösung ohne List
+Comprehension machen könntest.
+
+Aufgabe 4.3(b)
+--------------
+Auch richtig
+Offensichtlich hattest du viel Spaß an der Aufgabe :D
+
+Aufgabe 4.3(c)
+--------------
+Schön :)
+
+Aufgabe 4.4
+===========
+Vorhanden und vollständig
+
+
+Wenn es Fragen zur Korrektur gibt (Punktabzüge usw.), dann schreibt eine Mail
+oder fragt mich persönlich in der Übungsgruppe.
+
+Johanna <johanna.goetz@uranus.uni-freiburg.de>
+
+
+Gesamt
+======
+(2 + 2 + 1) + (1 + 1.5 + 0) + (3 + 2 + 2) + 2 =
+16.5/20
