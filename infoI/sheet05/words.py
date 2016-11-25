@@ -1,10 +1,10 @@
 """Tools for word trees.
 
 Authors:
-    Felix Karg <felix.karg@uranus.uni-freiburg.de>
     Stefan Woelfl <woelfl@cs.uni-freiburg.de>
     Thorsten Engesser <engesser@cs.uni-freiburg.de>
     Tim Schulte <schultet@cs.uni-freiburg.de>
+    Felix Karg <felix.karg@uranus.uni-freiburg.de>
 
 """
 
@@ -72,7 +72,33 @@ def word_tree(s):
 
 
     """
-    pass  # TODO: implement
+
+    def tree_insert(tree, w):
+        if tree is None:
+            return [None, None, w, 1]
+        elif  w == tree[2]:
+            tree[3] += 1
+            return tree
+        elif w < tree[2]:
+            tree[0] = tree_insert(tree[0], w)
+            return tree
+        elif w > tree[2]:
+            tree[1] = tree_insert(tree[1], w)
+            return tree
+        print(tree, w)
+
+    # data Tree a = None | Tree { lt :: Tree a, rt :: Tree a, a, Int }
+
+    tree = None
+    re = s
+
+    while len(re) > 0:
+        new, re = next_word(re)
+        if new is not None:
+            tree = tree_insert(tree, new)
+
+    return tree
+
 
 
 # 5.2 (b)
@@ -87,7 +113,18 @@ def word_freq(tree, word):
         int: Number of word occurences.
 
     """
-    pass  # TODO: implement
+
+    if tree is None:
+        return 0
+
+    if word == tree[2]:
+        return tree[3]
+    if word <  tree[2]:
+        return word_freq(tree[0], word)
+    if word >  tree[2]:
+        return word_freq(tree[1], word)
+
+    return 0
 
 
 # 5.2 (c)
@@ -101,7 +138,22 @@ def print_tree(tree):
         None
 
     """
-    pass  # TODO: implement
+    def tuple_elem(el):
+        if el is None:
+            return []
+        return [(el[2], el[3])] + tuple_elem(el[0]) + tuple_elem(el[1])
+
+    def pretty_string(tup, m):
+        s, a = tup
+        return s.ljust(m) + ' : ' + str(a)
+
+    def ltup(tup):
+        s, o = tup
+        return len(s)
+
+    tuples = tuple_elem(tree)
+    m = max(map(ltup, tuples))
+    list(map(lambda x: print(pretty_string(x, m)), tuples))
 
 
 # 5.2 (d)
@@ -115,4 +167,19 @@ def freq_words(tree):
         list of lists, where the inner list at index i contains all words
         which occur i+1 times in the tree.
     """
-    pass  # TODO: implement
+
+    def build_list(lst, tree):
+        if tree is None:
+            return lst
+        if tree[3] > len(lst):
+            lst.append([])
+            return build_list(lst, tree)
+        lst[tree[3]-1] += [tree[2]]
+        lst = build_list(lst, tree[0])
+        lst = build_list(lst, tree[1])
+        return lst
+
+    ret = []
+    return build_list(ret, tree)
+
+
