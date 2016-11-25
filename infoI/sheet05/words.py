@@ -76,7 +76,7 @@ def word_tree(s):
     def tree_insert(tree, w):
         if tree is None:
             return [None, None, w, 1]
-        elif  w == tree[2]:
+        elif w == tree[2]:
             tree[3] += 1
             return tree
         elif w < tree[2]:
@@ -100,7 +100,6 @@ def word_tree(s):
     return tree
 
 
-
 # 5.2 (b)
 def word_freq(tree, word):
     """Return the occurence count of a word in a word tree.
@@ -119,9 +118,9 @@ def word_freq(tree, word):
 
     if word == tree[2]:
         return tree[3]
-    if word <  tree[2]:
+    if word < tree[2]:
         return word_freq(tree[0], word)
-    if word >  tree[2]:
+    if word > tree[2]:
         return word_freq(tree[1], word)
 
     return 0
@@ -181,5 +180,3 @@ def freq_words(tree):
 
     ret = []
     return build_list(ret, tree)
-
-

@@ -46,14 +46,14 @@ def flatten_in_place(lst: list) -> list:
     Returns:
         None, modifies list in place
 
-    Example: 
+    Example:
         >>> egg = [3,4,[[5]]]
-		>>> spam = [[[1, 2, egg], (6, [7]), 8], 9, False]
-		>>> flatten_in_place(spam)
-		>>> spam
-		[1, 2, 3, 4, 5, (6, [7]), 8, 9, False]
-		>>> egg
-		[3, 4, 5]
+        >>> spam = [[[1, 2, egg], (6, [7]), 8], 9, False]
+        >>> flatten_in_place(spam)
+        >>> spam
+        [1, 2, 3, 4, 5, (6, [7]), 8, 9, False]
+        >>> egg
+        [3, 4, 5]
     """
 
     for i, e in enumerate(lst):
