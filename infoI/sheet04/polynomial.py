@@ -52,16 +52,6 @@ def first_deriv(t: Tuple[int]) -> Tuple[int]:
     return tuple([p*i for i, p in enumerate(t)][1:])
 
 
-def first_deriv2(t: Tuple[int]) -> Tuple[int]:
-
-    ret = []
-
-    for i, p in enumerate(t):
-        ret.append(p*i)
-
-    return tuple(ret[1:])
-
-
 def deriv(t: Tuple[int], k: int) -> Tuple[int]:
     """Deriving the polynominal t k-times.
 
