@@ -2,10 +2,11 @@
 \usepackage{german}
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
-\usepackage{amssymb} % what does it do?
+\usepackage{amssymb} % math-symbol stuff
 \usepackage{graphicx} % I can't do that yet
-\usepackage{fancyhdr} % what does it do?
-\usepackage{lastpage} % what does it do?
+\usepackage{fancyhdr} % for header
+\usepackage{lastpage} % for 'lastpage' showing
+\usepackage[normalem]{ulem}  % for striking through text
 \setlength{\parskip}{\medskipamount} % thats reasonable
 \setlength{\parindent}{0pt} % whatever that does
 
@@ -38,10 +39,68 @@
 \section*{Antworten zu Übungsblatt Nr. 5}
 
 \section*{Aufgabe 1}
+\begin{itemize}
+\item[a)]
+    \verb$ps -e$ oder \verb$ps -A$ (sind identisch).
+\item[b)]
+    \verb!kill -s <n> $(pidof counter.sh)!, wobei \verb$<n>$ mit \\
+    SIGSTOP = 19 \\
+    SIGCONT = 18 \\
+    SIGTERM = 15 \\
+    SIGKILL = 9 \\
+    Zu ersetzen ist.
+
+\item[c)]
+    SIGSTOP = 'Pausiere' Prozess, aber Beende ihn nicht. \\
+    SIGCONT = Führe Prozess weiter, wenn 'pausiert'. \\
+    SIGTERM = 'Freundlicher' Hinweis an den Prozess, dass er sich beenden soll. Kann abgefangen um individuell darauf
+    zu reagieren \\
+    SIGKILL = Hinweis an \sout{den Kernel} init den Prozess zu beenden, kann nicht abgefangen werden. \\
+
+\end{itemize}
+
+
 \section*{Aufgabe 2}
+\begin{itemize}
+\item[a)]
+\begin{verbatim}
+$ ps -e | wc -l
+257
+$ !
+\end{verbatim}
+\item[b)] Skript: \\
+\begin{verbatim}
+#! /bin/bash
+
+echo Laufende Prozesse $(ps -e) > info.txt
+echo Aktuelles Verzeichnis: $(pwd) >> info.txt
+echo Erster Verzeichniseintrag: $(ls | head -n 1) >> info.txt
+echo Dateiendungen: Todo ... >> info.txt
+
+\end{verbatim}
+
+\end{itemize}
+
+
 \section*{Aufgabe 3}
+\begin{itemize}
+\item[a)]
+Kriterium 2 wird verletzt, da eine Zeitschaltung verwendet wird. \\
+Außerdem kann passieren dass Kriterium 3 verletzt wird, wenn auf der anderen Seite kein Auto wartet. \\
+\item[b)]
+Kriterien 3 und 4 werden Verletzt, da Alle Prozesse Blockiert werden obwohl sich keiner in seiner Kritischen Region befindet,
+Und sich das in absehbarer ('endlicher', in diesem Fall sogar unendlicher) Zeit in diesem Szenario auch nicht ändern wird.
+\item[c)]
+Vermutlich lässt sich diskutieren ob Krit. 3 verletzt wird oder nicht, das wäre der fall wenn der 'Brückenwärter' gerade
+über die Brücke 'zurückläuft' um auf der anderen Seite ein 'Auto rüberzufahren'.
+Ansonsten werden alle Kriterien durchgehend erfüllt.
+\item[d)]
+Bei der Vorrangrichtung ist das einzige Problem, dass es Passieren könnte, dass aus der einen Richtung durchgehend
+'Autos' kommen, und die andere Richtung dadurch niemals durchgelassen wird (Krit. 4 wird möglicherweise verletzt).
+\item[e)]
+Selbe Situation wie bei $d)$ kann entstehen, wenn von der momentan durchgelassenen Seite immer neue 'Autos' kommen.
 
-
+\end{itemize}
 \end{document}
 
 
