@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="2.7.1" version="1.0">
+This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
+<lib desc="#Wiring" name="0"/>
+  <lib desc="#Gates" name="1">
+    <tool name="XOR Gate">
+      <a name="facing" val="south"/>
+    </tool>
+    <tool name="Even Parity">
+      <a name="facing" val="south"/>
+      <a name="inputs" val="16"/>
+      <a name="label" val="Betrag"/>
+    </tool>
+  </lib>
+  <lib desc="#Plexers" name="2"/>
+  <lib desc="#Arithmetic" name="3"/>
+  <lib desc="#Memory" name="4">
+    <tool name="ROM">
+      <a name="contents">addr/data: 8 8
+0
+</a>
+    </tool>
+  </lib>
+  <lib desc="#I/O" name="5"/>
+  <lib desc="#Base" name="6">
+    <tool name="Text Tool">
+      <a name="text" val=""/>
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="halign" val="center"/>
+      <a name="valign" val="base"/>
+    </tool>
+  </lib>
+  <main name="main"/>
+  <options>
+    <a name="gateUndefined" val="ignore"/>
+    <a name="simlimit" val="1000"/>
+    <a name="simrand" val="0"/>
+  </options>
+  <mappings>
+    <tool lib="6" map="Button2" name="Menu Tool"/>
+    <tool lib="6" map="Button3" name="Menu Tool"/>
+    <tool lib="6" map="Ctrl Button1" name="Menu Tool"/>
+  </mappings>
+  <toolbar>
+    <tool lib="6" name="Poke Tool"/>
+    <tool lib="6" name="Edit Tool"/>
+    <tool lib="6" name="Text Tool">
+      <a name="text" val=""/>
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="halign" val="center"/>
+      <a name="valign" val="base"/>
+    </tool>
+    <sep/>
+    <tool lib="0" name="Pin">
+      <a name="tristate" val="false"/>
+    </tool>
+    <tool lib="0" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </tool>
+    <tool lib="1" name="NOT Gate"/>
+    <tool lib="1" name="AND Gate"/>
+    <tool lib="1" name="OR Gate"/>
+  </toolbar>
+  <circuit name="main">
+    <a name="circuit" val="main"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <wire from="(280,110)" to="(280,180)"/>
+    <wire from="(560,480)" to="(560,490)"/>
+    <wire from="(380,110)" to="(380,180)"/>
+    <wire from="(130,100)" to="(130,170)"/>
+    <wire from="(240,110)" to="(240,180)"/>
+    <wire from="(110,400)" to="(290,400)"/>
+    <wire from="(400,400)" to="(570,400)"/>
+    <wire from="(280,480)" to="(280,500)"/>
+    <wire from="(400,400)" to="(400,420)"/>
+    <wire from="(90,170)" to="(90,190)"/>
+    <wire from="(550,310)" to="(550,340)"/>
+    <wire from="(550,230)" to="(550,260)"/>
+    <wire from="(550,390)" to="(550,420)"/>
+    <wire from="(290,400)" to="(400,400)"/>
+    <wire from="(450,110)" to="(450,140)"/>
+    <wire from="(270,390)" to="(270,420)"/>
+    <wire from="(110,400)" to="(110,490)"/>
+    <wire from="(230,310)" to="(230,340)"/>
+    <wire from="(230,230)" to="(230,260)"/>
+    <wire from="(250,390)" to="(250,420)"/>
+    <wire from="(110,130)" to="(400,130)"/>
+    <wire from="(420,140)" to="(450,140)"/>
+    <wire from="(400,130)" to="(420,130)"/>
+    <wire from="(420,140)" to="(420,180)"/>
+    <wire from="(560,120)" to="(560,180)"/>
+    <wire from="(500,120)" to="(500,180)"/>
+    <wire from="(110,130)" to="(110,190)"/>
+    <wire from="(110,270)" to="(170,270)"/>
+    <wire from="(110,360)" to="(230,360)"/>
+    <wire from="(220,170)" to="(220,180)"/>
+    <wire from="(290,400)" to="(290,420)"/>
+    <wire from="(420,110)" to="(420,130)"/>
+    <wire from="(390,480)" to="(390,500)"/>
+    <wire from="(100,250)" to="(100,270)"/>
+    <wire from="(400,310)" to="(400,340)"/>
+    <wire from="(400,230)" to="(400,260)"/>
+    <wire from="(90,170)" to="(130,170)"/>
+    <wire from="(110,270)" to="(110,360)"/>
+    <wire from="(380,310)" to="(380,340)"/>
+    <wire from="(380,230)" to="(380,260)"/>
+    <wire from="(380,390)" to="(380,420)"/>
+    <wire from="(570,400)" to="(570,420)"/>
+    <wire from="(240,390)" to="(240,420)"/>
+    <wire from="(170,270)" to="(170,490)"/>
+    <wire from="(130,170)" to="(220,170)"/>
+    <wire from="(110,360)" to="(110,400)"/>
+    <wire from="(400,130)" to="(400,180)"/>
+    <wire from="(100,270)" to="(110,270)"/>
+    <comp lib="6" loc="(309,326)" name="Text">
+      <a name="text" val="..................."/>
+    </comp>
+    <comp lib="6" loc="(147,104)" name="Text">
+      <a name="text" val="a_n"/>
+    </comp>
+    <comp lib="6" loc="(557,113)" name="Text">
+      <a name="text" val="b_0"/>
+    </comp>
+    <comp lib="6" loc="(280,520)" name="Text">
+      <a name="text" val="e_2n-2"/>
+    </comp>
+    <comp lib="6" loc="(470,248)" name="Text">
+      <a name="text" val="..................."/>
+    </comp>
+    <comp lib="1" loc="(560,480)" name="XOR Gate">
+      <a name="facing" val="south"/>
+    </comp>
+    <comp lib="6" loc="(235,101)" name="Text">
+      <a name="text" val="a_n-1"/>
+    </comp>
+    <comp lib="6" loc="(418,102)" name="Text">
+      <a name="text" val="b_n"/>
+    </comp>
+    <comp lib="1" loc="(390,390)" name="Even Parity">
+      <a name="facing" val="south"/>
+      <a name="inputs" val="32"/>
+      <a name="label" val="-e_2n Subtrahierer"/>
+    </comp>
+    <comp lib="6" loc="(303,245)" name="Text">
+      <a name="text" val="..................."/>
+    </comp>
+    <comp lib="6" loc="(108,509)" name="Text">
+      <a name="text" val="e_2n"/>
+    </comp>
+    <comp lib="1" loc="(280,480)" name="XOR Gate">
+      <a name="facing" val="south"/>
+    </comp>
+    <comp lib="6" loc="(380,104)" name="Text">
+      <a name="text" val="a_0"/>
+    </comp>
+    <comp lib="1" loc="(480,230)" name="Even Parity">
+      <a name="facing" val="south"/>
+      <a name="inputs" val="16"/>
+      <a name="label" val="Betrag"/>
+    </comp>
+    <comp lib="6" loc="(464,109)" name="Text">
+      <a name="text" val="b_n-1"/>
+    </comp>
+    <comp lib="1" loc="(390,480)" name="XOR Gate">
+      <a name="facing" val="south"/>
+    </comp>
+    <comp lib="6" loc="(286,99)" name="Text">
+      <a name="text" val="...."/>
+    </comp>
+    <comp lib="1" loc="(300,230)" name="Even Parity">
+      <a name="facing" val="south"/>
+      <a name="inputs" val="16"/>
+      <a name="label" val="Betrag"/>
+    </comp>
+    <comp lib="1" loc="(100,250)" name="XOR Gate">
+      <a name="facing" val="south"/>
+    </comp>
+    <comp lib="1" loc="(390,310)" name="Even Parity">
+      <a name="facing" val="south"/>
+      <a name="inputs" val="32"/>
+      <a name="label" val="MULT_n"/>
+    </comp>
+    <comp lib="6" loc="(469,326)" name="Text">
+      <a name="text" val="..................."/>
+    </comp>
+    <comp lib="6" loc="(503,108)" name="Text">
+      <a name="text" val="...."/>
+    </comp>
+    <comp lib="6" loc="(389,515)" name="Text">
+      <a name="text" val="............."/>
+    </comp>
+    <comp lib="6" loc="(561,522)" name="Text">
+      <a name="text" val="e_0"/>
+    </comp>
+    <comp lib="6" loc="(170,516)" name="Text">
+      <a name="text" val="e_2n-1"/>
+    </comp>
+  </circuit>
+</project>
