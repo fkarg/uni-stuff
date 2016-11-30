@@ -8,7 +8,7 @@ Semester 1
 Fach     |         |         |         |         |         |         |         |         |         |         |         |         |
 Logik    | 10.5/16 | 11.5/16 |  7.0/16 | 10.0/20 | 7.0/16  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
 InfoI    | 18.5/20 | 19.5/20 | 19.5/20 | 16.5/20 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
-MatheI   | 11.5/16 | 11.0/16 | 10.0/16 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+MatheI   | 11.5/16 | 11.0/16 | 10.0/16 | 06.5/16 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
 TechnI   | 11.0/20 | 19.5/20 | 10.5/20 | 15.5/20 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
 SystemeI | 11.0/12 |  5.5/12 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
 SDP
