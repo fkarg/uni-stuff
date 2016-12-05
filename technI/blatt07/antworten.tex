@@ -1,0 +1,77 @@
+\documentclass{scrartcl}
+\usepackage{german}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[german]{babel}
+
+% zusÃ¤tzliche mathematische Symbole, AMS=American Mathematical Society
+\usepackage{amssymb}
+
+% fÃ¼rs Einbinden von Graphiken
+\usepackage{graphicx}
+
+% fÃ¼r Namen etc. in Kopf- oder FuÃŸzeile
+\usepackage{fancyhdr}
+
+% erlaubt benutzerdefinierte Kopfzeilen
+\pagestyle{fancy}
+
+% Definition der Kopfzeile
+\lhead{
+\begin{tabular}{ll}
+Fisnik Zeqiri & 4306430 \\
+Felix  Karg   & 4342014
+\end{tabular}
+}
+\chead{}
+\rhead{\today{}}
+\lfoot{}
+\cfoot{Seite \thepage}
+\rfoot{}
+
+\begin{document}
+\section*{Antworten zum Übungsblatt Nr. 7}
+
+\section*{Aufgabe 1}
+\section*{Aufgabe 2}
+\section*{Aufgabe 3}
+\begin{itemize}
+    \item[a)] [Schaltkreis 1] \\
+	\includegraphics[width=13cm]{circuit_1.png}
+    \item[b)] [Schaltkreis 2] \\
+	\includegraphics[width=14cm]{circuit_2.png}
+    \item[c)] [Schaltkreis 3] \\
+	\includegraphics[width=14cm]{circuit_3.png}
+        Datum: 12.11.1997, Funktion-ON-Mengen: \\
+        $Y_0 = A_0' + A_1 + A_2$ \\
+        $Y_1 = A_0A_1'A_2' + A_0A_1A_2$ \\
+        $Y_2 = A_0A_1A_2$ \\
+        $Y_3 = A_0A_1'A_2 + A_0'A_1A_2$ \\
+        Begründung: Da ein $D_1$-Dekoder 'zufällig' die Negation mit ausgibt, und \\
+        $(B \wedge C) = \neg(\neg B \vee \neg C)$ ist, verwendet Diese Schaltung nur 'ODER'-Gatter und
+        $D_1$-Dekoder.
+\end{itemize}
+
+\section*{Aufgabe 4}
+\begin{itemize}
+
+    \item Beh.: $T(N)$ hat $N$ Blätter. \\
+        Da das Ziel ist, einen Eingang (die Wurzel) $N$-fach zu vervielfältigen, und wir nur
+        von einem Blatt ein Signal 'ausgeben' können (sowie unsere Struktur ein Baum ist),
+        ist gegeben dass wir bei $N$ Ausgängen $N$ Blätter haben müssen. \hfill $\Box$
+
+    \item Beh.: $T(N)$ hat $\leq N/9 + s$ innere Knoten. \\
+        O.b.d.A.: $N \in \mathbb{N}$  (1,..) \\
+        IA: $s = 0 \Leftrightarrow N \in \{10^{s-1} + 1,..., 10^s\} = N \in \{10^0 = 1\} = N = 1$. \\
+        $T(1)$ hat $\leq N/9 + s = 1/9 + 0$ innere Knoten. Stimmt, da der Baum nur ein Blatt hat,
+        das gleichzeitig die Wurzel ist. \\
+        IS: ($s \rightarrow s + 1$) \\
+        Wenn $N$ groß genug wird, um $N \notin \{10^{s-1} + 1,..., 10^s\}$ zu sein, muss $s$
+        vergrößert werden ?
+
+    \item Beh.: Alle Pfade von der Wurzel zu einem Blatt in $T(N)$ haben Länge $s$. \\
+
+
+\end{itemize}
+
+\end{document}
