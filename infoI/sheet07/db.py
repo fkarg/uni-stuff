@@ -27,7 +27,7 @@ def project(tbl, keys):
     ret = deepcopy(tbl)
 
     for i, item in enumerate(tbl):
-        for k, e in item.iteritems():
+        for k, e in item.items():
             if k not in keys:
                 del(ret[i][k])
 
@@ -53,7 +53,7 @@ def select(tbl, **kwargs):
 
     for item in tbl:
         add = True
-        for k, v in kwargs.iteritems():
+        for k, v in kwargs.items():
             if not item.get(k, None) == v:
                 add = False
         if add:
@@ -88,18 +88,18 @@ def join(tbl1, tbl2, *args):
     inp1 = deepcopy(tbl1)
     inp2 = deepcopy(tbl2)
     ret = []
-    keysinBoth = None
+    keysinboth = None
 
     # Fails if table is empty. return empty table.
     try:
-        keysinBoth = set(tbl1[0].keys()) & set(tbl2[0].keys())
+        keysinboth = set(tbl1[0].keys()) & set(tbl2[0].keys())
     except IndexError:
         return ret
     except:
         raise
 
     # merge fitting items.
-    for k in keysinBoth:
+    for k in keysinboth:
         for item in inp1:
             for etem in inp2:
                 # print(etem, item)

@@ -75,7 +75,7 @@ if __name__ == "__main__":
                 while True:
                     ntext += "\n" + caesar(input(""), int(sys.argv[2]))
             except EOFError:
-                pass # End of input, now, write to file...
+                pass  # End of input, now, write to file...
             except:
                 raise
 

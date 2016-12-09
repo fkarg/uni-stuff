@@ -33,7 +33,19 @@ Felix  Karg   & 4342014
 \section*{Antworten zum Übungsblatt Nr. 7}
 
 \section*{Aufgabe 1}
+        [Aufgabe 1] \\
+	\includegraphics[width=16cm]{1.jpg}
 \section*{Aufgabe 2}
+        a) \\
+        \includegraphics[width=12cm]{IMG_20161209_122056.jpg} \\
+        Aufgabe 2 b) \\
+	\includegraphics[width=13cm]{2a.jpg} \\
+	\includegraphics[width=13cm]{2b.jpg}
+        Aufgabe 2 c) \\
+	\includegraphics[width=13cm]{circuit_4.png} \\
+        Bedingung ist, dass das neue Signal kommt, sobald die Flip-Flops
+        jeweils geschalten haben. Der Anfangszustand (a) beider FF's ist 0.
+        (Beide FF's sind active-High.)
 \section*{Aufgabe 3}
 \begin{itemize}
     \item[a)] [Schaltkreis 1] \\
@@ -55,21 +67,32 @@ Felix  Karg   & 4342014
 \section*{Aufgabe 4}
 \begin{itemize}
 
-    \item Beh.: $T(N)$ hat $N$ Blätter. \\
-        Da das Ziel ist, einen Eingang (die Wurzel) $N$-fach zu vervielfältigen, und wir nur
-        von einem Blatt ein Signal 'ausgeben' können (sowie unsere Struktur ein Baum ist),
-        ist gegeben dass wir bei $N$ Ausgängen $N$ Blätter haben müssen. \hfill $\Box$
+    \item Beh. $T(N)$ hat $N$ Blätter.
+        Man nehme die Wurzel eines Baumes (z), ist $N = 1 (s = 0)$ sind wir fertig.
+        Andernfalls nehmen wir unsere Wurzel als knoten und bekommen bis zu 10 weitere
+        Teilbäume. Ist $1 \leq N \leq 10$ nehmen wir $N$ entsprechend blätter und sind fertig,
+        andernfalls nehmen wir jeweils $T(\lceil N/10 \rceil -1)$ als Teilbäume. Unser Baum hat
+        nun möglicherweise mehr Blätter als gefordern ($N$), daher streichen wir die die zuviel
+        sind zufällig weg. Und Voila, wir haben einen Baum $T(N)$ mit exakt $N$ Blättern.
 
     \item Beh.: $T(N)$ hat $\leq N/9 + s$ innere Knoten. \\
         O.b.d.A.: $N \in \mathbb{N}$  (1,..) \\
-        IA: $s = 0 \Leftrightarrow N \in \{10^{s-1} + 1,..., 10^s\} = N \in \{10^0 = 1\} = N = 1$. \\
-        $T(1)$ hat $\leq N/9 + s = 1/9 + 0$ innere Knoten. Stimmt, da der Baum nur ein Blatt hat,
-        das gleichzeitig die Wurzel ist. \\
+        IA: $s = 0 \Leftrightarrow N \in \{10^{s-1} + 1,..., 10^s\} = N \in \{10^0 = 1\} = N = 1$.\\
+        $T(1)$ hat $\leq N/9 + s = 1/9 + 0$ innere Knoten. Genauso: Pfadlänge $s = 0$.
+        Stimmt, da der Baum nur ein Blatt hat,
+        das gleichzeitig die Wurzel ist. \\ \\
         IS: ($s \rightarrow s + 1$) \\
-        Wenn $N$ groß genug wird, um $N \notin \{10^{s-1} + 1,..., 10^s\}$ zu sein, muss $s$
-        vergrößert werden ?
-
-    \item Beh.: Alle Pfade von der Wurzel zu einem Blatt in $T(N)$ haben Länge $s$. \\
+        Gilt für alle $N \in \{10^{s-1} + 1,..,10^s\} $.
+        Wenn nun dieser Komplette Baum eine Ebene 'nach unten' verlegt wird, also die bisherige
+        Wurzel nur noch Teilbaum der Neuen Wurzel ist, und neue Blätter erst auf der 'untersten'
+        ebene hinzugefügt werden (Ist dort kein platz mehr, werden neue 'pfade' von dem jew.
+        niedrigsten noch nicht komplett ausgefülltem Teilbaum auf diese ebene gebaut). \\
+        Der Neue Baum hat dementsprechend pfadlänge immer $s+1$ wenn der Bisherige Baum pfadlänge
+        $s$ gehabt hat (IV). \\
+        Außerdem hat er minimal $N/9 + s + 1$ innere Knoten (für $N = 10^s + 1$ )
+        und maximal $(N/9) * 10 + s + 1$ (für $N = 10^{s+1}$), das sind $(10^s/9) * 10 + s + 1
+        = 10^{s+1}/9 + (s + 1)$, also allgemein: \\
+        Es gilt also: $T(N)$ hat $\leq N/9 + (s + 1)$ innere Knoten. \hfill $\Box$
 
 
 \end{itemize}
