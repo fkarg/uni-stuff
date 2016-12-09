@@ -1,0 +1,40 @@
+Hallo Felix,
+
+Aufgabe 6.1
+===========
+Aufgabe 6.1(a)
+--------------
+Fast richtig, aber für k = 0 sollte die Menge, die die leere Menge enthält,
+zurückgegeben werden, also set(frozenset()) (-0.5 P.)
+Die Tests sollten auch testen, ob die Eingabemenge unverändert bleibt
+
+Aufgabe 6.1(b)
+--------------
+Richtig
+Die Tests sollten auch testen, ob die Eingabemenge unverändert bleibt
+
+Aufgabe 6.2
+===========
+Aufgabe 6.2(a)
+--------------
+Richtig
+
+Aufgabe 6.2(b)
+--------------
+Auch richtig
+
+Aufgabe 6.3
+===========
+Vorhanden und vollständig
+
+
+Wenn es Fragen zur Korrektur gibt (Punktabzüge usw.), dann schreibt eine Mail
+oder fragt mich persönlich in der Übungsgruppe.
+
+Johanna <johanna.goetz@uranus.uni-freiburg.de>
+
+
+Gesamt
+======
+(4.5 + 4) + (5 + 4) + 2 =
+19.5/20

@@ -1,0 +1,16 @@
+Aufgabe 7.4
+===========
+
+
+7.1 - darauf achte ich sowie schon seit anfang an ...
+7.2 - ca 30min? vlt ein wenig mehr - Komische Datenbank.
+7.3 - ca 60min? Wie ist der Punkt zu Interpretieren??
+                Hat mich definitiv >15min gekostet.
+7.4 - ~5min
+
+
+Die Aufgabenstellung der 7.3 habe ich möglicherweise ein wenig freier
+Interpretiert, allerdings war sie wirklich nicht eindeutig angegeben,
+und Umständlicher als meine Lösung allemal.
+Was soll man mit der verschiebung für einzelne Buchstaben ???
+(Außer für zu kurze Texte ...)

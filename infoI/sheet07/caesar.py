@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 """Template for exercise 7.3.
 
 Start with this file to work on exercise 7.3.
@@ -57,6 +58,35 @@ def caesar(text, shift, charset=ascii_letters):
 
 
 if __name__ == "__main__":
-    encrypted = caesar("Egg, bacon, sausage and Spam", 3)
-    decrypted = caesar(encrypted, -3)
-    print(encrypted, decrypted, sep='\n')
+    import sys
+
+    if len(sys.argv) != 3:
+        print("Usage: " + sys.argv[0] +
+              " <file-to-write-encrypted-stuff-into> <n>\n\n" +
+              "where the text written to <stdin> will be \n" +
+              "encrypted with the ceaser stream cipher, \n" +
+              "(moved by <n> characters ..)\n" +
+              "and written to the file.")
+    else:
+        try:
+            f = open(sys.argv[1], 'x')
+            ntext = ""
+            try:
+                while True:
+                    ntext += "\n" + caesar(input(""), int(sys.argv[2]))
+            except EOFError:
+                pass # End of input, now, write to file...
+            except:
+                raise
+
+            f.write(ntext)
+            f.close()
+        except FileExistsError:
+            print("File already exists! can't create to write into!")
+            sys.exit(1)
+        except:
+            raise
+
+        # encrypted = caesar("Egg, bacon, sausage and Spam", 3)
+        # decrypted = caesar(encrypted, -3)
+        # print(encrypted, decrypted, sep='\n')

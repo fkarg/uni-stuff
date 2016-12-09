@@ -5,7 +5,6 @@ Author:
 
 """
 
-from pprint import pprint
 from copy import deepcopy
 
 # from typing import Dict, List, Set
@@ -66,8 +65,10 @@ def select(tbl, **kwargs):
 #   join(tbl1: List[Dict[str, str]], tbl2: List[Dict[str, str]],
 #       *args: Tuple[List[Dict[str, str]]]) -> List[Dict[str, str]]:
 def join(tbl1, tbl2, *args):
-    """Join of two or more tables. Recursive calls.
-    
+    """Join of two or more tables. Recursive calls for more than two.
+    The idea is that for an item a matching 'partner' is being searched for
+    and joined. Otherwise the item's being ignored in the further process.
+
     Args:
         tbl1 (List[Dict[str, str]]): Table1, to be joined with
         tbl2 (List[Dict[str, str]]): Table2
@@ -79,30 +80,40 @@ def join(tbl1, tbl2, *args):
 
     """
 
-    def merge_correct(item, tbl2a):
-        keys = item.iterkeys()
-        for i in tbl2a:
-            for k in keys:
-                if i.has_key(k):
-                    pass
-
     if tbl1 is None:
         return tbl2
     if tbl2 is None:
         return tbl1
 
+    inp1 = deepcopy(tbl1)
+    inp2 = deepcopy(tbl2)
     ret = []
-                # Fails if table is empty.
-    keys = set(tbl1[0].iterkeys()) | set(tbl2[0].iterkeys())
+    keysinBoth = None
 
-    e = {}
-    for k in keys:
+    # Fails if table is empty. return empty table.
+    try:
+        keysinBoth = set(tbl1[0].keys()) & set(tbl2[0].keys())
+    except IndexError:
+        return ret
+    except:
+        raise
 
+    # merge fitting items.
+    for k in keysinBoth:
+        for item in inp1:
+            for etem in inp2:
+                # print(etem, item)
+                if item.get(k) == etem.get(k):
+                    etem.update(item)
+                    ret.append(etem)
 
-    print(keys)
+    # for some reason a recursive call doesn't work ...
+    # tuple slicing does, however xD
+    if len(args) > 0:
+        for e in args:
+            ret = join(ret, e)
 
-    # return join(ret, 
-
+    return ret
 
 
 series = [
