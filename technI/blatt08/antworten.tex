@@ -1,0 +1,78 @@
+\documentclass{scrartcl}
+\usepackage{german}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[german]{babel}
+
+% zusätzliche mathematische Symbole, AMS=American Mathematical Society
+\usepackage{amssymb}
+
+% fürs Einbinden von Graphiken
+\usepackage{graphicx}
+
+% für Namen etc. in Kopf- oder Fußzeile
+\usepackage{fancyhdr}
+
+% erlaubt benutzerdefinierte Kopfzeilen
+\pagestyle{fancy}
+
+% Definition der Kopfzeile
+\lhead{
+\begin{tabular}{ll}
+Fisnik Zeqiri & 4306430 \\
+Felix  Karg   & 4342014
+\end{tabular}
+}
+\chead{}
+\rhead{\today{}}
+\lfoot{}
+\cfoot{Seite \thepage}
+\rfoot{}
+
+\begin{document}
+\section*{Antworten zum �bungsblatt Nr. 8}
+
+\section*{Aufgabe 1}
+
+\section*{Aufgabe 2}
+
+\section*{Aufgabe 3}
+$ACCck = s_0's_1E$. \\
+$/ACCDdoe = (E*(s_1 + s_0))'$
+
+\section*{Aufgabe 4}
+\begin{verbatim}
+
+    LOADI 14        ; TEST
+    STORE 20        ; X = 14
+    LOADI 21
+    STORE 21        ; Y = 21
+    LOADI 0         ; ACC = 0
+
+    ; S(20) = X
+    ; S(21) = Y
+
+    LOAD 21         ; Y
+    JUMP EQ +13     ; IF Y = 0 THEN JUMP.
+    SUB 20          ; ACC = Y - X
+    JUMP LE +7      ; IF X > Y THEN JUMP ELSE SORT
+    LOAD 21
+    STORE 19
+    LOAD 20
+    STORE 21
+    LOAD 19
+    STORE 20
+                    ; X > Y.
+    LOAD 20         ; ACC = X
+    SUB 21          ; ACC = X - Y
+    STORE 20        ; X = X - Y
+    JUMP -13
+
+    LOAD 20         ; Y = 0; X = GGT
+    STORE 22        ; ERGEBNIS = X
+
+
+\end{verbatim}
+
+
+\end{document}

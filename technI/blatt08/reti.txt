@@ -1,0 +1,28 @@
+LOADI 14        ; TEST
+STORE 30        ; X = 14
+LOADI 21
+STORE 31        ; Y = 21
+LOADI 0         ; ACC = 0
+
+; S(30) = X
+; S(31) = Y
+
+LOAD 31         ; Y
+JUMP EQ +13     ; IF Y = 0 THEN JUMP.
+SUB 30          ; ACC = Y - X
+JUMP LE +7      ; IF X > Y THEN JUMP ELSE SORT
+LOAD 31
+STORE 29
+LOAD 30
+STORE 31
+LOAD 29
+STORE 30
+                ; X > Y.
+LOAD 30         ; ACC = X
+SUB 31          ; ACC = X - Y
+STORE 30        ; X = X - Y
+JUMP -13
+
+LOAD 30         ; Y = 0; X = GGT
+STORE 35        ; ERGEBNIS = X
+
