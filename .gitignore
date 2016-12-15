@@ -5,3 +5,7 @@
 *.svn
 .svn
 *.tmp
+*.o
+*.hi
+*.config
+.cabal-sandbox

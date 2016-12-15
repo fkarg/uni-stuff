@@ -7,7 +7,6 @@ module Main where
  - particularly the Bonusblatt.
  -}
 
-
 import qualified Control.Parallel.Strategies as S
 import qualified Data.Discrimination as D
 import qualified Data.Map as M
@@ -30,7 +29,6 @@ data Formel a =
   | Kon (Formel a) (Formel a)
   | Dis (Formel a) (Formel a)
   deriving (Eq, Ord, Generic)
-
 
 instance Show a => Show (Formel a) where
   show (Nil a)   = show a
@@ -125,14 +123,17 @@ gen l n = ans
 -- | returns all possible occupancies for these variables.
 resKV :: Ord a => [a] -> [M.Map a Bool]
 resKV [] = []
-resKV l  = [M.fromList (zip l (go n b)) | n <- [1..a]]
+resKV l  = [M.fromList (zip l (rotate n b)) | n <- [1..a]]
   where
   a = 2 ^ (length l)
   b = replicate (length l) False
-  go :: Int -> [Bool] -> [Bool]
-  go 0 b = b
-  go n b = go (n-1) (add b)
-  -- | Binary adding one.
+
+
+-- | Binarily adding one.
+rotate :: Int -> [Bool] -> [Bool]
+rotate 0 b = b
+rotate n b = rotate (n-1) (add b)
+  where
   add :: [Bool] -> [Bool]
   add []     = []
   add (b:be)
@@ -141,11 +142,11 @@ resKV l  = [M.fromList (zip l (go n b)) | n <- [1..a]]
 
 
 -- | find all different A-variables in F
-getAs :: D.Grouping a => Formel a -> [a]
+getAs :: Eq a => Formel a -> [a]
 getAs (Nil a) = [a]
 getAs (Neg f) = getAs f
-getAs (Kon a b) = D.nub $ getAs a ++ getAs b
-getAs (Dis a b) = D.nub $ getAs a ++ getAs b
+getAs (Kon a b) = nub $ getAs a ++ getAs b -- D.nub here would only be faster for larger structures
+getAs (Dis a b) = nub $ getAs a ++ getAs b -- D.nub here would only be faster for larger structures
 
 
 -- | turning a usual formulae in a Predicate
@@ -154,6 +155,13 @@ getAs (Dis a b) = D.nub $ getAs a ++ getAs b
 asPredicate :: (Ord a, D.Grouping a) => Formel a -> ([Bool] -> Bool)
 asPredicate f xs = eval $ setVar (M.fromList (zip (getAs f) xs)) f
 
+
+-- | Testing a Formel for all occupancies.
+testF :: Ord a => [a] -> Formel a -> [([Bool], Bool)]
+testF vars f = kvs >>= (\v ->  [(format v, eval $ setVar v f)])
+  where
+  kvs = resKV vars
+  format v = map snd $ M.toList v
 
 
 -------------------------------------------------------------------------------
