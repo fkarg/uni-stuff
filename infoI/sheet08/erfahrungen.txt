@@ -1,0 +1,12 @@
+Aufgabe 8.3
+===========
+
+8.1 a ~5min? Pretty easy.
+8.1 b ~1min  Didn't want to invest the time, sorry. But nice Exercise! :)
+8.2 a ~5min? Thinking about Rhombuses for a sec
+8.2 b ~10min Implementing the last Rhombus-idea.
+8.2 c ~10min Who needs a GUI. CLI ftw.
+8.3   <5min  Writing this.
+
+
+

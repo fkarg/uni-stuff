@@ -1,0 +1,21 @@
+Aufgabe 8.2 a
+=============
+
+Eine solche Raute:
+
+    /\
+   /  \
+   \  /
+    \/
+
+Braucht folgende Information; Entweder:
+    - Alle vier koordinaten, oder
+    - Zwei Koordinaten + Höhe + Breite, oder
+    - Mittelpunkt + Höhe + Breite
+
+In einem Rechteck haben wir eine Koordinate + Höhe + Breite.
+Da eine Raute außerdem auch nur ein spezielles Rechteck ist,
+macht es auf alle Fälle sinn, ven Rectangle zu erben.
+Je nach implementation müssen wir nichtmal einen weiteren
+Koordinatenpunkt hinzufügen.
+
