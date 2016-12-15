@@ -1,0 +1,54 @@
+Hallo Felix,
+
+Aufgabe 7.1
+===========
+Es treten 3 PEP8-Fehler auf (-0.5 P.)
+
+Aufgabe 7.2
+===========
+Aufgabe 7.2(a)
+--------------
+Richtig
+Die Testfunktionen fehlen (-1 P.)
+
+Aufgabe 7.2(b)
+--------------
+Auch richtig
+Die Testfunktionen fehlen (-1 P.)
+
+Aufgabe 7.2(c)
+--------------
+Fast richtig, aber du überschreibst beim Updaten Einträge und andere Ein-
+träge sind zuviel (-0.5 P.)
+Die Testfunktionen fehlen (-1 P.)
+
+Aufgabe 7.3
+===========
+Aufgabe 7.3(a)
+--------------
+Eine Usage-Info! Schön! :D
+Der Input sollte durch Eingabe von . als einziges Zeichen in einer Zeile be-
+endet werden (-0.5 P.)
+
+Aufgabe 7.3(b)
+--------------
+Funktioniert, dein Entschlüsselungsversuch bezieht sich auf die Buchstaben-
+verteilung, benutzt aber nicht die Idee mit dem Chi-Quadrat-Test (-1 P.)
+Es wäre schöner, wenn du Funktionen geschrieben hättest, die das Entschlüsseln
+erledigen.
+
+Aufgabe 7.4
+===========
+Vorhanden und vollständig
+
+
+Wenn es Fragen zur Korrektur gibt (Punktabzüge usw.), dann schreibt eine Mail
+oder fragt mich persönlich in der Übungsgruppe.
+
+Johanna <johanna.goetz@uranus.uni-freiburg.de>
+
+
+Gesamt
+======
+1.5 + (2 + 2 + 1.5) + (2.5 + 4) + 2 =
+15.5/21

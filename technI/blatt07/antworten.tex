@@ -94,7 +94,23 @@ Felix  Karg   & 4342014
         = 10^{s+1}/9 + (s + 1)$, also allgemein: \\
         Es gilt also: $T(N)$ hat $\leq N/9 + (s + 1)$ innere Knoten. \hfill $\Box$
 
-
 \end{itemize}
 
+\section*{Aufgabe 4 Verbesserung}
+    $\forall s \in \mathbb{N} \wedge N \in \{10^{s-1} + 1,..,10^s\}$ existiert $T(N)$ mit
+    Ausgangsgrad $\leq$ 10 und: \\
+        $T(N)$ hat N blätter. \\
+        IA: $s = 1$,   $N \in {2..10}$. \\
+        IS: $(s-1) -> s$ \\
+    \begin{itemize}
+        \item Sei $N = a * 10^{s-1} + d, a \in \{1..9\}, d \in \{0..10^{s-1}\}$.
+        \item Wei $a \neq 0$ existiert min. einer der A-Bäume.
+        \item Nach IV: Jeder Teilbaum hat Pfadlänge (s-1) -> $T(N)$ hat Pfadlänge s.
+        \item Nach IV: Jeder Teilbaum hat $10^{s-1}$ bzw. d Bltter \\
+            -> $T(N)$ hat $N = a * 10^{s-1} + d$ Blätter.
+        \item Jeder der A-Teilbäume hat $\sum[i=0][s]{10^i} = (10^{s-1} - 1) / 10 - 1
+            = (10^{s-1} - 1) / 9$
+            $I(T(N)) = a * (10^{s-1} -1) / 9 + I(T($
+
+    \end{itemize}
 \end{document}
