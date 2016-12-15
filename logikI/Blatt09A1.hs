@@ -18,6 +18,12 @@ import GHC.Generics
 
 import EqPred
 
+{-
+ - A Formel is either a simple A-variable,
+ - the negation of a Formel,
+ - the konjunction of two Formel or
+ - the disjunction of two Formel.
+ -}
 data Formel a =
     Nil a
   | Neg (Formel a)
@@ -27,32 +33,45 @@ data Formel a =
 
 
 instance Show a => Show (Formel a) where
-  show (Nil a) = show a
-  show (Neg f) = "-" ++ show f
+  show (Nil a)   = show a
+  show (Neg f)   = "-" ++ show f
   show (Kon a b) = "(" ++ show a ++ " ^ " ++ show b ++ ")"
   show (Dis a b) = "(" ++ show a ++ " v " ++ show b ++ ")"
 
 instance D.Grouping a => D.Grouping (Formel a)
 
+{-
+ - Explanation of difference between
+ - Data.List.nub :: Eq a => [a] -> [a]
+ - (runs in O(n^2) ), and
+ - Data.Discrimination.nub :: Grouping a => [a] -> [a]
+ - (runs in O(n) ).
+ - However, it apparently requires huge amounts of RAM for that,
+ - which is why it is not being used currently. (>15GiB)
+ -}
+
+
 -- | The depth of a formulae
 depth :: Formel a -> Int
-depth (Nil a) = 0
-depth (Neg f) = 1 + depth f
+depth (Nil a)   = 0
+depth (Neg f)   = 1 + depth f
 depth (Kon a b) = 1 + max (depth a) (depth b)
 depth (Dis a b) = 1 + max (depth a) (depth b)
 
+
 -- | Evaluating the truth-value of an Boolean expression
 eval :: Formel Bool -> Bool
-eval (Nil a) = a
-eval (Neg f) = not (eval f)
+eval (Nil a)   = a
+eval (Neg f)   = not (eval f)
 eval (Kon a b) = (eval a) && (eval b)
 eval (Dis a b) = (eval a) || (eval b)
+
 
 -- | setting specific truth values for variables, based on
 -- the given occupancy.
 setVar :: Ord a => M.Map a Bool -> Formel a -> Formel Bool
-setVar m (Nil a) = Nil (fromMaybe False (M.lookup a m))
-setVar m (Neg f) = Neg (setVar m f)
+setVar m (Nil a)   = Nil (fromMaybe False (M.lookup a m))
+setVar m (Neg f)   = Neg (setVar m f)
 setVar m (Kon a b) = Kon (setVar m a) (setVar m b)
 setVar m (Dis a b) = Kon (setVar m a) (setVar m b)
 
@@ -63,6 +82,7 @@ gen1 :: Formel a -> Formel a -> [Formel a]
 gen1 a b = [a, Neg a,
             Kon a b, Kon a a,
             Dis a b, Dis a a]
+
 
 -- | combining the two lists of formulae to a new list of formulae
 -- with all the possible combination of the both.
@@ -95,6 +115,11 @@ gen l n = ans
     depthify f = if (foldr1 max (map depth f)) < n
       then depthify $ gen1' f f
       else nub $ filter (\g -> depth g == n) f
+--    else D.nub $ filter (\g -> depth g == n) f
+
+{-
+ - using D.nub here resulted in an '*** Exception: stack overflow' previously.
+ -}
 
 
 -- | returns all possible occupancies for these variables.
@@ -107,28 +132,26 @@ resKV l  = [M.fromList (zip l (go n b)) | n <- [1..a]]
   go :: Int -> [Bool] -> [Bool]
   go 0 b = b
   go n b = go (n-1) (add b)
-
-
--- | Binary adding one.
-add :: [Bool] -> [Bool]
-add []     = []
-add (b:be)
-  | b = False:add be
-  | otherwise = True:be
+  -- | Binary adding one.
+  add :: [Bool] -> [Bool]
+  add []     = []
+  add (b:be)
+    | b = False:add be
+    | otherwise = True:be
 
 
 -- | find all different A-variables in F
-getAs :: Eq a => Formel a -> [a]
+getAs :: D.Grouping a => Formel a -> [a]
 getAs (Nil a) = [a]
 getAs (Neg f) = getAs f
-getAs (Kon a b) = nub $ getAs a ++ getAs b
-getAs (Dis a b) = nub $ getAs a ++ getAs b
+getAs (Kon a b) = D.nub $ getAs a ++ getAs b
+getAs (Dis a b) = D.nub $ getAs a ++ getAs b
 
 
 -- | turning a usual formulae in a Predicate
 -- p :: [Bool] -> Bool, which we can compare
 -- for equality.
-asPredicate :: Ord a => Formel a -> ([Bool] -> Bool)
+asPredicate :: (Ord a, D.Grouping a) => Formel a -> ([Bool] -> Bool)
 asPredicate f xs = eval $ setVar (M.fromList (zip (getAs f) xs)) f
 
 
