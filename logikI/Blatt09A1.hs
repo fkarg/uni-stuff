@@ -5,13 +5,13 @@ module Main where
 
 {- This is code pretty specific for an exercise in Logik,
  - particularly the Bonusblatt.
- -
  -}
 
 
 import qualified Control.Parallel.Strategies as S
 import qualified Data.Discrimination as D
 import qualified Data.Map as M
+
 import Data.Maybe (fromMaybe)
 import Data.List (nub)
 import GHC.Generics
@@ -47,7 +47,7 @@ instance D.Grouping a => D.Grouping (Formel a)
  - Data.Discrimination.nub :: Grouping a => [a] -> [a]
  - (runs in O(n) ).
  - However, it apparently requires huge amounts of RAM for that,
- - which is why it is not being used currently. (>15GiB)
+ - which is why it is not being used for bigger lists.
  -}
 
 
@@ -150,7 +150,7 @@ getAs (Dis a b) = D.nub $ getAs a ++ getAs b
 
 -- | turning a usual formulae in a Predicate
 -- p :: [Bool] -> Bool, which we can compare
--- for equality.
+-- for equality on the semantic level.
 asPredicate :: (Ord a, D.Grouping a) => Formel a -> ([Bool] -> Bool)
 asPredicate f xs = eval $ setVar (M.fromList (zip (getAs f) xs)) f
 
@@ -160,26 +160,29 @@ asPredicate f xs = eval $ setVar (M.fromList (zip (getAs f) xs)) f
 --                 Actually solving the given problem
 -------------------------------------------------------------------------------
 
--- solve = {- trace (show form) -} bot
---  where
+
+-- The A-Vars
 vars = ["A0", "A1", "A2"]
+-- all occupancies for them
 kvs  = resKV vars
--- length form = 2519424
+-- all the possible Formulae with depth 3
 form = gen vars 3
--- length ins = 20155392
+-- the result of all formulaes with all occupancies.
 ins  = do
   k <- kvs
   f <- form
   return $ setVar k f
 
--- length ver =
+
+-- (a) The Formulae equivalent to Top.
 ver  = [f | f <- form, all eval (kvs >>= (\k -> [setVar k f]))]
--- length bot =
+-- (b) The Formulae equivalent to Bottom.
 bot  = [f | f <- form, all (not . eval) (kvs >>= (\k -> [setVar k f]))]
--- length eqA0 =
+-- (c) The Formulae equivalent to A0.
 eqA0 = [f | f <- form, asPredicate f == asPredicate (Nil "A0")]
--- length eq01 =
+-- (d) The Formulae equivalent to (A0 ^ A1).
 eq01 = [f | f <- form, asPredicate f == asPredicate (Kon (Nil "A0") (Nil "A1"))]
+
 
 -- | printing the result(s)
 main =
@@ -187,6 +190,3 @@ main =
   where
   l = length
   res = [l ver, l bot, l eqA0, l eq01, l form] `S.using` S.parList S.rpar
-
-
-
