@@ -4,13 +4,13 @@
 \usepackage[latin1]{inputenc}
 \usepackage[german]{babel}
 
-% zusÃ¤tzliche mathematische Symbole, AMS=American Mathematical Society
+% zusÃƒÂ¤tzliche mathematische Symbole, AMS=American Mathematical Society
 \usepackage{amssymb}
 
-% fÃ¼rs Einbinden von Graphiken
+% fÃƒÂ¼rs Einbinden von Graphiken
 \usepackage{graphicx}
 
-% fÃ¼r Namen etc. in Kopf- oder FuÃŸzeile
+% fÃƒÂ¼r Namen etc. in Kopf- oder FuÃƒÅ¸zeile
 \usepackage{fancyhdr}
 
 % erlaubt benutzerdefinierte Kopfzeilen
@@ -18,10 +18,10 @@
 
 % Definition der Kopfzeile
 \lhead{
-\begin{tabular}{ll}
-Fisnik Zeqiri & 4306430 \\
-Felix  Karg   & 4342014
-\end{tabular}
+	\begin{tabular}{ll}
+		Fisnik Zeqiri & 4306430 \\
+		Felix  Karg   & 4342014
+	\end{tabular}
 }
 \chead{}
 \rhead{\today{}}
@@ -30,49 +30,88 @@ Felix  Karg   & 4342014
 \rfoot{}
 
 \begin{document}
-\section*{Antworten zum Übungsblatt Nr. 8}
+	\section*{Antworten zum Übungsblatt Nr. 8}
 
-\section*{Aufgabe 1}
+	\section*{Aufgabe 1}
+	\begin{itemize}
+	    \item[a)] Tabelle:\
 
-\section*{Aufgabe 2}
+		\begin{tabular}{l|l|l|l|l}
+			$ s^{t}$ & $a^{t}$ & $b^{t}$ & $s^{t+1}$ & $y^{t} $ \\\hline
+			s00                 & 1                   & 0                   & s01                   & 1                   \\
+			s00                 & 1                   & 1                   & s01                   & 1                   \\
+			s00                 & 0                   & 0                   & s10                   & 0                   \\
+			s00                 & 0                   & 1                   & s10                   & 0                   \\
+			s01                 & 1                   & 1                   & s11                   & 1                   \\
+			s01                 & 0                   & 1                   & s00                   & 1                   \\
+			s01                 & 0                   & 0                   & s00                   & 1                   \\
+			s01                 & 1                   & 0                   & s00                   & 1                   \\
+			s11                 & 0                   & 0                   & s10                   & 0                   \\
+			s11                 & 0                   & 1                   & s10                   & 0                   \\
+			s11                 & 1                   & 0                   & s10                   & 0                   \\
+			s11                 & 1                   & 1                   & s10                   & 0                   \\
+			s10                 & 0                   & 1                   & s01                   & 0                   \\
+			s10                 & 1                   & 0                   & s00                   & 1                   \\
+			s10                 & 1                   & 1                   & s00                   & 1                   \\
+			s10                 & 0                   & 0                   & s11                   & 1
+		\end{tabular}
 
-\section*{Aufgabe 3}
-$ACCck = s_0's_1E$. \\
-$/ACCDdoe = (E*(s_1 + s_0))'$
+	    \item[b)] Polynome für Zustandsvariablen: \\
+                $ s_{00} := s_{01}*(a' + b') + s_{10}a$ \\
+                $ s_{01} := s_{00}a + s_{10}a'b$ \\
+                $ s_{10} := s_{00}a' + s_{11} $ \\
+                $ s_{11} := s_{10}a'b' + s_{01}ab $ \\
 
-\section*{Aufgabe 4}
-\begin{verbatim}
+	\end{itemize}
+	\section*{Aufgabe 2}
+	\begin{itemize}
+		\item[a)] PCLd, IRd, ALUAd, ASMd, DDid
+		\item[b)] ACCDd, PCLd, IRd, ALUAd, ASMd
+		\item[c)] IAd, ACCDd, ASMd
+		\item[d)] IRd, ACCLd, ALUDId
+		\item[e)] ALUDId, ACCLd, DRd, ASMd, IAd
+		\item[f)] Nur unter Einschränkung realisierbar: entweder 2Takte oder ein neuer Treiber nötig: IN2Rd\\
+		Realisierung mit IN2Rd: IN1Ld, IN2Ld, ALUDId
+		\item[g)] IN1Ld, IN2Rd, ALUDId, ACCDd, IAd, ASMd\\
+		ACC wird hierbei überschrieben. Alternativ auch ein neuer Treiber ALUDd statt ACCd und ALUDId verwendbar um ACC nicht zu überschrriben.
+		\item[h)] Nicht realisierbar in einer Executephase. Es sind Zwei Phasen Notwendig. Dem Acc müsste zwischenzeitlich der Wert zugewiesen werden.\\
+		Takt 1: IAd, ASMd, DRd, ACCLd, ALUDId\\
+		Takt 2: ACCDd, IAd, ASMd\\
+		\\
+	\end{itemize}
+	\section*{Aufgabe 3}
+	$ACCck = s_0's_1E$. \\
+	$/ACCDdoe = (E*(s_1 + s_0))'$ \\
 
-    LOADI 14        ; TEST
-    STORE 20        ; X = 14
-    LOADI 21
-    STORE 21        ; Y = 21
-    LOADI 0         ; ACC = 0
+        Vorgehensweise: Zeitdiagramm und RETI-Schaltkreis angesehen und nachgedacht.
 
-    ; S(20) = X
-    ; S(21) = Y
+	\section*{Aufgabe 4}
+	\begin{verbatim}
 
-    LOAD 21         ; Y
-    JUMP EQ +13     ; IF Y = 0 THEN JUMP.
-    SUB 20          ; ACC = Y - X
-    JUMP LE +7      ; IF X > Y THEN JUMP ELSE SORT
-    LOAD 21
-    STORE 19
-    LOAD 20
-    STORE 21
-    LOAD 19
-    STORE 20
-                    ; X > Y.
-    LOAD 20         ; ACC = X
-    SUB 21          ; ACC = X - Y
-    STORE 20        ; X = X - Y
-    JUMP -13
+	; S(20) = X
+	; S(21) = Y
 
-    LOAD 20         ; Y = 0; X = GGT
-    STORE 22        ; ERGEBNIS = X
+	LOAD 21         ; Y
+	JUMP EQ +13     ; IF Y = 0 THEN JUMP.
+	SUB 20          ; ACC = Y - X
+	JUMP LE +7      ; IF X > Y THEN JUMP ELSE SORT
+	LOAD 21
+	STORE 19
+	LOAD 20
+	STORE 21
+	LOAD 19
+	STORE 20
+	; X > Y.
+	LOAD 20         ; ACC = X
+	SUB 21          ; ACC = X - Y
+	STORE 20        ; X = X - Y
+	JUMP -13
+
+	LOAD 20         ; Y = 0; X = GGT
+	STORE 22        ; ERGEBNIS = X
 
 
-\end{verbatim}
+	\end{verbatim}
 
 
 \end{document}
