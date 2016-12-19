@@ -1,10 +1,9 @@
 {-# LANGUAGE DeriveGeneric #-}
 
--- module Blatt09A1 where
 module Main where
 
-{- This is code pretty specific for an exercise in Logik,
- - particularly the Bonusblatt.
+{- This is code pretty specific for an exercise in Logik.
+ - I might however turn this into a lightweight logic-module on hackage one day.
  -}
 
 import qualified Control.Parallel.Strategies as S
@@ -38,14 +37,16 @@ instance Show a => Show (Formel a) where
 
 instance D.Grouping a => D.Grouping (Formel a)
 
-{-
- - Explanation of difference between
- - Data.List.nub :: Eq a => [a] -> [a]
- - (runs in O(n^2) ), and
- - Data.Discrimination.nub :: Grouping a => [a] -> [a]
- - (runs in O(n) ).
+{- Explanation of difference between
+ -    Data.List.nub :: Eq a => [a] -> [a]
+ -        (runs in O(n^2) ), and
+ -    Data.Discrimination.nub :: Grouping a => [a] -> [a]
+ -        (runs in O(n) ).
  - However, it apparently requires huge amounts of RAM for that,
- - which is why it is not being used for bigger lists.
+ - meaning the constant factor is quite high. It thus becomes
+ - unperformant here for small lists as well as requiring too much
+ - RAM for being applied on the big lists here (>15GiB).
+ - Then again, it is quite possibly a lot faster than Data.List.nub here in total.
  -}
 
 
@@ -66,7 +67,7 @@ eval (Dis a b) = (eval a) || (eval b)
 
 
 -- | setting specific truth values for variables, based on
--- the given occupancy.
+-- the given valuator.
 setVar :: Ord a => M.Map a Bool -> Formel a -> Formel Bool
 setVar m (Nil a)   = Nil (fromMaybe False (M.lookup a m))
 setVar m (Neg f)   = Neg (setVar m f)
@@ -91,39 +92,38 @@ gen1' a b = a >>= (\a' -> b >>= (\b' -> gen1 a' b'))
 
 -- | All possible formulas with these A-variables with depth n.
 gen :: Eq a => [a] -> Int -> [Formel a]
-gen [] _ = []
-gen [a] 0 = [Nil a]
-gen [a] n = gen [a] (n-1) >>= \f -> [Neg f]
+gen []    _ = []
+gen [a]   0 = [Nil a]
+gen [a]   n = gen [a] (n-1) >>= \f -> [Neg f]
 gen (a:c) 0 = gen [a] 0 ++ gen c 0
-gen l n = ans
+gen l     n = ans
   where
     btw = shift l (head l)
     red = reduce btw (head btw)
     ans = depthify red
-    -- ~ depth + 1
+    -- ~ depth + 1; possibly correct only for 0 < lenght l <= 3.
     shift :: [a] -> a -> [[Formel a]]
     shift [a]       b = [gen1 (Nil a) (Nil b)]
     shift l@(a:b:c) d = [gen1 (Nil a) (Nil b)] ++ shift (b:c) d
     -- ~ depth + 1
     reduce :: [[Formel a]] -> [Formel a] -> [Formel a]
-    reduce [a]     d = gen1' a d
-    reduce (a:b:c) d = gen1' a b ++ reduce (b:c) d
+    reduce [a]      d = gen1' a d
+    reduce (a:b:c)  d = gen1' a b ++ reduce (b:c) d
     -- test for depth ...
     depthify :: Eq a => [Formel a] -> [Formel a]
     depthify f = if (foldr1 max (map depth f)) < n
       then depthify $ gen1' f f
       else nub $ filter (\g -> depth g == n) f
---    else D.nub $ filter (\g -> depth g == n) f
 
-{-
- - using D.nub here resulted in an '*** Exception: stack overflow' previously.
+--    else D.nub $ filter (\g -> depth g == n) f
+{- using D.nub here resulted in an '*** Exception: stack overflow' previously.
  -}
 
 
--- | returns all possible occupancies for these variables.
+-- | returns all possible evaluations for these variables.
 resKV :: Ord a => [a] -> [M.Map a Bool]
 resKV [] = []
-resKV l  = [M.fromList (zip l (rotate n b)) | n <- [1..a]]
+resKV l  = [M.fromList (l `zip` rotate n b) | n <- [1..a]]
   where
   a = 2 ^ (length l)
   b = replicate (length l) False
@@ -135,16 +135,16 @@ rotate 0 b = b
 rotate n b = rotate (n-1) (add b)
   where
   add :: [Bool] -> [Bool]
-  add []     = []
+  add []        = []
   add (b:be)
-    | b = False:add be
+    | b         = False:add be
     | otherwise = True:be
 
 
 -- | find all different A-variables in F
 getAs :: Eq a => Formel a -> [a]
-getAs (Nil a) = [a]
-getAs (Neg f) = getAs f
+getAs (Nil a)   = [a]
+getAs (Neg f)   = getAs f
 getAs (Kon a b) = nub $ getAs a ++ getAs b -- D.nub here would only be faster for larger structures
 getAs (Dis a b) = nub $ getAs a ++ getAs b -- D.nub here would only be faster for larger structures
 
@@ -153,15 +153,15 @@ getAs (Dis a b) = nub $ getAs a ++ getAs b -- D.nub here would only be faster fo
 -- p :: [Bool] -> Bool, which we can compare
 -- for equality on the semantic level.
 asPredicate :: (Ord a, D.Grouping a) => Formel a -> ([Bool] -> Bool)
-asPredicate f xs = eval $ setVar (M.fromList (zip (getAs f) xs)) f
+asPredicate f xs = eval $ setVar (M.fromList (getAs f `zip` xs)) f
 
 
--- | Testing a Formel for all occupancies.
+-- | Testing a Formel for all possible valuators.
 testF :: Ord a => [a] -> Formel a -> [([Bool], Bool)]
-testF vars f = kvs >>= (\v ->  [(format v, eval $ setVar v f)])
+testF vars f = kvs >>= \v -> [(format v, eval $ setVar v f) ]
   where
-  kvs = resKV vars
-  format v = map snd $ M.toList v
+    kvs      = resKV vars
+    format v = map snd $ M.toList v
 
 
 -------------------------------------------------------------------------------
@@ -171,11 +171,11 @@ testF vars f = kvs >>= (\v ->  [(format v, eval $ setVar v f)])
 
 -- The A-Vars
 vars = ["A0", "A1", "A2"]
--- all occupancies for them
+-- all valuators for them
 kvs  = resKV vars
 -- all the possible Formulae with depth 3
 form = gen vars 3
--- the result of all formulaes with all occupancies.
+-- the result of all formulaes with all evaluations.
 ins  = do
   k <- kvs
   f <- form
@@ -183,7 +183,7 @@ ins  = do
 
 
 -- (a) The Formulae equivalent to Top.
-ver  = [f | f <- form, all eval (kvs >>= (\k -> [setVar k f]))]
+ver  = [f | f <- form, all eval (kvs >>= \k -> [setVar k f])]
 -- (b) The Formulae equivalent to Bottom.
 bot  = [f | f <- form, all (not . eval) (kvs >>= (\k -> [setVar k f]))]
 -- (c) The Formulae equivalent to A0.

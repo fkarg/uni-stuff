@@ -2,26 +2,10 @@
 
 module EqPred where
 
+{- The code here is basically completely stolen from:
+ - https://www.youtube.com/watch?v=F53aOAW9PBo -}
+
 import Data.Maybe (isNothing)
-
-{-
-p1, p2, p3 :: [Bool] -> Bool
-p1 xs = xs !! 3
-p2 xs = xs !! 4
-p3 xs = xs !! (2+1) && (xs !! 8 || not (xs !! 8))
--- -}
-
-{-
-> -- | Maybe slightly easier understandable version of epsilon.
-> epsilon :: ([Bool] -> Bool) -> [Bool]
-> epsilon p = if p (False : xs)
->     then False : xs
->     else True  : epsilon (p . (True:))
->     where xs = epsilon (p . (False:))
--}
-
--- Faster version of epsilon using lazyness:
-
 
 -- | epsilon takes a predicate and returns an occupancy fulfilling it,
 -- if there exists one. Otherwise it doesn't matter what epsilon returns.
