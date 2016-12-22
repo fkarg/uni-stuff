@@ -1,0 +1,72 @@
+Aufgabe 9.1 (a)
+===============
+
+
+Bob's verhalten ist zum großen Teil ethisch vertretbar; Und zwar:
+- Er möchte dem Bug eigentlich auf den Grund gehen
+- Er meldet den Bug bei seiner Chefin
+
+
+Diskutabel:
+- Der Laufzeitfehler kann nicht allzu schwerwiegend sein,
+    Da sonst die Spezifikation nicht beachtet werden würde.
+    Es ist sicherheitskritischer Code, aber wenn
+    die eindeutigen Teile der Spezifikation eindeutig richtig
+    umgesetzt sind, kann bei ungenauem verhalten (laut Specs)
+    das gerne auch so implementiert werden, sollte allerdings
+    dann auch so dokumentiert werden.
+- Auf den Test-Instanzen sollte man insofern dann damit
+    korrekterweise umgehen können, einen Laufzeitfehler
+    insofern dann aber auch explizit in einem Test herbeiführen.
+- Es ist nicht highest-level production code, als dass ein Bug
+    existiert und bis zum Release Anscheinend keine nennenswerten
+    Versuche gemacht werden, diesen exakt zu identifizieren oder
+    zu fixen. Das schlimmste daran ist, wenn er sogesehen weder
+    in den Docs, noch in Tests irgendwo mindestens erwähnt wird.
+- Man hätte von vornherein die Software stabiler Planen können o.ä.,
+    oder eine Sprache nehmen können, in der man solche Laufzeitfehler
+    gar nicht verursachen kann, oder diese gezielt debuggen kann
+    (Im normalfall solche, bei denen sowas auch passieren kann).
+    Man hätte außerdem die Software verifizieren sollen, vor allem bei
+    Sicherheitskritischen Code wäre das ein Pluspunkt, was die meisten
+    leider nicht realisieren. Dann würden definitiv selbst bei
+    ungenauer Spezifikation zumindest keine Laufzeitfehler auftreten.
+- Einwandfreies verhalten bei Tests ist immer wünschenswert,
+    allerdings sollten die Tests auch alle zu erwantende Ergebnisse
+    Wiederspiegeln.
+- Release-Termine verschieben will keiner, aber dann sollten sie
+    sich zumindest die Möglichkeit offenhalten, den Bugfix Nachzuliefern.
+    Release-Termine großzügiger ansetzen! Das geht überall und immer schief.
+
+
+Unter erwähnten Bedingungen nicht ethisch vertretbar:
+- Nicht-Erwähnen des vermuteten Bugs.
+- "Abfangen" von unspezifiziertem verhalten. Man kann ja auch
+    gleich einfach immer alles abfangen. Finde den Fehler.
+- Indem er den Befehlen seiner Chefin folge leistet, gibt er
+    zwar gewissermaßen die Verantwortung ab, dennoch steht
+    sein Name darunter, und damit verheimlicht er ja quasi
+    Bewusst und Aktiv. (=> Strafbar)
+- Worst-Case-Scenario ist nicht erfreulich:
+    (Hundert-) Tausende Menschen sterben,
+    oder werden gehackt und dann gezielt ermordet,
+    Aufgrund dieses (kleinen ?) Fehlers.
+
+
+Aufgabe 9.1 (b)
+===============
+
+Quasi selbes Szenario, allerdings sieht das Worst-Case Szenario diesmal
+bis zu Millionen von Toten vor. Erwähnt werden muss es sowieso, aber
+bei Atomkraftwerken mach ich mir eher um die Veraltete Hard- in kombination
+mit veralteter Software Gedanken, Ein nicht-mal-Steuernder Teil (wenn er nicht
+alles abstürzen lässt) ist insofern nicht kritisch wenn er sich leicht anders
+verhält als erwünscht. Es gibt Gründe dass diese nicht direkt mit dem Internet
+verbunden sind.
+Dennoch sollte spätestens Sicherheitskritische Software zumindest zu größeren
+Teilen Formal Verifiziert werden, wenn möglich (was sein sollte) sogar alles.
+Das heißt dann natürlich immernoch nicht dass alles immer korrekt läuft, aber
+Die Wahrscheinlichkeit dafür ist um dimensionen höher.
+
+
+
