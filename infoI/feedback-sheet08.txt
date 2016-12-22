@@ -1,0 +1,41 @@
+Hallo Felix,
+
+Aufgabe 8.1
+===========
+Aufgabe 8.1(a)
+--------------
+Richtig
+
+Aufgabe 8.1(b)
+--------------
+Dein Programm funktioniert leider nicht richtig (-2 P.)
+
+Aufgabe 8.2
+===========
+Aufgabe 8.2(a)
+--------------
+Richtig
+
+Aufgabe 8.2(b)
+--------------
+Schön :)
+
+Aufgabe 8.2(c)
+--------------
+Richtig
+
+Aufgabe 8.3
+===========
+Vorhanden und vollständig
+
+
+Wenn es Fragen zur Korrektur gibt (Punktabzüge usw.), dann schreibt eine Mail
+oder fragt mich persönlich in der Übungsgruppe.
+
+Johanna <johanna.goetz@uranus.uni-freiburg.de>
+
+
+Gesamt
+======
+(4 + 2) + (2 + 4 + 4) + 2 =
+18/20

@@ -39,8 +39,8 @@ Felix  Karg   & 4342014
             x -> y: [0.00:0.08]; y -> z: [0.01:0.15] (1 -> 1) \\
             maximale Zeit: 0.08 + 0.15 = 0.23 [ns].
         \item[b)] [Bild 1] [Bild 2] \\
-	        \includegraphics[width=7cm]{20161219_135856.jpg}
-	        \includegraphics[width=7cm]{20161219_135918.jpg} \\
+                \includegraphics[width=7cm]{20161219_135856.jpg}
+                \includegraphics[width=7cm]{20161219_135918.jpg} \\
             -> Immer zwischen [0.01:0.15] + [0.00:0.08] = 
                 [0.01:0.15] + [0.00:0.08] = [0.01:0.23].
     \end{itemize}
@@ -61,11 +61,17 @@ l = [0.02:0.14] + [0.03:0.10]               = [0.05:0.24] (1 -> 0)
 m = [0.02:0.14] + [0.03:0.10] + [0.03:0.10] = [0.08:0.34] (1 -> 0)
 n = [0.02:0.14] + [0.03:0.10] + [0.03:0.10] = [0.08:0.34] (1 -> 0)
 
-o = [min(f..n):max(f..n)]     + [0.05:0.15] = [0.13:0.50] (0 -> 1)
+o = [max(min(f..n)):max(f..n)]+ [0.05:0.15] = [0.13:0.50] (0 -> 1)
 p = [0.13:0.50] + [0.01:0.07]               = [0.14:0.57] (1 -> 0)
+
 \end{verbatim}
-Es kann im Intervall von p gut sein dass der Ausgang mehrfach flackert, \\
-allerdings stabilisiert es sich spätestens nach 0.57ns.
+Bei Ausgang o und genauso bei p kann sogar ab 0.06 bzw 0.07 ns das korrekte
+Ergebnis ausgegeben sein, allerdings hatten zu diesem Zeitpunkt definitiv noch
+nicht alle gatter die Möglichkeit überhaupt das korrekte ergebnis zu liefern,
+selbst mit Minimalreaktionszeit. \\
+Es kann daher bei o und genauso bei p sein, dass bis 0.50 bzw. 0.57 ns
+respektive das Ergebnis mehrfach flackert.
+
 
 \section*{Aufgabe 3}
 \begin{itemize}
@@ -105,6 +111,15 @@ Addieren wir also nur 0.67ns zu den maximalen 0.12 des NANDs, kommen wir auf
 
 
 \section*{Aufgabe 5}
+    \includegraphics[width=7cm]{20161221_143637.jpg}
+    \includegraphics[width=7cm]{20161221_143548.jpg} \\
+    \includegraphics[width=7cm]{20161221_143351.jpg}
+    \includegraphics[width=7cm]{20161221_143327.jpg} \\
+    Baguatter: Man lege ein ungeröstes Baguett hinein und nach gewisser zeit ist es fertig :) \\
+    Weißwurst-Gatter: Mann nehme ein gutes Bayrisches Bier -> Mahlzeit. \\
+    Eiffel-Gatter: Führt zwei Teilschaltkreise auf Elegante Art und Weise zusammen. \\
+    NEiffel-Gatter: negiertes Eiffel-Gatter
+
 
 
 
