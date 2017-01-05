@@ -264,18 +264,24 @@ class Rhombus(Rectangle):
     """
 
     def __init__(self, x=0.0, y=0.0, height=1.0, width=1.0):
+        """Init the Rhombus. Or rather, initializing it as a Rectangle."""
         super().__init__(x, y, height, width)
 
     def area(self):
-        """Calculate the area of the rhombus."""
+        """Calculate the area of the rhombus.
+        Note: Rectangle.area() / 2.
+        """
         return super().area() / 2
 
     def __repr__(self):
+        """The 'Representation' of a Rhombus"""
         return ("Rhombus(x=%s, y=%s, height=%s, width=%s)" %
                 (self.x, self.y, self.height, self.width))
 
 
 def tk_stuff():
+    """Tkinter-example code for representing a Rhombus.
+    """
     tk = None
 
     try:

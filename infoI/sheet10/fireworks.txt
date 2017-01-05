@@ -1,0 +1,16 @@
+[Object]
+[Particle|cv;cid;color;x;y;vx;vy;age;lifespan|__init__(self﹐ cv﹐ color﹐ x﹐ y﹐ vx﹐ vy﹐ lifespan); update(self﹐dt); alive(self)]
+
+[Fireworks|cv;age;particles|__init__(self﹐cv);update(self﹐dt)]
+[Vulcano|x;pps;colors;_tospawn|__init__self﹐cv﹐ x﹐ pps﹐ colors);update(self﹐cv)]
+
+[SquareParticle|size|__init__(**kwargs) mit size]
+[TriangleParticle|size|__init__(**kwargs) mit size]
+[CircularParticle|size|__init__(**kwargs) mit size]
+
+[Object]->[Particle]
+[Object]->[Fireworks]
+[Particle]->[SquareParticle]
+[Particle]->[TriangleParticle]
+[Particle]->[CircularParticle]
+[Fireworks]->[Vulcano]

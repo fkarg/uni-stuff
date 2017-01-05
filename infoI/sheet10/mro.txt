@@ -1,0 +1,28 @@
+Aufgabe 10.2
+============
+
+$ python -i mro.py
+>>> F.mro()
+[__main__.F,
+ __main__.D,
+ __main__.A,
+ __main__.E,
+ __main__.B,
+ __main__.C,
+ object]
+
+[...]
+
+D (A, B) = [D, A, B]
+E (B, C) = [E, B, C]
+
+Schritte:
+F (D, E) = [F]     + merge(L(D)     , L(E)     , [D, E])
+F (D, E) = [F]     + merge([D, A, B], [E, B, C], [D, E])
+F (D, E) = [F,D]   + merge([A, B]   , [E, B, C], [E])
+F (D, E) = [F,D,A] + merge(   [B]   , [E, B, C], [E])
+F (D, E) = [F,D,A,E] + merge( [B]   , [B, C])
+F (D, E) = [F,D,A,E,B] + merge([C])
+F (D, E) = [F,D,A,E,B,C (, object)]
+
+
