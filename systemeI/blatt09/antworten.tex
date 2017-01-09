@@ -1,0 +1,160 @@
+\documentclass{scrartcl}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{amssymb} % what does it do?
+\usepackage{graphicx} % I can't do that yet
+\usepackage{fancyhdr} % what does it do?
+\usepackage{lastpage} % for 'lastpage' showing
+\setlength{\parskip}{\medskipamount} % thats reasonable
+\setlength{\parindent}{0pt} % whatever that does
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf- und Fusszeilen %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\lhead{
+    \begin{tabular}{ll}
+        Felix Karg \\
+    \end{tabular}
+}
+\chead{Systeme I}
+\rhead{
+    \begin{tabular}{rr}
+        \today{} \\
+        Seite \thepage{} von \pageref{LastPage}
+    \end{tabular}
+}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Anfang des Dokuments %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\section*{Antworten zu Übungsblatt Nr. 9}
+
+\section*{Aufgabe 1}
+Ein laut dem Bankier-Algorithmus unsicherer Zustand ist bereits ein solcher,
+der zu einem Deadlock führen kann, nicht einer der Zwingend zu einem führt. \\
+Bsp für einen unsicheren Zustand: \\
+Zwei Ressourcen und Zwei Prozesse, die zum abschließen jeweils zwei Ressourcen
+benötigen. Nun hat bereits Prozess1 eine Ressource angefordert und erhalten.
+Dieser Zustand wird laut dem Bankier-Algorithmus als Unsicher bewertet, da wenn
+nun Prozess2 eine Ressource Anfordert und Erhält, ein Deadlock sicher ist, sollten
+die Prozesse die Ressourcen erst nach beendingung ihrer selbst diese wieder freigeben.
+Wenn allerdings nun zuerst Prozess1 die Zweite Ressource erhält und abschließen kann,
+kann danach Prozess2 Beide Ressourcen erhalt und außerdem abschließen, ohne dass es
+zu einem Deadlock geführt hat. \\ \\
+(wofür braucht man dafür Pseudo-Code, das wird doch nur noch länger?)
+
+\section*{Aufgabe 2}
+\begin{itemize}
+    \item[a)] 1: Kein Deadlock möglich, da immer ein Prozess der beiden alle 
+        Ressourcen bekommen und nach abschluss diese wieder Freigeben kann,
+        Ohne auf den anderen Warten zu müssen.
+    \item[a)] 2: Deadlock möglich, genau dann, Wenn alle Drei Prozesse jeweils zwei
+        Ressourcen benötigen, und jeweils eine Bereits angefordert und erhalten haben,
+        und nun die jeweils zweite anfordern.
+    \item[b)] $V \geq n*(M - 1) + 1$, damit ist noch mindestens eine Ressource frei,
+        wenn alle Prozesse alle bis auf eine Ressource bekommen haben. Nachdem der
+        Prozess der diese bekommen hat abgeschlossen ist, stehen wieder ausreichend
+        Ressourcen für andere Prozesse zur verfügung, damit diese auch abschließen können.
+    \item[c)] Nur, falls mindestens einer der drei Prozesse nur eine Ressource insgesamt
+        benötigt, oder P3 erst nach beendigung von P1 oder P2 eine Ressource entweder
+        Anfordert oder Bekommt. Andernfalls ist dieser Zustand nicht sicher
+        (Begründung: a2).
+\end{itemize}
+
+\section*{Aufgabe 3}
+\begin{itemize}
+    \item[a1)] SJF: $Z_5, Z_2, Z_1, Z_4, Z_3$, die Durchschnittliche 
+        Wartezeit ist minimal.
+    \item[a2)] $5 + 3 + 7 + 6 + 1 = ~22$ [min] (ungenauigkeit aufgrund von ... Menschen ...)
+    \item[a3)] $(1 + 4 + 9 + 15 + 22) / 5 = 51 / 5 = 10.2 $ [min]
+
+    \item[b1)] \begin{tabular}{l|l|l|l|l|l|l}
+            Zeit          & t = 0   & t = 1min  & t = 3min  & t = 6min  & t = 9min  & t = 13min \\
+            Kunden(min)   & 5, 6, 7 & 6, 7      & 7         & -         & -         & - \\
+            Verkäufer     & 1       & 5         & 5 (3 left)& 7         & 7 (4 left)& - \\
+            Azubi         & 3       & 3         & 6         & 6 (3 left)& -         & - \\
+        \end{tabular}
+    \item[b2)] Nach ~13min.
+    \item[b3)] $(1 + 3 + (5 + 1) + (3 + 6) + (6 + 7) ) / 5 = 32 / 5 = 6.4 $ [min]
+
+    \item[c1)] \begin{tabular}{l|l|l|l|l|l|l}
+            Zeit          & t = 0   & t = 6min  & t = 7min  & t = 10min & t = 11min \\
+            Kunden(min)   & 1, 3, 5 & 1, 3      & 1         & -         & -         \\
+            Verkäufer     & 6       & 5         & 5 (4 left)& 5 (1 left)& -         \\
+            Azubi         & 7       & 7 (1 left)& 3         & 1         & -         \\
+                \end{tabular}
+    \item[c2)] Nach ~11min
+    \item[c3)] $(7 + 6 + (6 + 5) + (7 + 3) + (7 + 3 + 1) ) / 5 = (13 + 11 + 10 + 11) / 5
+        = 45 / 5 = 9.0 $ [min] \\ \\
+        Aus sicht des Azubis ist besser Strategie c, da er dann 2min eher (bzw. länger)
+        Pause machen kann. Für den Kunden ist allerdings bei weitem Strategie b Besser,
+        um knapp das 1.5-fache (9 / 6.4 = 1.40625), da die Wartezeit im Durchschnitt
+        um einiges Kürzer ist.
+
+\end{itemize}
+
+\section*{Aufgabe 4}
+Wenn ein Prozess zwischenreinkommt, der eine Kürzere Durchlaufzeit hat, als der momentan
+ausgeführte noch übrig hat. Wenn die Zeit die der momentan ausführende noch übrig hat
+sehr groß, und die Durchlaufzeit des neu dazukommenden sehr kurz ist, wird der unterschied
+gut sichtbar.
+
+
+\end{document}
+
+
+Beispiel für Text, der aus einem Terminal kopiert wurde:
+
+\begin{verbatim}
+osswald@tfpool17 / $ df -h
+Filesystem                           Size  Used Avail Use% Mounted on
+/dev/sda4                            375G   41G  316G  12% /
+dev                                  3.9G     0  3.9G   0% /dev
+run                                  3.9G  480K  3.9G   1% /run
+tmpfs                                3.9G     0  3.9G   0% /dev/shm
+\end{verbatim}
+
+Aufzählungen sind mit \verb_enumerate_ möglich:
+\begin{enumerate}
+\item Erster Punkt
+\item Zweiter Punkt
+\item Dritter Punkt
+\end{enumerate}
+
+\subsection*{Aufgabe 2}
+
+Mathematische Formeln:
+\begin{equation}\label{gauss}
+    \sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+\end{equation}
+
+
+Formel \ref{gauss} wird auch \emph{Gaußsche Summenformel} genannt.
+
+Formeln können auch im Text eingebunden werden, z.B. $E = mc^{2}$.
+
+\subsection*{Aufgabe 3}
+
+Tabellen können mit \verb_tabular_-Umgebungen eingegeben werden:
+
+\begin{center}
+\begin{tabular}{l|l|l}
+Datei             & Dateirechte        & Größe   \\
+\hline
+dokument.txt      & \verb_-rw-r--r--_  & 300 KB  \\
+programm.exe      & \verb_-rwxr-x---_  & 450 KB  \\
+mein\_verzeichnis & \verb_drwxr-xr-x_  & ---     \\
+\end{tabular}
+\end{center}
+
+\end{document}
+
+
