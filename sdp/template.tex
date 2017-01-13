@@ -1,0 +1,81 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{german}
+\usepackage{xcolor}
+
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
+
+\title{
+  \Huge System Design Project \\
+  \LARGE Zwischenbericht WS 2015/2016
+}
+\author{
+  \Large Die Fantastischen Vier (\#70) \\
+}
+
+\begin{document}
+\maketitle
+
+\section{Gruppenmitglieder}
+\begin{itemize}
+  \item Victor Maier (4337015) (ESE)
+  \item Paul Boe (4330649) (ESE)
+  \item Christian Macha (Matrikelnummer) (MST)
+  \item Felix Karg (4342014) (Info)
+\end{itemize}
+
+\section{Roboterkonzept}
+
+Von Anfang an war der Plan, nicht den NXT-Baustein zu verwenden, sondern bessere Lichtsensoren
+und Arduinos zu verwenden, um damit genauer und schneller Kontrollieren zu können, was der 
+Roboter tut. Zum Meilenstein waren leider noch nicht ausreichend Teile da, weswegen wir kurzerhand
+einen Lego-Roboter gebaut und eine Linienverfolgung Programmiert haben. Inzwischen sind die Teile
+da, und wir sind am Überlegen, wie genau wir den Roboter letztendlich aufbauen. 
+(Mehr dazu bei \emph{Weiteres Vorgehen})
+
+\section{Softwarekonzept}
+
+\emph{Optional:} Hier können Sie beschreiben, wie Sie die Programmierung des Roboters umgesetzt haben, z.B. durch angewandte Designpatterns.
+
+\section{Fortschritt}
+
+Bei der Präsentation des Robotersystems sollte generelle Funktionsfähigkeit insbesondere bei der
+Linienverfolgung gezeigt werden. Problematisch war zunächt, dass der Roboter Schwierigkeiten bei
+Hinaufverfahren von einer hohen Steigung hatte, da der Schwerpunkt zu weit nach hinten verlagert 
+wurde. Weiterhin waren die Sensoren so angebracht, dass sie diesen Vorgang durch Bodenkontakt 
+zusätzlich erschwerten. Keine Schwierigkeiten gab es bei rechtwinklingen Bahnabschnitten. 
+Ausbaufähig wäre die benötigte Zeit um solche Abschnitte zu passieren, indem der Roboter durch 
+Anpassung des Algorithmus schneller wendet und/oder danach beschleunigt. Zusammenfassend zeigte 
+das System relativ geradlinige Bewegungen, was auf einen gut gewählten Abstand der Lichtsensoren
+schließen lässt. Gleichzeitig sind Geschwindigkeitsanpassung noch möglich, wodurch nicht von einem 
+idealen Abstand auszugehen ist. Von der Konstuktion der Räderanbrigung mussten die vorderen Räder 
+stabiler angebracht werden, da sie sich zeitweise verkeilt haben, was jedes Mal korrigiert werden
+musste. Sonst konnte die Zielsetzung für den Meilenstein gezeigt werden. Es gibt kein Foto davon,
+weil der Linienverfolgende Roboter ziemlich direkt nach dem Meilenstein wieder Auseinandergebaut
+wurde. Es gibt bereits Steckbretter mit mehreren Sensoren (Gyro, Kompass, diverse Lichtsensoren),
+mit denen wir momentan versuchen, unseren eigentlich geplanten Roboter zu Programmieren.
+
+\section{Fehleranalyse}
+Die einzigen wirklichen Probleme die wir haben, ist dass wir vier uns eher selten treffen können,
+um wirklich länger am Stück mal wieder am Roboter zu arbeiten, auch wenn wir uns an der Uni
+teilweise Täglich sehen.
+
+\section{Weiteres Vorgehen}
+
+Eine weitere Idee unsererseits war, einen Roboter zu bauen, der Ähnlich einem Segway fährt,
+weswegen wir noch einige Experimente mit dem Gyro vor uns haben. Den Kompass wollten wir verwenden,
+um möglicherweise Teile der Strecke aufzuzeichnen um beim Zweiten mal durchfahren schneller zu sein.
+Außerdem wollen wir so verhindern, uns ungeplant umzudrehen, und dies nicht zu bemerken.
+Es ist abzusehen, wie weit uns diese Idee bringt.
+
+\section{Arbeitsteilung}
+Wir haben uns mehrfach getroffen, um über das Allgemeine Konzept, die Programmierung, neue Ideen,
+etc. gemeinsam zu Diskutieren. Paul hatte mehr als wir anderen Ahnung von Arduino-Basierter 
+Hardware, und hat uns dementsprechend beraten. Victor hat bereits einiges an 
+Low-Level-Programmier-Erfahrung, und auch Felix hatte bereits mit Arduinos zu tun, wenn auch 
+vermutlich nicht so viel wie Paul. Christian hatte bereits mehr Erfahrung mit solchen 
+Teamprojekten, weswegen er Konstruktive Hinweise gab, oder auch die erste Version dieses 
+Berichts schrieb.
+
+\end{document}
+
