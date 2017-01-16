@@ -1,0 +1,181 @@
+\documentclass{scrartcl}
+\usepackage{german}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[german]{babel}
+\usepackage[dvipsnames]{xcolor}
+
+% zusÃ¤tzliche mathematische Symbole, AMS=American Mathematical Society
+\usepackage{amssymb}
+
+% fÃ¼rs Einbinden von Graphiken
+\usepackage{graphicx}
+
+% fÃ¼r Namen etc. in Kopf- oder FuÃŸzeile
+\usepackage{fancyhdr}
+
+% erlaubt benutzerdefinierte Kopfzeilen
+\pagestyle{fancy}
+
+\newcommand{\col}[1]{\colorbox{BurntOrange}{\makebox(0,7){#1}}}
+\newcommand{\colr}[1]{\colorbox{RubineRed}{\makebox(0,7){#1}}}
+
+% Definition der Kopfzeile
+\lhead{
+\begin{tabular}{ll}
+Fisnik Zeqiri & 4306430 \\
+Felix  Karg   & 4342014
+\end{tabular}
+}
+\chead{}
+\rhead{\today{}}
+\lfoot{}
+\cfoot{Seite \thepage}
+\rfoot{}
+
+\begin{document}
+\section*{Antworten zum Übungsblatt Nr. 10}
+
+
+\section*{Aufgabe 1}
+\begin{itemize}
+    \item[a)]
+        $CSA_1 = FA$, $CSA_{2n} = CSA_n + MUX_2$ \\
+        32 -> 16 -> 8 -> 4 -> 2 -> 1, 1 = FA, 2 = FA + MUX, ... \\
+        Zeitlich: FA + 5MUX -> FA + 4MUX -> FA + 3MUX -> FA + MUX + MUX -> FA + MUX -> FA \\
+        Zeitlich II: FA -> FA(sel, .... soviel dazu.  \\
+        Zeitdiagramm für $CSA_32$: \\
+%        \begin{tabular}[l|l|l]
+%            & CSA32 & min & max & \\
+%            $\tau_{PDC_{0}}$ & - & 0.18 + 5 * 0.15 &
+%        \end{tabular}
+%    \item[b)]
+%    \item[c)]
+\end{itemize}
+
+
+\section*{Aufgabe 2}
+\begin{itemize}
+    \item[a)] 
+        1\col{0}0\col{1}X\col{0}1\col{0}X\col{0}X\colr{1} -> Ungerade => \colr{1} \\
+        1\col{0}\col{0}1X\col{0}\col{1}0X\col{0}\colr{1}1 -> Ungerade => \colr{1} \\
+        \col{1}001X\col{0}\col{1}\col{0}\colr{0}011 -> Gerade => \colr{0} \\
+        \col{1}\col{0}\col{0}\col{1}\colr{0}0100011 -> Gerade => \colr{0} \\ \\
+
+        1\col{1}1\col{0}X\col{1}1\col{0}X\col{1}X\colr{1} -> Ungerade => \colr{1}\\
+        1\col{1}\col{1}0X\col{1}\col{1}0X\col{1}\colr{1}1 -> Ungerade => \colr{1}\\
+        \col{1}110X\col{1}\col{1}\col{0}\colr{1}111 -> Ungerade => \colr{1} \\
+        \col{1}\col{1}\col{1}\col{0}\colr{1}1101111 -> Ungerade => \colr{1} \\
+
+    \item[b)]
+
+        0\col{1}1\col{1}0\col{0}0\col{0}0\col{1}1\colr{1} => Passt \\
+        0\col{1}\col{1}10\col{0}\col{0}00\col{1}\colr{1}1 => Passt \\
+        \col{0}1110\col{0}\col{0}\col{0}\colr{0}111 => Passt \\
+        \col{0}\col{1}\col{1}\col{1}\colr{0}0000111 => Fehler in Parity bit. \\
+        0111\colr{1}0000111 => Richtiger Code
+
+        1\col{0}1\col{1}0\col{1}1\col{0}1\col{1}1\colr{1} => Passt \\
+        1\col{0}\col{1}10\col{1}\col{1}01\col{1}\colr{1}1 => Passt nicht \\
+        \col{1}0110\col{1}\col{1}\col{0}\colr{1}111 => Passt \\
+        \col{1}\col{0}\col{1}\col{1}\colr{0}1101111 => Passt nicht \\
+        10\colr{0}101101111 => Fehler in bit 10, Richtiger Code
+
+\end{itemize}
+
+\section*{Aufgabe 3}
+\begin{itemize}
+
+    \item[a)]
+        Wenn ein Element der Matrix anders ist sind zwingend die zwei 
+        jeweiligen Parity-bits auch anders, also insgesamt 3 bits, dist(c) = 3.
+        \\ \\
+        Beh.: Immer mindestens 1-Fehlerkorrigierend und 1-Fehlererkennend. \\
+        Bew.: Entweder ist irgendwo ein normales Bit geflippt. Dann bekommen
+        wir über die Parity-Bits schöne Koordinaten. Ist irgendein Paritybit
+        geflippt wissen wir auch dass es dieses ist, da es selbst einen Fehler
+        in seiner Reihe/Spalte indiziert, die anderen Paritybits aber einen
+        Fehler in ihrer Spalte/Reihe verneinen, somit ist das angeschlagene 
+        Paritybit falsch übertragen. \\ \\
+        Sollten nun zwei Bits falsch übertragen werden, können wir dies manchmal 
+        nicht einmal mehr erkennen. \\
+        Bsp.: Ein Element der Matrix und eines der Paritybits in derselben 
+        Zeile/Spalte wurden gedreht, nun schlägt für uns sichtbar nur ein
+        Paritybit an, was nach unserer ersten Interpretation heißen würde,
+        dass allein dieses falsch ist. Wir könnten in diesem Fall nicht einmal
+        sagen, ob es einen oder mehrere Übertragungsfehler gab. Häufig ist es
+        allerdings möglich auch mehrere Fehler eindeutig zu erkennen und je nach
+        Konstellation auch zu Korrigieren.  \\ \\
+        Wir sind also bei 1-Fehlererkennend ($3 \geq 1$) und
+        1-Fehlerkorrigierend ($3 \geq 2*1 + 1 = 3$).
+
+
+    \item[b)] (allgemein formuliert in a) \\
+        Konkretes Beispiel: \\
+        \begin{tabular}{llll|l}
+            1 & 0 & 1 & 0 & 0 \\
+            0 & 1 & 0 & 0 & 1 \\
+            0 & 1 & 1 & 0 & 0 \\
+            \hline
+            1 & 0 & 0 & 0 & \\
+        \end{tabular}
+
+        Zwei übertragungsfehler: \\
+        \begin{tabular}{llll|l}
+            1 & 0 & 1 & 0 & 0 \\
+            0 & \colr{0} & 0 & 0 & \colr{0} \\
+            0 & 1 & 1 & 0 & 0 \\
+            \hline
+            1 & 0 & 0 & 0 & \\
+        \end{tabular}
+
+        1. Möglichkeit für Fehler \\
+        \begin{tabular}{llll|l}
+            1 & 0 & 1 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 \\
+            0 & 1 & 1 & 0 & 0 \\
+            \hline
+            1 & \col{0} & 0 & 0 & \\
+        \end{tabular}
+
+        2. Möglichkeit für Fehler \\
+        \begin{tabular}{llll|l}
+            1 & 0 & 1 & 0 & 0 \\
+            0 & \col{0} & 0 & 0 & \col{0} \\
+            0 & 1 & 1 & 0 & 0 \\
+            \hline
+            1 & 0 & 0 & 0 & \\
+        \end{tabular}
+
+
+    \item[c)] Der betrachtete Code $q'$ ist nun in der Lage höchstens 2 Fehler
+        immer zu finden und auch zu Korrigieren. Bei mehr hängt es wieder von der
+        Konstellation ab. \\ \\
+
+        Bsp.: (erweiterung von b) \\
+
+        Folgendes wird nun durch P erkannt: \\
+        \begin{tabular}{llll|l}
+            1 & 0 & 1 & 0 & 0 \\
+            0 & \col{0} & 0 & 0 & \col{0} \\
+            0 & 1 & 1 & 0 & 0 \\
+            \hline
+            1 & 0 & 0 & 0 & \colr{0} \\
+        \end{tabular}
+
+        Folgendes allerdings wieder nicht, hier wird nicht einmal ein Fehler erkannt: \\
+        \begin{tabular}{llll|l}
+            1 & 0 & 1 & 0 & 0 \\
+            0 & \col{0} & 0 & 0 & \col{0} \\
+            0 & 1 & 1 & 0 & 0 \\
+            \hline
+            1 & \col{1} & 0 & 0 & \colr{0} \\
+        \end{tabular}
+
+
+
+
+\end{itemize}
+
+
+\end{document}
