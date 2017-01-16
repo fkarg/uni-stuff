@@ -37,24 +37,11 @@ Felix  Karg   & 4342014
 \section*{Antworten zum Übungsblatt Nr. 10}
 
 
-\section*{Aufgabe 1}
-\begin{itemize}
-    \item[a)]
-        $CSA_1 = FA$, $CSA_{2n} = CSA_n + MUX_2$ \\
-        32 -> 16 -> 8 -> 4 -> 2 -> 1, 1 = FA, 2 = FA + MUX, ... \\
-        Zeitlich: FA + 5MUX -> FA + 4MUX -> FA + 3MUX -> FA + MUX + MUX -> FA + MUX -> FA \\
-        Zeitlich II: FA -> FA(sel, .... soviel dazu.  \\
-        Zeitdiagramm für $CSA_32$: \\
-%        \begin{tabular}[l|l|l]
-%            & CSA32 & min & max & \\
-%            $\tau_{PDC_{0}}$ & - & 0.18 + 5 * 0.15 &
-%        \end{tabular}
-%    \item[b)]
-%    \item[c)]
-\end{itemize}
-
-
 \section*{Aufgabe 2}
+
+\col{ } = Geprüfte Bits \\
+\colr{ } = Betrachtetes Parity-bit \\
+
 \begin{itemize}
     \item[a)] 
         1\col{0}0\col{1}X\col{0}1\col{0}X\col{0}X\colr{1} -> Ungerade => \colr{1} \\
@@ -83,6 +70,8 @@ Felix  Karg   & 4342014
 
 \end{itemize}
 
+\newpage
+
 \section*{Aufgabe 3}
 \begin{itemize}
 
@@ -109,6 +98,9 @@ Felix  Karg   & 4342014
         Wir sind also bei 1-Fehlererkennend ($3 \geq 1$) und
         1-Fehlerkorrigierend ($3 \geq 2*1 + 1 = 3$).
 
+    \newpage
+\colr{ } = Echter Fehler \\
+\col{ } = Erkannter Fehler \\
 
     \item[b)] (allgemein formuliert in a) \\
         Konkretes Beispiel: \\
@@ -160,16 +152,16 @@ Felix  Karg   & 4342014
             0 & \col{0} & 0 & 0 & \col{0} \\
             0 & 1 & 1 & 0 & 0 \\
             \hline
-            1 & 0 & 0 & 0 & \colr{0} \\
+            1 & 0 & 0 & 0 & 0 \\
         \end{tabular}
 
         Folgendes allerdings wieder nicht, hier wird nicht einmal ein Fehler erkannt: \\
         \begin{tabular}{llll|l}
             1 & 0 & 1 & 0 & 0 \\
-            0 & \col{0} & 0 & 0 & \col{0} \\
+            0 & \colr{0} & 0 & 0 & \colr{0} \\
             0 & 1 & 1 & 0 & 0 \\
             \hline
-            1 & \col{1} & 0 & 0 & \colr{0} \\
+            1 & \colr{1} & 0 & 0 & 0 \\
         \end{tabular}
 
 
