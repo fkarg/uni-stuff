@@ -1,0 +1,11 @@
+Aufgabe 11.3
+============
+
+
+11.1 ~5min Mhm, irgendwie nich so richtig toll ....
+11.2 ~3h   Sich-Selbst-Balancierende Bäume sind schwerer als erwartet ...
+11.3 ~5min Joa ... 
+
+
+
+Die Baum-Aufgabe war cool! Wenn du möchtest kann ich beide Implementierungen erklären.

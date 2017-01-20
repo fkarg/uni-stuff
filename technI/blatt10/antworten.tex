@@ -141,7 +141,7 @@ Felix  Karg   & 4342014
 
 
     \item[c)] Der betrachtete Code $q'$ ist nun in der Lage höchstens 2 Fehler
-        immer zu finden und auch zu Korrigieren. Bei mehr hängt es wieder von der
+        immer zu finden allerdings nicht immer zu Korrigieren. Bei mehr hängt es wieder von der
         Konstellation ab. \\ \\
 
         Bsp.: (erweiterung von b) \\
@@ -163,6 +163,26 @@ Felix  Karg   & 4342014
             \hline
             1 & \colr{1} & 0 & 0 & 0 \\
         \end{tabular}
+
+        Folgendes kann nicht korrigiert werden: \\
+        \begin{tabular}{llll|l}
+            1 & 0 & 1 & 0 & 0 \\
+            \colr{1} & \colr{0} & 0 & 0 & 1 \\
+            0 & 1 & 1 & 0 & 0 \\
+            \hline
+            1 & 0 & 0 & 0 & 0 \\
+        \end{tabular}
+
+        Erkannt wird nämlich nur: \\
+        \begin{tabular}{llll|l}
+            1 & 0 & 1 & 0 & 0 \\
+            1 & 0 & 0 & 0 & 1 \\
+            0 & 1 & 1 & 0 & 0 \\
+            \hline
+            \col{1} & \col{0} & 0 & 0 & 0 \\
+        \end{tabular}
+
+
 
 
 

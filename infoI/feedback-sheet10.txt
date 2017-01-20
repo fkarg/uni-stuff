@@ -1,0 +1,38 @@
+Hallo Felix,
+
+Aufgabe 10.1
+============
+Aufgabe 10.1(a)
+---------------
+Richtig
+
+Aufgabe 10.1(b)-(d)
+-------------------
+Sehr cool :)
+Du hast zwar schon vorgerechnet, aber wär schön, wenn du trotzdem was zu deinem
+Programm erzählen würdest.
+
+Aufgabe 10.1(e)
+---------------
+Episches Feuerwerk! :D
+
+Aufgabe 10.2
+============
+Richtig, aber es fehlen Zwischenschritte für A/B/C/D/E (-0.5 P.) und die
+Object-Klasse fehlt überall (-0.5 P.)
+
+Aufgabe 10.3
+============
+Vorhanden und vollständig
+
+
+Wenn es Fragen zur Korrektur gibt (Punktabzüge usw.), dann schreibt eine Mail
+oder fragt mich persönlich in der Übungsgruppe.
+
+Johanna <johanna.goetz@uranus.uni-freiburg.de>
+
+
+Gesamt
+======
+(4 + 4 + 4 + 4 + 3) + 8 + 2 =
+29/30
