@@ -1,0 +1,36 @@
+Hallo Felix,
+
+Aufgabe 11.1
+============
+Aufgabe 11.1(a)
+---------------
+Keine Angabe der Oberklasse oder Begründung (-2 P.)
+
+Aufgabe 11.1(b)
+---------------
+Nicht bearbeitet
+
+Aufgabe 11.1(c)
+---------------
+Nicht bearbeitet
+
+Aufgabe 11.2
+============
+Schön :)
+Aaaaaaber...ich sehe da ein TODO! ;-)
+
+Aufgabe 11.3
+============
+Vorhanden und vollständig
+
+
+Wenn es Fragen zur Korrektur gibt (Punktabzüge usw.), dann schreibt eine Mail
+oder fragt mich persönlich in der Übungsgruppe.
+
+Johanna <johanna.goetz@uranus.uni-freiburg.de>
+
+
+Gesamt
+======
+(0 + 0 + 0) + (2 + 2 + 2 + 2) + 2 =
+10/20

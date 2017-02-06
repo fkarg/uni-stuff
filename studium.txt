@@ -3,15 +3,16 @@ BEWERBERNUMMER ist 941263, Matrikelnummer ist 3432014
 studienrichtungstest-tan: jn59ussr
 
 
+
 Semester 1
-Übungsblatt   01   |    02   |    03   |    04   |    05   |    06   |    07   |    08   |    09   |    10   |    11   |    12   |
+Übungsblatt   01   |    02   |    03   |    04   |    05   |    06   |    07   |    08   |    09   |    10   |    11   |    12   | Sufficient?
 Fach     |         |         |         |         |         |         |         |         |         |         |         |         |
-Logik    | 10.5/16 | 11.5/16 |  7.0/16 | 10.0/20 |  7.0/16 |  9.0/16 |  9.0/18 | 13.5/16 |    N/A  |    N/A  |    N/A  |    N/A  |
-InfoI    | 18.5/20 | 19.5/20 | 19.5/20 | 16.5/20 | 20.0/20 | 19.5/20 | 15.5/21 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
-MatheI   | 11.5/16 | 11.0/16 | 10.0/16 |  6.5/16 |  5.5/16 |  7.5/16 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
-TechnI   | 11.0/20 | 19.5/20 | 10.5/20 | 15.5/20 | 11.5/20 | 13.5/20 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
-SystemeI | 11.0/12 |  5.5/12 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
-SDP
+Logik    | 10.5/16 | 11.5/16 |  7.0/16 | 10.0/20 |  7.0/16 |  9.0/16 |  9.0/18 | 13.5/16 |  5.0/16 |  3.5/16 |    N/A  |    N/A  | Suff
+InfoI    | 18.5/20 | 19.5/20 | 19.5/20 | 16.5/20 | 20.0/20 | 19.5/20 | 15.5/21 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  | Suff
+MatheI   | 11.5/16 | 11.0/16 | 10.0/16 |  6.5/16 |  5.5/16 |  7.5/16 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  | Suff
+TechnI   | 11.0/20 | 19.5/20 | 10.5/20 | 15.5/20 | 11.5/20 | 13.5/20 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  | Suff
+SystemeI | 11.0/12 |  5.5/12 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  | Suff
+SDP                                                                                                                                Suff
 
 
 
@@ -24,5 +25,20 @@ Fach     |         |         |         |         |         |         |         |
          |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
          |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
          |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+
+
+
+
+AlgoDat
+MatheII
+HardPrak
+Sys II
++Optimierung
++Softwaretechniken
+
+
+Info I-II (Verschoben auf Nächstes Jahr).
+
+
 
 

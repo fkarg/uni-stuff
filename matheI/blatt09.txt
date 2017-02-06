@@ -1,0 +1,42 @@
+
+A33: 
+part 1: (solved)
+        { n == 3     -> 3
+a(n) = {  n == 2 ^ b -> 1
+        { sonst      -> 2 + a(n-1)
+part 2: (in progress)
+Ist n == 3 gibt der erste Student dem zweitem ein Geschenk, womit dieser
+entlassen ist. Dann gibt der dritte dem ersten eines, und der Dritte bleibt
+über.
+Ist n gleich einer zweierpotenz, so werden immer die an den gradzahligen
+stellen stehenden Studenten beschenkt, nach jeder runde fängt es wieder mit
+Student 1 an. Es werden also Effektiv 2^b -> 2^(b-1) Studenten. Bleiben nur
+noch zwei übrig, beschenkt der erste den Zweiten und bleibt selber übrig.
+(2^b-> 1).
+Andernfalls gibt es zwei kompliziertere Fälle, und zwar:
+
+n = 2^b + c (gerade Zahl):
+
+n = 2^b + c (ungerade Zahl):
+
+
+
+A34: Basically solved.
+W_k = Weihnachtsmann_k.
+Wenn es ein beliebiges aber festes q < 1 mit lim (W_k+1 / W_k) < q gibt,
+dann gilt auch W_k+1 < W_k * q für fast alle k. Es gilt außerdem:
+W_k+2 < W_k+1 * q < W_k * q * q -> W_k+m < W_k * q^m.
+Also ist sum [0->m] W_k < G_k:= W_0 * sum [0->m] q^k.
+=(Majorantenkriterium)=> W_k konvergiert.
+
+Definiere nun G_k = sum [0->k] q^k, wobei gilt: lim sum q = (1 - q)^-1,
+
+
+
+A35: done, though probably not complete.
+k := Geschenk
+Zeigen Sie dass $sum [k=1->unendlich] ((-1)^k)/k$ konvergiert.
+
+A36: in progress
+
+
