@@ -1,44 +1,90 @@
-Uni Freiburg:
-BEWERBERNUMMER ist 941263, Matrikelnummer ist 3432014
-studienrichtungstest-tan: jn59ussr
+Uni Freiburg
+Noch Nötig: Eintragen
 
+Semester 2
+von: 10.04.17
+bis: 29.07.17
+Ferienzeiten:
+
+Fach        | AlgoDat |  InfoI  | MatheII | SysteII |HardWaPra| SoftTec | Einf-KI |
+Teilnahme ? |   Ja    | Java..? |   Ja    |   Ja    |    Ja   |    Ja   |  Mhm..? |
+Übungsblatt |         |         |         |         |         |         |         |
+            |         |         |         |         |         |         |         |
+     1      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     2      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     3      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     4      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     5      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     6      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     7      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     8      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     9      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     10     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     11     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     12     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     13     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     14     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+            |         |         |         |         |         |         |         |
+    Sum     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+   Required |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+
+
+
+
+
+Semester X
+Fach        |         |         |         |         |         |         |         |         |
+Übungsblatt |         |         |         |         |         |         |         |         |
+            |         |         |         |         |         |         |         |         |
+     1      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     2      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     3      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     4      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     5      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     6      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     7      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     8      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     9      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     10     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     11     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     12     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     13     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     14     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+            |         |         |         |         |         |         |         |         |
+    Sum     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+   Required |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+--                                                             Done Already                                                    --
+---------------------------------------------------------------------------------------------------------------------------------
 
 
 Semester 1
-Übungsblatt   01   |    02   |    03   |    04   |    05   |    06   |    07   |    08   |    09   |    10   |    11   |    12   | Sufficient?
-Fach     |         |         |         |         |         |         |         |         |         |         |         |         |
-Logik    | 10.5/16 | 11.5/16 |  7.0/16 | 10.0/20 |  7.0/16 |  9.0/16 |  9.0/18 | 13.5/16 |  5.0/16 |  3.5/16 |    N/A  |    N/A  | Suff
-InfoI    | 18.5/20 | 19.5/20 | 19.5/20 | 16.5/20 | 20.0/20 | 19.5/20 | 15.5/21 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  | Suff
-MatheI   | 11.5/16 | 11.0/16 | 10.0/16 |  6.5/16 |  5.5/16 |  7.5/16 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  | Suff
-TechnI   | 11.0/20 | 19.5/20 | 10.5/20 | 15.5/20 | 11.5/20 | 13.5/20 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  | Suff
-SystemeI | 11.0/12 |  5.5/12 |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  | Suff
-SDP                                                                                                                                Suff
-
-
-
-
-Semester 2
-Übungsblatt   01   |    02   |    03   |    04   |    05   |    06   |    07   |    08   |    09   |    10   |    11   |    12   |
-Fach     |         |         |         |         |         |         |         |         |         |         |         |         |
-         |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
-         |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
-         |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
-         |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
-         |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
-
-
-
-
-AlgoDat
-MatheII
-HardPrak
-Sys II
-+Optimierung
-+Softwaretechniken
-
-
-Info I-II (Verschoben auf Nächstes Jahr).
-
+Fach        |   Logik |  InfoI  | MatheI  |  TechnI | SystemI |  SDP    |
+Übungsblatt |         |         |         |         |         |         |
+            |         |         |         |         |         |         |
+     1      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     2      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     3      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     4      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     5      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     6      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     7      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     8      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     9      |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     10     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     11     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     12     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     13     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+     14     |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |    N/A  |
+            |         |         |         |         |         |         |
+    Sum     |    60%  |    85%  |    55%  |    70%  |    20%  |    N/A  |
+   Required |    40%  |    50%  |    40%  |    50%  |    00%  |    00%  |
 
 
 
