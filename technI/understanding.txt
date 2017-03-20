@@ -1,0 +1,59 @@
+
+
+
+Kapitel:
+1 Einführung
+2 Kodierung
+
+
+
+2 Kodierung:
+
+    Huffman-Kodierung:
+        ist Prefix-Code, Häufigkeitsbasiert
+
+    Betrag mit Vorzeichen:
+        [d_n...d_0...d_-k]BV := (-1)^d_n * sum{i=-k,n-1}{d_i*2^i}
+        Effektiv: Normal summe mit 2-fach exponent, multipliziert mit Vorzeichen (d_n)
+            -> Doppelt Null, symmetrisch
+
+    Einer-Komplement:
+        [d_n...d_0...d_-k]1 :=             sum{i=-k,n-1}{d_i*2^i} - d_n*(2^n-2^-k)
+        Effektiv: Normal Summe mit 2-fach exponent, minus dem größtmöglichsten positiven Wert (mal Vorzeichen)
+            -> Doppelt Null, Symmetrisch
+
+    Zweier-Komplement:
+        [d_n...d_0...d_-k]2 :=             sum{i=-k,n-1}{d_i*2^i} - d_n*2^n
+        Effektiv: Normal Summe mit 2-fach exponent, minus dem größtmöglichsten negativen Wert (mal Vorzeichen)
+            -> Größte Negative Zahl kann positiv nicht erreicht werden, Eine Null, asymmetrisch
+
+
+3 Kombinatorische Logik
+    Definition Kombinatorische Logiksynthese: zu geg. Bool. f einen möglichst effizienten kombinatorischen Schaltkreis,
+        also mit möglichest geringen Kosten (wie auch immer diese definiert sind).
+
+    Wichtige Gatter: And, Or, Not, Nand, Nor, Xor
+
+    Gerichteter Graph G = (V, E)
+        V endliche nichtleere Menge Knoten (Vertices)
+        E endliche Menge Kanten (Edges
+        Q, Z :: E -> V   (Quelle, Ziel einer Kante)
+        indeg, outdeg, Eingangs respektive Ausgangsgrad
+        azyklisch: enthält keine Zykel
+        Pfad: min länge 2 (Start + End-Knoten)
+        tiefe: länge des längsten Pfades
+
+    Schaltkreis SK = (X_n, G, typ, IN, Y_m) mit n Eingängen und m Ausgängen
+        X_n Endliche Folge von Eingängen
+        Y_m Endliche Menge Ausgängen
+        G = azyklischer gerichteter Graph mit {0,1}⋃{x_1..x_n} ⊆ V
+        Menge I = V\{0,1}⋃{x_1..x_n} ist Menge der Gatter. typ :: I -> BIB, zellentyp von i
+        IN: I -> E*, Reihnfolge der eingehenden Kanten
+
+    Quine-McClusky-Algorithmus
+    
+
+
+
+
+
