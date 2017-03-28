@@ -4,7 +4,17 @@
 Kapitel:
 1 Einführung
 2 Kodierung
+3 Kombinatorische Logik
+4 Sequentielle Logik
+5 Timing
+6 Fehlertoleranz
+7
+8
 
+
+
+Mathe-Teil
+    f: B^n -> B^m, möglichkeiten: 2^(m*2^n)
 
 
 2 Kodierung:
@@ -36,7 +46,7 @@ Kapitel:
 
     Gerichteter Graph G = (V, E)
         V endliche nichtleere Menge Knoten (Vertices)
-        E endliche Menge Kanten (Edges
+        E endliche Menge Kanten (Edges)
         Q, Z :: E -> V   (Quelle, Ziel einer Kante)
         indeg, outdeg, Eingangs respektive Ausgangsgrad
         azyklisch: enthält keine Zykel
@@ -51,8 +61,123 @@ Kapitel:
         IN: I -> E*, Reihnfolge der eingehenden Kanten
 
     Quine-McClusky-Algorithmus
+
+    Reduktionsregeln Primimplikanten: (Bei gleichen Kosten)
+        Wesentliche werden immer genommen (!) - Entferne zudem dadurch überdeckte Minterme
+        Spaltendominanz: Dominierende werden Gelöscht (kleinere überdecken Größere!) (Strictly less!)
+        Zeilendominanz: Dominierte (nicht-teurere) werden gelöscht (größere überdecken Kleinere) (strictly more)
+
+    Arithmetische Schaltungen:
+        HA : C = 2,      d = 1
+        FA : C = 5,      d = 3
+        CRA: C = 5n,     d = 3 + 2n
+        MUX: C = 3n + 1, d = 3
+        CSA: C = 10n^log 3 - 3n - 2
+                         d = 3*log n + 3
+        CSAm:C = n*log n,d = log n
+        CLA: C = 11n,    d = 4*log n + 2
+
+        Multiplication: Multiple ways.
+
+    Zusammenfassung:
+        Kombinatorische SK setzen Boole'sche Fkt um
+        PLA: Zweistufig, wenn Mehrstufig: aus Gattern (aus Transistoren)
+        Minimieren von PLA's: Quine-McClusky, Lösen Überdeckungsproblem
+        Klassen von Schaltkreisen, Kombinationen
+
+
+
+4 Sequentielle Logik
+    Speichernde Elemente
+    Zellenbib BIB mit Basisoperationen (Grundgattern)
+    Schaltplan SP ~ SK [ - /azyklisch]
+    RS-FF (D-Latch), /R(eset), /S(et), Q;/Q: Ausgang
+    D-FF (wird aktiviert mit steigender Flanke -> Zähler etc.)
+
+    Schaltwerke = (synchrone) Sequentielle Schaltkreise
+        Register + Kombinatorischer Kern
+        Zyklisch aber durch FF
+        -> Endlicher Automat
+
+    Halbautomat H = (I, S, S_0, δ)
+        I: Eingabealphabet
+        S: Zustände
+        S_0: Erlaubte Endliche Menge anfangszustände
+        δ :: S -> I -> S : Übergangsfunktion
+
+        O: Ausgabesymbole
+
+    Mealy-Automat M = (I, O, S, S_0, δ, λ)
+        λ :: S -> I -> O
+    Moore-Automat M = (I, O, S, S_0, δ, λ)
+        λ :: S -> O
+
+    SRAM:
+        A (n): Adress-Eingang
+        W: Eingang (Write-Signal)
+        D_in: Daten-Eingang
+        D_out: Daten-Ausgang
+
+    Vorteile Bus gegen MUX:
+        Leicht erweiterbar, Datentransport in beide/mehrere Richtungen zu verschiedenen Zeiten
+
+    Zusammenfassung:
+        Sequentielle SK mit Speichernden Elementen + kombinatorischer Kern implementieren Endliche Automaten
+
     
 
+
+5
+
+
+6 Fehlertoleranz
+    Hamming-Abstand: kleinste Anzahl an Bits an denen sich wörter v, w eines Codes c unterscheiden
+    k-Fehlererkennend: dist(c) >= k + 1
+    k-Fehlerkorrigierend: dist(c) >= 2k + 1, k-bits können korrigiert werden (redundanz)
+
+
+
+
+Optimierung ReTi:
+    Bottleneck: SRAM
+        Solution:
+        Oder-Baum durch Treiber-bäume ersetzen (latenz 1 statt O(log(32)) )
+        And/Or-Gatter (etc.) beim Adress-Dekodierer durch einzelne Transistoren
+            ersetzen, und kombinatorisch minimieren (Rechenaufwand, aber lohnt sich!!)
+            Gsechätzt Faktor 60% kürzer allein dadurch.
+        Falls Zeit ist nach Speichern: Adresse und Datenwert in Register (in SRAM) speichern
+            und während schon wieder was anderes passiert letztendlich abspeichern.
+            Außerdem: ist Cache falls davon abgefragt wird.
+    Berechnung von Pre-Signalen notwendig? lasse ReTi einfach einen Takt später laufen?!
+
+
+
+
+
+
+
+
+Komplementbeweis: Summe bilden, umdrehen, max subtrahieren (addieren), ...
+Boole'sche Algebren Beweise
+Timing + Verzögerung
+Humming-Code
+
+
+
+ti-tutorial.github.io
+TI-Tutorat-Themen:
+MEH Komplementbeweis
+YEP Huffmancode
+    Bool'sche Algebren
+YEP Arithmetische Schaltungen
+YEP Schaltkreise
+YEP McClusky + Petrick
+    Datenpfade
+Yep Sequentielle Schaltkreis-Sythese
+        Pulsweite
+    Timing + Verzögerung
+YEP BDD's
+    Humming-Code
 
 
 
