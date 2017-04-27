@@ -7,7 +7,7 @@ module Main where
  -}
 
 import qualified Control.Parallel.Strategies as S
-import qualified Data.Discrimination as D
+-- import qualified Data.Discrimination as D
 import qualified Data.Map as M
 
 import Data.Maybe (fromMaybe)
@@ -32,10 +32,10 @@ data Formel a =
 instance Show a => Show (Formel a) where
   show (Nil a)   = show a
   show (Neg f)   = "-" ++ show f
-  show (Kon a b) = "(" ++ show a ++ " ^ " ++ show b ++ ")"
+  show (Kon a b) = "(" ++ show a ++ " ∧ " ++ show b ++ ")"
   show (Dis a b) = "(" ++ show a ++ " v " ++ show b ++ ")"
 
-instance D.Grouping a => D.Grouping (Formel a)
+-- instance D.Grouping a => D.Grouping (Formel a)
 
 {- Explanation of difference between
  -    Data.List.nub :: Eq a => [a] -> [a]
@@ -56,6 +56,14 @@ depth (Nil a)   = 0
 depth (Neg f)   = 1 + depth f
 depth (Kon a b) = 1 + max (depth a) (depth b)
 depth (Dis a b) = 1 + max (depth a) (depth b)
+
+
+-- | the length of a formulae
+lengthF :: Formel a -> Int
+lengthF (Nil a)   = 1
+lengthF (Neg f)   = 1 + lengthF f
+lengthF (Kon a b) = 3 + lengthF a + lengthF b
+lengthF (Dis a b) = 3 + lengthF a + lengthF b
 
 
 -- | Evaluating the truth-value of an Boolean expression
@@ -152,7 +160,8 @@ getAs (Dis a b) = nub $ getAs a ++ getAs b -- D.nub here would only be faster fo
 -- | turning a usual formulae in a Predicate
 -- p :: [Bool] -> Bool, which we can compare
 -- for equality on the semantic level.
-asPredicate :: (Ord a, D.Grouping a) => Formel a -> ([Bool] -> Bool)
+-- asPredicate :: (Ord a, D.Grouping a) => Formel a -> ([Bool] -> Bool)
+asPredicate :: Ord a => Formel a -> ([Bool] -> Bool)
 asPredicate f xs = eval $ setVar (M.fromList (getAs f `zip` xs)) f
 
 

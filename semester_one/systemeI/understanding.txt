@@ -1,0 +1,303 @@
+
+
+
+
+File-Systems:
+    FAT:
+        - Verkettete Liste
+        - Tabelle mit Datenblöcken im Hauptspeicher
+        - (Es existiert eine Dateihierarchie und Ordnerstruktur)
+
+    ext2/3/4:
+        - INode-Basiert
+        - INode:
+            * Dateiattribute (Größe, Veränderungszeiten, guid, uid, Rechte, Version, ...)
+            * 10 Direkte Speicheradressen (Ausreichend für kleine Dateien)
+            * 1 Adresse auf einen Block mit weiteren Speicheradressen (1-Fach Indirekter Block)
+            * 1 Zweifach-Indirekter Block
+            * 1 Dreifach-Indirekter Block
+        - Ordner: INodes->Datenblöcke mit Tuplen aus Namen und INode-Nummern
+
+    Vorteile / Nachteile:
+    FAT-Nachteile:
+        - Langsam
+        - 'Große' Tabelle in Hauptspeicher
+        - Hierarchie und Dateiattribute sind extra abgespeichert
+    FAT-Vorteile:
+        - Simpel, einfach zu Implementieren, Kompatibel zu vielem
+
+    extN-Nachteile:
+        - Begrenzte anzahl an INodes
+        - Ineffizient bei vielen leeren Dateien
+    extN-Vorteile:
+        - Benötigter Hauptspeicher linear zu offenen Dateien
+        - Dateiattribute mit abgespeichert
+        - Dateisystem mit abgebildet
+
+    NTFS:
+        didn't really do it though
+
+
+
+
+-- -- -- -- DEADLOCKS -- -- -- --
+Definition: Mehrere Prozesse, die jeweils auf eine Aktion eines anderen solchen Prozesses warten.
+    Menge von Prozessen deren Belegungs-Anforderungs-Graph mindestens einen Zykel enthält
+
+Mutex:
+    lock-variable, queue, and id of critical region
+
+    mutex_lock(id):
+        blockiert, wenn bereits anderer gesperrt, und speichert in Warteschlange
+    mutex_unlock(id):
+        aktiviert nächsten in Warteschlange (wenn vorhanden), andernfalls unset lock
+
+    Peterson-Algorithmus:
+        turn, und n flags
+        testet ob der 'sollende' Prozess in krit. region
+        andernfalls: proceed
+
+    Hardware-support:
+        RX, STL
+
+    Unterschied zu Semaphore (auch binäre):
+        Der Prozess, der den Mutex sperrt, muss ihn auch wieder freigeben.
+        (Semaphore können mit Mutex realisiert werden (?), aber nicht andersrum)
+
+
+Semaphore:
+    int count
+    int[] queue
+    bool lock
+
+    # down 'asks' for proceeding, downs process if not available
+    def down(process-id):
+        count -= 1
+        if count < 0:
+            queue.append(process-id)
+            block(process-id) # <- operation is blocking for calling process
+
+    # up returns the availability of the critical region for other processes
+    def up(process-id):
+        count += 1
+        if count <= 0:
+            wake_first(queue)
+
+
+Echte Deadlock-Vermeidung mit:
+    Wechselseitiger Ausschluss (Mutex, binäre Semaphore)
+    Besitzen und warten
+    Kein Ressourcenentzug
+    Zyklisches Warten
+
+Echte Deadlock-Behebung:
+    Abbruch aller beteiligten Prozesse
+    Rückführung auf Kontrollpunkt und Neustart
+    Schrittweiser Abbruch der beteiligten
+    Schrittweiser Ressourcenentzug
+        (-> Rückführung der Prozesse auf zustand vor Ressourcenerhalt)
+
+Bankier-Algorithmus:
+    Ressourcenaufteilung, so dass Deadlocks verhindert werden
+    Maximale Anforderungen M(aximum)
+    Akuelle Belegungen E(rhalten)
+    Restanforderungen A(ktuelles Anforderungsmaximum) = M - E
+    Ressourcenrestvektor F_k = V_k - sum{i=1,n}{E_{ik}}
+
+    sicherer Zustand: es gibt eine Ressourcen-Verteil-Reihenfolge die
+        nicht zu einem Deadlock führt.
+
+
+
+
+-- -- -- -- -- SCHEDULING -- -- -- -- --
+
+Allgemein:
+    Kurzfristig, Mittelfristig, Langfristig
+    Fairness, Prioritäten, Effizienz
+    Deterministisch, Deadlines
+    Drei Größen von Bedeutung:
+        w (Wartezeit auf CPU seit Erzeugung)         (|w|aited)
+        e (Bisher verbrauchte CPU-Zeit)              (|e|lapsed)
+        s (insgesamt benötigte CPU-Zeit, geschätzt) (a|s|sumed)
+
+    Präemptiv: Scheduler kann prozessen 'beliebig' CPU Zuteilen und entziehen
+
+    Algorithmus je nach Anwendung,
+    Prioritäten und bisherige Rechenzeit sollten in Auswahlentscheidung mit eingehen
+
+
+First Come First Serve (FCFS):
+    Nicht-Präemptiv
+    max(w) (Der Prozess, der bisher am Längsten Wartet)
+    Einfache Warteschlange
+
+    Begünstigt lange Prozesse, Prozesse ohne I/O, (Prioritätsverfahren?)
+
+
+Round Robin (RR):
+    Präemptiv
+    Scheduler wird nach Zeitinterwall Aktiv, Pausiert laufenden Prozess
+    max(w) (Längster Wartender Prozess wird Aktiviert)
+
+    Länge des Zeitintervalls ist Essentiell, Sinnvoll entsprechend durchschnitt
+    Prozesse ohne I/O leicht Begünstigt, mit werden bei abgabe Blockiert
+
+
+Shortest Job First (SJF):
+    Nicht-Präemptiv
+    min(s)  Kürzester (vermuteter, Dauer) zuerst
+
+    Optimal wenn alle gleichzeitig verfügbar
+    (-> Beweis: gewichtete Summen etc.)
+    Abschätzung der Dauer muss vorhanden sein,
+    Bevorzugen von Kurzen Prozessen
+
+
+Shortest Remaining Time (SRT):
+    Präemptive Variante von SJF
+    min(s-e) Prozess mit kürzester zu erwartender Restlaufzeit
+    Kein Unterbrechen in Zeitintervallen, aber bei aktiv-werden von Prozessen
+
+    Abschätzungen müssen gegeben sein + Aufwand für Prozesswechsel etc.
+    -> Bessere Durchlaufzeit: kurze bereite Prozesse werden langen
+        Prozessen sofort vorgezogen!
+
+
+Highest Response Ratio Next (HRRN):
+    Nicht-Präemptiv
+    max((w+s)/s) (Normalisierter Durchlaufzeit 'Response Ratio')
+    R = (w+s)/s, Anfangs 1.0, Prozess mit höchstem R erhält Rechenzeit
+
+    Begünstigt kurze Prozesse (w->R wächst sehr schnell)
+    Laufzeitabschätzungen benötigt
+
+
+Feedback:
+    Präemptiv (Zeitintervall), dyn Prioritäten
+    Bei Abgabe der CPU: Einreihen in Warteschlange mit der nächst geringeren Priorität
+    Prioritäts-Warteschlangen, innerhalb FCFS, in niedrigster RR
+
+    Bevorzugt I/O-lastige Prozesse
+    CPU-Lastige Prozesse werden auf dauer bestraft
+
+    Variante 1:
+        Prozesse aus höheren Warteschlangen erhalten längere Rechenzeiten,
+        wenn sie drankommen, z.B. 2^i Zeiteinheiten für Prozesse aus Warteschlange RQ_i
+            -> Weniger Kontextwechsel
+
+    Variante 2:
+        Neuberechnen der Prioritäten von Zeit zu Zeit
+        Wartezeit geht in die Priorität ein (UNIX)
+
+
+UNIX-Scheduling:
+    Verschiedene Warteschlangen (vgl Feedback) mit unterschiedlichen Prioritäten
+    Erster Prozess der nichtleeren Warteschlange mit höchster Priorität
+    Prozesse gleicher Priorität: RR
+    Neuberechnung der Prioritäten in regelmäßigen Zeitabständen
+    priority = CPU_usage + nice + base (kleiner ist höhere Prio)
+    CPU_usage(t) = e^(-1/T)*CPU_usage(t-1) + (1-e^(-1/T))*CPU_anteil(t) (T : Konstanter Glättungsparameter)
+        -> Gewichtete Summe, nimmt exponentiell ab
+
+
+
+-- -- -- -- -- SPEICHERVERWALTUNG -- -- -- -- --
+
+Allgemein:
+    Aufgeteilt in verschiedene Bereiche
+    Dynamische Aufteilung entsprechend aktueller Prozesse -> effizienz
+    Wichtige Anforderungen:
+        Relokation
+        Schutz
+        Gemeinsame Nutzung
+        Logische Organisation
+        Physikalische Organisation
+
+
+Relokation:
+    Wiedereinlagerung -> Speicherreferenzen
+
+    Physikalische Adresse:
+        Konkrete Stelle im Hauptspeicher
+
+    Logische Adresse:
+        Bezug auf Speicherstelle, unabhängig von der aktuellen Zuteilung im Speicher
+
+    Relative Adresse:
+        Spezialfall einer logischen Adresse -> Adresse relativ zu einem bekannten Punkt (z.B. Programmanfang)
+
+
+Schutz:
+    Schutz gegen andere Prozesse (Umwelteinflüsse)
+    Basisregister und Grenzregister (Relative Adressen -> Absolute)
+        -> Interrupt falls unerlaubt
+
+
+Geminsame Nutzung
+    Kontrollierter Zugriff mehrerer Prozesse auf gemeinsam genutzte Bereiche (Shared Memory)
+
+Logische Organisation:
+    Verschiedene Module, möglicherweise mehrfach genutzt
+
+Physikalische Organisation
+    Hauptspeicher (schnell, teuer, flüchtig) vs Festplatte (langsam, billig, nicht flüchtig)
+    Problem: Daten verschieben
+
+
+Grundlegende Methoden der Speicherverwaltung:
+    Partitionierung: Speicheraufteilung zwischen verschiedenen Prozessen (feste Grenzen)
+    Paging: Einfaches Paging vs mit virtuellem Speicher
+    Segmentierung: Einfache Segmentierung vs mit virtuellem Speicher
+
+
+Partitionierung:
+    Dynamisch: 1. First Fit, 2. Next Fit, 3. Best Fit
+    Statisch/Dynamisch: Buddy-System
+
+
+Paging:
+    Hauptspeicher aufgeteilt in Seitenrahmen
+    Prozesse (aufgeteilt in Seiten) bekommen möglicherweise nicht zusammenhängende Speicherbereiche
+    Seitentabelle für jeden Prozess
+    Keine externe Fragmentierung
+    Interne Fragmentierung nur bei letzter Seite
+    Programm kann Rahmen belegen, die nicht nahe einander liegen
+
+    Prozess:
+        Logische Adresse der Form [Seitennummer | Offset]
+            über Seitentabelle -> [Rahmennummer | Offset]
+
+    Seitentabelle: Seitennummer -> Rahmennummer, pro Prozess
+    Seitengröße/Rahmengröße:  2^(offset-länge)
+    Seitenrahmen: das gleiche wie Seite(n), Rahmen ?
+    Seite(n): Einzelner Speicherblock,
+        Rahmen sind 'phyisch' vorhanden,
+        mehrere Prozesse können selben Seiten haben.
+        Maximum 2^(länge Seitennummer) verschiedene Seiten
+
+
+Virtueller Speicher:
+    Räumliche und Zeitliche Lokalität von Programmen
+
+    Thrashing (Ständiges Ein- und Auslagern von Seiten) Gründe:
+        Zu wenig Speicher
+        Zu viele Prozesse
+        Zu viele Speicherintensieve Prozesse
+        Schlechte Ausnutzung von Lokalität
+
+
+
+
+
+
+
+
+
+                 _.._.._......             .
+
+
+
+
+
+
