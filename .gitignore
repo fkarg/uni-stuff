@@ -9,3 +9,5 @@
 *.hi
 *.config
 .cabal-sandbox
+bin
+.idea
