@@ -9,7 +9,7 @@
 
 // Measure the running time of MinSort.
 int main(int argc, char** argv) {
-  for (int n = 5 * 1000; n <= 50 * 1000; n += 2500) {
+  for (int n = 9 * 1000; n <= 50 * 1000; n += 2500) {
     std::vector<int> v(n);
     for (std::size_t i = 0; i < v.size(); i++) { v[i] = n - i; }
     auto startTime = std::chrono::steady_clock::now();
