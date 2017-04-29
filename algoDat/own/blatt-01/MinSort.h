@@ -6,6 +6,8 @@
 
 // Class for MinSort algorithm.
 class MinSort {
-    public:
-        static void sort(std::vector<int>& v);
+ public:
+    static void sort(std::vector<int>& v);
 };
+
+
