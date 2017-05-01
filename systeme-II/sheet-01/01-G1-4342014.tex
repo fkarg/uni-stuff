@@ -1,0 +1,152 @@
+\documentclass{scrartcl}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{amssymb} % what does it do?
+\usepackage{graphicx} % I can't do that yet
+\usepackage{fancyhdr} % what does it do?
+\usepackage{lastpage} % what does it do?
+\setlength{\parskip}{\medskipamount} % thats reasonable
+\setlength{\parindent}{0pt} % whatever that does
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf- und Fusszeilen %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\lhead{
+    \begin{tabular}{ll}
+        Felix Karg & 4342014\\
+    \end{tabular}
+}
+\chead{Systeme II}
+\rhead{
+    \begin{tabular}{rr}
+        \today{} \\
+        Seite \thepage{} von \pageref{LastPage}
+    \end{tabular}
+}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Anfang des Dokuments %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\section*{Antworten zu Übungsblatt Nr. 1}
+
+\section*{Aufgabe 1}
+
+\begin{itemize}
+    \item CSMA/CD -$>$ Transport
+    \item BitTorrent (Anwendung) -$>$ Application Layer
+    \item Trailer (Footer, end-of-sth-Flag) -$>$ Internet
+    \item ACK -$>$ Host-to-Network
+    \item Cloud -$>$ Ansichtssache. Application Layer / Internet
+    \item Port 80 -$>$ Host-to-Network
+    \item ipv6 -$>$ Internet
+\end{itemize}
+
+Ein paar mehr items:
+
+\begin{itemize}
+    \item Host-to-Network -$>$ Firewall
+    \item Internet -$>$ DNS-Resolving
+    \item Transportation -$>$ Lower-Level-Protocols (UDP, TCP, ...)
+    \item Application -$>$ Protocol Buffers
+    \item Host-to-Network -$>$ Usage of MAC-Adress
+    \item Internet -$>$ Mesh-like Routing
+    \item Transportation -$>$ Securiy (TLS)
+    \item Application -$>$ Higher-Level Protocol, only seeing the necessary things
+\end{itemize}
+
+
+
+\section*{Aufgabe 2}
+
+
+\begin{enumerate}
+    \item (Ultra-) Schall, Licht (Laser, Glasfaser), Kapazitatorische EM-Felder, Elektrische Pulse in Datenleitungen
+    \item Kein Plan wie sie diese Frage gedacht haben.
+    \item Chromium (Browser), update und sync-scripts, updaten und resolven von Dependencies, verschiedene ssh-Zugriffe
+    \item Ping habe ich gemacht, Spontan keine Lust auf nen Bandbreitentest. Avg Ping: 26.663 ms. Ping is Okay, Bandbreite Abhängig von eigener Bandbreite natürlich genauso (wenn mal nicht gerade irgendwelche Kritischen Switches ausfallen oder so).
+\end{enumerate}
+
+\begin{verbatim}
+~> ping www.uni-freiburg.de
+PING zope-vip1.ruf.uni-freiburg.de (132.230.1.159) 56(84) bytes of data.
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=1 ttl=54 time=23.8 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=2 ttl=54 time=20.3 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=3 ttl=54 time=39.1 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=4 ttl=54 time=27.4 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=5 ttl=54 time=23.5 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=6 ttl=54 time=46.1 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=7 ttl=54 time=21.3 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=8 ttl=54 time=19.7 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=9 ttl=54 time=22.9 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=10 ttl=54 time=25.2 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=11 ttl=54 time=24.5 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=12 ttl=54 time=34.7 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=13 ttl=54 time=23.1 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=14 ttl=54 time=24.7 ms
+64 bytes from zope-vip1.ruf.uni-freiburg.de (132.230.1.159): icmp_seq=15 ttl=54 time=22.9 ms
+^C
+--- zope-vip1.ruf.uni-freiburg.de ping statistics ---
+15 packets transmitted, 15 received, 0% packet loss, time 14019ms
+rtt min/avg/max/mdev = 19.799/26.663/46.174/7.238 ms
+~>
+\end{verbatim}
+
+
+\end{document}
+
+
+Beispiel für Text, der aus einem Terminal kopiert wurde:
+
+\begin{verbatim}
+osswald@tfpool17 / $ df -h
+Filesystem                           Size  Used Avail Use% Mounted on
+/dev/sda4                            375G   41G  316G  12% /
+dev                                  3.9G     0  3.9G   0% /dev
+run                                  3.9G  480K  3.9G   1% /run
+tmpfs                                3.9G     0  3.9G   0% /dev/shm
+\end{verbatim}
+
+Aufzählungen sind mit \verb_enumerate_ möglich:
+\begin{enumerate}
+\item Erster Punkt
+\item Zweiter Punkt
+\item Dritter Punkt
+\end{enumerate}
+
+\subsection*{Aufgabe 2}
+
+Mathematische Formeln:
+\begin{equation}\label{gauss}
+    \sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+\end{equation}
+
+
+Formel \ref{gauss} wird auch \emph{Gaußsche Summenformel} genannt.
+
+Formeln können auch im Text eingebunden werden, z.B. $E = mc^{2}$.
+
+\subsection*{Aufgabe 3}
+
+Tabellen können mit \verb_tabular_-Umgebungen eingegeben werden:
+
+\begin{center}
+\begin{tabular}{l|l|l}
+Datei             & Dateirechte        & Größe   \\
+\hline
+dokument.txt      & \verb_-rw-r--r--_  & 300 KB  \\
+programm.exe      & \verb_-rwxr-x---_  & 450 KB  \\
+mein\_verzeichnis & \verb_drwxr-xr-x_  & ---     \\
+\end{tabular}
+\end{center}
+
+\end{document}
+
+
