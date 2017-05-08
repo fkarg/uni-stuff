@@ -76,7 +76,20 @@
 
 \section*{Aufgabe 2 - Physikalische Übertragungen}
 \begin{enumerate}
-    \item geschlossene Form der Fourier-Transformation Koeffizienten über dem Intevall $[0;2\pi]$
+    \item geschlossene Form der Fourier-Transformation Koeffizienten über dem Intervall $[0;2\pi]$.
+        Allgemein: \\
+    \includegraphics[width=6cm]{optimalcoefficients.jpg} \\
+        Hier also ist $a_0 = 1/2$, die ganze cos-reihen fallen weg (da die fkt ungerade ist, f(x) = -f(-x)),
+        und die $b_n$'s sind abhängig von n auch entweder $0$ (bei $n$ gerade) oder $2/(\pi * n)$ bei $n$ ungerade. \\ \\
+        Die Koeffizienten der gesamten Fourier-Transformation: \\
+        \includegraphics[width=10cm]{fouriersum.jpg} \\
+        Und in unserem Fall: $ f(x) = 0.5 + \sum_{n=0}^{\infty}{\frac{-2}{\pi * (2 * n + 1)} * sin((2 * n + 1) * x)} $.
+    \item Dämpfung um Faktor 0.3: Wie auch immer die Dämpfung gemeint ist.
+    \item $f(x) = 0.5 - \frac{2}{\pi}*sin(x) - \frac{2}{3\pi}*sin(3 x) - \frac{2}{5\pi}*sin(5 x) -
+        \frac{2}{7\pi}*sin(7 x) - \frac{2}{9\pi}*sin(9 x) $ \\
+        % 0.5 - 2/π sin(x) - 2/(3 π) sin(3 x) - 2/(5 π) sin(5 x) - 2/(7 π) sin(7 x) - 2/(9 π) sin(9 x)
+        \includegraphics[width=10cm]{graph.png} \\
+
 
 \end{enumerate}
 
