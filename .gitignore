@@ -11,3 +11,4 @@
 .cabal-sandbox
 bin
 .idea
+.metadata
