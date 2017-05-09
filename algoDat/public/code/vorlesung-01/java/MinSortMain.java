@@ -13,7 +13,7 @@ public class MinSortMain {
     for (int n = 5 * 1000; n <= 50 * 1000; n += 2500) {
       int[] v = new int[n];
       for (int i = 0; i < v.length; i++) {
-        v[i] = n - 1;
+        v[i] = n - i;
       }
 
       long start = System.nanoTime();
