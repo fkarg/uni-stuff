@@ -1,0 +1,124 @@
+\documentclass{scrartcl}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{amssymb} % what does it do?
+\usepackage{graphicx} % I can't do that yet
+\usepackage{fancyhdr} % what does it do?
+\usepackage{lastpage} % what does it do?
+\setlength{\parskip}{\medskipamount} % thats reasonable
+\setlength{\parindent}{0pt} % whatever that does
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf- und Fusszeilen %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\lhead{
+    Felix Karg
+}
+\chead{Detaillierter Lebenslauf}
+\rhead{
+    \begin{tabular}{rr}
+        \today{} \\
+        Seite \thepage{} von \pageref{LastPage}
+    \end{tabular}
+}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Anfang des Dokuments %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+\section*{Persönliche Daten}
+
+\begin{tabular}{|l|l|}
+    \hline
+    Vorname und Nachname & Felix Karg \\ \hline
+    Staatszugehörigkeit & Deutschland \\ \hline
+    E-Mail Adresse & f.karg10@gmail.com \\ \hline
+    Telefonnummer & (+49) 176 8150 1822 \\ \hline
+    Familienstand & ledig \\ \hline
+    Geschwister & Drei, Ein direkt Jüngerer Bruder \\ \hline
+    Geburtstag & 09.08.1998 \\ \hline
+    Konfession & röm. kath. \\ \hline
+    Adresse & Rheinstraße 23 \\
+            & 79104 Freiburg \\ \hline
+\end{tabular}
+
+\section*{Schulausbildung}
+\begin{tabular}{|l|l|}
+    \hline
+    \textbf{Seit 2016} & Universität Freiburg, Studium Informatik \\ \hline
+    \textbf{2016-2014} & Fachoberschule (FOS) Friedberg \\ \hline
+    \textbf{2014-2011} & Realschule Aichach \\ \hline
+    \textbf{2011-2008} & Deutsch-Herren-Gymnasium Aichach \\ \hline
+    \textbf{2008-2004} & Grundschule Aichach Nord \\ \hline
+\end{tabular}
+
+\section*{Weitere Tätigkeiten}
+\begin{tabular}[c]{|l|l|}
+    \hline
+    \textbf{Zeitpunkt} & Veranstaltung / Event des Tages \\ \hline
+
+
+    \textbf{2016 - Now } & Schwarze Pumpe, Schachverein in Freiburg \\ \hline
+    \textbf{2010 - 2016} & BCA Abteilung Schach, Schachverein in Aichach \\ \hline
+    \textbf{18.06.2016} & 3. Platz der Jugend Stadtmeisterschaft \\ \hline
+    \textbf{11.07.2015} & 3. Platz der Jugend Stadtmeisterschaft \\ \hline
+
+    \\ \hline
+
+    \textbf{2014 - Now } & Judo \\ \hline
+    \textbf{2007 - 2016} & Aichacher Ministranten \\ \hline
+    \textbf{2012 - 2014} & Nachhilfe-Tutor für Mathe und Englisch \\ \hline
+    \textbf{2013 - 2014} & Zeitungen Austragen \\ \hline
+    \textbf{2011 - 2013} & Wahlfach Robotik \\ \hline
+    \textbf{Schuljahr 2012 / 2013} & Erster Klassensprecher \\ \hline
+
+\end{tabular}
+
+\subsection*{Eventliste - nicht Vollständig}
+\begin{tabular}{|l|l|}
+    \hline
+
+    \textbf{27.12. bis 30.12.2016} & Besuch des 33C3 \\ \hline
+    \textbf{14.10. bis 16.10.2016} & Jugend Hackt Berlin - Awards wurden abgeschafft \\ \hline
+    \textbf{20.08. bis 26.08.2016} & Mathecamp der Uni Augsburg \\ \hline
+    \textbf{12.06. bis 14.06.2016} & Jugend Hackt Süd - AHA-Moment Award gewonnen \\ \hline
+    \textbf{26.05. bis 29.05.2016} & Besuch der GPN \\ \hline
+    \textbf{27.12. bis 30.12.2015} & Besuch des 32C3 \\ \hline
+    \textbf{16.10. bis 18.10.2015} & Jugend Hackt Berlin - Best Code Award gewonnen \\ \hline
+    \textbf{22.08. bis 28.08.2015} & Mathecamp der Uni Augsburg \\ \hline
+    \textbf{13.08. bis 17.08.2015} & Besuch des Chaos Communication Camps bei Berlin \\ \hline
+    \textbf{04.06. bis 07.06.2015} & Besuch der GPN \\ \hline
+    \textbf{12.05. bis 14.05.2015} & Jugend Hackt Süd - Best Code Award gewonnen \\ \hline
+    \textbf{Anfang 2015          } & Kennenlernen des OpenLabs Augsburg \\ \hline
+    \textbf{21.05. bis 31.05.2013} & Praktikum als Fachinformatiker bei Leib-IT \\ \hline
+    \textbf{25.03. bis 13.05.2013} & EDV-Praktikum bei der KJF Augsburg \\ \hline
+
+\end{tabular}
+
+\section*{Weitere Fähigkeiten}
+\begin{tabular}{|l|l|}
+    \hline
+    \textbf{EDV- und} & Kenntnisse des Ersten Semesters Informatik \\
+    \textbf{Computer-Kenntnisse} & Außerdem: Bereits weit Fortgeschrittene Programmier- \\
+    & und Informatik-Kenntnisse durch verschiedene Events, \\
+    & Projekte, sowie Selbststudium. \\ \hline
+    \\ \hline
+    \textbf{Sprachen} & Level \\ \hline
+    Deutsch & Muttersprache \\ \hline
+    Englisch & Kaum Unterschied zu Deutsch im Verstehen, minimal im Sprechen \\ \hline
+    Japanisch & Es ist mir möglich mich vollkommen unkorrekt auszudrücken \\ \hline
+
+\end{tabular}
+
+
+\end{document}
+
+
