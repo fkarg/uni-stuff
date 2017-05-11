@@ -15,18 +15,20 @@ public class Main {
 
         try {
             val = Long.parseLong(txt);
+            String out = txt + " fits in:\n";
 
-            // trying max values and categorizing based on them
-            if (val > Byte.MAX_VALUE || val < Byte.MIN_VALUE) {
-                System.out.print(txt + " fits in: \n* long\n* int\n* short");
-            } else if (val > Short.MAX_VALUE || val < Short.MIN_VALUE) {
-                System.out.print(txt + " fits in: \n* long\n* int");
-            } else if (val > Integer.MAX_VALUE || val < Integer.MIN_VALUE) {
-                System.out.print(txt + " fits in: \n* long");
-            } else {
-                System.out.print(txt + " fits in: \n* long\n* int\n* short\n* byte");
+             // trying max values and categorizing based on them
+            if (val <= Byte.MAX_VALUE && val >= Byte.MIN_VALUE) {
+                out += "* byte\n";
+            } 
+            if (val <= Short.MAX_VALUE && val >= Short.MIN_VALUE) {
+                out += "* short\n";
             }
-
+            if (val <= Integer.MAX_VALUE || val >= Integer.MIN_VALUE) {
+                out += "* int\n";
+            }
+            out += "* long";
+            System.out.println(out);
         } catch (NumberFormatException e) {
             System.out.println("\"" + txt + "\" doesn't fit anywhere.");
         }
