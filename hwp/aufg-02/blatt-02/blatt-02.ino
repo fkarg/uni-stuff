@@ -25,7 +25,8 @@ int motorPinB2 = 9;
 
 int drivingPattern = 0;
 
-
+// define ultrasound pins
+int us1 = 13;
 
 // setting motor speed for either of A or B, to speed in direction (?forward)
 void setMotorSpeed(bool motorA, uint8_t speed = 100, bool forward = true) {
@@ -42,7 +43,7 @@ void driveForward(int time, int speed, bool forward = true) {
   stopMotors();
 }
 
-// 'instantly' stopping moth motors.
+// 'instantly' stopping both motors.
 void stopMotors() {
   setMotorSpeed(true, 0);
   setMotorSpeed(false, 0);
@@ -55,6 +56,7 @@ void driveCurve(int degree, bool forward = true) {
   }
   setMotorSpeed(true, degree >= 0 ? 255 : map(degree, -90, 0, -255, 255));
   setMotorSpeed(false, degree > 0 ?       map(degree, 0, 90, 255, -255) : 255);
+
 }
 
 
@@ -66,8 +68,10 @@ void setup()
   pinMode(motorPinA2, OUTPUT);
   pinMode(motorPinB1, OUTPUT);
   pinMode(motorPinB2, OUTPUT);
-
+  pinMode(us1, OUTPUT);
+  digitalWrite(us1, LOW);
   delay(500);
+
 }
 
 
@@ -136,3 +140,26 @@ clear the lcd (this writes " " into all positions and is therefore slow):
 If only specific areas should be cleared use a mix of setCursor and print(" ") instead
   lcd.clear();
 */
+
+
+int measureDistance(int pin) {
+  /*
+   *  Returns distance in cm for a given pin,
+   *  connected to an ultrasound sensor.
+   *  Times out after 40 milliseconds.
+   *  Expects the pin to be declared as output.
+   */
+
+  int distance;
+  digitalWrite(pin, HIGH);
+  delayMicroseconds(15);
+  digitalWrite(pin, LOW);
+  pinMode(pin, INPUT);
+  distance = pulseIn(pin, HIGH, 40000);
+
+  pinMode(pin, OUTPUT);
+  digitalWrite(pin, LOW);
+
+  return distance / 58;
+}
+
