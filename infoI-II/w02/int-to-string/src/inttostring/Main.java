@@ -1,5 +1,6 @@
 package inttostring;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
@@ -8,9 +9,15 @@ public class Main {
         // creating scanner
         @SuppressWarnings("resource")
         Scanner scan = new Scanner(System.in);
+        String txt = null;
 
-        // getting the text
-        String txt = scan.next();
+        try {
+            // getting the text
+            txt = scan.next();
+        } catch (NoSuchElementException e) {
+            System.out.println("No int");
+            return;
+        }
 
         // variable for validating if it actually was an int
         boolean correct = false;
