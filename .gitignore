@@ -1,5 +1,6 @@
 *.swp
 *.aux
+*.out
 *.log
 *.tex~
 *.svn
