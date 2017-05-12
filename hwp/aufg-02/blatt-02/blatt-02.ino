@@ -24,6 +24,7 @@ int motorPinA2 = 11;
 int motorPinB1 = 6;
 int motorPinB2 = 9;
 
+// defining variables for patterns
 int drivingPattern = 0;
 int spirale = 10;
 
@@ -161,8 +162,8 @@ void driveTriangle() {
 // trying to avoid obstacles closer to 25cm
 void avoidObstacles() {
   int dist = measureDistance(ultrasonicPin);
-  if ( dist < 25 && dist >= 2) {
-    driveCurve(-80, 200, 100);
+  if ( dist < 30 && dist >= 2) {
+    driveCurve(-80, 210, 150);
   } else {
     driveForward(200, 100);
   }
