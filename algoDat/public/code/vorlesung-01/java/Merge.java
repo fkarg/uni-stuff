@@ -2,12 +2,12 @@
 // Chair of Algorithms and Data Structures.
 // Author: Hannah Bast <bast@cs.uni-freiburg.de>
 
-/*
+/**
  * Class for the merge algorithm from Vorlesung 1b.
  */
 public class Merge {
 
-  /*
+  /**
    * Merge function.
    */
   public static int[] merge(int[] a1, int[] a2) {
