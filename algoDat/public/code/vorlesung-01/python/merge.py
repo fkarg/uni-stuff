@@ -4,9 +4,9 @@ Chair of Algorithms and Data Structures.
 Hannah Bast <bast@cs.uni-freiburg.de>
 """
 
+
 def merge(array1, array2):
     """
-    
     Merge two already sorted arrays.
 
     >>> merge([2, 4, 6, 8], [1, 3, 5, 7])
