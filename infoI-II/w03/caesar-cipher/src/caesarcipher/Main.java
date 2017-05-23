@@ -9,12 +9,13 @@ public class Main {
         // System.out.println((int) 'z'); // 122
         // System.out.println((int) 'A'); // 65
         // System.out.println((int) 'Z'); // 90
+        // System.out.println(encode("ZZZaaaAAAzzz", 33));
     }
 
 
     public static String encode(String input, int shift) {
         return input.chars()                    // taking the stream of chars from the String
-            .map(s -> encodeChar(s, shift))     // mapping the encoding over the Stream
+            .map(s -> encodeChar(s, shift % 26))// mapping the encoding over the Stream
             .collect(StringBuilder::new,        // recollecting the Stream
                      StringBuilder::appendCodePoint, StringBuilder::append)
             .toString();                        // turning it back into a String
@@ -27,7 +28,12 @@ public class Main {
             // otherwise shift the char.
             int chr2 = s + shift;
             // watch out for it having shifted out of bounds, get it back in.
-            return (char) (chr2 > 122 ? chr2 - 26 : chr2 < 97 && chr2 > 90 ? chr2 - 26 : chr2);
+            if (s <= 122 && s >= 97) {
+                return chr2 > 122 ? chr2 - 26 : chr2;
+            } else {
+                return chr2 > 90 ? chr2 - 26 : chr2;
+            }
+            // return (char) (chr2 > 122 ? chr2 - 26 : chr2 < 97 && chr2 > 90 ? chr2 - 26 : chr2);
         }
     }
 }
