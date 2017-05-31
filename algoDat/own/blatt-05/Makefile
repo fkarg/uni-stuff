@@ -21,17 +21,18 @@ clean:
 	rm -f data.pdf
 
 plot:
-	xdg-open *.png
+	xdg-open class_1.png
+	# xdg-open class_2.png class_3.png class_5.png
 
 # To plot into file directly: "set term pdf; set output 'data.pdf';" and remove "pause mouse;".
 plot_new:
 	# python3 balls_into_bins.py 50000 100 > bins.txt
 	# gnuplot -e "set style fill solid 0.4; plot [0:101] [0:600] 'bins.txt' with boxes; pause mouse;"
 	python3 universal_hashing.py 1 256 > buckets.txt
-	gnuplot -e "set style fill solid 0.4; plot [0:256] [] 'buckets.txt' with boxes; set term Image; set outpot 'class_1.png';"
+	gnuplot -e "set style fill solid 0.4; plot [0:257] [] 'buckets.txt' with boxes; pause mouse;"
 	python3 universal_hashing.py 2 256 > buckets.txt
-	gnuplot -e "set style fill solid 0.4; plot [0:256] [] 'buckets.txt' with boxes; set term Image; set outpot 'class_2.png';"
+	gnuplot -e "set style fill solid 0.4; plot [0:257] [] 'buckets.txt' with boxes; pause mouse;"
 	python3 universal_hashing.py 3 256 > buckets.txt
-	gnuplot -e "set style fill solid 0.4; plot [0:256] [] 'buckets.txt' with boxes; set term Image; set outpot 'class_3.png';"
+	gnuplot -e "set style fill solid 0.4; plot [0:257] [] 'buckets.txt' with boxes; pause mouse;"
 	python3 universal_hashing.py 5 256 > buckets.txt
-	gnuplot -e "set style fill solid 0.4; plot [0:256] [] 'buckets.txt' with boxes; set term Image; set outpot 'class_5.png';"
+	gnuplot -e "set style fill solid 0.4; plot [0:257] [] 'buckets.txt' with boxes; pause mouse;"

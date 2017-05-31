@@ -1,7 +1,7 @@
 #!/usr/env python3
 
-import sys
 import math
+import sys
 from functools import reduce
 
 
@@ -42,7 +42,7 @@ class UniversalHashing:
         return len(list(filter(lambda e: e[0] == e[1],
                         [(func(a, b, x), func(a, b, y))
                         for a in range(self.u)
-                        for b in range(a, self.u)]))) * 2.0 / (self.u * self.u)
+                        for b in range(self.u)]))) / (self.u * self.u)
 
     def collision_probability_class_5(self, x: int, y: int) -> float:
         """ Hashing functions are of type a * z mod 2^k div 2^(k-l)
@@ -62,6 +62,11 @@ class UniversalHashing:
     def collision_probabilities_histogram(self,
                                           probf: callable,
                                           num_buckets: int) -> list:
+        """ Creating the bucket-histogram
+        Args:
+            probf (callable): the hashing-collision-probability-function
+            num_buckets (int): the number of buckets (intervals)
+        """
         buckets = [0] * num_buckets
 
         res = list(map(lambda e: 2 * e, [probf(x, y) for x in range(self.u)
