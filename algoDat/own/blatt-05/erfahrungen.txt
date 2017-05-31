@@ -1,11 +1,37 @@
 
 
-Aufgabe 1:
-Aufgabe 2:
-Aufgabe 3:
+Aufgabe 1: ca 1h, das war zu wenig schlaf
+Aufgabe 2: ca 30min, viel kämpfen mit gnuplot .... (autosave von dateien, arghhh!)
+Aufgabe 3: ca 10min, interpretation
+
+class_1:
+Der riesen-Balken am Ende (umfasst alles was Kollisionswsk 1 oder mehr hat)
+macht einfach um einiges deutlicher wie schlecht diese kategorie von Hashing-
+algorithmen eigentlich ist. Es ist nicht umsonnst ein Negativbsp.
+
+class_2:
+in diesem Fall sind wir bei 1/m mit der Kollisionswsk, wodurch sich
+dieser Index bei den Buckets ergibt.
+
+class_3:
+Interessant ist, wie viele bei bekannter 1/m-Schranke immernoch auftauchen.
+Wenn auch deutlich weniger als bei class_2, so sieht man doch noch die ähnlichkeit.
+Die darum verteilten Kollisionsmöglichkeiten entstehen durch modulo-geschichten,
+die vielfachen von m sind dort vermutlich auch dabei.
+
+class_5:
+Hier ist die verteilung anfangs ähnlich der Funktion 1/n, wodurch offensichtlich
+wird dass zum Glück zumindest die meisten eine sehr geringe Kollisionswsk haben.
+Die leeren buckets sind aufgrund des verhältnismäßig kleinen universums sowie
+der hashtabelle, in größeren wären sicherlich mehr unterschiedliche Intervalle
+besetzt. Der bei ca. 0.5 angesiedelte spike sind teil-vielfache, die bei 1 sind
+genau die vielfachen.
+
 
 
 
 Warum fällt es manchmal schwer das offensichtlich Richtige zu tun?
+Weil das richtige selten das Einfachste ist, und wir Meister darin sind,
+ausreden zu finden, etwas schwereres nicht tun zu müssen.
 
 
