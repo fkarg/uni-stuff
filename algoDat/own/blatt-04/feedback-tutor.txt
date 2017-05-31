@@ -1,0 +1,29 @@
+Aufgabe 1: 8/10
+===============
+4/6 Funktion
+2/2 Tests
+2/2 Doku + Checkstyle
+
+- Du implementierst eine HashMap ohne Kollisionenauflösung.
+- Die methodenspezifischen Tests sollten in die Docstrings der jeweiligen Methoden.
+
+- Du schreibst deinen Code mit Typings - sehr schön!
+
+Aufgabe 2: 10/10
+===============
+6/6 Funktion
+2/2 Tests
+2/2 Doku + Checkstyle
+
+Alles top, schöner Code!
+
+Erfahrungen
+===========
+
+Danke für dein Feedback! Wenn ich Zeit finde schaue ich mir die hash_map.py an und suche dein Fehler, bei kurzen drüberschauen habe ich ihn nicht gefunden.
+Für die Bewertung habe ich hash_map2.py verwendet.
+
+Rückfragen
+===========
+Falls es Klärungsbedarf bezüglich der Benotung, des Feedbacks oder sonstigem gibt, stehe ich gerne für Rückfragen zur Verfügung.
+E-mail: selgs@informatik.uni-freiburg.de
