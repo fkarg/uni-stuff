@@ -1,5 +1,3 @@
-// Copyright 2015: Jan Burchard
-// HWP Code: Timers, PWM & Interrupts
 
 void setup() {
   // put your setup code here, to run once:
