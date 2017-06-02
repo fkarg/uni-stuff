@@ -1,4 +1,3 @@
-#define ARRDUINOFREQ 8000000
 #define TIMER2FREQ 15625
 
 boolean pin12state = false;
