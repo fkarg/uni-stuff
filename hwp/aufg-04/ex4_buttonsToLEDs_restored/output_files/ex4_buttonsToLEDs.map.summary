@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Thu Jun 15 15:43:01 2017
+Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
+Revision Name : ex4_buttonsToLEDs
+Top-level Entity Name : ex4_buttonsToLEDs
+Family : Cyclone IV E
+Total logic elements : 572
+    Total combinational functions : 527
+    Dedicated logic registers : 233
+Total registers : 233
+Total pins : 22
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0
