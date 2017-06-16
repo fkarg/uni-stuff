@@ -1,0 +1,73 @@
+// Copyright 2017, University of Freiburg,
+// Chair of Algorithms and Data Structures.
+// Author: Hannah Bast <bast@cs.uni-freiburg.de>,
+//         Axel Lehmann <lehmann@cs.uni-freiburg.de>.
+
+// NOTE: this is a code design suggestion in pseudo-code. It is not supposed to
+// be compilable in any language. You have to translate it to Python, Java or 
+// C++ yourself. The purpose of this file is to suggest a basic design and 
+// settle questions you might have on what exactly your code is supposed to do.
+
+// A general doubly linked list as shown in Vorlesung 7a.
+class LinkedList {
+  // Create a new LinkedList.
+  LinkedList();
+
+  // Inserts a new item before the next item. If next item is nil, insert at the
+  // end of the list.
+  //
+  // Test see Vorlesung 7a and 7b.
+  void insert(LinkedList new_item, LinkedList next_item);
+
+  // Reverse the order of elements inside the list.
+  //
+  // ll = new LinkedList()
+  // ll.insert(new LinkedListItem('A'), nil)
+  // ll.insert(new LinkedListItem('B'), nil)
+  // ll.insert(new LinkedListItem('C'), nil)
+  // ll.insert(new LinkedListItem('D'), nil)
+  // ll.to_string() == "first = #1, last = #4
+  // [id = #1, prev = #0, next = #2, val = A]
+  // [id = #2, prev = #1, next = #3, val = B]
+  // [id = #3, prev = #2, next = #4, val = C]
+  // [id = #4, prev = #3, next = #0, val = D]"
+  // ll.reverse()
+  // ll.to_string() == "first = #4, last = #1
+  // [id = #4, prev = #0, next = #3, val = D]
+  // [id = #3, prev = #4, next = #2, val = C]
+  // [id = #2, prev = #3, next = #1, val = B]
+  // [id = #1, prev = #2, next = #0, val = A]"
+  void reverse();
+
+  // Cut out the segment given by l1 and l2 and return it as a new list.
+  // l1 and l2 are always contained in the linked list and l1 is always before
+  // l2.
+  //
+  // ll = new LinkedList()
+  // ll.insert(new LinkedListItem('A'), nil)
+  // l1 = new LinkedListItem('B')
+  // ll.insert(l1, nil)
+  // l2 = new LinkedListItem('C')
+  // ll.insert(l2, nil)
+  // ll.insert(new LinkedListItem('D'), nil)
+  // ll.to_string() == "first = #1, last = #4
+  // [id = #1, prev = #0, next = #2, val = A]
+  // [id = #2, prev = #1, next = #3, val = B]
+  // [id = #3, prev = #2, next = #4, val = C]
+  // [id = #4, prev = #3, next = #0, val = D]"
+  // sl = ll.splice(l1, l2)
+  // ll.to_string() == "first = #1, last = #4
+  // [id = #1, prev = #0, next = #4, val = A]
+  // [id = #4, prev = #1, next = #0, val = D]"
+  // sl.to_string() == "first = #2, last = #3
+  // [id = #2, prev = #0, next = #3, val = B]
+  // [id = #3, prev = #2, next = #0, val = C]"
+  LinkedList splice(LinkedListItem l1, LinkedListItem l2);
+
+  // Private Member:
+  // The first element of the list.
+  LinkedListItem first;
+
+  // The last element of the list.
+  LinkedListItem last.
+}

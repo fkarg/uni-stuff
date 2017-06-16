@@ -1,0 +1,29 @@
+// Copyright 2017, University of Freiburg,
+// Chair of Algorithms and Data Structures.
+// Author: Hannah Bast <bast@cs.uni-freiburg.de>,
+//         Axel Lehmann <lehmann@cs.uni-freiburg.de>.
+
+// NOTE: this is a code design suggestion in pseudo-code. It is not supposed to
+// be compilable in any language. You have to translate it to Python, Java or 
+// C++ yourself. The purpose of this file is to suggest a basic design and 
+// settle questions you might have on what exactly your code is supposed to do.
+
+// A general "Kilometerzähler" with a fixed number of digits and a given
+// maximal value for each digit.
+class Counter {
+  // Create a counter for the given list of maximum digit values.
+  //
+  // For example, calling the constructor with [2,3,5,9] creates a 24-hour clock
+  // with minute precision.
+  Counter(Array<int> digits);
+
+  // Increment the counter by one.
+  void increment();
+
+  // Return a human-readable string that is suitable for printing.
+  //
+  // For ÜB6, Aufgabe 3 the string should have a fixed size, independent of the
+  // values of the individual digits. Otherwise, the animated counter (= writing
+  // it after each increment in the same line using \r) will not look nice.
+  String to_string();
+}
