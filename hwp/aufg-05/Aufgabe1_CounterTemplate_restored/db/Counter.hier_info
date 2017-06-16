@@ -1,0 +1,12 @@
+|myCounter
+count => number[0].CLK
+count => number[1].CLK
+count => number[2].CLK
+reset => number[0].ACLR
+reset => number[1].ACLR
+reset => number[2].ACLR
+countOut[0] <= number[0].DB_MAX_OUTPUT_PORT_TYPE
+countOut[1] <= number[1].DB_MAX_OUTPUT_PORT_TYPE
+countOut[2] <= number[2].DB_MAX_OUTPUT_PORT_TYPE
+
+
