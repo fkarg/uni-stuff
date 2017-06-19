@@ -1,0 +1,93 @@
+\documentclass{scrartcl}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{amssymb} % what does it do?
+\usepackage{graphicx} % I can't do that yet
+\usepackage{fancyhdr} % what does it do?
+\usepackage{lastpage} % what does it do?
+\setlength{\parskip}{\medskipamount} % thats reasonable
+\setlength{\parindent}{0pt} % whatever that does
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf- und Fusszeilen %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\lhead{
+    \begin{tabular}{ll}
+        Felix Karg & 4342014\\
+    \end{tabular}
+}
+\chead{Info II - AlgoDat}
+\rhead{
+    \begin{tabular}{rr}
+        \today{} \\
+        Seite \thepage{} von \pageref{LastPage}
+    \end{tabular}
+}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Anfang des Dokuments %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\section*{Antworten zu Übungsblatt Nr. 7}
+
+\section*{Aufgabe 2}
+
+\begin{verbatim}
+
+Anzahl der Blockoperationen im schlechtesten Fall für reverse, 
+n (Anzahl gespeicherter Elemente)
+B (Blockgröße)
+M (Größe des schnellen speichers)
+
+reverse
+Worst case: jedes Element der LinkedList ist in einem anderen Block
+verteilt über den schnellen speicher, wodurch wir bereits n Blockoperationen haben.
+Wenn außerdem unsere LinkedList selber auf einem anderen Block ist brauchen wir für
+reverse mindestens n + 1 Blockoperationen.
+
+splice
+Worst case: Klassendefinition in anderem Block als Information, somit bereits 2
+
+// _____________________________________________________________________________
+LinkedList LinkedList::splice(LinkedListItem* begin,
+                              LinkedListItem* end) {
+    if (begin != firstItem) {
+        begin->previousItem->nextItem = end->nextItem; // plus 3 (worst)
+        // ^        ^                    ^  required
+    } else {
+        firstItem = end->nextItem;
+    }
+    if (end != lastItem) {
+        end->nextItem->previousItem = begin->previousItem; // plus 1 (worst, anderen
+                                                           // beiden bereits geladen)
+        //        ^                         required, anderen beiden sind bereits geladen
+    } else {
+        lastItem = begin->previousItem;
+    }
+
+    // bereits geladen
+    begin->previousItem = NULL;
+    end->nextItem = NULL;
+
+    // plus 1
+    LinkedList list;
+
+    list.firstItem = begin;
+    list.lastItem = end;
+
+    return list;
+    // total: 7 Blockoperationen im worst case.
+    // meist weniger.
+}
+
+\end{verbatim}
+
+\end{document}
+
