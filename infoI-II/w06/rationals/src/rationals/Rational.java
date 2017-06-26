@@ -44,7 +44,7 @@ public class Rational {
         long e = euclid(this.denominator, r.getNominator());
 
         return new Rational(Math.multiplyExact(this.nominator / s, r.getNominator() / e),
-                            Math.multiplyExact(this.denominator / e, r.getDenominator() / e));
+                            Math.multiplyExact(this.denominator / e, r.getDenominator() / s));
 
         }
 
