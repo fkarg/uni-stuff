@@ -1,0 +1,27 @@
+Overall: 6.5 / 8
+
+Validation results for fk265/w05
+=====================================
+
+----------- Exercise: unit-tests (2 / 2)
+Running 1 testcases: ALL PASSED
+
+
+----------- Exercise: line-intersection (2 / 2)
+Running 1 testcases: ALL PASSED
+
+
+----------- Exercise: format-si (1.5 / 2)
+Running 1 testcases: ALL PASSED
+
+No comments!
+
+(-0.5)
+
+
+----------- Exercise: subsequence (1 / 2)
+Running 16 testcases: ALL PASSED
+
+Good solution but you did not describe the bug that was in the implementation. This was necessary to get the point for code quality.
+
+(-1)

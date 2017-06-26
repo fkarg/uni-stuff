@@ -1,0 +1,23 @@
+Overall: 6 / 8
+
+Validation results for fk265/w04
+=====================================
+
+----------- Exercise: list-operations (2 / 2)
+Running 13 testcases: ALL PASSED
+
+
+----------- Exercise: anagrams (2 / 2)
+Running 22 testcases: ALL PASSED
+
+
+----------- Exercise: phone-book (2 / 2)
+Running 12 testcases: ALL PASSED
+
+
+----------- Exercise: unique-chars (0 / 2)
+Running 28 testcases: FAILED at test unique-chars-01
+Call was: uniqueChars({}, "Hhelloo")
+expected:<5> but was:<0>
+
+(-2)

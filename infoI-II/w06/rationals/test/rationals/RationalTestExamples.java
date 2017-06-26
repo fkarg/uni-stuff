@@ -12,6 +12,9 @@ public class RationalTestExamples {
         Rational r2 = new Rational(3, 4);
         Rational r3 = new Rational(3, 8);
         assertEquals(r3, r1.multiply(r2));
+        assertEquals(4,
+                new Rational(9223372036854775728l, 1).multiply(
+                        new Rational(2, 4611686018427387864l)).getNominator());
     }
 
     @Test
