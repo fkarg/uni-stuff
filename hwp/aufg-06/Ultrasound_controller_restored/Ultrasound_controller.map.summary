@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Thu Jun 22 17:47:35 2017
+Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
+Revision Name : Ultrasound_controller
+Top-level Entity Name : ultrasound_reader
+Family : Cyclone IV E
+Total logic elements : 2,487
+    Total combinational functions : 2,473
+    Dedicated logic registers : 337
+Total registers : 337
+Total pins : 15
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

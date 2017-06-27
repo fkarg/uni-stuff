@@ -1,0 +1,77 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk_50'
+Slack : -43.138
+TNS   : -5458.649
+
+Type  : Slow 1200mV 85C Model Setup 'controller:inst|state.controller1'
+Slack : -1.976
+TNS   : -3.946
+
+Type  : Slow 1200mV 85C Model Hold 'clk_50'
+Slack : 0.342
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'controller:inst|state.controller1'
+Slack : 1.891
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_50'
+Slack : -3.000
+TNS   : -340.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'controller:inst|state.controller1'
+Slack : 0.418
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'clk_50'
+Slack : -38.535
+TNS   : -4856.721
+
+Type  : Slow 1200mV 0C Model Setup 'controller:inst|state.controller1'
+Slack : -1.767
+TNS   : -3.529
+
+Type  : Slow 1200mV 0C Model Hold 'clk_50'
+Slack : 0.298
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'controller:inst|state.controller1'
+Slack : 1.793
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_50'
+Slack : -3.000
+TNS   : -340.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'controller:inst|state.controller1'
+Slack : 0.428
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'clk_50'
+Slack : -24.211
+TNS   : -2950.863
+
+Type  : Fast 1200mV 0C Model Setup 'controller:inst|state.controller1'
+Slack : -0.917
+TNS   : -1.830
+
+Type  : Fast 1200mV 0C Model Hold 'clk_50'
+Slack : 0.178
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'controller:inst|state.controller1'
+Slack : 1.288
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_50'
+Slack : -3.000
+TNS   : -360.249
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'controller:inst|state.controller1'
+Slack : 0.454
+TNS   : 0.000
+
+------------------------------------------------------------

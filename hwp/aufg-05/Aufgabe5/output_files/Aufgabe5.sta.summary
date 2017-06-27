@@ -1,0 +1,125 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk_50'
+Slack : -2.591
+TNS   : -80.990
+
+Type  : Slow 1200mV 85C Model Setup 'adcReader:inst3|clk_spi'
+Slack : -1.660
+TNS   : -33.688
+
+Type  : Slow 1200mV 85C Model Hold 'clk_50'
+Slack : 0.342
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'adcReader:inst3|clk_spi'
+Slack : 0.343
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'clk_50'
+Slack : -2.858
+TNS   : -85.216
+
+Type  : Slow 1200mV 85C Model Recovery 'adcReader:inst3|clk_spi'
+Slack : -0.522
+TNS   : -5.471
+
+Type  : Slow 1200mV 85C Model Removal 'adcReader:inst3|clk_spi'
+Slack : 0.702
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'clk_50'
+Slack : 1.498
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_50'
+Slack : -3.000
+TNS   : -41.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'adcReader:inst3|clk_spi'
+Slack : -1.000
+TNS   : -33.000
+
+Type  : Slow 1200mV 0C Model Setup 'clk_50'
+Slack : -2.229
+TNS   : -68.981
+
+Type  : Slow 1200mV 0C Model Setup 'adcReader:inst3|clk_spi'
+Slack : -1.410
+TNS   : -27.284
+
+Type  : Slow 1200mV 0C Model Hold 'clk_50'
+Slack : 0.297
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'adcReader:inst3|clk_spi'
+Slack : 0.298
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'clk_50'
+Slack : -2.447
+TNS   : -72.416
+
+Type  : Slow 1200mV 0C Model Recovery 'adcReader:inst3|clk_spi'
+Slack : -0.348
+TNS   : -2.649
+
+Type  : Slow 1200mV 0C Model Removal 'adcReader:inst3|clk_spi'
+Slack : 0.644
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'clk_50'
+Slack : 1.321
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_50'
+Slack : -3.000
+TNS   : -41.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'adcReader:inst3|clk_spi'
+Slack : -1.000
+TNS   : -33.000
+
+Type  : Fast 1200mV 0C Model Setup 'clk_50'
+Slack : -1.079
+TNS   : -32.029
+
+Type  : Fast 1200mV 0C Model Setup 'adcReader:inst3|clk_spi'
+Slack : -0.489
+TNS   : -6.834
+
+Type  : Fast 1200mV 0C Model Hold 'clk_50'
+Slack : 0.160
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'adcReader:inst3|clk_spi'
+Slack : 0.178
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'clk_50'
+Slack : -1.255
+TNS   : -35.931
+
+Type  : Fast 1200mV 0C Model Recovery 'adcReader:inst3|clk_spi'
+Slack : 0.126
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'adcReader:inst3|clk_spi'
+Slack : 0.379
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'clk_50'
+Slack : 0.867
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_50'
+Slack : -3.000
+TNS   : -43.278
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'adcReader:inst3|clk_spi'
+Slack : -1.000
+TNS   : -33.000
+
+------------------------------------------------------------

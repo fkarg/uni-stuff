@@ -1,0 +1,147 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/simulation/modelsim
+Ehard_block
+Z1 w1498146507
+Z2 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z3 DPx10 cycloneive 20 cycloneive_atom_pack 0 22 K`kJb<]?z4U5EbkG_:lMO3
+Z4 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z5 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z6 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z7 DPx10 cycloneive 21 cycloneive_components 0 22 HFZ8mBI5?[8TM9e2YGWCa2
+R0
+Z8 8Ultrasound_controller_6_1200mv_85c_slow.vho
+Z9 FUltrasound_controller_6_1200mv_85c_slow.vho
+l0
+L35
+Vi9a_SfXm?YhLI2dhm1j^51
+!s100 >mXi5[`cD`bFC`UBKA<om3
+Z10 OV;C;10.5b;63
+31
+Z11 !s110 1498146520
+!i10b 1
+Z12 !s108 1498146520.000000
+Z13 !s90 -reportprogress|300|-93|-work|work|Ultrasound_controller_6_1200mv_85c_slow.vho|
+Z14 !s107 Ultrasound_controller_6_1200mv_85c_slow.vho|
+!i113 1
+Z15 o-93 -work work
+Z16 tExplicit 1 CvgOpt 0
+Astructure
+R2
+R3
+R4
+R5
+R6
+R7
+DEx4 work 10 hard_block 0 22 i9a_SfXm?YhLI2dhm1j^51
+l65
+L51
+VWdBQm4eNm6eGHO;iQNz`j1
+!s100 [5;Wd8QGQ>@2NGoJ1I]Y43
+R10
+31
+R11
+!i10b 1
+R12
+R13
+R14
+!i113 1
+R15
+R16
+Eultrasound_controller_vhd_tst
+Z17 w1498144447
+R5
+R6
+R0
+Z18 8/datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/simulation/modelsim/ultrasound_controller.vht
+Z19 F/datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/simulation/modelsim/ultrasound_controller.vht
+l0
+L31
+Vl95kz7:?kH7o:9:i0Fc351
+!s100 ^C4PAz4CSkE3S@3kg=fOD2
+R10
+31
+Z20 !s110 1498146521
+!i10b 1
+Z21 !s108 1498146521.000000
+Z22 !s90 -reportprogress|300|-93|-work|work|/datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/simulation/modelsim/ultrasound_controller.vht|
+Z23 !s107 /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/simulation/modelsim/ultrasound_controller.vht|
+!i113 1
+R15
+R16
+Aultrasound_controller_arch
+R5
+R6
+DEx4 work 29 ultrasound_controller_vhd_tst 0 22 l95kz7:?kH7o:9:i0Fc351
+l50
+L33
+V82V7:SZ]d=lE7MeQT:oFa2
+!s100 U^bl7Bc?bOnU7NH482dRH2
+R10
+31
+R20
+!i10b 1
+R21
+R22
+R23
+!i113 1
+R15
+R16
+Eultrasound_reader
+R1
+R3
+R7
+R2
+Z24 DPx6 altera 11 dffeas_pack 0 22 zWCf]NF6heG=Dhmc@B0=T2
+R4
+R5
+R6
+Z25 DPx6 altera 28 altera_primitives_components 0 22 _Q9E2TD5YB<<@P0[5jYTG0
+R0
+R8
+R9
+l0
+L80
+Vzo3dlc=QfH9FRF=ZPATN02
+!s100 BZ;l87UHUFjYezIY:KJAd2
+R10
+31
+R11
+!i10b 1
+R12
+R13
+R14
+!i113 1
+R15
+R16
+Astructure
+R3
+R7
+R2
+R24
+R4
+R5
+R6
+R25
+DEx4 work 17 ultrasound_reader 0 22 zo3dlc=QfH9FRF=ZPATN02
+l3498
+L111
+VgMG_lRB:lHzJ:CV5Kh@621
+!s100 6Q9j9z7U250SMCzN<BS_>2
+R10
+31
+R20
+!i10b 1
+R12
+R13
+R14
+!i113 1
+R15
+R16

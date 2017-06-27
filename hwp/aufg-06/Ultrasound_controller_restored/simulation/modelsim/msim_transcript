@@ -1,0 +1,186 @@
+# do Ultrasound_controller_run_msim_gate_vhdl.do
+# if {[file exists gate_work]} {
+# 	vdel -lib gate_work -all
+# }
+# vlib gate_work
+# vmap work gate_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work gate_work 
+# Copying /datadisk/Quartus/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {Ultrasound_controller_6_1200mv_85c_slow.vho}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:48:40 on Jun 22,2017
+# vcom -reportprogress 300 -93 -work work Ultrasound_controller_6_1200mv_85c_slow.vho 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package VITAL_Timing
+# -- Loading package VITAL_Primitives
+# -- Loading package cycloneive_atom_pack
+# -- Loading package cycloneive_components
+# -- Compiling entity hard_block
+# -- Compiling architecture structure of hard_block
+# -- Loading package dffeas_pack
+# -- Loading package altera_primitives_components
+# -- Compiling entity ultrasound_reader
+# -- Compiling architecture structure of ultrasound_reader
+# End time: 17:48:41 on Jun 22,2017, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {/datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/simulation/modelsim/ultrasound_controller.vht}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:48:41 on Jun 22,2017
+# vcom -reportprogress 300 -93 -work work /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/simulation/modelsim/ultrasound_controller.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ultrasound_controller_vhd_tst
+# -- Compiling architecture ultrasound_controller_arch of ultrasound_controller_vhd_tst
+# End time: 17:48:41 on Jun 22,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps +transport_int_delays +transport_path_delays -sdftyp /i1=Ultrasound_controller_6_1200mv_85c_vhd_slow.sdo -L altera -L cycloneive -L gate_work -L work -voptargs="+acc"  ultrasound_controller_vhd_tst
+# vsim -t 1ps "+transport_int_delays" "+transport_path_delays" -sdftyp /i1=Ultrasound_controller_6_1200mv_85c_vhd_slow.sdo -L altera -L cycloneive -L gate_work -L work -voptargs=""+acc"" ultrasound_controller_vhd_tst 
+# Start time: 17:48:41 on Jun 22,2017
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.ultrasound_controller_vhd_tst(ultrasound_controller_arch)
+# SDF 10.5b Compiler 2016.10 Oct  5 2016
+# ** Warning: (vsim-3473) Component instance "i1 : ultrasound_controller" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /ultrasound_controller_vhd_tst File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/simulation/modelsim/ultrasound_controller.vht
+# Loading instances from Ultrasound_controller_6_1200mv_85c_vhd_slow.sdo
+# ** Error (suppressible): (vsim-SDF-3250) Ultrasound_controller_6_1200mv_85c_vhd_slow.sdo(0): Failed to find INSTANCE '/i1'.
+# ** Error (suppressible): (vsim-SDF-3894) : Errors occured in reading and resolving instances from compiled SDF file(s).
+# ** Error (suppressible): (vsim-SDF-3250) Ultrasound_controller_6_1200mv_85c_vhd_slow.sdo(0): Failed to find INSTANCE '/i1'.
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./Ultrasound_controller_run_msim_gate_vhdl.do PAUSED at line 12
+help Tcl
+# See help on these commands:
+#   after       fcopy      load       seek           vwait    
+#   append      file       lrange     set            while    
+#   array       fileevent  lreplace   socket         
+#   bgerror     flush      lsearch    source   	   
+#   binary      for        lset       split    	   
+#   break       foreach    lsort      string         
+#   catch       format     msgcat     subst           
+#   cd          gets       namespace  switch         
+#   clock       glob       open       tcl_endOfWord           
+#   close       global     package    tcl_findLibrary         
+#   concat      history    parray     tcl_startOfNextWord     
+#   continue    http       pid        tcl_startOfPreviousWord  
+#   dde         if         proc       tcl_wordBreakAfter             
+#   encoding    incr       puts       tcl_wordBreakBefore            
+#   eof         info       pwd        tell        	           
+#   error       interp     read       time        	           
+#   eval        join       regexp     trace       	           
+#   exec        lappend    registry   unset                          
+#   exit        lindex     regsub     update                   
+#   expr        linsert    rename     uplevel                  
+#   fblocked    list       return     upvar                    
+#   fconfigure  llength    scan       variable                
+# 
+help tcl
+# See help on these commands:
+#   after       fcopy      load       seek           vwait    
+#   append      file       lrange     set            while    
+#   array       fileevent  lreplace   socket         
+#   bgerror     flush      lsearch    source   	   
+#   binary      for        lset       split    	   
+#   break       foreach    lsort      string         
+#   catch       format     msgcat     subst           
+#   cd          gets       namespace  switch         
+#   clock       glob       open       tcl_endOfWord           
+#   close       global     package    tcl_findLibrary         
+#   concat      history    parray     tcl_startOfNextWord     
+#   continue    http       pid        tcl_startOfPreviousWord  
+#   dde         if         proc       tcl_wordBreakAfter             
+#   encoding    incr       puts       tcl_wordBreakBefore            
+#   eof         info       pwd        tell        	           
+#   error       interp     read       time        	           
+#   eval        join       regexp     trace       	           
+#   exec        lappend    registry   unset                          
+#   exit        lindex     regsub     update                   
+#   expr        linsert    rename     uplevel                  
+#   fblocked    list       return     upvar                    
+#   fconfigure  llength    scan       variable                
+# 
+help commands
+# Help avaliable on the following topics and commands:
+# 	abort	add	add_cmdhelp	add_menurb
+# 	addTime	after	alias	append	apply_button_adder
+# 	array	batch_mode	bd	bedit	bell
+# 	bgerror	binary	bind	bindtags	body
+# 	bp	break	button	call	canvas
+# 	catch	cd	change	check	checkbutton
+# 	class	clipboard	clock	close	code
+# 	concat	config	configure	cont	continue
+# 	dde	debugging	delete	describe	destroy
+# 	disablebp	divTime	do	drivers	dumplog64
+# 	echo	edit	elite_edition	enablebp
+# 	encoding	ensemble	entry	env	environment
+# 	environment_nosource	eof	eqTime	error
+# 	eval	event	exa	examine	exec
+# 	execution	exit	expr	fblocked	fconfigure
+# 	fcopy	file	fileevent	find	findExec
+# 	flush	focus	font	for	force
+# 	foreach	format	formatTime	frame	get_menu_path
+# 	gets	ginfo	glob	global	grab
+# 	grid	gteTime	gtTime	help	history
+# 	http	if	image	incr	incrTcl
+# 	info	int64ToReal	int64ToStr	interp
+# 	intToTime	join	label	lappend	layout
+# 	lindex	linsert	list	listbox	llength
+# 	load	local	log	lower	lrange
+# 	lremove	lreplace	lsearch	lset	lshift
+# 	lsort	lsublist	lteTime	ltTime	luniq
+# 	max	menu	menubutton	message	modelsim
+# 	msgcat	mulTime	namespace	namespaceOf
+# 	neqTime	noforce	nolog	notepad	notrace
+# 	noview	nowhen	onbreak	onElabError
+# 	onerror	onfinish	open	openlog	option
+# 	pack	package	panedwindow	parray
+# 	pathOf	pause	pedit	personal_edition
+# 	pid	place	precision	PrefSource	PrefSource(geometry)
+# 	PrefSource(HDLFileTypes)	PrefSource(HighlightErrorColor)	PrefSource(highlightExecutableLines)
+# 	PrefSource(tabs)	PrefSource(user_hook)	PrefSource(verilogFileTypes)
+# 	PrefSource(vhdlFileTypes)	PrefSource(WarnSourceChanged)	printenv
+# 	proc	project	property	puterr	puts
+# 	pwd	qhdel	qhdir	qhlib	quietly
+# 	quit	qvhcom	qvlcom	radiobutton
+# 	radix	raise	read	readers	RealToTime
+# 	regexp	registry	regsub	rename	renamelog
+# 	report	restart	resume	return	rincr
+# 	run	runStatus	sbrk	scale	scaleTime
+# 	scan	scope	scrollbar	searchlog	see
+# 	seek	selection	send	set	setenv
+# 	shift	show	simNamespaceIsOpen	simstats
+# 	simstatslist	simtime	slave_mode	socket
+# 	source	spinbox	split	status	step
+# 	stop	string	subst	subTime	suppress
+# 	switch	tabset	tb	Tcl	tcl_endOfWord
+# 	tcl_findLibrary	tcl_startOfNextWord	tcl_startOfPreviousWord
+# 	tcl_wordBreakAfter	tcl_wordBreakBefore	tell
+# 	text	time	tix	Tk	tk
+# 	tk_chooseColor	tk_chooseDirectory	tk_dialog
+# 	tk_getOpenFile	tk_getSaveFile	tk_menuSetFocus
+# 	tk_messageBox	tk_popup	tk_textCopy
+# 	tk_textCut	tk_textPaste	tkwait	toggle
+# 	toplevel	trace	transcript	truncate	tssi2mti
+# 	ui_VVMode	unknown	unset	unsetenv	update
+# 	uplevel	upvar	usual	validTime	variable
+# 	vcd	vcd2wlf	vcom	vdel	vdir
+# 	vencrypt	verror	vgencomp	vhencrypt	view
+# 	virtual	vlib	vlog	vmake	vmap
+# 	vsim	vsim_break	vsimAuth	vsimDate	vsimId
+# 	vsimVersion	vsimVersionString	vsource
+# 	vwait	when	where	while	winfo
+# 	wlf2log	wlf2vcd	wlfman	wlfrecover	wm
+# 	write
+# 
+# End time: 17:52:59 on Jun 22,2017, Elapsed time: 0:04:18
+# Errors: 3, Warnings: 1
