@@ -1,0 +1,9 @@
+
+State Machine - |different_sounds|frequency_table:inst7|state
+Name state.f4 state.f3 state.f2 state.f1 state.init state.f0 
+state.f0 0 0 0 0 0 0 
+state.init 0 0 0 0 1 1 
+state.f1 0 0 0 1 0 1 
+state.f2 0 0 1 0 0 1 
+state.f3 0 1 0 0 0 1 
+state.f4 1 0 0 0 0 1 
