@@ -1,15 +1,15 @@
-Fitter Status : Successful - Thu Jun 22 17:48:09 2017
+Fitter Status : Successful - Wed Jun 28 13:27:58 2017
 Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 Revision Name : Ultrasound_controller
 Top-level Entity Name : ultrasound_reader
 Family : Cyclone IV E
 Device : EP4CE22F17C6
 Timing Models : Final
-Total logic elements : 2,475 / 22,320 ( 11 % )
-    Total combinational functions : 2,474 / 22,320 ( 11 % )
-    Dedicated logic registers : 337 / 22,320 ( 2 % )
-Total registers : 337
-Total pins : 15 / 154 ( 10 % )
+Total logic elements : 935 / 22,320 ( 4 % )
+    Total combinational functions : 921 / 22,320 ( 4 % )
+    Dedicated logic registers : 385 / 22,320 ( 2 % )
+Total registers : 385
+Total pins : 19 / 154 ( 12 % )
 Total virtual pins : 0
 Total memory bits : 0 / 608,256 ( 0 % )
 Embedded Multiplier 9-bit elements : 0 / 132 ( 0 % )

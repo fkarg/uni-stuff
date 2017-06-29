@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Ultrasound_controller
-Thu Jun 22 17:47:35 2017
+Wed Jun 28 13:27:47 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -13,24 +13,22 @@ Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |ultrasound_reader|ultrasound_controller:inst3|state
-  9. State Machine - |ultrasound_reader|ultrasound_controller:inst2|state
- 10. State Machine - |ultrasound_reader|controller:inst|state
- 11. State Machine - |ultrasound_reader|ultrasound_controller:inst7|state
- 12. State Machine - |ultrasound_reader|dataToLcd:inst4|state
- 13. State Machine - |ultrasound_reader|lcd_driver2:inst5|state
- 14. User-Specified and Inferred Latches
- 15. Registers Removed During Synthesis
- 16. Removed Registers Triggering Further Register Optimizations
- 17. General Register Statistics
- 18. Inverted Register Statistics
- 19. Multiplexer Restructuring Statistics (Restructuring Performed)
- 20. Parameter Settings for Inferred Entity Instance: ultrasound_controller:inst7|lpm_divide:Mod0
- 21. Parameter Settings for Inferred Entity Instance: ultrasound_controller:inst3|lpm_divide:Mod0
- 22. Parameter Settings for Inferred Entity Instance: ultrasound_controller:inst2|lpm_divide:Mod0
- 23. Post-Synthesis Netlist Statistics for Top Partition
- 24. Elapsed Time Per Partition
- 25. Analysis & Synthesis Messages
+  8. State Machine - |ultrasound_reader|robot_controller:inst1|state
+  9. State Machine - |ultrasound_reader|ultrasound_controller:inst3|state
+ 10. State Machine - |ultrasound_reader|ultrasound_controller:inst2|state
+ 11. State Machine - |ultrasound_reader|controller:inst|state
+ 12. State Machine - |ultrasound_reader|ultrasound_controller:inst7|state
+ 13. State Machine - |ultrasound_reader|dataToLcd:inst4|state
+ 14. State Machine - |ultrasound_reader|lcd_driver2:inst5|state
+ 15. User-Specified and Inferred Latches
+ 16. Registers Removed During Synthesis
+ 17. Removed Registers Triggering Further Register Optimizations
+ 18. General Register Statistics
+ 19. Inverted Register Statistics
+ 20. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 21. Post-Synthesis Netlist Statistics for Top Partition
+ 22. Elapsed Time Per Partition
+ 23. Analysis & Synthesis Messages
 
 
 
@@ -57,16 +55,16 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Jun 22 17:47:35 2017       ;
+; Analysis & Synthesis Status        ; Successful - Wed Jun 28 13:27:47 2017       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; Ultrasound_controller                       ;
 ; Top-level Entity Name              ; ultrasound_reader                           ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 2,487                                       ;
-;     Total combinational functions  ; 2,473                                       ;
-;     Dedicated logic registers      ; 337                                         ;
-; Total registers                    ; 337                                         ;
-; Total pins                         ; 15                                          ;
+; Total logic elements               ; 943                                         ;
+;     Total combinational functions  ; 920                                         ;
+;     Dedicated logic registers      ; 385                                         ;
+; Total registers                    ; 385                                         ;
+; Total pins                         ; 19                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -173,7 +171,7 @@ agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.1%      ;
+;     Processor 2            ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -182,20 +180,13 @@ agreement for further details.
 +----------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                                                         ; Library ;
 +----------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------------------------------------+---------+
+; vhdl/robot_controller.vhd        ; yes             ; User VHDL File                     ; /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/robot_controller.vhd      ;         ;
+; vhdl/motor_controller.vhd        ; yes             ; User VHDL File                     ; /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/motor_controller.vhd      ;         ;
 ; vhdl/lcd_driver2.vhd             ; yes             ; User VHDL File                     ; /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/lcd_driver2.vhd           ;         ;
 ; vhdl/dataToLcd.vhd               ; yes             ; User VHDL File                     ; /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/dataToLcd.vhd             ;         ;
 ; vhdl/ultrasound_controller.vhd   ; yes             ; User VHDL File                     ; /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/ultrasound_controller.vhd ;         ;
 ; vhdl/controller.vhd              ; yes             ; User VHDL File                     ; /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/controller.vhd            ;         ;
 ; block/ultrasound_reader.bdf      ; yes             ; User Block Diagram/Schematic File  ; /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/block/ultrasound_reader.bdf    ;         ;
-; lpm_divide.tdf                   ; yes             ; Megafunction                       ; /datadisk/Quartus/quartus/libraries/megafunctions/lpm_divide.tdf                                     ;         ;
-; abs_divider.inc                  ; yes             ; Megafunction                       ; /datadisk/Quartus/quartus/libraries/megafunctions/abs_divider.inc                                    ;         ;
-; sign_div_unsign.inc              ; yes             ; Megafunction                       ; /datadisk/Quartus/quartus/libraries/megafunctions/sign_div_unsign.inc                                ;         ;
-; aglobal161.inc                   ; yes             ; Megafunction                       ; /datadisk/Quartus/quartus/libraries/megafunctions/aglobal161.inc                                     ;         ;
-; db/lpm_divide_kcm.tdf            ; yes             ; Auto-Generated Megafunction        ; /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/db/lpm_divide_kcm.tdf          ;         ;
-; db/sign_div_unsign_9nh.tdf       ; yes             ; Auto-Generated Megafunction        ; /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/db/sign_div_unsign_9nh.tdf     ;         ;
-; db/alt_u_div_6af.tdf             ; yes             ; Auto-Generated Megafunction        ; /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/db/alt_u_div_6af.tdf           ;         ;
-; db/add_sub_7pc.tdf               ; yes             ; Auto-Generated Megafunction        ; /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/db/add_sub_7pc.tdf             ;         ;
-; db/add_sub_8pc.tdf               ; yes             ; Auto-Generated Megafunction        ; /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/db/add_sub_8pc.tdf             ;         ;
 +----------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------------------------------------+---------+
 
 
@@ -204,85 +195,93 @@ agreement for further details.
 +---------------------------------------------+--------------+
 ; Resource                                    ; Usage        ;
 +---------------------------------------------+--------------+
-; Estimated Total logic elements              ; 2,487        ;
+; Estimated Total logic elements              ; 943          ;
 ;                                             ;              ;
-; Total combinational functions               ; 2473         ;
+; Total combinational functions               ; 920          ;
 ; Logic element usage by number of LUT inputs ;              ;
-;     -- 4 input functions                    ; 858          ;
-;     -- 3 input functions                    ; 605          ;
-;     -- <=2 input functions                  ; 1010         ;
+;     -- 4 input functions                    ; 415          ;
+;     -- 3 input functions                    ; 79           ;
+;     -- <=2 input functions                  ; 426          ;
 ;                                             ;              ;
 ; Logic elements by mode                      ;              ;
-;     -- normal mode                          ; 1667         ;
-;     -- arithmetic mode                      ; 806          ;
+;     -- normal mode                          ; 640          ;
+;     -- arithmetic mode                      ; 280          ;
 ;                                             ;              ;
-; Total registers                             ; 337          ;
-;     -- Dedicated logic registers            ; 337          ;
+; Total registers                             ; 385          ;
+;     -- Dedicated logic registers            ; 385          ;
 ;     -- I/O registers                        ; 0            ;
 ;                                             ;              ;
-; I/O pins                                    ; 15           ;
+; I/O pins                                    ; 19           ;
 ;                                             ;              ;
 ; Embedded Multiplier 9-bit elements          ; 0            ;
 ;                                             ;              ;
 ; Maximum fan-out node                        ; clk_50~input ;
-; Maximum fan-out                             ; 337          ;
-; Total fan-out                               ; 8308         ;
-; Average fan-out                             ; 2.92         ;
+; Maximum fan-out                             ; 385          ;
+; Total fan-out                               ; 3923         ;
+; Average fan-out                             ; 2.91         ;
 +---------------------------------------------+--------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                          ;
-+-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
-; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                            ; Entity Name           ; Library Name ;
-+-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
-; |ultrasound_reader                        ; 2473 (1)            ; 337 (0)                   ; 0           ; 0            ; 0       ; 0         ; 15   ; 0            ; |ultrasound_reader                                                                                                                             ; ultrasound_reader     ; work         ;
-;    |controller:inst|                      ; 49 (49)             ; 26 (26)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|controller:inst                                                                                                             ; controller            ; work         ;
-;    |dataToLcd:inst4|                      ; 296 (296)           ; 111 (111)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|dataToLcd:inst4                                                                                                             ; dataToLcd             ; work         ;
-;    |lcd_driver2:inst5|                    ; 196 (196)           ; 92 (92)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|lcd_driver2:inst5                                                                                                           ; lcd_driver2           ; work         ;
-;    |ultrasound_controller:inst2|          ; 642 (89)            ; 36 (36)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst2                                                                                                 ; ultrasound_controller ; work         ;
-;       |lpm_divide:Mod0|                   ; 553 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst2|lpm_divide:Mod0                                                                                 ; lpm_divide            ; work         ;
-;          |lpm_divide_kcm:auto_generated|  ; 553 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst2|lpm_divide:Mod0|lpm_divide_kcm:auto_generated                                                   ; lpm_divide_kcm        ; work         ;
-;             |sign_div_unsign_9nh:divider| ; 553 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst2|lpm_divide:Mod0|lpm_divide_kcm:auto_generated|sign_div_unsign_9nh:divider                       ; sign_div_unsign_9nh   ; work         ;
-;                |alt_u_div_6af:divider|    ; 553 (553)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst2|lpm_divide:Mod0|lpm_divide_kcm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_6af:divider ; alt_u_div_6af         ; work         ;
-;    |ultrasound_controller:inst3|          ; 641 (88)            ; 36 (36)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst3                                                                                                 ; ultrasound_controller ; work         ;
-;       |lpm_divide:Mod0|                   ; 553 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst3|lpm_divide:Mod0                                                                                 ; lpm_divide            ; work         ;
-;          |lpm_divide_kcm:auto_generated|  ; 553 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst3|lpm_divide:Mod0|lpm_divide_kcm:auto_generated                                                   ; lpm_divide_kcm        ; work         ;
-;             |sign_div_unsign_9nh:divider| ; 553 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst3|lpm_divide:Mod0|lpm_divide_kcm:auto_generated|sign_div_unsign_9nh:divider                       ; sign_div_unsign_9nh   ; work         ;
-;                |alt_u_div_6af:divider|    ; 553 (553)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst3|lpm_divide:Mod0|lpm_divide_kcm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_6af:divider ; alt_u_div_6af         ; work         ;
-;    |ultrasound_controller:inst7|          ; 648 (89)            ; 36 (36)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst7                                                                                                 ; ultrasound_controller ; work         ;
-;       |lpm_divide:Mod0|                   ; 559 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst7|lpm_divide:Mod0                                                                                 ; lpm_divide            ; work         ;
-;          |lpm_divide_kcm:auto_generated|  ; 559 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst7|lpm_divide:Mod0|lpm_divide_kcm:auto_generated                                                   ; lpm_divide_kcm        ; work         ;
-;             |sign_div_unsign_9nh:divider| ; 559 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst7|lpm_divide:Mod0|lpm_divide_kcm:auto_generated|sign_div_unsign_9nh:divider                       ; sign_div_unsign_9nh   ; work         ;
-;                |alt_u_div_6af:divider|    ; 559 (559)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst7|lpm_divide:Mod0|lpm_divide_kcm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_6af:divider ; alt_u_div_6af         ; work         ;
-+-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                 ;
++----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------+-----------------------+--------------+
+; Compilation Hierarchy Node       ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                            ; Entity Name           ; Library Name ;
++----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------+-----------------------+--------------+
+; |ultrasound_reader               ; 920 (1)             ; 385 (0)                   ; 0           ; 0            ; 0       ; 0         ; 19   ; 0            ; |ultrasound_reader                             ; ultrasound_reader     ; work         ;
+;    |controller:inst|             ; 49 (49)             ; 26 (26)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|controller:inst             ; controller            ; work         ;
+;    |dataToLcd:inst4|             ; 299 (299)           ; 111 (111)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|dataToLcd:inst4             ; dataToLcd             ; work         ;
+;    |lcd_driver2:inst5|           ; 198 (198)           ; 92 (92)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|lcd_driver2:inst5           ; lcd_driver2           ; work         ;
+;    |motor_controller:inst8|      ; 28 (28)             ; 17 (17)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|motor_controller:inst8      ; motor_controller      ; work         ;
+;    |motor_controller:inst9|      ; 4 (4)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|motor_controller:inst9      ; motor_controller      ; work         ;
+;    |robot_controller:inst1|      ; 74 (74)             ; 24 (24)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|robot_controller:inst1      ; robot_controller      ; work         ;
+;    |ultrasound_controller:inst2| ; 89 (89)             ; 38 (38)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst2 ; ultrasound_controller ; work         ;
+;    |ultrasound_controller:inst3| ; 89 (89)             ; 38 (38)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst3 ; ultrasound_controller ; work         ;
+;    |ultrasound_controller:inst7| ; 89 (89)             ; 38 (38)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ultrasound_reader|ultrasound_controller:inst7 ; ultrasound_controller ; work         ;
++----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------+-----------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
-+---------------------------------------------------------------------------------+
-; State Machine - |ultrasound_reader|ultrasound_controller:inst3|state            ;
-+------------------+-------------+----------------+------------------+------------+
-; Name             ; state.final ; state.scanning ; state.activating ; state.init ;
-+------------------+-------------+----------------+------------------+------------+
-; state.init       ; 0           ; 0              ; 0                ; 0          ;
-; state.activating ; 0           ; 0              ; 1                ; 1          ;
-; state.scanning   ; 0           ; 1              ; 0                ; 1          ;
-; state.final      ; 1           ; 0              ; 0                ; 1          ;
-+------------------+-------------+----------------+------------------+------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |ultrasound_reader|robot_controller:inst1|state                                                                                            ;
++---------------------------+---------------------------+----------------------+----------------------+---------------------+-------------------+------------+
+; Name                      ; state.obstacle_both_sides ; state.obstacle_front ; state.obstacle_right ; state.obstacle_left ; state.no_obstacle ; state.init ;
++---------------------------+---------------------------+----------------------+----------------------+---------------------+-------------------+------------+
+; state.init                ; 0                         ; 0                    ; 0                    ; 0                   ; 0                 ; 0          ;
+; state.no_obstacle         ; 0                         ; 0                    ; 0                    ; 0                   ; 1                 ; 1          ;
+; state.obstacle_left       ; 0                         ; 0                    ; 0                    ; 1                   ; 0                 ; 1          ;
+; state.obstacle_right      ; 0                         ; 0                    ; 1                    ; 0                   ; 0                 ; 1          ;
+; state.obstacle_front      ; 0                         ; 1                    ; 0                    ; 0                   ; 0                 ; 1          ;
+; state.obstacle_both_sides ; 1                         ; 0                    ; 0                    ; 0                   ; 0                 ; 1          ;
++---------------------------+---------------------------+----------------------+----------------------+---------------------+-------------------+------------+
 
 
 Encoding Type:  One-Hot
-+---------------------------------------------------------------------------------+
-; State Machine - |ultrasound_reader|ultrasound_controller:inst2|state            ;
-+------------------+-------------+----------------+------------------+------------+
-; Name             ; state.final ; state.scanning ; state.activating ; state.init ;
-+------------------+-------------+----------------+------------------+------------+
-; state.init       ; 0           ; 0              ; 0                ; 0          ;
-; state.activating ; 0           ; 0              ; 1                ; 1          ;
-; state.scanning   ; 0           ; 1              ; 0                ; 1          ;
-; state.final      ; 1           ; 0              ; 0                ; 1          ;
-+------------------+-------------+----------------+------------------+------------+
++-------------------------------------------------------------------------------------------------+
+; State Machine - |ultrasound_reader|ultrasound_controller:inst3|state                            ;
++------------------+-------------+----------------+---------------+------------------+------------+
+; Name             ; state.final ; state.scanning ; state.waiting ; state.activating ; state.init ;
++------------------+-------------+----------------+---------------+------------------+------------+
+; state.init       ; 0           ; 0              ; 0             ; 0                ; 0          ;
+; state.activating ; 0           ; 0              ; 0             ; 1                ; 1          ;
+; state.waiting    ; 0           ; 0              ; 1             ; 0                ; 1          ;
+; state.scanning   ; 0           ; 1              ; 0             ; 0                ; 1          ;
+; state.final      ; 1           ; 0              ; 0             ; 0                ; 1          ;
++------------------+-------------+----------------+---------------+------------------+------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------+
+; State Machine - |ultrasound_reader|ultrasound_controller:inst2|state                            ;
++------------------+-------------+----------------+---------------+------------------+------------+
+; Name             ; state.final ; state.scanning ; state.waiting ; state.activating ; state.init ;
++------------------+-------------+----------------+---------------+------------------+------------+
+; state.init       ; 0           ; 0              ; 0             ; 0                ; 0          ;
+; state.activating ; 0           ; 0              ; 0             ; 1                ; 1          ;
+; state.waiting    ; 0           ; 0              ; 1             ; 0                ; 1          ;
+; state.scanning   ; 0           ; 1              ; 0             ; 0                ; 1          ;
+; state.final      ; 1           ; 0              ; 0             ; 0                ; 1          ;
++------------------+-------------+----------------+---------------+------------------+------------+
 
 
 Encoding Type:  One-Hot
@@ -302,16 +301,17 @@ Encoding Type:  One-Hot
 
 
 Encoding Type:  One-Hot
-+---------------------------------------------------------------------------------+
-; State Machine - |ultrasound_reader|ultrasound_controller:inst7|state            ;
-+------------------+-------------+----------------+------------------+------------+
-; Name             ; state.final ; state.scanning ; state.activating ; state.init ;
-+------------------+-------------+----------------+------------------+------------+
-; state.init       ; 0           ; 0              ; 0                ; 0          ;
-; state.activating ; 0           ; 0              ; 1                ; 1          ;
-; state.scanning   ; 0           ; 1              ; 0                ; 1          ;
-; state.final      ; 1           ; 0              ; 0                ; 1          ;
-+------------------+-------------+----------------+------------------+------------+
++-------------------------------------------------------------------------------------------------+
+; State Machine - |ultrasound_reader|ultrasound_controller:inst7|state                            ;
++------------------+-------------+----------------+---------------+------------------+------------+
+; Name             ; state.final ; state.scanning ; state.waiting ; state.activating ; state.init ;
++------------------+-------------+----------------+---------------+------------------+------------+
+; state.init       ; 0           ; 0              ; 0             ; 0                ; 0          ;
+; state.activating ; 0           ; 0              ; 0             ; 1                ; 1          ;
+; state.waiting    ; 0           ; 0              ; 1             ; 0                ; 1          ;
+; state.scanning   ; 0           ; 1              ; 0             ; 0                ; 1          ;
+; state.final      ; 1           ; 0              ; 0             ; 0                ; 1          ;
++------------------+-------------+----------------+---------------+------------------+------------+
 
 
 Encoding Type:  One-Hot
@@ -356,28 +356,43 @@ Encoding Type:  One-Hot
 +----------------------------------------------------+--------------------------+------------------------+
 ; Latch Name                                         ; Latch Enable Signal      ; Free of Timing Hazards ;
 +----------------------------------------------------+--------------------------+------------------------+
-; controller:inst|enable_2                           ; controller:inst|enable_2 ; yes                    ;
-; controller:inst|enable_3                           ; controller:inst|enable_3 ; yes                    ;
 ; controller:inst|enable_1                           ; controller:inst|enable_1 ; yes                    ;
+; controller:inst|enable_3                           ; controller:inst|enable_3 ; yes                    ;
+; controller:inst|enable_2                           ; controller:inst|enable_2 ; yes                    ;
 ; Number of user-specified and inferred latches = 3  ;                          ;                        ;
 +----------------------------------------------------+--------------------------+------------------------+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
-+-----------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                ;
-+------------------------------------------+----------------------------------------+
-; Register name                            ; Reason for Removal                     ;
-+------------------------------------------+----------------------------------------+
-; ultrasound_controller:inst3|trigger~reg0 ; Stuck at VCC due to stuck port data_in ;
-; ultrasound_controller:inst2|trigger~reg0 ; Stuck at VCC due to stuck port data_in ;
-; ultrasound_controller:inst7|trigger~reg0 ; Stuck at VCC due to stuck port data_in ;
-; dataToLcd:inst4|lcd_data[7]              ; Stuck at GND due to stuck port data_in ;
-; lcd_driver2:inst5|dataStorage[7]         ; Stuck at GND due to stuck port data_in ;
-; controller:inst|state.init               ; Stuck at GND due to stuck port data_in ;
-; dataToLcd:inst4|state.init               ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 7    ;                                        ;
-+------------------------------------------+----------------------------------------+
++------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                         ;
++---------------------------------------------+--------------------------------------------------------------+
+; Register name                               ; Reason for Removal                                           ;
++---------------------------------------------+--------------------------------------------------------------+
+; motor_controller:inst9|counter[15]          ; Merged with motor_controller:inst8|counter[15]               ;
+; motor_controller:inst9|counter[14]          ; Merged with motor_controller:inst8|counter[14]               ;
+; motor_controller:inst9|counter[13]          ; Merged with motor_controller:inst8|counter[13]               ;
+; motor_controller:inst9|counter[12]          ; Merged with motor_controller:inst8|counter[12]               ;
+; motor_controller:inst9|counter[11]          ; Merged with motor_controller:inst8|counter[11]               ;
+; motor_controller:inst9|counter[10]          ; Merged with motor_controller:inst8|counter[10]               ;
+; motor_controller:inst9|counter[9]           ; Merged with motor_controller:inst8|counter[9]                ;
+; motor_controller:inst9|counter[8]           ; Merged with motor_controller:inst8|counter[8]                ;
+; motor_controller:inst9|counter[7]           ; Merged with motor_controller:inst8|counter[7]                ;
+; motor_controller:inst9|counter[6]           ; Merged with motor_controller:inst8|counter[6]                ;
+; motor_controller:inst9|counter[5]           ; Merged with motor_controller:inst8|counter[5]                ;
+; motor_controller:inst9|counter[4]           ; Merged with motor_controller:inst8|counter[4]                ;
+; motor_controller:inst9|counter[3]           ; Merged with motor_controller:inst8|counter[3]                ;
+; motor_controller:inst9|counter[2]           ; Merged with motor_controller:inst8|counter[2]                ;
+; motor_controller:inst9|counter[1]           ; Merged with motor_controller:inst8|counter[1]                ;
+; motor_controller:inst9|counter[0]           ; Merged with motor_controller:inst8|counter[0]                ;
+; dataToLcd:inst4|lcd_data[7]                 ; Stuck at GND due to stuck port data_in                       ;
+; lcd_driver2:inst5|dataStorage[7]            ; Stuck at GND due to stuck port data_in                       ;
+; robot_controller:inst1|state.obstacle_front ; Lost fanout                                                  ;
+; controller:inst|state.init                  ; Stuck at GND due to stuck port data_in                       ;
+; robot_controller:inst1|turning              ; Merged with robot_controller:inst1|state.obstacle_both_sides ;
+; dataToLcd:inst4|state.init                  ; Stuck at GND due to stuck port data_in                       ;
+; Total Number of Removed Registers = 22      ;                                                              ;
++---------------------------------------------+--------------------------------------------------------------+
 
 
 +--------------------------------------------------------------------------------------------------+
@@ -395,12 +410,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 337   ;
-; Number of registers using Synchronous Clear  ; 211   ;
+; Total registers                              ; 385   ;
+; Number of registers using Synchronous Clear  ; 142   ;
 ; Number of registers using Synchronous Load   ; 31    ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 170   ;
+; Number of registers using Clock Enable       ; 200   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -424,101 +439,33 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                   ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------+
 ; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |ultrasound_reader|ultrasound_controller:inst3|output[6]     ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |ultrasound_reader|ultrasound_controller:inst2|output[6]     ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |ultrasound_reader|ultrasound_controller:inst7|output[0]     ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |ultrasound_reader|ultrasound_controller:inst2|output[3]     ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |ultrasound_reader|ultrasound_controller:inst7|output[1]     ;
+; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |ultrasound_reader|robot_controller:inst1|count[7]           ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |ultrasound_reader|dataToLcd:inst4|lineCount[1]              ;
-; 4:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |ultrasound_reader|lcd_driver2:inst5|charCreationCounter[28] ;
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |ultrasound_reader|dataToLcd:inst4|data_1_storage[6]         ;
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |ultrasound_reader|dataToLcd:inst4|data_3_storage[6]         ;
+; 4:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |ultrasound_reader|lcd_driver2:inst5|charCreationCounter[12] ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |ultrasound_reader|dataToLcd:inst4|data_1_storage[4]         ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |ultrasound_reader|dataToLcd:inst4|data_3_storage[4]         ;
 ; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |ultrasound_reader|dataToLcd:inst4|data_2_storage[3]         ;
-; 6:1                ; 23 bits   ; 92 LEs        ; 23 LEs               ; 69 LEs                 ; Yes        ; |ultrasound_reader|ultrasound_controller:inst3|counter[19]   ;
-; 6:1                ; 23 bits   ; 92 LEs        ; 23 LEs               ; 69 LEs                 ; Yes        ; |ultrasound_reader|ultrasound_controller:inst2|counter[8]    ;
-; 6:1                ; 23 bits   ; 92 LEs        ; 23 LEs               ; 69 LEs                 ; Yes        ; |ultrasound_reader|ultrasound_controller:inst7|counter[17]   ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 5 LEs                ; 15 LEs                 ; Yes        ; |ultrasound_reader|dataToLcd:inst4|charCount[0]              ;
-; 6:1                ; 31 bits   ; 124 LEs       ; 31 LEs               ; 93 LEs                 ; Yes        ; |ultrasound_reader|dataToLcd:inst4|counter[16]               ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 5 LEs                ; 15 LEs                 ; Yes        ; |ultrasound_reader|dataToLcd:inst4|charCount[4]              ;
+; 6:1                ; 31 bits   ; 124 LEs       ; 31 LEs               ; 93 LEs                 ; Yes        ; |ultrasound_reader|dataToLcd:inst4|counter[14]               ;
 ; 8:1                ; 20 bits   ; 100 LEs       ; 20 LEs               ; 80 LEs                 ; Yes        ; |ultrasound_reader|controller:inst|counter1[19]              ;
-; 17:1               ; 31 bits   ; 341 LEs       ; 31 LEs               ; 310 LEs                ; Yes        ; |ultrasound_reader|lcd_driver2:inst5|counter[13]             ;
+; 10:1               ; 23 bits   ; 138 LEs       ; 23 LEs               ; 115 LEs                ; Yes        ; |ultrasound_reader|ultrasound_controller:inst3|counter[12]   ;
+; 10:1               ; 23 bits   ; 138 LEs       ; 23 LEs               ; 115 LEs                ; Yes        ; |ultrasound_reader|ultrasound_controller:inst2|counter[16]   ;
+; 10:1               ; 23 bits   ; 138 LEs       ; 23 LEs               ; 115 LEs                ; Yes        ; |ultrasound_reader|ultrasound_controller:inst7|counter[12]   ;
+; 17:1               ; 31 bits   ; 341 LEs       ; 31 LEs               ; 310 LEs                ; Yes        ; |ultrasound_reader|lcd_driver2:inst5|counter[17]             ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |ultrasound_reader|robot_controller:inst1|motor2_speed[9]    ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |ultrasound_reader|dataToLcd:inst4|lcd_data                  ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |ultrasound_reader|dataToLcd:inst4|state                     ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |ultrasound_reader|ultrasound_controller:inst3|state         ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |ultrasound_reader|ultrasound_controller:inst2|state         ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |ultrasound_reader|ultrasound_controller:inst7|state         ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |ultrasound_reader|ultrasound_controller:inst3|state         ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |ultrasound_reader|ultrasound_controller:inst2|state         ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |ultrasound_reader|robot_controller:inst1|motor1_direction   ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; No         ; |ultrasound_reader|robot_controller:inst1|state              ;
 ; 8:1                ; 7 bits    ; 35 LEs        ; 35 LEs               ; 0 LEs                  ; No         ; |ultrasound_reader|controller:inst|state                     ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |ultrasound_reader|ultrasound_controller:inst7|state         ;
+; 11:1               ; 5 bits    ; 35 LEs        ; 20 LEs               ; 15 LEs                 ; No         ; |ultrasound_reader|ultrasound_controller:inst3|state         ;
+; 11:1               ; 5 bits    ; 35 LEs        ; 20 LEs               ; 15 LEs                 ; No         ; |ultrasound_reader|ultrasound_controller:inst2|state         ;
+; 11:1               ; 5 bits    ; 35 LEs        ; 20 LEs               ; 15 LEs                 ; No         ; |ultrasound_reader|ultrasound_controller:inst7|state         ;
 ; 14:1               ; 11 bits   ; 99 LEs        ; 88 LEs               ; 11 LEs                 ; No         ; |ultrasound_reader|lcd_driver2:inst5|state                   ;
-; 21:1               ; 7 bits    ; 98 LEs        ; 98 LEs               ; 0 LEs                  ; No         ; |ultrasound_reader|lcd_driver2:inst5|dataOut[3]              ;
+; 21:1               ; 7 bits    ; 98 LEs        ; 98 LEs               ; 0 LEs                  ; No         ; |ultrasound_reader|lcd_driver2:inst5|dataOut[5]              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------+
-
-
-+----------------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: ultrasound_controller:inst7|lpm_divide:Mod0 ;
-+------------------------+----------------+----------------------------------------------------+
-; Parameter Name         ; Value          ; Type                                               ;
-+------------------------+----------------+----------------------------------------------------+
-; LPM_WIDTHN             ; 23             ; Untyped                                            ;
-; LPM_WIDTHD             ; 23             ; Untyped                                            ;
-; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
-; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
-; LPM_PIPELINE           ; 0              ; Untyped                                            ;
-; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                            ;
-; MAXIMIZE_SPEED         ; 5              ; Untyped                                            ;
-; CBXI_PARAMETER         ; lpm_divide_kcm ; Untyped                                            ;
-; CARRY_CHAIN            ; MANUAL         ; Untyped                                            ;
-; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                            ;
-; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                         ;
-; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                       ;
-; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                       ;
-; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                     ;
-+------------------------+----------------+----------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+----------------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: ultrasound_controller:inst3|lpm_divide:Mod0 ;
-+------------------------+----------------+----------------------------------------------------+
-; Parameter Name         ; Value          ; Type                                               ;
-+------------------------+----------------+----------------------------------------------------+
-; LPM_WIDTHN             ; 23             ; Untyped                                            ;
-; LPM_WIDTHD             ; 23             ; Untyped                                            ;
-; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
-; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
-; LPM_PIPELINE           ; 0              ; Untyped                                            ;
-; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                            ;
-; MAXIMIZE_SPEED         ; 5              ; Untyped                                            ;
-; CBXI_PARAMETER         ; lpm_divide_kcm ; Untyped                                            ;
-; CARRY_CHAIN            ; MANUAL         ; Untyped                                            ;
-; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                            ;
-; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                         ;
-; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                       ;
-; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                       ;
-; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                     ;
-+------------------------+----------------+----------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+----------------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: ultrasound_controller:inst2|lpm_divide:Mod0 ;
-+------------------------+----------------+----------------------------------------------------+
-; Parameter Name         ; Value          ; Type                                               ;
-+------------------------+----------------+----------------------------------------------------+
-; LPM_WIDTHN             ; 23             ; Untyped                                            ;
-; LPM_WIDTHD             ; 23             ; Untyped                                            ;
-; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
-; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
-; LPM_PIPELINE           ; 0              ; Untyped                                            ;
-; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                            ;
-; MAXIMIZE_SPEED         ; 5              ; Untyped                                            ;
-; CBXI_PARAMETER         ; lpm_divide_kcm ; Untyped                                            ;
-; CARRY_CHAIN            ; MANUAL         ; Untyped                                            ;
-; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                            ;
-; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                         ;
-; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                       ;
-; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                       ;
-; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                     ;
-+------------------------+----------------+----------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +-----------------------------------------------------+
@@ -526,27 +473,27 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 15                          ;
-; cycloneiii_ff         ; 337                         ;
-;     ENA               ; 41                          ;
-;     ENA SCLR          ; 129                         ;
+; boundary_port         ; 19                          ;
+; cycloneiii_ff         ; 385                         ;
+;     ENA               ; 140                         ;
+;     ENA SCLR          ; 60                          ;
 ;     SCLR              ; 82                          ;
 ;     SLD               ; 31                          ;
-;     plain             ; 54                          ;
+;     plain             ; 72                          ;
 ; cycloneiii_io_obuf    ; 3                           ;
-; cycloneiii_lcell_comb ; 2474                        ;
-;     arith             ; 806                         ;
-;         2 data inputs ; 278                         ;
-;         3 data inputs ; 528                         ;
-;     normal            ; 1668                        ;
-;         0 data inputs ; 37                          ;
-;         1 data inputs ; 20                          ;
-;         2 data inputs ; 676                         ;
-;         3 data inputs ; 77                          ;
-;         4 data inputs ; 858                         ;
+; cycloneiii_lcell_comb ; 921                         ;
+;     arith             ; 280                         ;
+;         2 data inputs ; 279                         ;
+;         3 data inputs ; 1                           ;
+;     normal            ; 641                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 26                          ;
+;         2 data inputs ; 121                         ;
+;         3 data inputs ; 78                          ;
+;         4 data inputs ; 415                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 49.60                       ;
-; Average LUT depth     ; 33.35                       ;
+; Max LUT depth         ; 8.00                        ;
+; Average LUT depth     ; 4.51                        ;
 +-----------------------+-----------------------------+
 
 
@@ -555,7 +502,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:08     ;
+; Top            ; 00:00:02     ;
 +----------------+--------------+
 
 
@@ -565,10 +512,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Thu Jun 22 17:47:04 2017
+    Info: Processing started: Wed Jun 28 13:27:30 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Ultrasound_controller -c Ultrasound_controller
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/robot_controller.vhd
+    Info (12022): Found design unit 1: robot_controller-behaviour File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/robot_controller.vhd Line: 22
+    Info (12023): Found entity 1: robot_controller File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/robot_controller.vhd Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/motor_controller.vhd
+    Info (12022): Found design unit 1: motor_controller-behaviour File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/motor_controller.vhd Line: 15
+    Info (12023): Found entity 1: motor_controller File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/motor_controller.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl/lcd_driver2.vhd
     Info (12022): Found design unit 1: lcd_driver2-behavior File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/lcd_driver2.vhd Line: 34
     Info (12023): Found entity 1: lcd_driver2 File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/lcd_driver2.vhd Line: 12
@@ -594,40 +547,24 @@ Warning (10631): VHDL Process Statement warning at controller.vhd(70): inferring
 Info (10041): Inferred latch for "enable_3" at controller.vhd(70) File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/controller.vhd Line: 70
 Info (10041): Inferred latch for "enable_2" at controller.vhd(70) File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/controller.vhd Line: 70
 Info (10041): Inferred latch for "enable_1" at controller.vhd(70) File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/controller.vhd Line: 70
-Info (278001): Inferred 3 megafunctions from design logic
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "ultrasound_controller:inst7|Mod0" File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/ultrasound_controller.vhd Line: 52
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "ultrasound_controller:inst3|Mod0" File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/ultrasound_controller.vhd Line: 52
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "ultrasound_controller:inst2|Mod0" File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/ultrasound_controller.vhd Line: 52
-Info (12130): Elaborated megafunction instantiation "ultrasound_controller:inst7|lpm_divide:Mod0" File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/ultrasound_controller.vhd Line: 52
-Info (12133): Instantiated megafunction "ultrasound_controller:inst7|lpm_divide:Mod0" with the following parameter: File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/vhdl/ultrasound_controller.vhd Line: 52
-    Info (12134): Parameter "LPM_WIDTHN" = "23"
-    Info (12134): Parameter "LPM_WIDTHD" = "23"
-    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
-    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_kcm.tdf
-    Info (12023): Found entity 1: lpm_divide_kcm File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/db/lpm_divide_kcm.tdf Line: 25
-Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_9nh.tdf
-    Info (12023): Found entity 1: sign_div_unsign_9nh File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/db/sign_div_unsign_9nh.tdf Line: 25
-Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_6af.tdf
-    Info (12023): Found entity 1: alt_u_div_6af File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/db/alt_u_div_6af.tdf Line: 27
-Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_7pc.tdf
-    Info (12023): Found entity 1: add_sub_7pc File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/db/add_sub_7pc.tdf Line: 23
-Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_8pc.tdf
-    Info (12023): Found entity 1: add_sub_8pc File: /datadisk/Coding/uni-stuff/hwp/aufg-06/Ultrasound_controller_restored/db/add_sub_8pc.tdf Line: 23
+Info (12128): Elaborating entity "motor_controller" for hierarchy "motor_controller:inst8"
+Info (12128): Elaborating entity "robot_controller" for hierarchy "robot_controller:inst1"
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "lcd_rw" is stuck at GND
+    Warning (13410): Pin "motor_B2" is stuck at GND
 Info (286030): Timing-Driven Synthesis is running
+Info (17049): 1 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 2506 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 967 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
-    Info (21059): Implemented 11 output pins
+    Info (21059): Implemented 15 output pins
     Info (21060): Implemented 3 bidirectional pins
-    Info (21061): Implemented 2491 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 1013 megabytes
-    Info: Processing ended: Thu Jun 22 17:47:35 2017
-    Info: Elapsed time: 00:00:31
-    Info: Total CPU time (on all processors): 00:01:00
+    Info (21061): Implemented 948 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 7 warnings
+    Info: Peak virtual memory: 975 megabytes
+    Info: Processing ended: Wed Jun 28 13:27:47 2017
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:36
 
 
