@@ -26,23 +26,32 @@ public class BlockWorld {
                       List<Block> blocks, char empty) {
         this.width = width;
         this.height = height;
-        this.blocks = new ArrayList<Block>(blocks);
+        this.blocks = new ArrayList<Block>(blocks.size());
+        for (Block block : blocks) {
+            this.blocks.add(block.clone());
+        }
 
         emptyworld = new char[width][height];
         // initializing the empty world
-        for (int i = 0; i < width; i++)
-            for (int j = 0; j < height; j++)
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
                 emptyworld[i][j] = empty;
+            }
+        }
 
-        for (Block block : this.blocks) {
-            if (block.getXcoord() > width)
+        for (int i = 0; i < this.blocks.size(); i++) {
+            if (this.blocks.get(i).getXcoord() > width - 1) {
                 throw new IllegalArgumentException("block can not exist in this World!");
-            block.setMaxheight(height);
+            }
+            if (this.blocks.get(i).getYcoord() > height - 1) {
+                throw new IllegalArgumentException("block can not exist in this World!");
+            }
+            this.blocks.get(i).setMaxheight(height);
         }
     }
 
     /**
-     * @return The witdh of the world
+     * @return The width of the world
      */
     public int getWidth() {
         return width;
@@ -67,14 +76,15 @@ public class BlockWorld {
         }
 
         // drawing the blocks
-        for (Block block : blocks)
-            canvas = block.draw(canvas);
+        for (Block block : blocks) {
+            canvas = block.draw(canvas, emptyworld[0][0]);
+        }
 
         return canvas;
     }
 
     /**
-     * makes on timestep in this world
+     * makes one timestep in this world
      */
     public void step() {
         blocks.forEach(Block::step);
@@ -85,11 +95,12 @@ public class BlockWorld {
      * @return if the world is at a standstill
      */
     public boolean isDead() {
+
         for (Block block : blocks) {
-            if (block.getYcoord() != height - 1)
+            if (block.getYcoord() != height - 1 && block.getSpeed() != 0) {
                 return false;
+            }
         }
         return true;
     }
-
 }
