@@ -1,0 +1,44 @@
+Aufgabe 1: 1/5
+================================================================================
+1/2 Ansatz
+0/3 Ausarbeitung
+
+Bitte nicht als .tex Datei sondern als .pdf, danke :)
+
+(i) A, B und C waren in Abhängigkeit von f zu wählen.
+(ii) A > 1,  B > C > 1 ist zu argumentieren / anzumerken.
+(iii) Es war zu Zeigen, dass aus der Wahl von A, B und C folgt, dass
+      s_i ≧ f ⋅ c_i
+
+Du wählst B, und grenzt A und C ein (1 < A = C < B). Du argumentierst nicht für B > 1, ein Beweis für (iii) fehlt komplett.
+
+
+Aufgabe 2: 4/5
+================================================================================
+2/3 Funktion
+1/1 Tests
+1/1 Doku + Checkstyle
+
+Intersssanter Lösungsansatz - allerdings funktioniert er nicht vollständig, der Counter hört wenn alle Maximalwerte erreicht sind nicht auf zu zählen. Dies war im Übungsblatt gefordert im 2. Teil der Aufgabenstellung.
+
+Aufgabe 3: 10/10
+================================================================================
+4/4 Ansatz
+6/6 Ausarbeitung
+
+Das war zwar nicht das was gedacht war - aber du hast die Aufgabenstellung korrekt erfüllt!
+
+Allgemeines Feedback zu deinem Code:
+========================================
+
+
+
+Erfahrungen
+========================================
+
+Ich finde deine Lösung auch recht elegant. Allerdings wenn später gefordert wird dass man auf die einzelnen Elemente des Counters in O(1) zugreifen kann wird es problematisch. Aber da das nicht gefordert war - alles gut :)
+
+Rückfragen
+===========
+Falls es Klärungsbedarf bezüglich der Benotung, des Feedbacks oder sonstigem gibt, stehe ich gerne für Rückfragen zur Verfügung.
+E-mail: selgs@informatik.uni-freiburg.de
