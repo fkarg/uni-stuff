@@ -59,10 +59,12 @@ public class Trees implements Tree {
     @Override
     public Tree add(int i) {
         if (!got) return new Trees(i);
-        if (i < elem)
+        if (i < elem) {
             return new Trees(elem, left.add(i), right);
-        if (i > elem)
+        }
+        if (i > elem) {
             return new Trees(elem, left, right.add(i));
+        }
         return this;
     }
 
@@ -86,11 +88,13 @@ public class Trees implements Tree {
         String r = right.elementsAsString();
         String l = left.elementsAsString();
         String ret = "";
-        if (l.length() > 0)
+        if (l.length() > 0) {
             ret = l + ", ";
+        }
         ret += elem;
-        if (r.length() > 0)
+        if (r.length() > 0) {
             ret += ", " + r;
+        }
         return ret;
     }
 }

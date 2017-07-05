@@ -22,7 +22,9 @@ public class Block {
      * @param shape The shape with which the block is to be displayed.
      */
     public Block(int x, int y, int velocity, char shape) {
-        if (x < 0 || y < 0 || velocity < 0) throw new IllegalArgumentException("bigger zero!!");
+        if (x < 0 || y < 0 || velocity < 0) {
+            throw new IllegalArgumentException("bigger zero!!");
+        }
 
         this.xcoord = x;
         this.ycoord = y;
@@ -52,13 +54,21 @@ public class Block {
     }
 
     /**
+     * @return The current speed of the block
+     */
+    public int getSpeed() {
+        return vel;
+    }
+
+    /**
      * Drawing this block on the given canvas
      * @param canvas The canvas to be drawn upon
      * @return The canvas now including this block
      * (Block might not be drawn if another block is there already)
      */
-    public char[][] draw(char[][] canvas) {
-        canvas[xcoord][ycoord] = (char) Math.max((int) canvas[xcoord][ycoord], (int) shape);
+    public char[][] draw(char[][] canvas, char empty) {
+        char a = canvas[xcoord][ycoord];
+        canvas[xcoord][ycoord] = a == empty ? shape : (char) Math.max((int) a, (int) shape);
         return canvas;
     }
 
@@ -71,5 +81,12 @@ public class Block {
      */
     public void setMaxheight(int maxheight) {
         this.maxheight = maxheight;
+    }
+
+    /**
+     * @return an exact copy of this block
+     */
+    public Block clone() {
+        return new Block(xcoord, ycoord, vel, shape);
     }
 }
