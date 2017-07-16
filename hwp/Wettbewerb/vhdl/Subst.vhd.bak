@@ -1,0 +1,22 @@
+-- This is the Subst module
+library ieee;
+
+use ieee.std_logic_unsigned.all;
+use ieee.std_logic_1164.all;
+
+
+
+entity Subst is 
+port(
+	input : in std_logic_vector(31 downto 0);
+	
+	output : out std_logic_vector(31 downto 0)
+);
+end Subst;
+
+
+
+architecture behaviour of Subst is
+begin
+
+end behaviour;

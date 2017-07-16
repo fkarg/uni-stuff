@@ -1,0 +1,65 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2016  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+*/
+(header "symbol" (version "1.2"))
+(symbol
+	(rect 16 16 256 112)
+	(text "Crypto" (rect 5 0 45 14)(font "Intel Clear" (font_size 8)))
+	(text "inst" (rect 8 80 25 92)(font "Intel Clear" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "key[31..0]" (rect 0 0 59 14)(font "Intel Clear" (font_size 8)))
+		(text "key[31..0]" (rect 21 27 80 41)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "hamming[31..0]" (rect 0 0 93 14)(font "Intel Clear" (font_size 8)))
+		(text "hamming[31..0]" (rect 21 43 114 57)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 48)(pt 16 48)(line_width 3))
+	)
+	(port
+		(pt 240 32)
+		(output)
+		(text "decoded[31..0]" (rect 0 0 89 14)(font "Intel Clear" (font_size 8)))
+		(text "decoded[31..0]" (rect 130 27 219 41)(font "Intel Clear" (font_size 8)))
+		(line (pt 240 32)(pt 224 32)(line_width 3))
+	)
+	(port
+		(pt 240 48)
+		(output)
+		(text "busy" (rect 0 0 28 14)(font "Intel Clear" (font_size 8)))
+		(text "busy" (rect 191 43 219 57)(font "Intel Clear" (font_size 8)))
+		(line (pt 240 48)(pt 224 48))
+	)
+	(port
+		(pt 240 64)
+		(output)
+		(text "correct" (rect 0 0 42 14)(font "Intel Clear" (font_size 8)))
+		(text "correct" (rect 177 59 219 73)(font "Intel Clear" (font_size 8)))
+		(line (pt 240 64)(pt 224 64))
+	)
+	(drawing
+		(rectangle (rect 16 16 224 80))
+	)
+)
