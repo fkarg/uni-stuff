@@ -21,9 +21,11 @@ public class Label implements Session {
         this.session = session;
     }
 
-
     @Override
     public boolean check(Map<String, Session> jumpTable, Queue<Message> trace) {
+        if (session.getJumpTable().containsKey(name)) {
+            throw new IllegalArgumentException("Label already exists");
+        }
         return session.check(jumpTable, trace);
     }
 
