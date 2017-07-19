@@ -9,7 +9,11 @@ import java.util.Scanner;
  */
 public class RepeatEditor extends ListEditor {
 
-    protected RepeatEditor(PrintWriter out) {
+    /**
+     * Create new RepeatEditor
+     * @param out the PrintWriter for the ListEditor
+     */
+    public RepeatEditor(PrintWriter out) {
         super(out);
     }
 

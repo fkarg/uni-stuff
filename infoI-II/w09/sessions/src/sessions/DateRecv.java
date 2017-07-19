@@ -8,11 +8,10 @@ import java.util.Queue;
 public class DateRecv implements Session {
 
     private Session next;
-    // public final String DATEPATTERN = "^[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}$";
 
     /**
-     * Constructing new DateRecv Session
-     * @param next the 'next' Session^
+     * Creates a new Data-Receiving Session
+     * @param next the 'next' Session
      */
     DateRecv(Session next) {
         this.next = next;
@@ -23,7 +22,6 @@ public class DateRecv implements Session {
         return trace.size() > 0 &&
                 trace.peek().getMode() == MessageMode.RECEIVE &&
                 trace.poll().getKind() == MessageKind.DATA &&
-                // trace.poll().getPayLoad().matches("[a-zA-Z0-9]+") &&
                 next.check(trace);
     }
 
