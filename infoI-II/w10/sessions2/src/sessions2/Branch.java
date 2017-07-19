@@ -38,7 +38,12 @@ public class Branch implements Session {
     @Override
     public Map<String, Session> getJumpTable() {
         Map<String, Session> table = new HashMap<>();
-        clauses.forEach((name, session) -> table.putAll(session.getJumpTable()));
+        for (String name : clauses.keySet()) {
+            if (table.containsKey(name)) {
+                throw new IllegalArgumentException("already got that key");
+            }
+            table.putAll(clauses.get(name).getJumpTable());
+        }
         return table;
     }
 }

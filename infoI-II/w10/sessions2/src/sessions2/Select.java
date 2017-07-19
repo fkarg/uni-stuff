@@ -38,7 +38,14 @@ public class Select implements Session {
     @Override
     public Map<String, Session> getJumpTable() {
         Map<String, Session> table = new HashMap<>();
-        clauses.forEach((name, session) -> table.putAll(session.getJumpTable()));
+        for (Session s : clauses.values()) {
+            for (String jmp : s.getJumpTable().keySet()) {
+                if (table.containsKey(jmp)) {
+                    throw new IllegalArgumentException("Key already included");
+                }
+            }
+            table.putAll(s.getJumpTable());
+        }
         return table;
     }
 }
