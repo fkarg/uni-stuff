@@ -94,7 +94,7 @@ begin
 	 process (clk_50)
 	 begin
 		if rising_edge(clk_50) then
-			if lastStep = stepIn and lastInput = hamming and lastChange > 50 then
+			if lastStep = stepIn and lastInput = hamming and lastChange > 20 then
 				action <= '1';
 				lastChange <= (others => '0');
 			elsif lastInput /= hamming then

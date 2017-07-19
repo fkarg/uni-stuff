@@ -18,7 +18,7 @@ public abstract class ListEditor {
     private final Deque<String> pushBackBuffer = new LinkedList<>();
     protected final PrintWriter out;
 
-    protected ListEditor(PrintWriter out) {
+    public ListEditor(PrintWriter out) {
         this.out = out;
     }
 

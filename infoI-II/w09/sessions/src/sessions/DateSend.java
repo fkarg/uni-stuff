@@ -1,7 +1,6 @@
 package sessions;
 
 import java.util.Queue;
-import java.util.regex.Pattern;
 
 /**
  * Author Felix Karg, written 2017-07-05.
@@ -9,10 +8,9 @@ import java.util.regex.Pattern;
 public class DateSend implements Session {
 
     private Session next;
-    // public final String DATEPATTERN = "^[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}$";
 
     /**
-     * Creates a new Date-sending Session
+     * Creates a new Data-sending Session
      * @param next the following session
      */
     DateSend(Session next) {
@@ -24,7 +22,6 @@ public class DateSend implements Session {
         return trace.size() > 0 &&
                 trace.peek().getMode() == MessageMode.SEND &&
                 trace.poll().getKind() == MessageKind.DATA &&
-                // trace.poll().getPayLoad().matches("[a-zA-Z0-9]+") &&
                 next.check(trace);
     }
 

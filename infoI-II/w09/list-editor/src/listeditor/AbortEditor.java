@@ -9,7 +9,11 @@ import java.util.Scanner;
  */
 public class AbortEditor extends ListEditor {
 
-    protected AbortEditor(PrintWriter out) {
+    /**
+     * Create new AbortEditor
+     * @param out the PrintWriter for output
+     */
+    public AbortEditor(PrintWriter out) {
         super(out);
     }
 

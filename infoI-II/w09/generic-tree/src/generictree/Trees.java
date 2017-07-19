@@ -16,9 +16,9 @@ public class Trees<C extends Comparable> implements Tree<C> {
      * @param elements The elements to be included (have to be Comparable)
      * @return a Tree containing these elements
      */
-    public static <C extends Comparable<C>> Tree<C> makeTree(C[] elements) {
+    public static <C extends Comparable<C>> Tree makeTree(C[] elements) {
 
-        Trees tree = new Trees<>();
+        Tree<C> tree = new Trees<>();
 
         for (C element : elements) {
             tree = tree.add(element);
@@ -58,7 +58,8 @@ public class Trees<C extends Comparable> implements Tree<C> {
     }
 
     @Override
-    public Trees<C> add(C i) {
+    @SuppressWarnings("unchecked") // this is valid because both i and elem are comparable
+    public Tree<C> add(C i) {
         if (!got) return new Trees<C>(i);
         if (i.compareTo(elem) < 0) {
             return new Trees<C>(elem, left.add(i), right);
@@ -70,11 +71,11 @@ public class Trees<C extends Comparable> implements Tree<C> {
     }
 
     @Override
+    @SuppressWarnings("unchecked") // this is valid because both i and elem are comparable
     public boolean contains(C i) {
-        if (!got) return false;
-        return i.compareTo(elem) == 0 ||
+        return got && (i.compareTo(elem) == 0 ||
                 (i.compareTo(elem) < 0 && left.contains(i)) ||
-                (i.compareTo(elem) > 0 && right.contains(i));
+                (i.compareTo(elem) > 0 && right.contains(i)));
     }
 
     @Override
