@@ -11,7 +11,7 @@ port(
         key : in std_logic_vector(31 downto 0);
         RKin : in std_logic_vector(31 downto 0);
         round : in std_logic_vector(2 downto 0);
-		  enable : in std_logic;
+		  clk : in std_logic;
 
         RKout : out std_logic_vector(31 downto 0);
         RKconst : out std_logic_vector(31 downto 0)
@@ -26,35 +26,32 @@ architecture behaviour of KeyControl is
         constant roundkey3 : std_logic_vector(31 downto 0) := "10111001100111111011011111010100";
         constant roundkey4 : std_logic_vector(31 downto 0) := "01100111001010110011000011101101";
 		  signal tmp : std_logic_vector(31 downto 0);
+		  signal oldround : std_logic_vector(2 downto 0) := "111";
 begin
 
 
 
+RKconst <= roundkey1 when round = "000" or round = "100" else
+				roundkey2 when round = "001" or round = "101" else
+ 				roundkey3 when round = "010" or round = "110" else
+ 				roundkey4; -- when round = "011" or round = "111";
 
-process (enable)
+
+process (clk)
 begin
 
 	-- based on the round, generate the key and output the correct round-constant.
 
-	-- if rising_edge(enable) then
-	
-    if round = "000" or round = "100" then
-        RKconst <= roundkey1;
-    elsif round = "001" or round = "101" then
-        RKconst <= roundkey2;
-    elsif round = "010" or round = "110" then
-        RKconst <= roundkey3;
-    elsif round = "011" or round = "111" then
-        RKconst <= roundkey4;
-    end if;
+	if rising_edge(clk) and round /= oldround then
+	oldround <= round;
 
-    if round = "000" and rising_edge(enable) then
+    if round = "000"then
         RKout <= key;
-    elsif rising_edge(enable) then
+    else
         RKout <= RKin;
     end if;
 	 
-	-- end if;
+	end if;
 
 end process;
 
