@@ -11,12 +11,10 @@ entity dataToLcd is port(
 	clk: in std_logic;
 	
 	-- value of an adc
-	adc: in std_logic_vector (11 downto 0);
+	heading: in std_logic_vector (8 downto 0);
 	
-	-- the currently pressed button
-	-- all 0 means no button, "00001" means button 1, etc.
-	pressedButton: in std_logic_vector(5 downto 1);
-	
+	-- value of an adc
+	adc: in std_logic_vector (11 downto 0);	
 	-- the decryption key
 	key: in std_logic_vector(31 downto 0);
 	
@@ -37,7 +35,7 @@ end dataToLcd;
 
 
 architecture behavior of dataToLcd is
-	-- binary to decimal converter (used for adc -> display)
+	-- binary to decimal converter (used for heading -> display)
 	component binaryToDecimal
 		port(clk: in std_logic;
 			binaryIn: in std_logic_vector(11 downto 0);			
@@ -74,20 +72,34 @@ architecture behavior of dataToLcd is
 	signal counter : natural := 0; 
 		
 	
+	-- for heading values:
+	signal heading_0_d3 : std_logic_vector(3 downto 0);
+	signal heading_0_d2 : std_logic_vector(3 downto 0);
+	signal heading_0_d1 : std_logic_vector(3 downto 0);
+	signal heading_0_d0 : std_logic_vector(3 downto 0);
+	
+	
 	-- for adc values:
 	signal adc_0_d3 : std_logic_vector(3 downto 0);
 	signal adc_0_d2 : std_logic_vector(3 downto 0);
 	signal adc_0_d1 : std_logic_vector(3 downto 0);
 	signal adc_0_d0 : std_logic_vector(3 downto 0);
 	
+	signal heading11 : std_logic_vector(11 downto 0);
+	
 	
 	
 begin
 
-	-- convert binary adc values into decimal digits
-	converter1: binaryToDecimal port map (clk => clk, binaryIn => adc, d3 => adc_0_d3, d2 => adc_0_d2, d1 => adc_0_d1, d0 => adc_0_d0);
+	heading11(11 downto 3) <= heading;
+	heading11(2 downto 0) <= "000";
 	
-
+	-- convert binary heading values into decimal digits
+	converter1: binaryToDecimal port map (clk => clk, binaryIn => heading11, d3 => heading_0_d3, d2 => heading_0_d2, d1 => heading_0_d1, d0 => heading_0_d0);
+	
+	-- convert binary adc values into decimal digits
+	converter2: binaryToDecimal port map (clk => clk, binaryIn => adc, d3 => adc_0_d3, d2 => adc_0_d2, d1 => adc_0_d1, d0 => adc_0_d0);
+	
 	process(clk)
 	begin
 		if clk'event and clk = '1' then
@@ -320,12 +332,49 @@ begin
 					end if;	
 					
 				end if;
-			else -- display_state = showData -> display status of adc's and buttons
+
+---------																							------------------				
+			else -- display_state = showData -> display status heading and buttons
 				
 				-----
 				-- line 0
 				-----
 				if lineCount = 0 then				
+					-- write "heading: xxxx"
+					if charCount = 0 then
+						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('h'),8);
+					elsif charCount = 1 then
+						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('e'),8);
+					elsif charCount = 2 then
+						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('a'),8);
+					elsif charCount = 3 then
+						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('d'),8);
+					elsif charCount = 4 then
+						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('i'),8);
+					elsif charCount = 5 then
+						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('n'),8);
+					elsif charCount = 6 then
+						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('g'),8);
+					elsif charCount = 7 then
+						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos(':'),8);
+					elsif charCount = 8 then
+						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos(' '),8);
+					elsif charCount = 9 then
+						lcd_data <= heading_0_d3 + "00110000";
+					elsif charCount = 10 then
+						lcd_data <= heading_0_d2 + "00110000";
+					elsif charCount = 11 then
+						lcd_data <= heading_0_d1 + "00110000";
+					elsif charCount = 12 then
+						lcd_data <= heading_0_d0 + "00110000";
+					else 
+						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos(' '),8);
+					end if;
+					
+				-----
+				-- line 1
+				-----
+				elsif lineCount = 1 then				
 					-- write "adc: xxxx"
 					if charCount = 0 then
 						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('a'),8);
@@ -345,46 +394,6 @@ begin
 						lcd_data <= adc_0_d1 + "00110000";
 					elsif charCount = 8 then
 						lcd_data <= adc_0_d0 + "00110000";
-					else 
-						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos(' '),8);
-					end if;
-					
-				-----
-				-- line 1
-				-----
-				elsif lineCount = 1 then				
-					-- write "button: x"
-					if charCount = 0 then
-						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('b'),8);
-					elsif charCount = 1 then
-						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('u'),8);
-					elsif charCount = 2 then
-						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('t'),8);
-					elsif charCount = 3 then
-						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('t'),8);
-					elsif charCount = 4 then
-						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('o'),8);
-					elsif charCount = 5 then
-						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('n'),8);
-					elsif charCount = 6 then
-						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos(':'),8);
-					elsif charCount = 7 then
-						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos(' '),8);
-					elsif charCount = 8 then
-						if pressedButton = "00001" then 
-							lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('1'),8);
-						elsif pressedButton = "00010" then 
-							lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('2'),8);
-						elsif pressedButton = "00100" then 
-							lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('3'),8);
-						elsif pressedButton = "01000" then 
-							lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('4'),8);
-						elsif pressedButton = "10000" then 
-							lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('5'),8);
-						else  
-							lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos('-'),8);
-						end if;
-						
 					else 
 						lcd_data <= CONV_STD_LOGIC_VECTOR(character'pos(' '),8);
 					end if;
