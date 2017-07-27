@@ -3,13 +3,14 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity instruction_buffer is port(
-	data_in  : in std_logic_vector(31 downto 0);
-	inst_out : out std_logic_vector(15 downto 0);
 	clk      : in std_logic;
+	data_in  : in std_logic_vector(31 downto 0);
 	keyOK    : in std_logic;
-	get_Data : out std_logic;
 	put_inst : in std_logic;
-	ready    : out std_logic
+	
+	ready    : out std_logic;
+	inst_out : out std_logic_vector(15 downto 0);
+	get_Data : out std_logic
 	);
 end instruction_buffer;
 

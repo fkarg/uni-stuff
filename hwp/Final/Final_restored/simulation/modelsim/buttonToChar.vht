@@ -26,7 +26,8 @@
 -- 
 
 LIBRARY ieee;                                               
-USE ieee.std_logic_1164.all;                                
+	 USE ieee.std_logic_1164.all;                                
+	 USE ieee.numeric_std.all;
 
 ENTITY buttonToChar_vhd_tst IS
 END buttonToChar_vhd_tst;
@@ -34,17 +35,15 @@ ARCHITECTURE buttonToChar_arch OF buttonToChar_vhd_tst IS
 -- constants                                                 
 -- signals                                                   
 SIGNAL blocked : STD_LOGIC;
-SIGNAL buttonIn : STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL analogIn : STD_LOGIC_VECTOR(11 DOWNTO 0);
 SIGNAL clk_50 : STD_LOGIC;
 SIGNAL keyOut : STD_LOGIC_VECTOR(31 DOWNTO 0);
-signal stateOut : std_logic_vector(3 downto 0);
 COMPONENT buttonToChar
 	PORT (
 	blocked : IN STD_LOGIC;
-	buttonIn : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+	analogIn : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
 	clk_50 : IN STD_LOGIC;
-	keyOut : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-	stateOut : out std_logic_vector(3 downto 0)
+	keyOut : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
 	);
 END COMPONENT;
 BEGIN
@@ -52,30 +51,29 @@ BEGIN
 	PORT MAP (
 -- list connections between master ports and signals
 	blocked => blocked,
-	buttonIn => buttonIn,
+	analogIn => analogIn,
 	clk_50 => clk_50,
-	keyOut => keyOut,
-	stateOut => stateOut
+	keyOut => keyOut
 	);
 init : PROCESS                                               
 -- variable declarations                                     
-BEGIN  
+BEGIN
    blocked <= '0';
-   buttonIn <= "000";
+   analogIn <= std_logic_vector(to_unsigned(2400, 12));
 	wait for 400 ns;
-	buttonIn(0) <= '1';
+   analogIn <= std_logic_vector(to_unsigned(25, 12));
 	wait for 200 ns;
-	buttonIn <= "000";
+   analogIn <= std_logic_vector(to_unsigned(2400, 12));
 	wait for 600 ns;
-	buttonIn(1) <= '1';
+   analogIn <= std_logic_vector(to_unsigned(980, 12));
 	wait for 50200 ns;
-	buttonIn <= "000";
+   analogIn <= std_logic_vector(to_unsigned(2400, 12));
 	wait for 2000 ns;
-	buttonIn(2) <= '1';
+   analogIn <= std_logic_vector(to_unsigned(1900, 12));
 	wait for 50200 ns;
-	buttonIn <= "000";
+   analogIn <= std_logic_vector(to_unsigned(2400, 12));
 	wait for 600 ns;
-        -- code that executes only once                      
+
 WAIT;                                                       
 END PROCESS init;                                           
 always : PROCESS

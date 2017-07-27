@@ -4,10 +4,10 @@ library ieee;
 
 
 entity uart_receiver is port(
+	clk_50      :  in  std_logic;
 	serial_in   :  in  std_logic;
-	data_out    :  out std_logic_vector(7 downto 0);
-	data_ready  :  out std_logic;
-	clk_50      :  in  std_logic);
+	data_out    :  out std_logic_vector(8 downto 0)
+);
 end uart_receiver;
 
 
@@ -61,7 +61,7 @@ begin
 			elsif state = bit7 and count >= 1300 and serial_in = '1' then
 				state <= success;
 				count <= (others => '0');
-				data_out <= new_data;
+				data_out(8 downto 1) <= new_data;
 			elsif state = bit7 and count >= 1300 and serial_in = '0' then
 				state <= stop;
 				count <= (others => '0');
@@ -74,5 +74,5 @@ begin
 		end if;
 	 end process;
 
-	 data_ready <= '1' when state = success else '0';
+	 data_out(0) <= '0';
 end b;

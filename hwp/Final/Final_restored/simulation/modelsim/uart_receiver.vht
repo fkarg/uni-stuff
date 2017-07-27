@@ -34,15 +34,13 @@ ARCHITECTURE uart_receiver_arch OF uart_receiver_vhd_tst IS
 -- constants                                                 
 -- signals                                                   
 SIGNAL clk_50 : STD_LOGIC;
-SIGNAL data_out : STD_LOGIC_VECTOR(7 DOWNTO 0);
-SIGNAL data_ready : STD_LOGIC;
 SIGNAL serial_in : STD_LOGIC;
+SIGNAL data_out : STD_LOGIC_VECTOR(8 DOWNTO 0);
 COMPONENT uart_receiver
 	PORT (
 	clk_50 : IN STD_LOGIC;
-	data_out : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-	data_ready : OUT STD_LOGIC;
-	serial_in : IN STD_LOGIC
+	serial_in : IN STD_LOGIC;
+	data_out : OUT STD_LOGIC_VECTOR(8 DOWNTO 0)
 	);
 END COMPONENT;
 BEGIN
@@ -51,7 +49,6 @@ BEGIN
 -- list connections between master ports and signals
 	clk_50 => clk_50,
 	data_out => data_out,
-	data_ready => data_ready,
 	serial_in => serial_in
 	);
 init : PROCESS                                               
