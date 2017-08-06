@@ -1,0 +1,125 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk_50'
+Slack : -4.050
+TNS   : -981.853
+
+Type  : Slow 1200mV 85C Model Setup 'g_reader:inst|sclk_intern'
+Slack : -2.210
+TNS   : -92.825
+
+Type  : Slow 1200mV 85C Model Hold 'clk_50'
+Slack : 0.249
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'g_reader:inst|sclk_intern'
+Slack : 0.356
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'g_reader:inst|sclk_intern'
+Slack : -0.505
+TNS   : -2.387
+
+Type  : Slow 1200mV 85C Model Recovery 'clk_50'
+Slack : -0.373
+TNS   : -0.481
+
+Type  : Slow 1200mV 85C Model Removal 'clk_50'
+Slack : 0.565
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'g_reader:inst|sclk_intern'
+Slack : 0.793
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_50'
+Slack : -3.000
+TNS   : -381.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'g_reader:inst|sclk_intern'
+Slack : -1.000
+TNS   : -59.000
+
+Type  : Slow 1200mV 0C Model Setup 'clk_50'
+Slack : -3.583
+TNS   : -848.112
+
+Type  : Slow 1200mV 0C Model Setup 'g_reader:inst|sclk_intern'
+Slack : -1.930
+TNS   : -78.978
+
+Type  : Slow 1200mV 0C Model Hold 'clk_50'
+Slack : 0.221
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'g_reader:inst|sclk_intern'
+Slack : 0.312
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'g_reader:inst|sclk_intern'
+Slack : -0.443
+TNS   : -2.096
+
+Type  : Slow 1200mV 0C Model Recovery 'clk_50'
+Slack : -0.223
+TNS   : -0.223
+
+Type  : Slow 1200mV 0C Model Removal 'clk_50'
+Slack : 0.511
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'g_reader:inst|sclk_intern'
+Slack : 0.831
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_50'
+Slack : -3.000
+TNS   : -381.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'g_reader:inst|sclk_intern'
+Slack : -1.000
+TNS   : -59.000
+
+Type  : Fast 1200mV 0C Model Setup 'clk_50'
+Slack : -2.058
+TNS   : -402.955
+
+Type  : Fast 1200mV 0C Model Setup 'g_reader:inst|sclk_intern'
+Slack : -1.081
+TNS   : -26.933
+
+Type  : Fast 1200mV 0C Model Hold 'clk_50'
+Slack : 0.135
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'g_reader:inst|sclk_intern'
+Slack : 0.174
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'g_reader:inst|sclk_intern'
+Slack : 0.010
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'clk_50'
+Slack : 0.214
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'clk_50'
+Slack : 0.315
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'g_reader:inst|sclk_intern'
+Slack : 0.514
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_50'
+Slack : -3.000
+TNS   : -404.301
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'g_reader:inst|sclk_intern'
+Slack : -1.000
+TNS   : -59.000
+
+------------------------------------------------------------

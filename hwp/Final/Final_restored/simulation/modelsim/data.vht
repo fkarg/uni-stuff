@@ -51,6 +51,27 @@ BEGIN
 init : PROCESS                                               
 -- variable declarations                                     
 BEGIN                                                        
+
+fetch <= '0';
+
+wait for 2 us;
+
+fetch <= '1';
+
+wait for 1200 ns;
+
+fetch <= '0';
+
+wait for 1200 ns;
+
+fetch <= '1';
+
+wait for 2 us;
+
+fetch <= '0';
+
+wait for 1 us;
+
         -- code that executes only once                      
 WAIT;                                                       
 END PROCESS init;                                           
