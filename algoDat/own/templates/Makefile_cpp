@@ -21,6 +21,10 @@ checkstyle:
 	@# Allow non-const references.
 	python $(CPPLINT_PATH) --filter='$(CPPLINT_FILTERS)' *.h *.cpp
 
+run: $(MAIN_BINARIES)
+	make compile
+	for T in $(MAIN_BINARIES); do ./$$T; done
+
 clean:
 	rm -f *.o
 	rm -f $(MAIN_BINARIES)
@@ -28,11 +32,6 @@ clean:
 	rm -f *.class
 	rm -f *Test.TMP.*
 	rm -f core
-
-plot: MinSortMain
-	./MinSortMain | tee times.txt
-	gnuplot -e 'plot "times.txt"; pause mouse;'
-	rm -f times.txt
 
 %Main: %Main.o $(OBJECTS)
 	$(CXX) -o $@ $^

@@ -1,0 +1,20 @@
+Blatt-10
+========
+
+Evaluationsbogen ausgefüllt.
+
+Dijkstra's Algorithmus: ca 3h, einlesen in Verschiedenes in C++
+war dringend wieder nötig, plus das übliche gefriesel.
+
+Kosten des Längsten Kürzesten weges: 11704 [unit?]
+Index des Längsten Kürzesten weges: 1136500
+Link zum visualisiertem Pfad: http://share.mapbbcode.org/wzfrr
+
+(Saarland: 3321, 79260 sowie http://share.mapbbcode.org/gaumy )
+
+
+Der Kohlenstoff kam durch Vulkane an die Oberfläche der Erde (oder war das Schwefel?),
+jedenfalls entstand der ein Zyklus vor uns durch Kernfusion einer Superschweren Sonne,
+die in ihrem Endstadium nicht an die Wasserstoffreste kam und dadurch Helium zu schwereren
+Elementen Fusioniert hat, bis hin zu Uran etc..
+

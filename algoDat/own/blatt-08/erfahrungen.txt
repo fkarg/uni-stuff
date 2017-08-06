@@ -10,7 +10,7 @@ Aufgabe 1
 =========
 
 
-Intuitiv gesprochen ist ein Präfixbaum vermutlich am besten, da einfach 
+Intuitiv gesprochen ist ein Präfixbaum vermutlich am besten, da einfach
 ganze Bereiche 'ausgewählt' werden können (nach Anforderung).
 Außerdem sind sowohl insert als auch lookup insgesamt schnell.
 
