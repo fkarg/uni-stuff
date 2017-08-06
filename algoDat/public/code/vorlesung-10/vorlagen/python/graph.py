@@ -11,7 +11,7 @@ class Graph:
         """ Create an empty directed graph. """
         self.num_nodes = -1
         self.num_edges = -1
-        self.adjancency_lists = []
+        self.adjacency_lists = []
         self.nodes = []
 
     def read(self, filename):
@@ -27,13 +27,13 @@ class Graph:
             self.num_edges = int(f.readline())
             for u in range(0, self.num_nodes):
                 self.nodes.append(Node(u, *f.readline().strip().split('\t')))
-                self.adjancency_lists.append([])
+                self.adjacency_lists.append([])
             for line in f:
                 if line.startswith('#'):
                     continue
                 u, v, cost = line.strip().split('\t')
                 edge = Edge(v, cost)
-                self.adjancency_lists[int(u)].append(edge)
+                self.adjacency_lists[int(u)].append(edge)
 
     def __repr__(self):
         """
@@ -44,17 +44,17 @@ class Graph:
         []
         >>> g.num_nodes = 2
         >>> g.num_edges = 1
-        >>> g.adjancency_lists.append([Edge(1, 2)])
-        >>> g.adjancency_lists.append([])
+        >>> g.adjacency_lists.append([Edge(1, 2)])
+        >>> g.adjacency_lists.append([])
         >>> g
         [0->1|2]
-        >>> g.adjancency_lists[1].append(Edge(0, -2))
+        >>> g.adjacency_lists[1].append(Edge(0, -2))
         >>> g
         [0->1|2, 1->0|-2]
         """
         edge_string = []
         for u in range(0, self.num_nodes):
-            for edge in self.adjancency_lists[u]:
+            for edge in self.adjacency_lists[u]:
                 edge_string.append('{}{}'.format(u, edge))
         return '[{}]'.format(', '.join(edge_string))
 
