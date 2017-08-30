@@ -70,4 +70,28 @@ public class ExampleTests {
         assertEquals(Arrays.asList("", ""), arr.get());
     }
 
+    @Test
+    public void testTooMuchToUndo() {
+        // Testing if the history size is really only this big
+        UndoArray<String> arr = new UndoArray<>("", 2, 2);
+        arr.put(0, "Hello");
+        arr.put(1, "World!");
+        arr.put(1, "Welt!");
+
+        assertEquals(Arrays.asList("Hello", "Welt!"), arr.get());
+
+        assertTrue(arr.undo());
+        assertEquals(Arrays.asList("Hello", "World!"), arr.get());
+
+        arr.put(1, "!");
+        assertTrue(arr.undo());
+        assertEquals(Arrays.asList("Hello", "World!"), arr.get());
+
+        assertTrue(arr.undo());
+
+        assertFalse(arr.undo());
+
+        assertEquals(Arrays.asList("Hello", ""), arr.get());
+    }
+
 }

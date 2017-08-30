@@ -15,4 +15,15 @@ public class ExampleTests {
     }
 
 
+    @Test(expected = IllegalArgumentException.class)
+    public void failtest() {
+        Main.longestTriple(Arrays.asList("a", "b"));
+    }
+
+    @Test
+    public void sndlongest() {
+        assertEquals(new Triple("bb", "c", "ddd"),
+                Main.longestTriple(Arrays.asList("a", "bb", "c", "ddd", "e", "ff", "gg")));
+    }
+
 }

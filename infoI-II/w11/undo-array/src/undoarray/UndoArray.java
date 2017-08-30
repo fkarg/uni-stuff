@@ -9,11 +9,8 @@ import java.util.List;
  */
 public class UndoArray<X> {
 
-    private int goneBack = 0;
-    private final X init;
-    private final int size;
     private final int goBackSize;
-    // private ArrayList<X> list;
+    private ArrayList<X> list;
     private ArrayList<Tuple<Integer, X>> history;
 
     /**
@@ -28,10 +25,12 @@ public class UndoArray<X> {
             throw new IllegalArgumentException("sizes have to be bigger 0!");
         }
 
-        this.init = init;
-        this.size = size;
         goBackSize = historySize;
         history = new ArrayList<>();
+        list = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            list.add(i, init);
+        }
     }
 
     /**
@@ -41,27 +40,22 @@ public class UndoArray<X> {
      */
     public void put(int idx, X elem) {
 
-        if (idx > size - 1 || idx < 0) {
+        if (idx >= list.size() || idx < 0) {
             throw new IndexOutOfBoundsException();
         }
 
-        history.add(new Tuple<>(idx, elem));
-        if (goneBack > 0) {
-            goneBack -= 1;
+        if (history.size() >= goBackSize) {
+            history.remove(0);
         }
+
+        history.add(new Tuple<>(idx, list.get(idx)));
+        list.set(idx, elem);
     }
 
     /**
      * @return immutable list of elements in this Array
      */
     public List<X> get() {
-        ArrayList<X> list = new ArrayList<>();
-
-        for (int i = 0; i < size; i++) {
-            list.add(i, init);
-        }
-
-        history.forEach(t -> list.set(t.fst, t.snd));
         return Collections.unmodifiableList(list);
     }
 
@@ -71,11 +65,11 @@ public class UndoArray<X> {
      * false otherwise.
      */
     public boolean undo() {
-        if (history.size() == 0 || goneBack >= goBackSize) {
+        if (history.size() == 0) {
             return false;
         }
-        history.remove(history.size() - 1);
-        goneBack += 1;
+        Tuple<Integer, X> undoaction = history.remove(history.size() - 1);
+        list.set(undoaction.fst, undoaction.snd);
         return true;
     }
 }
