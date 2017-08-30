@@ -27,12 +27,9 @@ public class ExampleTests {
 
     @Test
     public void testWithBrake() {
-        IPoolWorld w = PoolWorlds.makePoolWorld(Geometry.v2(50, 60),
-                                                Geometry.v2(10, -20),
-                                                110,
-                                                100,
-                                                0.2,
-                                                0.01);
+        IPoolWorld w = PoolWorlds.makePoolWorld(new V2(50, 60), new V2(10, -20),
+                                                110, 100, 0.2, 0.01);
+
         assertV2Equals(Geometry.v2(50, 60), w.getCurrentBallPosition(), 0.001);
         assertV2Equals(Geometry.v2(79.1, 0.9), w.step(3).getCurrentBallPosition(), 0.001);
 
@@ -45,12 +42,8 @@ public class ExampleTests {
 
     @Test
     public void testDone() {
-        IPoolWorld w = PoolWorlds.makePoolWorld(Geometry.v2(6, 5),
-                                                Geometry.v2(0, 0.009),
-                                                150,
-                                                100,
-                                                0,
-                                                0.01);
+        IPoolWorld w = PoolWorlds.makePoolWorld(new V2(6, 5),new V2(0, 0.009),
+                                                150, 100, 0, 0.01);
         assertFalse(w.isMoving());
     }
 
@@ -63,5 +56,25 @@ public class ExampleTests {
                      delta);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testPoolWorld() {
+        IPoolWorld w = PoolWorlds.makePoolWorld(new V2(-3, 0), new V2(15, 10),
+                                                150, 100, 0, 0.01);
+    }
+
+
+    @Test
+    public void testSecondWorld() {
+        IPoolWorld w = PoolWorlds.makePoolWorld(new V2(50, 60), new V2(20, -50),
+                110, 100, 0.2, 0.01);
+
+        assertV2Equals(Geometry.v2(50, 60), w.getCurrentBallPosition(), 0.001);
+        assertV2Equals(Geometry.v2(79.1, 0.9), w.step(3).getCurrentBallPosition(), 0.001);
+
+        w = w.step(4.5);
+        assertV2Equals(Geometry.v2(92.975, 27.975), w.getCurrentBallPosition(), 0.001);
+
+        assertV2Equals(Geometry.v2(104.9, 75.1), w.step(2.5).getCurrentBallPosition(), 0.001);
+    }
 
 }

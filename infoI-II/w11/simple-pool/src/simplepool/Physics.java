@@ -20,7 +20,7 @@ public class Physics {
 
     /**
      * Given an initial velocity v0 and a brake acceleration, calculate the
-     * velocity in "seconds" seconds.
+     * velocity at a given point in time.
      */
     public static double velocityAtTime(double seconds, double v0, double brakeAcceleration) {
         if (brakeAcceleration < 0) {
@@ -56,7 +56,7 @@ public class Physics {
 
     /**
      * Given an initial position s0 and velocity v0 and a braking acceleration
-     * calculate the positin in "seconds" seconds.
+     * calculate the position at point seconds from now.
      */
     public static double positionAtTime(double seconds, double s0, double v0, double brakeAcceleration) {
         if (brakeAcceleration < 0) {

@@ -34,6 +34,22 @@ public class V2 {
     			x * factor,
     			y * factor);
     }
+
+    /**
+     * Simply negates the X-value
+     * @return a new V2 with the x-value negated.
+     */
+    public V2 negX() {
+        return new V2(-x, y);
+    }
+
+    /**
+     * Simply negating the Y-value
+     * @return a new V2 with a negated y-value
+     */
+    public V2 negY() {
+        return new V2(x, -y);
+    }
     
     /**
      * Calculate the absolute value (i.e. the length) of this vector.     
