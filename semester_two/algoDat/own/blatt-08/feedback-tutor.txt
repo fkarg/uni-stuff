@@ -1,0 +1,40 @@
+Aufgabe 1: 9/10
+================================================================================
+
+a) Aufbau der Datenstruktur
+===============================================================
+4/5 Punkte
+
+Du nimmst an dass der Namen Konstant ist, die geht wenn du ihn mit einer Obeneren Grenze abschätzt und das als Konstante behandelst (<< l, irrelevant), aber das musst du explizit tun. Sonst gut.
+
+b) Suchanfragen in der Datenstruktur
+===============================================================
+5/5 Punkte
+
+Alles richtig, du hast auch an das Sortieren gedacht.
+
+Aufgabe 2: 5/10
+================================================================================
+2/6 Funktion
+1/2 Tests
+2/2 Doku + Checkstyle
+
+Dein Programm läd die cities.txt leider "unendlich lange" (nach 5 Minuten habe ich es abgebrochen).
+
+Deine implementierung sieht durchdacht aus, Deine Doctests laufen. Allerdings testest du keine Spezialfälle.
+
+Allgemeines Feedback zu deinem Code:
+================================================================================
+
+Du schreibst gut lesbaren Code der gut dokumentiert ist.
+Du nutzt Exceptions zur Fehlerbehandlung 👍
+
+Erfahrungen
+================================================================================
+
+Hey, Danke das ist nett dass du darauf achtest jetzt :)
+
+Rückfragen
+===========
+Falls es Klärungsbedarf bezüglich der Benotung, des Feedbacks oder sonstigem gibt, stehe ich gerne für Rückfragen zur Verfügung.
+E-mail: selgs@informatik.uni-freiburg.de

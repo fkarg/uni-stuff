@@ -1,0 +1,78 @@
+Overall: 2 / 6
+
+Validation results for fk265/w06
+=====================================
+
+----------- Exercise: food (2 / 2)
+Running 12 tests: ALL PASSED
+
+Please use Javadoc for methods/classes next time.
+
+----------- Exercise: rationals (0 / 2)
+java.lang.ArithmeticException: long overflow
+	at java.lang.Math.multiplyExact(Math.java:892)
+	at rationals.Rational.add(Rational.java:32)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at gen.Utils$$anonfun$methodCall$2.apply(Utils.scala:553)
+	at gen.Utils$Code$$anonfun$map$1.apply(Utils.scala:477)
+	at gen.Utils$Code$$anonfun$withInfo$1.apply(Utils.scala:485)
+	at gen.Utils$Code$$anonfun$withInfo$1.apply(Utils.scala:485)
+	at gen.Utils$Code.flatMap(Utils.scala:481)
+	at gen.Utils$CodeArrow1.$eq$less$less(Utils.scala:504)
+	at gen.Main$$anonfun$testNotTooBigAddition$1$2.apply(Main.scala:167)
+	at gen.Main$$anonfun$testNotTooBigAddition$1$2.apply(Main.scala:165)
+	at scala.Option.map(Option.scala:146)
+	at org.scalacheck.Gen$R$class.map(Gen.scala:237)
+	at org.scalacheck.Gen$R$$anon$8.map(Gen.scala:227)
+	at org.scalacheck.Gen$$anonfun$map$1.apply(Gen.scala:75)
+	at org.scalacheck.Gen$$anonfun$map$1.apply(Gen.scala:75)
+	at org.scalacheck.Gen$$anon$3.doApply(Gen.scala:254)
+	at org.scalacheck.Gen.sample(Gen.scala:154)
+	at gen.Utils$$anonfun$sampleN$1.apply(Utils.scala:626)
+	at gen.Utils$$anonfun$sampleN$1.apply(Utils.scala:626)
+	at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)
+	at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)
+	at scala.collection.immutable.Range.foreach(Range.scala:160)
+	at scala.collection.TraversableLike$class.map(TraversableLike.scala:234)
+	at scala.collection.AbstractTraversable.map(Traversable.scala:104)
+	at gen.Utils$.sampleN(Utils.scala:626)
+	at gen.Main$.tests(Main.scala:209)
+	at gen.Main$$anonfun$main$1.apply(Main.scala:214)
+	at gen.Main$$anonfun$main$1.apply(Main.scala:214)
+	at gen.Utils$$anonfun$14.apply(Utils.scala:638)
+	at gen.Utils$$anonfun$14.apply(Utils.scala:638)
+	at scala.util.Try$.apply(Try.scala:192)
+	at gen.Utils$.runTests(Utils.scala:638)
+	at gen.Main$.main(Main.scala:214)
+	at gen.Main.main(Main.scala)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala:70)
+	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala:31)
+	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala:101)
+	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala:70)
+	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala:101)
+	at scala.tools.nsc.CommonRunner$class.run(ObjectRunner.scala:22)
+	at scala.tools.nsc.ObjectRunner$.run(ObjectRunner.scala:39)
+	at scala.tools.nsc.CommonRunner$class.runAndCatch(ObjectRunner.scala:29)
+	at scala.tools.nsc.ObjectRunner$.runAndCatch(ObjectRunner.scala:39)
+	at scala.tools.nsc.MainGenericRunner.runTarget$1(MainGenericRunner.scala:65)
+	at scala.tools.nsc.MainGenericRunner.run$1(MainGenericRunner.scala:87)
+	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala:98)
+	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala:103)
+	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+	
+	(-2)
+
+----------- Exercise: block-world (0 / 2)
+Running 20 tests: Test #2 FAILED
+Call was: ; w2.observe()
+ initialized by: new BlockWorld(2, 3, List(new Block(0, 0, 2, 'x'), new Block(1, 0, 1, 'o')), .)
+ after 0 steps: arrays first differed at element [0][0]; expected:<x> but was:<.>
+ 
+ (-2)

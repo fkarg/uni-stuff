@@ -1,0 +1,190 @@
+AlgoDat Klausur
+===============
+
+
+6 Aufgaben (20P), werden nur besten 5 gezählt, also 100 erreichbare.
+
+Drei arten von Aufgaben:
+1: Einen Algorithmus (oder variante) an einem Bsp nachvollziehen. (Buntstifte, aber kein Rot)
+2: kleineres Programm schreiben oder verstehen und Laufzeit analysieren
+3: Kleinere Rechenaufgaben, Beweise, Denkaufgaben
+
+
+
+
+[1a]  Gesamtüberblick, Sortieren, Kurssysteme
+[1b]  MergeSort, Divide and Conquer, Rekursion
+[2a]  Laufzeitanalyse MinSort und MergeSort
+[2b]  Andere Sortierverfahren, sortieren von Objekten, Sortieren in Linearzeit, Untere Schranke n * lg n
+[3a]  O-Notation, Teil 1
+[3b]  O-Notation, Teil 2
+[4a]  Assoziative Felder (Maps)
+[4b]  HashMaps, Rehash, Cuckoo Hashing
+[5a]  Universelles Hashing Teil 1
+[5b]  Universelles Hashing Teil 2, Perfektes Hashing
+[6a]  Dynamische Felder Teil 1
+[6b]  Dynamische Felder Teil 2: amortiesierte Analyse
+[7a]  Verkettete Listen
+[7b]  Fortsetzung verkettete Listen, Cache-Effizienz
+[8a]  Sortierte Folgen, Binäre Suchbäume
+[8b]  Balancierte Suchbäume (a, b)-Bäume
+[9a]  Prioritätswarteschlangen, Binäre Heaps
+[9b]  Bucket Queues
+[10a] Graphen, Exploration, Zusammenhang
+[10b] Dijkstra's Algorithmus
+[11a] Editierdistanz, Teil 1
+[11b] Editierdistanz, Teil 2
+[12a] String Matching, Teil 1
+[12b] String Matching, Teil 2
+[13a] Profiling, Compileroptimierung, Maschinencode
+[13b] Evaluation, Klausur, Akuelle Forschung
+
+Stoff:
+
+Sortieren: Folge von n Elementen mit Transitiver Ordnungsrelation, nach derer sortiert werden soll
+
+MinSort: O(n^2), Minimum finden und an erste stelle tauschen
+MergeSort: O(n * lg n) Mischen sortierter Teilfolgen, merken der indexe bei beiden Teilfolgen
+QuickSort: pivot nehmen und kleiner/größer mengen machen, dann rekursiv
+    aufrufen O(n * lg n), average, O(n^2) absolute worst
+HeapSort: O(n * lg n), verwendet Binary Heap für kleinstes Element etc.
+Intelligent-Design-Sort: O(1), Sortierreihenfolge übersteigt unser verständnis
+BogoSort: O(n*n!), wenn noch nicht sortiert: permutiere!
+DropSort: O(n), droppt elemente die kleiner sind als vorhergehende, lossy
+CountingSort: O(n), stable, zählt vorkommen und berechnet neue plätze
+
+Divide and Conquer: Teile Problem in Teilprobleme
+
+Untere Schranke Vergleichsbasiertes Sortieren: n * lg n, beweis durch
+    Eindeutig bestimmte Permutationsabbildungen über IF-ELSE-Verzweigungen.
+
+Laufzeitanalyse im allgemeinen:
+    Oft: T(n), sollte in etwa proportional sein zur wirklichen Laufzeit in abh. von n
+
+Landau-Notation:
+    g ∈ O(f) : g wächst maximal so stark wie f
+    O(f) = { g : ℕ -> ℝ | ∃n0 ∈ ℕ, ∃c > 0, ∀n > n0 : g(n) <= c * f(n) }
+    g ∈ Ω(f) : g wächst mindestens so stark wie f
+    Ω(f) = { g : ℕ -> ℝ | ∃n0 ∈ ℕ, ∃c > 0, ∀n > n0 : g(n) >= c * f(n) }
+    g ∈ θ(f) : g wächst genauso stark wie f
+    θ(f) = O(f) ∩ Ω(f)
+
+    g ∈ o(f) : g wächst strikt langsamer als f
+    o(f) = { g : ℕ -> ℝ | ∀c > 0, ∃n0 ∈ ℕ, ∀n > n0 : g(n) <= c * f(n) }
+    g ∈ ω(f) : g wächst strikt schneller als f
+    ω(f) = { g : ℕ -> ℝ | ∀c > 0, ∃n0 ∈ ℕ, ∀n > n0 : g(n) >= c * f(n) }
+
+Assoziative Felder: haben Key-Value paare, unterstützen folgende Operationen:
+    insert(k, v), lookup(k), erase(k); insert, lookup in O(1), size O(n) or rather O(|s|).
+    (Meist als Map oder Dictionary bekannt)
+
+HashMap:
+    Problem: Kollisionen, Lösungeng:
+        Verkettung, Offene Adressierung (Weitergehen), Cuckoo-Hashing (zweite Hashfunktion)
+    Schlüssel: alles (in binary) kann als Zahl interpretiert werden
+        oder: direkt abbilden, ohne 'umweg' auf andere Zahlen.
+    Rehash: Essentiell neue Hashfunktion auswählen, häufig in Kombination von Feldgröße verändern (θ(n))
+
+Universelles Hashing:
+    Für zufällige Schlüsselmenge: h(x) = x mod m
+
+Gute Klasse von Hashfunktionen:
+    Für jede Schlüsselmenge werden Schlüssel möglichst gleichmäßig verteilt
+    H ist c-universell, wenn gilt: für alle x, y, x /= y: |{h : h(x) = h(y)}| <= c * |H|/m,
+    also ingsesamt Prob(h(x) = h(y)) = <= c * 1 / m
+
+Felder Fester Größe:
+    Effizient umsetzbar, da feste speichergröße
+    Meist benötigte Größe unklar
+    Realisierung: Intern größeres FSA (Fixed Size Array), das durch Reallokation proportional vergrößert/verkleinert wird
+    Laufzeitanalyse: Kosten armortisieren sich auf proportional viele andere operationen
+    Beweis: nächste Reallokation nach frühestens s_i/2 Operationen, Kosten verteilen sich dadurch proportional, werden konstant
+
+Potentialfunktion: Misst wie lange es bis zur nächsten Teuren operation dauert
+    Billige operation: erniedrigt Potenzial
+    Teure operation: erhöht Potenzial um Kosten n
+
+Master-Theorem: beweise dass jede operation maximal T_i <= A + B * (ϕ_i - ϕ_i-1) kosten hat,
+    wodurch => ΣT_i = O(n + ϕ_n) für n operationen
+
+Doppelt verlinkte Listen:
+    insert und delete immer O(1) (insert nimmt als argument eine Referenz zum Element davor, keinen Index)
+    Zugriff auf i-tes Element: O(min(i, n-i))
+
+Laufzeitunterschied Ende einfügen verkettete Liste vs Dynamisches Feld (C++):
+    1. mehr Operationen bei verkettete Liste
+    2. Einzelne Speicherallokation für verkettete Liste
+    3. Dynamische Feld hat viel bessere Lokalität
+
+Blockoperationen:
+    verschiedene Blockgrößen auf verschiedenen Cache-Ebenen
+    Blöcke sind meist zusammen, ein Block-zugriff 'pro Operation' (?)
+
+(Geordnete/ Such-) Bäume:
+    next/previous, insert/remove in O(1), lookup in O(lg n)
+    lookup: element vergleichen, wenn gleich: gefunden,
+                                 wenn größer: rechts schauen
+                                 wenn kleiner: links schauen
+                                 wenn leer: nicht vorhanden.
+
+(a, b)-Bäume: (Rot-Schwarz-Bäume, AVL-Baume, AA-Bäume, Splay-Trees, Treaps, ...)
+    Alle Blätter haben selbe Tiefe
+    Jeder Knoten >= a und <= b Kinder ( a >= 2 und b >= 2a - 1 )
+    An jedem inneren Knoten stehen für jedes Kind (außer dem rechtesten) der Größte schlüssel dessen Unterbaumes.
+    lookup: ϕ(d), d = tiefe <= _lga n_ = O(lg n)
+    insert: notfalls rekursiv Aufspalten in zwei Knoten, mit ^b/2^ und _b/2_ + 1 Kinder
+    remove: 1. Fall: Klauen von nachbarn bis wieder a Kinder
+            2. Fall: Verschmelzen, a + a - 1 = 2a - 1 <= b.
+    Immer: Updaten der Wegweiser, insert und remove meist O(1), schlimmstens O(d)
+
+    Für b >= 2a ist die laufzeit n beliebiger insert + remove-operationen O(n), Armortisiert O(1)
+
+Prioritätswarteschlangen:
+    insert, getMin, deleteMin, changeKey, remove
+    insert, deleteMin, changekey, remove verletzen Heap-Eigenschaft (Kinder <= Eltern), reparieren dieser:
+        repairHeapDownwards: Knoten mit kleinerem Kind tauschen und dort rekursiv anwenden (wenn nötig)
+        repairHeapUpwards: Knoten mit Elternknoten tauschen und dort rekursiv anwenden (wenn nötig)
+
+Bucket Queue: Monotone ganzzahlige Prioritätswarteschlangen,
+    Erreicht durch Array mit Verlinkter liste zu jedem Key, insert in O(1), zusätzlich gecachter minKey
+
+    (Monotonie kann abgeschafft werden durch EINE Doubly linked list über alle Elemente, nur referenziert von den Indexen.
+    Mit Erweiterung nach Radix Heaps EINE Struktur (?!?)... Binärer Baum für Indexe ... ?)
+
+Graphen ... Depth-first, Breadth-first, ...
+
+Dijkstra's algorithm: Pfadfindung, Depth-first, 3 Zoenen: unerreicht, aktiv,
+    gelöst. Anfangs start-knoten in aktiv, dann in gelöst und nachbarn sind in
+    aktiv, mit entsprechenden distanzen. Dann mit nächstem (zu start) knoten
+    weitermachen bis endknoten gefunden oder graph vollständig erforscht. aktive
+    üblich in Prioritätsschlange nach kleinster Distanz. Terminierung sobad
+    zielknoten gelöst. Davor ist nicht sicher ob es wirklich die kürzeste Distanz
+    ist.
+
+Editierdistanz (auch Levenshtein-Distanz):
+    ED(x, y) // minimale Anzahl der operationen notwendig um x in y umzuwandeln, Editierdistanz.
+    berechnung wächst exponentiell
+
+Knuth-Morris-Pratt-Algorithmus:
+    Vorberechnungen der Match-Indexe, (über n muss man sowieso, aber welchen neuen index man mei m hat ...)
+    Nochmal: bei mismatch an stelle i, j ist neues j = j - shift[j-1]
+
+Karb-Rabin-Algorithmus:
+    Ähnlich wie KMP, aber rolling hash über momentane 'auswahl', und überprüfung ob wirklich gleich.
+    Auch mehrere Patterns gleichzeitig über Hashtable.
+
+Maschinencode: ...
+
+
+Definitionen: Diese Seite (allgemein Laufzeiten für aufrufe bei strukturen)
+    + Laufzeit-Beweis MergeSort + Mastertheorem + weiteres ... ?
+
+
+
+
+
+JIT:
+    Laufzeit-Beweis MergeSort/MinSort (extra aufschreiben!!)
+    Mastertheorem
+
+Folien: 49+, 

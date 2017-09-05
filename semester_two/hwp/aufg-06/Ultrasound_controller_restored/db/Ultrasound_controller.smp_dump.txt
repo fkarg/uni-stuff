@@ -1,0 +1,68 @@
+
+State Machine - |ultrasound_reader|robot_controller:inst1|state
+Name state.obstacle_both_sides state.obstacle_front state.obstacle_right state.obstacle_left state.no_obstacle state.init 
+state.init 0 0 0 0 0 0 
+state.no_obstacle 0 0 0 0 1 1 
+state.obstacle_left 0 0 0 1 0 1 
+state.obstacle_right 0 0 1 0 0 1 
+state.obstacle_front 0 1 0 0 0 1 
+state.obstacle_both_sides 1 0 0 0 0 1 
+
+State Machine - |ultrasound_reader|ultrasound_controller:inst3|state
+Name state.final state.scanning state.waiting state.activating state.init 
+state.init 0 0 0 0 0 
+state.activating 0 0 0 1 1 
+state.waiting 0 0 1 0 1 
+state.scanning 0 1 0 0 1 
+state.final 1 0 0 0 1 
+
+State Machine - |ultrasound_reader|ultrasound_controller:inst2|state
+Name state.final state.scanning state.waiting state.activating state.init 
+state.init 0 0 0 0 0 
+state.activating 0 0 0 1 1 
+state.waiting 0 0 1 0 1 
+state.scanning 0 1 0 0 1 
+state.final 1 0 0 0 1 
+
+State Machine - |ultrasound_reader|controller:inst|state
+Name state.wait3 state.controller3 state.wait2 state.controller2 state.wait1 state.init state.controller1 
+state.controller1 0 0 0 0 0 0 0 
+state.init 0 0 0 0 0 1 1 
+state.wait1 0 0 0 0 1 0 1 
+state.controller2 0 0 0 1 0 0 1 
+state.wait2 0 0 1 0 0 0 1 
+state.controller3 0 1 0 0 0 0 1 
+state.wait3 1 0 0 0 0 0 1 
+
+State Machine - |ultrasound_reader|ultrasound_controller:inst7|state
+Name state.final state.scanning state.waiting state.activating state.init 
+state.init 0 0 0 0 0 
+state.activating 0 0 0 1 1 
+state.waiting 0 0 1 0 1 
+state.scanning 0 1 0 0 1 
+state.final 1 0 0 0 1 
+
+State Machine - |ultrasound_reader|dataToLcd:inst4|state
+Name state.pause state.init state.update 
+state.update 0 0 0 
+state.init 0 1 1 
+state.pause 1 0 1 
+
+State Machine - |ultrasound_reader|lcd_driver2:inst5|state
+Name state.sendingData state.sendingAddress state.ready state.createChar5 state.createChar4 state.createChar3 state.createChar2 state.createChar1 state.init7 state.init6 state.init5 state.init4 state.init3 state.init2 state.init1 state.init0 
+state.init0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.init1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.init2 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.init3 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.init4 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.init5 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.init6 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.init7 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.createChar1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.createChar2 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.createChar3 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.createChar4 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.createChar5 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.ready 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.sendingAddress 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.sendingData 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

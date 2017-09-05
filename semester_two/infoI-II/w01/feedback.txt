@@ -1,0 +1,6 @@
+stdin - passes, style okay, 2p -- tip: actually you're not scanning for ints but for strings, use scanner.nextInt() next time.
+whats-your-name - passes, style okay, 2p
+add-two-ints - passes, style okay, 2p
+average-rounded-number - passes, style okay, 2p
+
+total score: 8/8 points

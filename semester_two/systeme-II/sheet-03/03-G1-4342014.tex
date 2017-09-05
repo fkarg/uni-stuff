@@ -1,0 +1,90 @@
+\documentclass{scrartcl}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{amssymb} % what does it do?
+\usepackage{graphicx} % I can't do that yet
+\usepackage{fancyhdr} % what does it do?
+\usepackage{lastpage} % what does it do?
+\setlength{\parskip}{\medskipamount} % thats reasonable
+\setlength{\parindent}{0pt} % whatever that does
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf- und Fusszeilen %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\lhead{
+    \begin{tabular}{ll}
+        Felix Karg & 4342014\\
+    \end{tabular}
+}
+\chead{Systeme II}
+\rhead{
+    \begin{tabular}{rr}
+        \today{} \\
+        Seite \thepage{} von \pageref{LastPage}
+    \end{tabular}
+}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Anfang des Dokuments %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\section*{Antworten zu Übungsblatt Nr. 3}
+
+\section{Aufgabe}
+
+\subsection{}
+\subsection{Involvierte schichten beim Nachrichtenversenden von Rechner (1,2) sowie (1,3)}
+Bei der Kommunikation zwischen Rechner 1 und 2 ist nur der Physical Layer wirklich von Bedeutung,
+da beide über den Hub verbunden sind. Zwischen 1 und 3 ist schon mehr nötig, von A nach C wäre nur
+der Physical Layer notwendig, für die Reibungslose Kommunikation mit dem Switch ist allerdings auch
+der Data Link Layer nötig. sobald wir den Router erreichen benötigen wir außerdem dan Network Layer,
+um anständig weitergeleitet zu werden. Danach springen wir wieder über einen Switch und einen Hub,
+für die wir die benötigten Schichten bereits verwenden. Und so kommen wir bei Rechner 3 an!
+
+
+\section{Aufgabe: Analoge Signalübertragung}
+\subsection{Symbolrate und Datenrate}
+Die Symbolrate beschreibt mit welcher Frequenz Symbole übertragen werden, also wie viele Symbole pro
+Sekunde (auch Baud-rate genannt) übertragen werden oder übertragen werden können. \\
+Die Datenrate beschreibt hingegen, wie viel Information pro Sekunde übertragen werden kann, und ist
+gewissermßaen abhängig von der Symbolrate. Ein übertragenes Symbol kann ein Bit sein, es kann aber auch
+eindeutig zuordenbar zu mehreren Bits gleichzeitig sein, wodurch eine viel höhere Datenrate erzielt werden kann.
+
+\subsection{Kann durch die verwendung von mehr Symbolen die Datenrate unbegrenzt erhöht werden?}
+Die Datenrate würde von der erhöhung der verwendeten Symbolen (wodurch mehr Information codiert werden kann)
+natürlich sehr Profitieren. Mit jedem zusätzlichen Symbol kann man vermutlich bis zu ein weiters Bit codieren,
+also könnte man durch das verwenden von beliebig vielen Symbolen beliebig hohe Datenraten erzielen. Das Problem
+ist ob man die ganzen Symbole noch eindeutig zuordnen kann, da der ganze Vorteil der höheren Symbolrate keine
+höhere Datenrate bringt, wenn die Symbole nicht eindeutig identifiziert werden können, wodurch natürlich wieder
+Information verloren geht.
+
+\subsection{}
+\subsection{}
+
+
+\section{Aufgabe: Theorem von Nyquist/Shannon}
+\subsection{Maximale Datenrate nach Claude Shannon}
+Nach Shannon ist die maximale Datenrate $H*log_2(1 + S/N)$ bit/s, Bandweite H und Signalstärke S (Noise/Rauschen N).
+Unsere Bandweite H ist $2.2 Mhz - 0.14 Mhz = 2.06 Mhz$, die Signalstärke S ist 10.3616 (10*lg(10.3616) = 45db = SNR = 10 * lg(S/N)). \\
+Eingesetzt ergibt dies also dass die maximale Datenrate $2.06 Mhz * log_2(1 + 10.3616) = 7.22...$ Mbit/s.
+
+\subsection{Höchstmöglichste Übertragungsraten mit N-QAM}
+Nach Nyquist's Theorem ist die maximal mögliche Datenrate höchstens $2 * H * log_2 V$ bit/s, wobei
+H die maximale Frequenz in der Fouriertransformation ist, und V die anzahl der verschiedenen verwendeten Symbole.
+Demnach sind es jeweils abhängig von der Anzahl der verwendeten Symbole (V = N), $4.4 * (2/4/6/8)$ Mbit/s = 8.8/17.6/26.4/35.2 Mbit/s.
+
+\subsection{Maximal wirklich erzielte Datenraten}
+Weit höhere. Vermutlich durch das verwenden von mehr bzw. Höheren Frequenzen, sowie neuen Techniken wie z.B. Glasfaser und der dafür
+sehr Wichtigen Elektrotechnik.
+
+
+\end{document}
+
+

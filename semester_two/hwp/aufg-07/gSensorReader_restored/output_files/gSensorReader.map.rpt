@@ -1,0 +1,530 @@
+Analysis & Synthesis report for gSensorReader
+Mon Jul  3 20:11:12 2017
+Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |gSensorToLCD|dataToLcd:inst3|state
+  9. State Machine - |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterZ|state
+ 10. State Machine - |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterY|state
+ 11. State Machine - |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterX|state
+ 12. State Machine - |gSensorToLCD|lcd_driver:inst2|state
+ 13. State Machine - |gSensorToLCD|g_reader:inst|next_state
+ 14. State Machine - |gSensorToLCD|g_reader:inst|state
+ 15. Registers Removed During Synthesis
+ 16. Removed Registers Triggering Further Register Optimizations
+ 17. General Register Statistics
+ 18. Inverted Register Statistics
+ 19. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 20. Post-Synthesis Netlist Statistics for Top Partition
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2016  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Mon Jul  3 20:11:12 2017       ;
+; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
+; Revision Name                      ; gSensorReader                               ;
+; Top-level Entity Name              ; gSensorToLCD                                ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 996                                         ;
+;     Total combinational functions  ; 849                                         ;
+;     Dedicated logic registers      ; 437                                         ;
+; Total registers                    ; 437                                         ;
+; Total pins                         ; 15                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE22F17C6       ;                    ;
+; Top-level entity name                                                      ; gSensorToLCD       ; gSensorReader      ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; OpenCore Plus hardware evaluation                                          ; Enable             ; Enable             ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                                      ; Library ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------------------------+---------+
+; lcd_driver.vhd                   ; yes             ; User VHDL File                     ; /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/lcd_driver.vhd      ;         ;
+; binaryToDecimal.vhd              ; yes             ; User VHDL File                     ; /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/binaryToDecimal.vhd ;         ;
+; dataToLcd.vhd                    ; yes             ; User VHDL File                     ; /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/dataToLcd.vhd       ;         ;
+; g_reader.vhd                     ; yes             ; User VHDL File                     ; /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/g_reader.vhd        ;         ;
+; gSensorToLCD.bdf                 ; yes             ; User Block Diagram/Schematic File  ; /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/gSensorToLCD.bdf    ;         ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------------------------+---------+
+
+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimated Total logic elements              ; 996          ;
+;                                             ;              ;
+; Total combinational functions               ; 849          ;
+; Logic element usage by number of LUT inputs ;              ;
+;     -- 4 input functions                    ; 405          ;
+;     -- 3 input functions                    ; 102          ;
+;     -- <=2 input functions                  ; 342          ;
+;                                             ;              ;
+; Logic elements by mode                      ;              ;
+;     -- normal mode                          ; 606          ;
+;     -- arithmetic mode                      ; 243          ;
+;                                             ;              ;
+; Total registers                             ; 437          ;
+;     -- Dedicated logic registers            ; 437          ;
+;     -- I/O registers                        ; 0            ;
+;                                             ;              ;
+; I/O pins                                    ; 15           ;
+;                                             ;              ;
+; Embedded Multiplier 9-bit elements          ; 0            ;
+;                                             ;              ;
+; Maximum fan-out node                        ; clk_50~input ;
+; Maximum fan-out                             ; 378          ;
+; Total fan-out                               ; 3982         ;
+; Average fan-out                             ; 3.02         ;
++---------------------------------------------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                       ;
++------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node         ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                      ; Entity Name     ; Library Name ;
++------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------+-----------------+--------------+
+; |gSensorToLCD                      ; 849 (1)             ; 437 (0)                   ; 0           ; 0            ; 0       ; 0         ; 15   ; 0            ; |gSensorToLCD                                            ; gSensorToLCD    ; work         ;
+;    |dataToLcd:inst3|               ; 620 (264)           ; 282 (126)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |gSensorToLCD|dataToLcd:inst3                            ; dataToLcd       ; work         ;
+;       |binaryToDecimal:converterX| ; 119 (119)           ; 52 (52)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterX ; binaryToDecimal ; work         ;
+;       |binaryToDecimal:converterY| ; 119 (119)           ; 52 (52)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterY ; binaryToDecimal ; work         ;
+;       |binaryToDecimal:converterZ| ; 118 (118)           ; 52 (52)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterZ ; binaryToDecimal ; work         ;
+;    |g_reader:inst|                 ; 119 (119)           ; 99 (99)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |gSensorToLCD|g_reader:inst                              ; g_reader        ; work         ;
+;    |lcd_driver:inst2|              ; 109 (109)           ; 56 (56)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |gSensorToLCD|lcd_driver:inst2                           ; lcd_driver      ; work         ;
++------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------+
+; State Machine - |gSensorToLCD|dataToLcd:inst3|state    ;
++--------------+-------------+------------+--------------+
+; Name         ; state.pause ; state.init ; state.update ;
++--------------+-------------+------------+--------------+
+; state.update ; 0           ; 0          ; 0            ;
+; state.init   ; 0           ; 1          ; 1            ;
+; state.pause  ; 1           ; 0          ; 1            ;
++--------------+-------------+------------+--------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------+
+; State Machine - |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterZ|state            ;
++------------+----------+----------+----------+----------+----------+----------+------------+
+; Name       ; state.s5 ; state.s4 ; state.s3 ; state.s2 ; state.s1 ; state.s0 ; state.s0_s ;
++------------+----------+----------+----------+----------+----------+----------+------------+
+; state.s0_s ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0          ;
+; state.s0   ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1          ;
+; state.s1   ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1          ;
+; state.s2   ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1          ;
+; state.s3   ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1          ;
+; state.s4   ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.s5   ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
++------------+----------+----------+----------+----------+----------+----------+------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------+
+; State Machine - |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterY|state            ;
++------------+----------+----------+----------+----------+----------+----------+------------+
+; Name       ; state.s5 ; state.s4 ; state.s3 ; state.s2 ; state.s1 ; state.s0 ; state.s0_s ;
++------------+----------+----------+----------+----------+----------+----------+------------+
+; state.s0_s ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0          ;
+; state.s0   ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1          ;
+; state.s1   ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1          ;
+; state.s2   ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1          ;
+; state.s3   ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1          ;
+; state.s4   ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.s5   ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
++------------+----------+----------+----------+----------+----------+----------+------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------+
+; State Machine - |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterX|state            ;
++------------+----------+----------+----------+----------+----------+----------+------------+
+; Name       ; state.s5 ; state.s4 ; state.s3 ; state.s2 ; state.s1 ; state.s0 ; state.s0_s ;
++------------+----------+----------+----------+----------+----------+----------+------------+
+; state.s0_s ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0          ;
+; state.s0   ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1          ;
+; state.s1   ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1          ;
+; state.s2   ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1          ;
+; state.s3   ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1          ;
+; state.s4   ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1          ;
+; state.s5   ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1          ;
++------------+----------+----------+----------+----------+----------+----------+------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |gSensorToLCD|lcd_driver:inst2|state                                                                                                                                          ;
++----------------------+-------------------+----------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+; Name                 ; state.sendingData ; state.sendingAddress ; state.ready ; state.init7 ; state.init6 ; state.init5 ; state.init4 ; state.init3 ; state.init2 ; state.init1 ; state.init0 ;
++----------------------+-------------------+----------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+; state.init0          ; 0                 ; 0                    ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ;
+; state.init1          ; 0                 ; 0                    ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 1           ;
+; state.init2          ; 0                 ; 0                    ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 1           ;
+; state.init3          ; 0                 ; 0                    ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 1           ;
+; state.init4          ; 0                 ; 0                    ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 1           ;
+; state.init5          ; 0                 ; 0                    ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 1           ;
+; state.init6          ; 0                 ; 0                    ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ;
+; state.init7          ; 0                 ; 0                    ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ;
+; state.ready          ; 0                 ; 0                    ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ;
+; state.sendingAddress ; 0                 ; 1                    ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ;
+; state.sendingData    ; 1                 ; 0                    ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ;
++----------------------+-------------------+----------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |gSensorToLCD|g_reader:inst|next_state                                                                                                                                      ;
++------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+
+; Name             ; next_state.pause ; next_state.readZ ; next_state.readY ; next_state.readX ; next_state.init4 ; next_state.init3 ; next_state.init2 ; next_state.init1 ; next_state.init0 ;
++------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+
+; next_state.init0 ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ;
+; next_state.init1 ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 1                ;
+; next_state.init2 ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 1                ;
+; next_state.init3 ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 1                ;
+; next_state.init4 ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 1                ;
+; next_state.readX ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 1                ;
+; next_state.readY ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ;
+; next_state.readZ ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ;
+; next_state.pause ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ;
++------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |gSensorToLCD|g_reader:inst|state                                                                                         ;
++-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+; Name        ; state.init0 ; state.readZ ; state.readY ; state.readX ; state.init4 ; state.init3 ; state.init2 ; state.init1 ; state.pause ;
++-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+; state.pause ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ;
+; state.init1 ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 1           ;
+; state.init2 ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 1           ;
+; state.init3 ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 1           ;
+; state.init4 ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 1           ;
+; state.readX ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 1           ;
+; state.readY ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ;
+; state.readZ ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ;
+; state.init0 ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ;
++-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++---------------------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal                     ;
++---------------------------------------+----------------------------------------+
+; dataToLcd:inst3|lcd_data[7]           ; Stuck at GND due to stuck port data_in ;
+; lcd_driver:inst2|dataStorage[7]       ; Stuck at GND due to stuck port data_in ;
+; g_reader:inst|next_state.pause        ; Stuck at GND due to stuck port data_in ;
+; dataToLcd:inst3|state.init            ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 4 ;                                        ;
++---------------------------------------+----------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                      ;
++-----------------------------+---------------------------+----------------------------------------+
+; Register name               ; Reason for Removal        ; Registers Removed due to This Register ;
++-----------------------------+---------------------------+----------------------------------------+
+; dataToLcd:inst3|lcd_data[7] ; Stuck at GND              ; lcd_driver:inst2|dataStorage[7]        ;
+;                             ; due to stuck port data_in ;                                        ;
++-----------------------------+---------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 437   ;
+; Number of registers using Synchronous Clear  ; 110   ;
+; Number of registers using Synchronous Load   ; 70    ;
+; Number of registers using Asynchronous Clear ; 12    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 253   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; g_reader:inst|sclk_intern              ; 61      ;
+; lcd_driver:inst2|dataStorage[6]        ; 1       ;
+; lcd_driver:inst2|dataStorage[5]        ; 1       ;
+; lcd_driver:inst2|dataStorage[2]        ; 1       ;
+; lcd_driver:inst2|dataStorage[1]        ; 1       ;
+; Total number of inverted registers = 5 ;         ;
++----------------------------------------+---------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterX|digit_int_3[2] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterX|digit_int_2[0] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterX|digit_int_1[0] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterX|digit_int_0[2] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterZ|digit_int_3[2] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterZ|digit_int_2[2] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterZ|digit_int_1[3] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterZ|digit_int_0[2] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterY|digit_int_3[2] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterY|digit_int_2[2] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterY|digit_int_1[2] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterY|digit_int_0[3] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|lineCount[1]                              ;
+; 6:1                ; 9 bits    ; 36 LEs        ; 27 LEs               ; 9 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterZ|number[3]      ;
+; 6:1                ; 9 bits    ; 36 LEs        ; 27 LEs               ; 9 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterY|number[8]      ;
+; 6:1                ; 9 bits    ; 36 LEs        ; 27 LEs               ; 9 LEs                  ; Yes        ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterX|number[11]     ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 5 LEs                ; 15 LEs                 ; Yes        ; |gSensorToLCD|dataToLcd:inst3|charCount[4]                              ;
+; 6:1                ; 31 bits   ; 124 LEs       ; 31 LEs               ; 93 LEs                 ; Yes        ; |gSensorToLCD|dataToLcd:inst3|counter[28]                               ;
+; 9:1                ; 16 bits   ; 96 LEs        ; 16 LEs               ; 80 LEs                 ; Yes        ; |gSensorToLCD|g_reader:inst|time_count[2]                               ;
+; 12:1               ; 31 bits   ; 248 LEs       ; 31 LEs               ; 217 LEs                ; Yes        ; |gSensorToLCD|lcd_driver:inst2|counter[10]                              ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |gSensorToLCD|dataToLcd:inst3|lcd_data                                  ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |gSensorToLCD|dataToLcd:inst3|state                                     ;
+; 10:1               ; 9 bits    ; 54 LEs        ; 54 LEs               ; 0 LEs                  ; No         ; |gSensorToLCD|g_reader:inst|next_state                                  ;
+; 11:1               ; 6 bits    ; 42 LEs        ; 30 LEs               ; 12 LEs                 ; No         ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterZ|state          ;
+; 11:1               ; 6 bits    ; 42 LEs        ; 30 LEs               ; 12 LEs                 ; No         ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterY|state          ;
+; 11:1               ; 6 bits    ; 42 LEs        ; 30 LEs               ; 12 LEs                 ; No         ; |gSensorToLCD|dataToLcd:inst3|binaryToDecimal:converterX|state          ;
+; 11:1               ; 7 bits    ; 49 LEs        ; 49 LEs               ; 0 LEs                  ; No         ; |gSensorToLCD|lcd_driver:inst2|dataOut[6]                               ;
+; 11:1               ; 9 bits    ; 63 LEs        ; 18 LEs               ; 45 LEs                 ; No         ; |gSensorToLCD|g_reader:inst|state                                       ;
+; 12:1               ; 11 bits   ; 88 LEs        ; 88 LEs               ; 0 LEs                  ; No         ; |gSensorToLCD|lcd_driver:inst2|state                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 15                          ;
+; cycloneiii_ff         ; 437                         ;
+;     CLR               ; 12                          ;
+;     ENA               ; 178                         ;
+;     ENA SCLR          ; 48                          ;
+;     ENA SLD           ; 27                          ;
+;     SCLR              ; 62                          ;
+;     SLD               ; 43                          ;
+;     plain             ; 67                          ;
+; cycloneiii_io_obuf    ; 1                           ;
+; cycloneiii_lcell_comb ; 851                         ;
+;     arith             ; 243                         ;
+;         2 data inputs ; 242                         ;
+;         3 data inputs ; 1                           ;
+;     normal            ; 608                         ;
+;         0 data inputs ; 4                           ;
+;         1 data inputs ; 26                          ;
+;         2 data inputs ; 72                          ;
+;         3 data inputs ; 101                         ;
+;         4 data inputs ; 405                         ;
+;                       ;                             ;
+; Max LUT depth         ; 7.00                        ;
+; Average LUT depth     ; 3.63                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:05     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
+    Info: Processing started: Mon Jul  3 20:10:40 2017
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off gSensorReader -c gSensorReader
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file lcd_driver.vhd
+    Info (12022): Found design unit 1: lcd_driver-behavior File: /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/lcd_driver.vhd Line: 32
+    Info (12023): Found entity 1: lcd_driver File: /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/lcd_driver.vhd Line: 10
+Info (12021): Found 2 design units, including 1 entities, in source file binaryToDecimal.vhd
+    Info (12022): Found design unit 1: binaryToDecimal-behavior File: /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/binaryToDecimal.vhd Line: 25
+    Info (12023): Found entity 1: binaryToDecimal File: /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/binaryToDecimal.vhd Line: 12
+Info (12021): Found 2 design units, including 1 entities, in source file dataToLcd.vhd
+    Info (12022): Found design unit 1: dataToLcd-behavior File: /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/dataToLcd.vhd Line: 29
+    Info (12023): Found entity 1: dataToLcd File: /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/dataToLcd.vhd Line: 10
+Info (12021): Found 2 design units, including 1 entities, in source file g_reader.vhd
+    Info (12022): Found design unit 1: g_reader-behavior File: /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/g_reader.vhd Line: 25
+    Info (12023): Found entity 1: g_reader File: /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/g_reader.vhd Line: 7
+Info (12021): Found 1 design units, including 1 entities, in source file gSensorToLCD.bdf
+    Info (12023): Found entity 1: gSensorToLCD
+Info (12127): Elaborating entity "gSensorToLCD" for the top level hierarchy
+Info (12128): Elaborating entity "g_reader" for hierarchy "g_reader:inst"
+Info (12128): Elaborating entity "lcd_driver" for hierarchy "lcd_driver:inst2"
+Info (12128): Elaborating entity "dataToLcd" for hierarchy "dataToLcd:inst3"
+Info (12128): Elaborating entity "binaryToDecimal" for hierarchy "dataToLcd:inst3|binaryToDecimal:converterX" File: /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/dataToLcd.vhd Line: 91
+Info (13000): Registers with preset signals will power-up high File: /datadisk/Coding/uni-stuff/hwp/aufg-07/gSensorReader_restored/g_reader.vhd Line: 61
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "rw" is stuck at GND
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 1013 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
+    Info (21059): Implemented 13 output pins
+    Info (21060): Implemented 1 bidirectional pins
+    Info (21061): Implemented 998 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 3 warnings
+    Info: Peak virtual memory: 973 megabytes
+    Info: Processing ended: Mon Jul  3 20:11:12 2017
+    Info: Elapsed time: 00:00:32
+    Info: Total CPU time (on all processors): 00:01:03
+
+

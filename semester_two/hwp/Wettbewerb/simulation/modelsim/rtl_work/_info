@@ -1,0 +1,90 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/datadisk/Coding/uni-stuff/hwp/Wettbewerb/simulation/modelsim
+Euart_receiver
+Z1 w1500981644
+Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z5 8/datadisk/Coding/uni-stuff/hwp/Wettbewerb/vhdl/Arduino-Kommunikation/uart_receiver.vhd
+Z6 F/datadisk/Coding/uni-stuff/hwp/Wettbewerb/vhdl/Arduino-Kommunikation/uart_receiver.vhd
+l0
+L6
+VQj8L0ILDNC?BNjf>8O;I50
+!s100 FZUDYPE=;AgMKKcC0ma6j0
+Z7 OV;C;10.5b;63
+31
+Z8 !s110 1500981962
+!i10b 1
+Z9 !s108 1500981961.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|/datadisk/Coding/uni-stuff/hwp/Wettbewerb/vhdl/Arduino-Kommunikation/uart_receiver.vhd|
+Z11 !s107 /datadisk/Coding/uni-stuff/hwp/Wettbewerb/vhdl/Arduino-Kommunikation/uart_receiver.vhd|
+!i113 1
+Z12 o-93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Ab
+R2
+R3
+R4
+DEx4 work 13 uart_receiver 0 22 Qj8L0ILDNC?BNjf>8O;I50
+l19
+L14
+Va3TEJCzzKRSb8Df>_`JT[2
+!s100 caE^[Ke;<V?WZW6DHHDTD2
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Euart_receiver_vhd_tst
+Z14 w1500895184
+R3
+R4
+R0
+Z15 8/datadisk/Coding/uni-stuff/hwp/Wettbewerb/simulation/modelsim/uart_receiver.vht
+Z16 F/datadisk/Coding/uni-stuff/hwp/Wettbewerb/simulation/modelsim/uart_receiver.vht
+l0
+L31
+V_RiFSklj_lVO>SnA`bXVh3
+!s100 koAOFkciHSjVZ1XK7P:2o2
+R7
+31
+R8
+!i10b 1
+Z17 !s108 1500981962.000000
+Z18 !s90 -reportprogress|300|-93|-work|work|/datadisk/Coding/uni-stuff/hwp/Wettbewerb/simulation/modelsim/uart_receiver.vht|
+Z19 !s107 /datadisk/Coding/uni-stuff/hwp/Wettbewerb/simulation/modelsim/uart_receiver.vht|
+!i113 1
+R12
+R13
+Auart_receiver_arch
+R3
+R4
+DEx4 work 21 uart_receiver_vhd_tst 0 22 _RiFSklj_lVO>SnA`bXVh3
+l48
+L33
+VAA8l;a<[ajT1FJ3<F:gZ20
+!s100 ]OIzkLY<P2i5lYXP7_Onn3
+R7
+31
+R8
+!i10b 1
+R17
+R18
+R19
+!i113 1
+R12
+R13

@@ -1,0 +1,28 @@
+// Author: Felix Karg <felix.karg@uranus.uni-freiburg.de>
+
+
+# Aufgabe 3.3
+Die ersten ergebnisse sind sehr erschreckend, insofern als dass die gewählte
+Anzahl an Zahlen kaum messbare Zeit benötigt. Wurde also angepasst.
+Außerdem war das wirklich erschreckend, da die implementierung (wie zu
+sehen ist) nicht gerade auf effizienz getrimmt ist. Viel zu viel
+herumschubsen und zwischenerstellen von vectoren (wird evtl sogar 
+wegoptimiert, vlt is es deswegen so schnell). Naja, Aufgabe hat
+spaß gemacht. Graph sieht eher aus wie Linear, im vergleich zum
+vermutlich Quadratischen von MinSort.
+
+(wird zum vergleich direkt danach erstellt)
+
+
+# Aufgabe 4
+Schaubilder?
+zu 1: Hatte mich Angemeldet bveor ich wusste dass es draufsteht. 0min.
+zu 2: Wieder-Vertraut werden mit Größeren Makefiles und C++, sowie gtest. ~30min
+zu 3: Coole Aufgabe. Trial and Error, ~5-10min
+zu 4: Naja, wie üblich ~5min
+
+
+
+
+
+
