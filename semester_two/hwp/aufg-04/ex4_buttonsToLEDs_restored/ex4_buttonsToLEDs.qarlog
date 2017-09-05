@@ -1,0 +1,22 @@
+Quartus Prime Archive log --	/datadisk/Coding/uni-stuff/hwp/aufg-04/ex4_buttonsToLEDs_restored/ex4_buttonsToLEDs.qarlog
+
+Archive:	/datadisk/Coding/uni-stuff/hwp/aufg-04/ex4_buttonsToLEDs_restored/ex4_buttonsToLEDs.qar
+Date:		Thu Jun 15 15:45:19 2017
+Quartus Prime		16.1.0 Build 196 10/24/2016 SJ Lite Edition
+
+	=========== Files Selected: ===========
+/datadisk/Coding/uni-stuff/hwp/aufg-04/ex4_buttonsToLEDs_restored/Chain1.cdf
+/datadisk/Coding/uni-stuff/hwp/aufg-04/ex4_buttonsToLEDs_restored/assignment_defaults.qdf
+/datadisk/Coding/uni-stuff/hwp/aufg-04/ex4_buttonsToLEDs_restored/ex4_buttonsToLEDs.bdf
+/datadisk/Coding/uni-stuff/hwp/aufg-04/ex4_buttonsToLEDs_restored/ex4_buttonsToLEDs.qpf
+/datadisk/Coding/uni-stuff/hwp/aufg-04/ex4_buttonsToLEDs_restored/ex4_buttonsToLEDs.qsf
+/datadisk/Coding/uni-stuff/hwp/aufg-04/ex4_buttonsToLEDs_restored/ex4_buttonsToLEDs_assignment_defaults.qdf
+/datadisk/Coding/uni-stuff/hwp/aufg-04/ex4_buttonsToLEDs_restored/vhdl/adcReader.vhd
+/datadisk/Coding/uni-stuff/hwp/aufg-04/ex4_buttonsToLEDs_restored/vhdl/analogToButtons.vhd
+/datadisk/Coding/uni-stuff/hwp/aufg-04/ex4_buttonsToLEDs_restored/vhdl/binaryToDecimal.vhd
+/datadisk/Coding/uni-stuff/hwp/aufg-04/ex4_buttonsToLEDs_restored/vhdl/dataToLcd.vhd
+/datadisk/Coding/uni-stuff/hwp/aufg-04/ex4_buttonsToLEDs_restored/vhdl/lcd_driver.vhd
+	======= Total: 11 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

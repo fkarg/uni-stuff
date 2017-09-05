@@ -1,0 +1,23 @@
+Blatt-04
+
+Aufgabe 1: ca. 3h, mit ewig viel Fehlersuche
+Aufgabe 2: ca. 30min, mit Doctests-kämpfen
+
+
+
+Die hash_map.py sollte eigentlich auch funktionieren, tut sie allerdings
+irgendwie nicht. Leider finde ich den Fehler nicht und habe eben noch
+hash_map2.py geschrieben, die nun auch korrekt funktioniert (allerdings
+mit weniger Features), Problematisch war das resizing.
+
+Bei Aufgabe 2 ist es verwirrend dass das flake8 von Jenkins auf einmal
+wegen der Reihenfolge von imports meckert, aber das eigene nicht.
+Ich habe außerdem word_count.py ausführbar gemacht, ich hoffe das führt
+zu keinen Komplikationen.
+
+
+Mathe-Phobie entsteht durch die Falsche Interpretation dass manche Menschen einfach gut
+darin sind und andere nicht. Wir sind Menschen, wir könnten Prinzipiell alles tun was
+andere auch können.
+
+

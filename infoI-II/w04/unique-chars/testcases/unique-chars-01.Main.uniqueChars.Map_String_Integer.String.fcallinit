@@ -1,2 +1,0 @@
-Map<String, Integer> m = new HashMap<>();
-uniqueChars(m, "Hhelloo");

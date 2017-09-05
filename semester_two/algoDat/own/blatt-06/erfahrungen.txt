@@ -1,0 +1,28 @@
+Blatt 06
+========
+
+
+Aufgabe 1: ca 20min, hab viel über anderes geredet währenddessen ...
+
+Aufgabe 2: ca 40min, hauptsächlich C++-spezifische Details
+
+Aufgabe 3: ca 5min :) 
+
+
+Ehrlichgesagt ist die 2 so wie ich sie implementiert habe mir so
+zuerst durch den Kopf gegangen, da es intuitiv eine sehr schöne
+Modularität bietet (von dem Geschwindigkeitsvorteil bei increment
+ganz abgesehen), sowie insgesamt Eleganter (meiner Meinung nach
+zumindest) ist. Und sie ist viel einfacher, man muss ja nicht
+unnötig überall komplexität hinzufügen. Natürlich läuft meine
+toString-Funktion mit einer leicht höheren Konstanten, aber
+sie ist definitiv immernoch in O(n). Dafür dass increment
+trivialerweise in O(1) liegt, ist das doch ein netter Tausch :)
+
+(PS: In Aufgabe 2 ist sehr gut beschrieben was gegebene m_k's
+für auswirkungen haben sollen, also die darzustellende repräsentation,
+allerdings steht darin nichts zur eigentlichen Implementation oder
+zur internen repräsentation)
+
+(gegen eine direkte weiterleitung habe ich nichts, ich werde
+Frau Bast morgen nach der VL auch darauf ansprechen)

@@ -1,0 +1,41 @@
+Blatt 08
+========
+
+Sorry wegen den nicht-pdf-uploads manchmal bisher! Habe bei svn als default (wegen java)
+eingestellt dass keine *.pdf mit sollen. Ab sofort achte ich hoffentlich mehr drauf!
+
+
+
+Aufgabe 1
+=========
+
+
+Intuitiv gesprochen ist ein Präfixbaum vermutlich am besten, da einfach
+ganze Bereiche 'ausgewählt' werden können (nach Anforderung).
+Außerdem sind sowohl insert als auch lookup insgesamt schnell.
+
+Daten einlesen:
+l: Anzahl der Zeilen
+m: Länge des namens
+insert: O(m)
+lookup: O(m)
+Insgesamt Strukturaufbau: O(l) * O(m) = O(l * m)
+
+Anfrage:
+m: Länge der Anfrage
+n: Länge des Ergebnisses
+'catch': O(m + n)    -- also aufbauen der liste aus dem Teilbaum O(n), mit finden O(m)
+sort: O(n * log n)
+Insgesamt anfrage: O(m + n) + O(n * log n) = O(m + n + n * log n) =(n >> m)= O(n * log n)
+
+
+
+Zeit (A1 + A2): ca 1.5h, Trie war unvollständig für die Anforderungen
+
+
+
+
+
+
+Mutationn:
+Überproportional großer NeoCortex.

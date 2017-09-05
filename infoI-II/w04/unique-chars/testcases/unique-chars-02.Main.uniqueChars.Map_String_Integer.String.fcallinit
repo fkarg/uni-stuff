@@ -1,3 +1,0 @@
-Map<String, Integer> m = new HashMap<>();
-m.put("hhelloo", 5);
-uniqueChars(m, "hhelloo");

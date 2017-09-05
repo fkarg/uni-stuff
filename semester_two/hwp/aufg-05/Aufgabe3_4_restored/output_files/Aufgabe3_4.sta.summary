@@ -1,0 +1,101 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk_50'
+Slack : -2.446
+TNS   : -46.784
+
+Type  : Slow 1200mV 85C Model Setup 'adcReader:inst|clk_spi'
+Slack : -2.025
+TNS   : -35.379
+
+Type  : Slow 1200mV 85C Model Hold 'adcReader:inst|clk_spi'
+Slack : 0.342
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'clk_50'
+Slack : 0.357
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'adcReader:inst|clk_spi'
+Slack : -0.542
+TNS   : -4.409
+
+Type  : Slow 1200mV 85C Model Removal 'adcReader:inst|clk_spi'
+Slack : 0.570
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_50'
+Slack : -3.000
+TNS   : -29.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'adcReader:inst|clk_spi'
+Slack : -1.000
+TNS   : -33.000
+
+Type  : Slow 1200mV 0C Model Setup 'clk_50'
+Slack : -2.080
+TNS   : -39.658
+
+Type  : Slow 1200mV 0C Model Setup 'adcReader:inst|clk_spi'
+Slack : -1.745
+TNS   : -28.965
+
+Type  : Slow 1200mV 0C Model Hold 'adcReader:inst|clk_spi'
+Slack : 0.298
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'clk_50'
+Slack : 0.311
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'adcReader:inst|clk_spi'
+Slack : -0.376
+TNS   : -2.855
+
+Type  : Slow 1200mV 0C Model Removal 'adcReader:inst|clk_spi'
+Slack : 0.516
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_50'
+Slack : -3.000
+TNS   : -29.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'adcReader:inst|clk_spi'
+Slack : -1.000
+TNS   : -33.000
+
+Type  : Fast 1200mV 0C Model Setup 'clk_50'
+Slack : -0.961
+TNS   : -16.159
+
+Type  : Fast 1200mV 0C Model Setup 'adcReader:inst|clk_spi'
+Slack : -0.688
+TNS   : -8.687
+
+Type  : Fast 1200mV 0C Model Hold 'clk_50'
+Slack : 0.119
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'adcReader:inst|clk_spi'
+Slack : 0.178
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'adcReader:inst|clk_spi'
+Slack : 0.112
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'adcReader:inst|clk_spi'
+Slack : 0.314
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_50'
+Slack : -3.000
+TNS   : -30.678
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'adcReader:inst|clk_spi'
+Slack : -1.000
+TNS   : -33.000
+
+------------------------------------------------------------

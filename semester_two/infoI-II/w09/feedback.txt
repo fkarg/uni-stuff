@@ -1,0 +1,17 @@
+Overall: 4 / 6
+
+Validation results for fk265/w09
+=====================================
+
+----------- Exercise: list-editor (1 / 2)
+Running 45 tests: ALL PASSED
+
+No, they are not sufficient. You should write your own tests! (-1)
+
+----------- Exercise: sessions (2 / 2)
+Running 16 tests: ALL PASSED
+
+----------- Exercise: generic-tree (1 / 2)
+Running 43 tests: ALL PASSED
+
+You should write your own tests! (-1)

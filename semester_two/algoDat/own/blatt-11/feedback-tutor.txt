@@ -1,0 +1,36 @@
+Aufgabe 1: 3/10
+================================================================================
+2/4 Ansatz
+1/6 Ausarbeitung
+
+Hey,
+
+ich nehme an du beziehst dich auf folgendes Diagramm:
+
+https://daphne.informatik.uni-freiburg.de/ss2017/AlgoDat/svn/public/folien/vorlesung-11b.pdf#page=12
+
+Du argumentierst dass durch den iterativen Algorithmus immer die Garantie herrschet dass es eine optimale, monotone Folge gibt die x in y umwandelt. Ich sehe nicht wo in der Vorlesung bewiesen wurde dass der iterative algorithmus immer eine Monotone Folge erzeugt - in dem Beispiel ist das der Fall, aber das ist ja kein Beweis ;) Oder ich verstehe nicht was du meinst / auf was du dich beziehst.
+
+Wieso aus Beweis 2 Monotonie folgt sehe ich nicht - wenn wir haben
+
+x := "aa", y := "cab", dann ist eine Optimale Folge
+
+R(2, b), I(1, c). Wenn wir diese nun nach ihrem Index auf der Zeichenkette ordnen, kriegen wir I(1, c), R(2, b) was zwar monton ist (Abbruch lt deinen Algorithmus), aber "cba" ergibt. Bei der Umordnung muss der Index angepasst werden.
+
+Aufgabe 2: 1/10
+================================================================================
+1/4 Ansatz
+0/6 Ausarbeitung
+
+Wieso folgt dann daraus eine Laufzeit von O(min{|x|, |y|} ⋅ ED(x, y))? So ist dies nur eine Behauptung...
+
+
+Erfahrungen
+================================================================================
+
+
+
+Rückfragen
+===========
+Falls es Klärungsbedarf bezüglich der Benotung, des Feedbacks oder sonstigem gibt, stehe ich gerne für Rückfragen zur Verfügung.
+E-mail: selgs@informatik.uni-freiburg.de

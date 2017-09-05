@@ -1,0 +1,33 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "sound",
+					"strict" : false
+				},
+				{
+					"name" : "DIN",
+					"strict" : false
+				},
+				{
+					"name" : "CS_n",
+					"strict" : false
+				},
+				{
+					"name" : "SCLK",
+					"strict" : false
+				},
+				{
+					"name" : "clk_50",
+					"strict" : false
+				},
+				{
+					"name" : "DOUT",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
