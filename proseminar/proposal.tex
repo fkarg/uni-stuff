@@ -85,16 +85,21 @@ den Zustand wechseln.
 \subsection{Eigenschafen von Turingmaschinen}
 Relevant für uns ist im Folgenden, dass es gewisse Definitionen beziehungsweise
 Arten von Turingmaschinen gibt, die der vorgestellten Äquivalent sind. Ein
-Beispiel wäre eine Turingmaschine die auf Zwei oder mehreren Bändern rechnet
-(die beide Unendlich lang sind), eine die auf einem Band rechnet das in beide
-Seiten unendlich lange ist, eine die in ihrem Alphabet nur $\{0, 1\}$ hat sowie
-eine die ein Beliebig langes, endliches Alphabet zur verfügung hat. Eine sehr
-interessante Eigenschaft ist, dass unsere Turingmaschine mit ihren Endlichen
-vielen Zuständen eindeutig definiert ist, Sie also auch entpsrechend Codiert
-werden kann und von einer anderen gelesen und Simuliert werden kann. Daraus
+% Geht es hier um genau eine Turingmaschine, die alle nachfolgenden
+% Eigenschaften hat, oder geht es um mehrere? -> Entsprechend Ein Beispiel zu
+% Beispiele dafuer anpassen.
+Beispiel wäre eine Turingmaschine die auf zwei oder mehr Bändern rechnet
+(die beide unendlich lang sind), eine die auf einem Band rechnet das in beide
+Seiten unendlich lang ist, eine die in ihrem Alphabet nur $\{0, 1\}$ hat sowie
+eine die ein beliebig langes, endliches Alphabet zur verfügung hat. Eine sehr
+interessante Eigenschaft ist, dass unsere Turingmaschine mit ihren endlich
+vielen Zuständen eindeutig definiert ist, Sie also auch entsprechend Codiert
+werden kann und von einer anderen gelesen und simuliert werden kann. Daraus
 ergibt sich auch dass eine Turingmaschine gleichzeitig mehrere simulieren kann,
+% Mir ist hier nicht ganz klar, wovon sie mehrere simulieren kann - mehrere
+% Turingmaschinen?
 wofür man nun einfacherhalber gerne eine mit mehreren Bändern verwendet, um die
-Simulierten Turingmaschinen seperat zu halten und genauer betrachten zu können. \\
+simulierten Turingmaschinen seperat zu halten und genauer betrachten zu können. \\
 Außerdem gibt es das Halteproblem, also dass bereits bei einer Turingmaschine
 mit sehr wenigen Zuständen kein Zuverlässiger Algorithmus existieren kann, der
 entscheidet ob diese irgendwann hält (Terminiert, ein Ergebnis liefert) oder
@@ -103,8 +108,8 @@ eben nicht.
 
 \subsection{Aussagentypen}
 Eine Teilmenge $M \subseteq \mathbb{N}$ ist genau dann von einer Turingmaschine
-aufzählbar (oder Rekursiv aufzählbar) sofern es eine Turingmaschine gibt, die
-in beliebiger Rheinfolge alle Elemente dieser Menge auf das Band schreiben
+aufzählbar (oder rekursiv aufzählbar) sofern es eine Turingmaschine gibt, die
+in beliebiger Reihenfolge alle Elemente dieser Menge auf das Band schreiben
 kann. Eine solche Menge wird $\Sigma_1$-Menge genannt, wenn es eine
 $\Sigma_1$-Aussage $\phi$ gibt, die über Logik (Arithmetik) erster Stufe
 aufgebaut ist, also der form $\phi = \exists m_1...\exists m_k \heartsuit$,
@@ -115,13 +120,14 @@ Variable darin vorkommen darf, sodass $M = \{n \in \mathbb{N}\ |\ \phi(n)\}$.
 % Lambda-Kalkül (Church) sind nun in der Lage, alle $\Sigma_1$-Mengen
 % auszudrücken.
 
+% Der hier auskommentierte Teil soll nicht in der Enfassung stehen?
 
 % Allgemein Rekursive Funktionen (Gödel), das Lambda-Kalkül (Church) sowie
-% Turingmaschinen (Turing) werden häufig als Äuquivalent mächtige
+% Turingmaschinen (Turing) werden häufig als äquivalent mächtige
 % Berechenbarkeitsdefinitionen betrachtet. Das gilt erstmal nur für
 % $\Sigma_1$-Aussagen, was Quantifizierungen über Variablen einschließt
-% ($\exists e : ...$), also (bekannte) Existentielle Prädikatenlogik, oder
-% Existenzielle Logik erster Stufe. An dieser stelle wird auch kurz darauf
+% ($\exists e : ...$), also (bekannte) existentielle Prädikatenlogik, oder
+% existenzielle Logik erster Stufe. An dieser Stelle wird auch kurz darauf
 % eingegangen was der Unterschied zu $\Sigma_1$-Aussagen ist, und warum
 % das so ist. Interessanterweise unterscheiden sich die Berechenbarkeitsmodelle
 % bei $\Sigma_1^1$-Aussagen, also inwieweit und welche von welcher Art als
@@ -139,29 +145,34 @@ angesprochene Halteproblem.
 
 
 \section{Unendlichkeit}
+% Im Nachfolgenden sind zu viele Kommata und zu wenige Punkte.
 Umgangssprachlich verwendet man einfach das Wort 'Unendlich'. Da damit zwar
 meist klar ist was gemeint ist, dies aber nicht immer das selbe ist möchte ich
 zumindest die folgenden beiden Arten der Unendlichkeit differenzieren, von
 denen eine gemeint ist, und die andere explizit nicht. Ich beschreibe beide nun
-als jeweils neue Klassen von Zahlen, die allerdings Konzeptionell nichts neues,
+als jeweils neue Klassen von Zahlen, die allerdings konzeptionell nichts neues,
 sondern altvertrautes sein sollten.
 
 
 \subsection{Kardinalzahlen}
 Kardinalzahlen sind Zahlen die Kardinalitäten angeben, also Beispielsweise die
-Anzahl von Elementen in einer Menge ($|\{\square, \nabla, \heartsuit \} | =
-3$). Soweit sind Kardinalzahlen also nicht von Natürlichen Zahlen zu
-unterscheiden, aber wir sind ja auch noch bei endlichen Mengen. Sobald wir
-unendliche Mengen betrachten, Beispielsweise $\mathbb{N}$, wird es interessant.
+Anzahl von Elemente, die in einer Menge vorhanden sind :$|\{\square, \nabla, \heartsuit \} | =
+3$. Soweit sind Kardinalzahlen also nicht von den natürlichen Zahlen zu
+unterscheiden, 
+% Den Teil wuerde ich weglassen
+aber wir sind ja auch noch bei endlichen Mengen.
+
+Sobald wir unendliche Mengen betrachten, beispielsweise $\mathbb{N}$, wird es interessant.
 $|\mathbb{N}| = \aleph_0$, $\aleph$ ist nun ein Buchstabe aus dem Häbräischen
 Alphabet. Wie bekannt sein sollte ist $\mathbb{N}$ abzählbar unendlich Groß,
 genauso wie $\mathbb{Z}$ und $\mathbb{Q}$. Es ist also klar, dass $\aleph_0 +
 \aleph_0 = \aleph_0$ ($\mathbb{Z}$), sowie $\aleph_0 * \aleph_0 = \aleph_0$
-($\mathbb{Q}$). Dies ist eine Art der Unendlichkeit auf die ich im Folgenden
-nicht weiter eingehen werde, wer ein Tieferes verständnis diesbezüglich michte,
-ein schönes Gedankenexperiment dazu ist Hilberts hotel. Ich werde hier nicht
-weiter auf z.B. die Reellen Zahlen eingehen, da nicht feststeht welche
-Kardinalzahl diese Haben, bis auf dass diese größer ist als $\aleph_0$.
+($\mathbb{Q}$). Dies ist die Art der unendlichkeit, auf die ich im Folgenden
+nicht weiter eingehen werde, wer ein tieferes Verständnis diesbezüglich möchte
+sei an dieser Stelle auf Hilberts Hotel verwiesen, ein schönes
+Gedankenexperiment hierzu. Ich werde hier nicht
+weiter auf z.B. die reellen Zahlen eingehen, da nicht feststeht welche
+Kardinalzahl diese Haben, bis auf das diese größer ist als $\aleph_0$.
 
 
 
@@ -172,20 +183,25 @@ Kardinalzahl diese Haben, bis auf dass diese größer ist als $\aleph_0$.
 \end{wrapfigure}
 
 \subsection{Ordinalzahlen}
-Nun zu einer anderen Art von Unendlichkeit, mit der wir auch vertraut sind.
-Wir fordern eigentlich nur eine Eigenschaft: und zwar dass die Ordnung erhalten
-bleibt. Anfänglich sind wir wieder äquivalent zu den Natürlichen Zahlen, da
-diese bereits eine wohlordnung haben. Wenn wir nun einen Zahlenstrahl
-betrachten, Zeichnen wir einen solchen häufig mit $\infty$, umgangssprachlich
-unendlich. Dieses Zeichen ist nicht Element der Natürlichen oder sogar Reellen
-Zahlen, sondern bezeichnet eher ein Element größer als alle die wir
+Nun zu der anderen Art von Unendlichkeit, welche ich hier ansprechen moechte.
+Auch mit ihr sollten wir vertraut sein.
+% Ich bin mir nicht sicher, ob der Ton (den Leser wirzen) fuer solch ein
+% Textstueck angemessen ist.
+Wir fordern eigentlich nur eine Eigenschaft: die Ordnung muss erhalten
+bleiben. Anfänglich sind wir wieder äquivalent zu den natürlichen Zahlen, da
+diese bereits eine Wohlordnung haben. Wenn wir nun einen Zahlenstrahl
+betrachten, zeichnen wir einen solchen häufig mit $\infty$, umgangssprachlich
+"unendlich". %Evtl "Unendlichkeit"? Nicht sicher, was huebscher klingt.
+Dieses Zeichen ist nicht Element der natürlichen oder gar reellen
+Zahlen, sondern bezeichnet eher ein Element welches größer ist als alle die wir
 aufschreiben oder uns vorstellen könnten. Wir definieren uns nun ein Element
 $\omega$, das direkt rechts daneben anzuordnen ist, also das erste Element
 außerhalb, oder neben, eher nach, dem Zahlenstrahl. Es sollte klar sein dass
 es strikt größer ist als alle vorhergehenden Ordinalzahlen, also z.B. alle
-Zahlen die auch Natürliche Zahlen wären. Die frage nach $\omega - 1$, also der
-Ordinalzahl vor $\omega$, kann nicht beantwortet werden. Intuitiv: es ist nicht
-möglich eine Feste Zahl direkt vor 'unendlich' zu definieren, denn könnten wir
+Zahlen die auch natürliche Zahlen wären. Die Frage nach $\omega - 1$, also der
+Ordinalzahl vor $\omega$, kann nicht beantwortet werden.\\
+Intuitiv: es ist nicht
+möglich eine feste Zahl direkt vor 'unendlich' zu definieren, denn könnten wir
 das, könnten wir diese Zahl so weit erhöhen (um 2) und wären größer als
 $\omega$, die ja die größte Zahl sein soll. Allerdings ist zu beachten, dass $1
 + \omega = \omega \neq \omega + 1$. Intuitiv kann man wieder sagen dass eben
@@ -198,6 +214,7 @@ anderen Elementen davor, angeordnet sein. Genauso ist $\omega + \omega = \omega
 
 
 \section{Superturingmaschinen}
+% Dieser Satz ist so semigeeignet fuer einen wissenschaftlichen Text ;)
 Superturingmaschinen klingen jetzt erstmal total super, und das sind sie auch.
 Eigentlich sind es nur Turingmaschinen, außer dass ihre Schritte in
 Ordinalzahlen gezählt werden, dass es also Schritte $\omega$, $\omega + 1$,
@@ -205,42 +222,52 @@ etc. quasi nach dem Ende der Zeit gibt, wo sie einfach weiterrechnen können.
 Dadurch lösen wir das klassische Halteproblem von Turingmaschinen, da wir
 einfach schauen können ob unsere Superturingmaschine (die sich ja sonst nicht
 unterscheidet) nach dem Ende der Zeit bereits angehalten hat oder eben nicht.
+% Um welche Zeit geht es hier? Eine kleine Einfuehrung des Begriffs in einem
+% Satz waere fuer mich praktisch.
 
 
 \subsection{Verhalten bei Grenzen}
-Was natürlich immer passieren ann, ist dass eine Superturingmaschine nicht
+% Wieder zu lange Saetze mit zu vielen Kommata
+Was natürlich immer passieren kann, ist, dass eine Superturingmaschine nicht
 anhält, und ständig weiter eine Zelle mit 1 und anschließend mit 0 beschreibt.
-In einem solchen fall (oder allgemein, wenn sie nicht hält) muss definiert
-werden, was anschließend, in schritt $\omega$ die Zustand sein soll. Meta: An
+In einem solchen Fall (oder allgemein, wenn sie nicht hält) muss definiert
+werden, was anschließend, in Schritt $\omega$ der Zustand sein soll.
+
+Meta: An
 diesem Punkt kann auf Supertasks hingewiesen werden, ein Beispiel wäre das
 umschalten eines Lichtschalters nach immer halben Zeitintervall zuvor, also
 angefangen bei 1s, 0.5s, 0.25s, ... wäre er in Sekunde 2 bei $\omega$
 angelangt, allerdings ist bei ständigem umschalten eines Lichtschalters nicht
-definiert, in welchem Zustand er anschließend, also nach sekunde 2, ist.
+definiert, in welchem Zustand er anschließend, also nach Sekunde 2, ist.
 Außerdem gibt es auch keine eindeutige Antwort, da es gleichzusetzen wäre mit
 'Ja, Unendlich ist gerade' oder eben dem Gegenteil davon. Allerdings sollte das
 Publikum bereits mit Supertasks im allgemein vertraut sein. Da davon nicht
-auszugehen ist, werde ich sie kurz erwähnen, aber dann weitermachen mit: eine
-Turingmaschine die nicht Terminiert, in welchem Zustand ist sie zum Zeitpunkt
+auszugehen ist, werde ich sie kurz erwähnen, aber dann weitermachen mit:
+
+eine
+Turingmaschine die nicht terminiert, in welchem Zustand befindet sie sich zum Zeitpunkt
 $\omega$? Weil: es kann einer von vielen sein, gleichzeitig eines von auf die
-verschiedensten weisen beschriebenes Band. Und wieder: egal wie man's festlegt,
+verschiedensten Weisen beschriebenes Band. Und wieder: egal wie man es festlegt,
+% Klingt holprig, mir faellt allerdings nichts sinnvolleres ein.
 kann es gut passieren dass Eindeutig ist wie viele und welche Schritte bisher
-notwendig gewesen sein müssen, also dass $\omega$ in einem solchen fall nicht
+notwendig gewesen sein müssen, also dass $\omega$ in einem solchen Fall nicht
 'nach' dem Zahlenstrahl kommt. Dementsprechend definiert man es folgendermaßen:
 Sofern die Turingmaschine hält, ist sie auch nach beliebig vielen weiteren
-schritten in ihrem Finalen zustand. Ist dies allerdings nicht passiert, wird
+schritten in ihrem finalen Zustand. Ist dies allerdings nicht passiert, wird
 der Schreib-/Lesekopf wieder auf den Anfang gesetzt, sowie die
-Superturingmaschine auf ihren Startzustand. Der einfachheit nehmen wir an dass
-wir nur nuller (default) und einser auf unserem Band haben können. Eine null
+Superturingmaschine auf ihren Startzustand. Der Einfachheit halber nehmen wir
+an, dass
+wir nur Nullen (default) und Einsen auf unserem Band haben können. Eine Null
 wird nun an Schritt $\omega$ überall dort stehen wo entweder keine Eins
 geschrieben wurde, oder nur endlich oft eine Eins geschrieben wurde. Eine Eins
 steht hingegen überall dort, wo zu mehr als endlich vielen Zeitpunkten eine
-Eins stand, bis hin zu von anfang an (durchgehend). Dementsprechend ist der
+% Wiederum etwas holprig.
+Eins stand, bis hin zu von Anfang an (durchgehend). Dementsprechend ist der
 Wert einer jeden Zelle entsprechend ihres Limeswertes, und die Turingmaschine
 ist wieder auf Anfangszustand, allerdings mit möglicherweise verändertem Band.
 
 \subsection{Fähigkeiten}
-Superturingmaschinen können nun Natürlich zum einen alles tun was normale
+Superturingmaschinen können nun natürlich zum einen alles tun, was normale
 Turingmaschinen auch können. Außerdem können sie, wie wir eben gesehen haben,
 entscheiden ob eine normale Turingmaschine hält oder nicht. Genauso können sie
 natürlich neben dem Simulieren von normalen Turingmaschinen auch
