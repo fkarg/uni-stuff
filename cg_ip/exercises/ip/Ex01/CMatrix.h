@@ -142,7 +142,7 @@ public:
   inline T* data() const;
 protected:
   int mXSize,mYSize;
-  T *mData;
+  T* mData;
 };
 
 // Returns a matrix where all negative elements are turned positive
