@@ -1,0 +1,55 @@
+\documentclass{scrartcl}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{amssymb}  % advanced mathematical symbold
+\usepackage{graphicx} % using graphics
+\usepackage{fancyhdr} % for the head of the page
+\usepackage{lastpage} % makes page numbers work
+\setlength{\parskip}{\medskipamount} % thats reasonable
+\setlength{\parindent}{0pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf- und Fusszeilen %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\lhead{
+    \begin{tabular}{ll}
+        Felix Karg & 4342014\\
+    \end{tabular}
+}
+\chead{Graphentheorie}
+\rhead{
+    \begin{tabular}{rr}
+        \today{} \\
+        Seite \thepage{} von \pageref{LastPage}
+    \end{tabular}
+}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+
+\title{Graphentheorie \\ Blatt 6}
+\author{Felix Karg}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Anfang des Dokuments %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+
+
+\section*{Aufgabe 1}
+Aufgabe: Finden Sie einen Graph G mit $\tau(G) = 2\nu(G) + 1$. \\
+Definitionen: $\nu(G) := max\{|M| : M$ is a Matching for $G\} $ ist die größte anzahl an Matchings im Graphen G. Das ist nur sinnvoll möglich wenn der Graph Bipartit ist, also in Zwei Teilgraphen geteilt werden kann die untereinander nicht verbunden sind. \\
+$S \subseteq V$ ist vertex cover wenn alle Elemente in $S$ inzident (neben) allen anderen Ecken in V sind.
+$\tau(G) := min\{|S| : S$ is a vertex cover$\}$.
+
+
+
+
+\end{document}
