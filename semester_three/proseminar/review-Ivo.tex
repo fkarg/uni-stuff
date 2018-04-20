@@ -1,0 +1,126 @@
+\documentclass{scrartcl}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{amssymb}  % advanced mathematical symbols
+\usepackage{graphicx} % using graphics
+\usepackage{fancyhdr} % for the head of the page
+\usepackage{lastpage} % makes page numbers work
+\setlength{\parskip}{\medskipamount} % thats reasonable
+\setlength{\parindent}{0pt}
+
+\usepackage{wrapfig}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf- und Fusszeilen %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\lhead{
+    \begin{tabular}{ll}
+        Felix Karg & 4342014\\
+    \end{tabular}
+}
+\chead{Review of Efficient representation of ...}
+\rhead{
+    \begin{tabular}{rr}
+        \today{} \\
+        Seite \thepage{} von \pageref{LastPage}
+    \end{tabular}
+}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\title{Review of Efficient representation of finitie sets}
+\author{Felix Karg}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Anfang des Dokuments %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+
+% Review-Template
+% 
+% Short Overview
+% Structure of the talk
+% aspects of the topic you present or ignore, and why
+% examples for the talk, is there sth running?
+% formal and informal definitions and why
+% notation
+% theorems, proofs
+% 
+% easily understandable
+% allows for someone else to follow through and roughly see the talk
+% in-depth-introduction to topic
+
+\section*{Overview + Structure of the talk + Basics}
+The Abstract (Overview) is quite informing, and the first paragraph was quite
+fluently readable, I would have preferred for the rest to have been in a
+similiar matter, or at least easier readable, with a less high density of
+definitions and the like. The Definition 2.1 and the following thoughts are
+quite peculiar, additionally that we are going to have an automaton with
+infinitely many states and still no initial state, but I guess it only makes
+sense. What I was wondering about though was how this automaton would be used
+then. In retrospect I don't know if I would be calling it an automaton (since
+it does something else as far as I understood), but then again it is the
+closest to anything else I guess. I did not exactly understand how to interpret
+Proposition 2.1 yet, this might change in due time, still, I'm writing this
+down as confusion at least existed. I now understood it, and the confusion
+arose as to why the master automaton would be recognising languages in
+particular, since it has not been defined or even mentioned yet. Then again, it
+probably really makes sense to call it an automaton after all. During the talk
+I would probably mention how that automaton would be used when introducing it,
+or directly after. When introducing the make-procedure, T has not been
+mentioned yet, but I can infer that it probably is something like a relational
+structure, apparently with tree-like structure. The following Example and table
+were confusing at first, since the make(3, 2) is apparently to be interpreted
+as 'The state from which 'a' will get me to 3, and 'b' to 2'. I was quite
+confused at first since I expected it to be 6 at first, and now I'm convinced
+the 8 in there is a mistake as well, as it is probably supposed to be a 9. The
+table was confusing at first as well, since the meaningn of the zero did not
+get introduced and I would have expected there to be $q_\emptyset$ at first.
+Additionally the b-successor of 4 is apparently not 0 but 1.
+
+\section*{Operation on fixed-length languages}
+About the $G(q_1, q_2)$-thing in the inter-algorithm: G did not at all get
+explained anywhere as of yet. I would have preferred you to describe what inter
+does more in detail, or explain the code in detail, otherwise don't show it,
+it's only confusing to read code using global variables all over and just about
+no comments. 0 in it's special meaning has yet to be introduced, and the
+description is useful, but should explain more than leaving questionmarks
+behind after reading it the first time.
+
+\section*{Decision Diagrams}
+The explanation just before Definition 7.12 may be having a type-error, as the
+DD is supposed to be deterministic but $\delta(q, a\Sigma^k)$ retuns the set
+$\{q'\}$. Why a set? Is that correct? Why? After the Definition 7.12, I'm
+confused. I thought that there would be more of an explanation as to what the
+kernel actually is supposed to be, because I do not claim to have understood it
+after reading through it three times now. Additionally, afterwards there's
+withaout any explanation a master-decision-diagram, the kinter diagram which
+apparently has something to do with kernels ... maybe, again using stuff not at
+all explained, and two probably regarding to the decision-diagram updated
+graphs from the inter-algorithm, probably somehow relatet to kinter ....
+honestly, this kind of ending is weird.
+
+\section*{short thoughts}
+Guess I failed as a DAU (Dümmster Anzunehmender User) regarding the reading of
+this article, I understood quite a bit of it. Then again, I would have
+preferred it to be more in detail with some edge-cases to gain a deeper
+understanding (but maybe this would have only been my personal preference and a
+better explanation would do the trick).
+
+\section*{Conclusion}
+Everything was more or less understandable, but it could definitely be
+understandable easier and be more concise. The Overview was useful. I think the
+comparison to Decision Diagrams mentioned in 'Structure of the talk' did not
+exactly happen, but hopefully it will in the following talk, since I guess it
+would be interesting as well. There are quite a few formal definitions, I don't
+know how useful this is in the actual talk, but having too many formal
+definitions is not going to be easy. The notation should be explained more, but
+other than that it is quite understandable.
+
+
+\end{document}
