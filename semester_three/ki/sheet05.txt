@@ -1,0 +1,25 @@
+Aufgabe 5.1
+a) (n+1)/2n = 0.5 + 1/n
+b) 1 - ((n+1)/2n)^k
+c) 0.5^k
+
+
+Aufgabe 5.2
+GR = Gesehen Auto Rot
+GNR = Gesehen Auto Nicht Rot
+R = Auto Rot
+P(R) = 80%  -- Freiburg: 80% der Autos Rot
+=> P(-R) = 20%
+GNR  -- nachts Auto gesehen das nicht-Rot schien
+P(GR|R) = 70%  -- Rotes auto nur in 70% der Fälle korrekt gesehen
+P(GNR|-R) = 90%  -- nicht-Rotes Auto wird zu 90% korrekt erkannt
+
+
+P(R|GNR) = P(GNR|R) * P(R) / ( P(GNR|R) * P(R) + P(GNR|-R) * P(-R) )
+    = 70 % * 80 % / (70% * 80 % + 90 % * 20 %) = 75.68 %
+
+
+Aufgabe 5.3
+
+(i) Ind(Cold, Winter)
+

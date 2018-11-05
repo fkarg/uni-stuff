@@ -1,0 +1,32 @@
+Required topics:
+
+alpha-beta-pruning - time?
+DPLL-resolution
+Damenproblem
+STRIPS
+A*
+Entscheidungsbäume
+Breitensuche / Tiefensuche
+Bayes'sche Netze
+Bedingte Wahrscheinlichkeiten / Abhängigkeiten
+Skolemnnormalform
+MinMax with probabilistic step
+Forward Checking
+Satisfiability
+markov-decision-processes - state-space - time?
+
+
+Tutorium:
+constraint-satisfaction-stuff
+
+time is going to be scarce.
+Bayesion Networks, drawing them
+damenproblem: bei arc-consistency check if two from the same row exclude
+    possibilities from the start. forward-checking would not do this.
+implications for bayesian/markov-stuff
+
+
+
+Open Questions:
+what is node consistency really?
+
