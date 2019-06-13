@@ -1,4 +1,29 @@
 \chapter{Introduction}\label{chap:introduction}
+
+Hi-C is a well-known method for getting 3D-interaction information about genomes \cite{wingett2015hicup}. This information, however usually is quite biased (inherently based on the method), and can be corrected through an iterative method \cite{imakaev2012iterative}.
+
+
+\section{Algorithm}
+\todo{describe the algorithm}
+\extend{THIS:}
+Our fundamental assumption is that every location in our Matrix has in total as
+many interactions (with other locations) as every other location.
+Taking this in mind, the algorithm itself is pretty straightforward.
+
+
+\section{Operation}
+\draft{Change Name!}
+smb can be run on any Unix-based operating system (tested using ubuntu-18.04
+and macOS) with Python, Rust and common development packages installed (e.g.
+libopenssl-dev, python3-dev, build-essential, ...). For best performance, the
+size of the matrix should correlate with the number of available cores and the
+amount of available RAM \extend{Give rough factors!}.
+
+
+
+\todo{Motivation as to why you'd want to do it at all and like this}
+\todo{remove original parts}
+
 This is a template for an undergraduate or master's thesis.
 The first sections are concerned with the template itself. If this is your first
 thesis, consider reading \secref{sec:advice}.
@@ -15,7 +40,7 @@ Discuss with your adviser what structure fits best for your thesis.
 
     \item Each chapter goes into a separate document, the files can be found in the folder chapters.
 
-    \item The bib folder contains the .bib files, I'd suggest to create multiple bib files for different topics. If you add some or rename the existing ones, don't forget to also change this in thesis\_main.tex. You can then cite as usual~\cite{kingma2014adam, bromley1993siamesesignature,muja2009flann}.
+    \item The bib folder contains the .bib files, I'd suggest to create multiple bib files for different topics. If you add some or rename the existing ones, don't forget to also change this in thesis\_main.tex. You can then cite as usual% \cite{kingma2014adam, bromley1993siamesesignature,muja2009flann}.
 
     \item The template is written in a way that eases the switch from scrbook to book class. So if you're not a fan of KOMA you can just replace the documentclass in the main file. The only thing that needs to be changed in setup.tex is the caption styling, see the comments there.
 \end{itemize}
@@ -93,3 +118,9 @@ For a more complete list we recommend to read Donald Knuth's paper on mathematic
         \item In tables avoid vertical lines, keep them clean and neat. See \ref{tab:accuracy} for an example. More details can be found in the `Small Guide to Making Nice Tables' \url{https://www.inf.ethz.ch/personal/markusp/teaching/guides/guide-tables.pdf}
 
     \end{itemize}
+
+
+
+
+
+
