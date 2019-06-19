@@ -1,5 +1,6 @@
 \chapter{Introduction}\label{chap:introduction}
 
+\draft{Okay like this?}
 
 Hi-C is a method commonly used for getting 3D-information of genomes. Such
 technologies tend to suffer from technical (e.g. sequencing, mapping)
@@ -20,6 +21,8 @@ We will not do the Eigenvector decomposition, but the iterative correction (``no
 
 
 \section{Core setup}\label{sec:setup}
+
+\draft{Okay like this?}
 
 This work is part of the HiCExplorer (\secref{sec:hicexplorer}) tool from the
 Deeptools (\secref{sec:deeptools}) framework. HiCExplorer is mainly written in
@@ -49,19 +52,34 @@ many interactions (with other locations) as every other location.
 Taking this in mind, the algorithm itself is pretty straightforward.
 
 
-\section{Operation}
+\section{Operation}\label{sec:operation}
+
+\draft{Okay like this?}
+
 \draft{Change Name!}
-smb can be run on any Unix-based operating system (tested using ubuntu-18.04
-and macOS) with Python, Rust and common development packages installed (e.g.
+smb can be run on any Unix-based operating system (tested using ubuntu-18.04)
+with Python, Rust and common development packages installed (e.g.
 libopenssl-dev, python3-dev, build-essential, ...). For best performance, the
 size of the matrix should correlate with the number of available cores and the
 amount of available RAM \extend{Give rough factors!}.
 
 
 
-\todo{Motivation as to why you'd want to do it at all and like this}
-\extend{The motivation being: Rust is fast and still memory-safe. Also can easily be parallelized.}
+\section{Motivation}\label{sec:motivation}
 
+\draft{Okay like this?}
+
+There is several reasons for using Rust, including faster development than C++
+and better tooling, while still having the same if not better performance. A
+killer feature here is the easiness of adding parallelism, and the modularity
+of Rust code. Libraries in Rust do not do weird things, and the compiler will
+complain if the memory is not handled the way it should be (in C++ it is common
+practise to misunderstand which part should care about what memory, easily
+resulting in Segfaults and other hard to debug issues). The benefits to using
+Rust instead of Python are only apparent if Performance or Safety (of
+execution, at runtime) is needed - which is the case here.
+
+\todo{Add motivation for this whole Hi-C part}
 
 
 

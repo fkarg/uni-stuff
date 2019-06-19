@@ -1,7 +1,128 @@
 \chapter{Background}\label{chap:background}
 Explain the math and notation.
-\input{figures/background/algBackpropagation}
-\input{figures/background/figTikz}
+% \input{figures/background/algBackpropagation}
+% \input{figures/background/figTikz}
+
+\todo{Add section about DNA?}
+% \section{Deoxyribonucleic acid}\label{sec:dna}
+
+\section{Chromosome Conformation Capture and Hi-C}\label{sec:c3}\label{sec:hic}
+
+\input{figures/background/figsHiC}
+
+\subsection{Overview}
+
+
+Chromatin usually describes different levels of how DNA organizes itself. The
+well-known double-helix is only the lowest of several structural layers.
+
+Looking at it from the outside (highest structural layer), DNA seems to be kind
+of like a big ball of wool. With the help of Hi-C (and similar methods) we can
+visualize spacial proximity. Regulating \draft{correct wording?} genes also
+have effect on their spatial neighbourhood, not only on the neighbourhood
+going up and down the strand of DNA.
+
+
+
+Chromosome Conformation Technologies describe several similar methods to
+compare genomic loci. They all start by:
+
+\begin{itemize}
+    \item creating chromatin cross-links
+    \item digesting the cross-linked chromatin and
+    \item ligating the ends
+\end{itemize}
+
+to get a reversed cross-link sequence.
+
+\subsection{Cross-linking DNA}
+
+The first step, as shown in \figref{fig:HiC} is to cross-link DNA strands that
+are close to each other spatially. This is done by adding formaldehyde, which
+bonds sufficiently close strands together.
+
+A chromatin cross-link is two entirely different parts of the genome held
+together by a chemical bond with formaldehyde. This process cannot be
+specifically controlled, so only 'regions near each other' are connected, not
+necessarily two 'known to be close' regions.
+
+\subsection{Digestion}
+
+The next step is cutting the whole ball of wool apart in certain intervals. For
+this, restriction-enzymes are used (specifically restriction endonuclease).
+Commonly used enzyme here would be EcoR1 or HindIII \todo{add reference or
+sth}, cutting the genome about every 4000 base-pairs.
+
+This is cutting the whole genome apart, leaving some (cross-) linked and some unlinked parts.
+
+\subsection{Ligation}
+
+Next, we randomly ligate (connect together) ends which we previously cut apart.
+This is done using biotin \todo{more details!}.
+Some of the reconnected will have been together before as well, so this is
+usually done in less concentrated environments. The goal here is to get the
+previously linked parts to be connected.
+
+\subsection{Reverse Cross-links}
+
+\extend{This}
+As soon as the formaldehyde is removed, reverse cross-links remain.
+\todo{where does the name come from / what does it mean} 
+\todo{How is the formaldehyde removed}
+
+\subsection{Sonication}
+
+\todo{actually write this.}
+% - beschallung / they are sonicated.
+% - zerbricht längere molekülketten
+% - kürzere fragmente
+% - (biotin schockabsorber und daher keine bruchstelle?)
+
+\subsection{Removal of biotin}
+
+\todo{actually write this.}
+% - called pull down
+% - removal of biotin
+
+\subsection{Sequencing}
+
+\todo{actually write this.}
+% - putting the 3' and 5' ends there
+% - usual PCR methods
+
+
+% Open questions:
+% - scaffolds?
+
+% Chromatin is packaged into three-dimensional structures, that retain a
+% relationship between genomic and physical distance. Sequences that are closer
+% on the same chromosome, are also closer in physical space. Our method
+% exploits this relationship between linkage and proximity to enable whole
+% chromosomes scaffolding and phasing of genomes.
+%
+% The DNA in the sample is cross-linked in-vivo to fix DNA sequences present
+% inside the same cell. Cross-linking trap sequence interactions across the
+% entire genome and between different chromosomes.
+%
+% Cross-Linked DNA is fragmented with endonucleases. Fragmented loci are then
+% biotin elated and ligated creating chimeric junctions between adjecent
+% sequences. This process is called proximity ligation.
+%
+% The more often two sequences are joined together, the closer these two
+% sequences are in genomic space.
+%
+% Biotinylated junctions are purified and subjected to paired-end sequencing.
+% The proximity-ligation-reads are then mapped onto a draft assembly.
+%
+% Proximity information is used to assign context to chromosomes, and order and
+% orient them along chromosome scale scaffolds.
+%
+% This results in fully scaffolded chromosomes of virtually any size. This
+% process also detects structural variation and corrects assembly miss-joins as
+% well as maps the three-dimensional conformation of chromatin within a
+% population of cells.
+
+See \figref{fig:HiC}.
 
 
 % Background:
@@ -10,9 +131,14 @@ Explain the math and notation.
 Required concepts:
 \begin{itemize}
     \item Biology:
-    \item (Chromosome Conformation Capture - what is that even?)
+    \item Chromosome Conformation Capture
     \item Hi-C  + pipeline
     \item The iterative algorithm (again ?)
     \item analysis that can be done further
+    \item outlook. Meaning: What can be done, when having the 3C-Data?
 \end{itemize}
+
+
+
+
 
