@@ -3,10 +3,36 @@
 % Related Work:
 \todo{introduce original implementation in python and KR-algorithm in C++}
 
-\section{HiCExplorer}\label{sec:hicexplorer}
-\todo{introduce hicexplorer and}
-
 \section{Deeptools}\label{sec:deeptools}
 \todo{introduce the whole deeptools framework}
+
+
+\section{HiCExplorer}\label{sec:hicexplorer}
+\todo{introduce hicexplorer}
+
+\section{Python implementation}\label{sec:python}
+
+As the deeptools-framework is mainly written in Python, and this algorithm is a
+fundamentally important one, it was originally implemented in Python. This
+implementation however requires too much working memory, limiting the size of
+usable matrices, which is why a different implementation was asked for.
+
+Rust and Python are two quite different programming languages, which is why a
+direct ``translation'' is not even possible. Both are semantically speaking the
+same, but details differ. Since Rust has a much finer control about memory and
+the applying of functions to datastructures, some operations have been
+seperated while others have been combined.
+
+The biggest difference, however, is that in Rust certain tasks can easily be
+parallelized - even after originally writing it for only one core. For smaller
+matrices the overhead can be quite big, for one of our test matrices the optimum was using 'only' three of the available 32 cores (this still gave an improvement of \todo{get numbers!}).
+
+% but for bigger matrices this is qutie the improvement.
+
+\section{KR-algorithm}\label{sec:KR}
+
+\todo{read paper + introduce here}
+
+\todo{maybe also implement in Rust as well}
 
 \todo{is that really everything related?}
