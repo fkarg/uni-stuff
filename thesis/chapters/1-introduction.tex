@@ -1,7 +1,5 @@
 \chapter{Introduction}\label{chap:introduction}
 
-\draft{Okay like this?}
-
 Hi-C is a method commonly used for getting 3D-information of genomes. Such
 technologies tend to suffer from technical (e.g. sequencing, mapping)
 \cite{pmid21646344} and biological factors (e.g. distinct chromatin states)
@@ -9,57 +7,65 @@ technologies tend to suffer from technical (e.g. sequencing, mapping)
 
 However, a basic assumption about the structure of the genome can be made,
 which is that every location has the same amount of interactions (with other
-locations) as every other location. The data does not show this however, which
-is probably due to PCR artifacts \cite{wingett2015hicup}.
+locations) as every other location. The data does not show this due to the
+several aforementioned inaccuracies. Algorithms such as ICE (Iterative
+Correction and Eigenvector decomposition, \secref{sec:ice}) or KR (Knight-Ruiz,
+\secref{sec:kr}) can be applied to ``normalize'' the matrix nonetheless.
 
-Now our approach is to just take this assumption, and ``normalize'' the data we
+ICE, the algorithm implented in this work, ``normalizes'' the data we
 have iteratively. Eigenvector decomposition of the normalized data can then
 give us new insights on local chromatin states or global patterns of
 chromosomal interaction \cite{imakaev2012iterative}.
 
-We will not do the Eigenvector decomposition, but the iterative correction (``normalization'') before that.
+We will not do the Eigenvector decomposition, but the iterative correction
+(``normalization'') before that.
 
 
 \section{Core setup}\label{sec:setup}
 
-\draft{Okay like this?}
-
 This work is part of the HiCExplorer (\secref{sec:hicexplorer}) tool from the
 Deeptools (\secref{sec:deeptools}) framework. HiCExplorer is mainly written in
-Python, with this implementation needing too much working memory (RAM) for the
-iterative correction. For some time, the goal was to reduce memory usage by not
-copying a huge matrix a couple of times. From the Rust side, it would have been
-possible to read and write to the matrix in-memory, but we decided against
-doing so due to concerns regarding correctness. Still, the focus is to
-investigate which version requires less resources (CPU Time/RAM/...).
+Python, which turned out to currently be a bottleneck for the iterative
+correction, taking quite some time for currently reasonable-sized data.
 
-This is going to be an interesting comparison, since, the (before) default
-Python-implementation was only using one core. Rust code written for
-single-core applications can easily be turned to multicore code. During the
-work of this project, an implementation of a different algorithm
-(\secref{sec:KR}) written in C++ got added, so We'll compare with this one now
-as well.
+As we will see, \todo{run experiments!!}
 
-\extend{maybe add more details}
+
+% with this implementation needing too much working memory (RAM) for the
+% iterative correction. For some time, the goal was to reduce memory usage by not
+% copying a huge matrix a couple of times. From the Rust side, it would have been
+% possible to read and write to the matrix in-memory, but we decided against
+% doing so due to concerns regarding correctness. Still, the focus is to
+% investigate which version requires less resources (CPU Time/RAM/...).
+
+
+% This is going to be an interesting comparison, since, the (before) default
+% Python-implementation was only using one core. Rust code written for
+% single-core applications can easily be turned to multicore code. During the
+% work of this project, an implementation of a different algorithm
+% (\secref{sec:KR}) written in C++ got added, so We'll compare with this one now
+% as well.
+
+\extend{Add more details!!}
 
 
 \section{Algorithm}\label{sec:algorithm}
-\todo{describe the algorithm}
 
-\todo{Reference description from additional notes from the 2012-paper and} \extend{the description of the algorithm to be easily undarstandable, include code (probably pseudocode, not python or rust)}
-Our fundamental assumption is that every location in our Matrix has in total as
-many interactions (with other locations) as every other location.
-Taking this in mind, the algorithm itself is pretty straightforward.
+% Wolff: Jede Position im Genom hat in der Summe die gleiche anzahl an
+%        interaktionen mit anderen Positionen des Genoms.
+
+Fundamentally, every part in our genome has the same amount of summed up
+interactions with other parts of the genome. The algorithm takes severe
+advantage of this property, downright enforcing it. A full description can be
+found in \secref{sec:ice}.
 
 
 \section{Operation}\label{sec:operation}
 
-\draft{Okay like this?}
-
-\draft{Change Name!}
+\todo{Change Name!}
 smb can be run on any Unix-based operating system (tested using ubuntu-18.04)
 with Python, Rust and common development packages installed (e.g.
-libopenssl-dev, python3-dev, build-essential, ...). For best performance, the
+\verb!libopenssl-dev python3-dev build-essential! ...). For best performance, the
 size of the matrix should correlate with the number of available cores and the
 amount of available RAM \extend{Give rough factors!}.
 
@@ -67,19 +73,26 @@ amount of available RAM \extend{Give rough factors!}.
 
 \section{Motivation}\label{sec:motivation}
 
-\draft{Okay like this?}
+\subsection{Motivation for Hi-C}
+
+Within cells, the three-dimensional structure of chromatin can now be analysed
+using techniques based on chromatin conformation capture, including Hi-C. With
+Hi-C, we can construct spatial proximity maps over the whole genome, giving us
+clues as to which regions are close to each other.
+
+
+\subsection{Motivation for Rust}
 
 There is several reasons for using Rust, including faster development than C++
-and better tooling, while still having the same if not better performance. A
-killer feature here is the easiness of adding parallelism, and the modularity
-of Rust code. Libraries in Rust do not do weird things, and the compiler will
-complain if the memory is not handled the way it should be (in C++ it is common
-practise to misunderstand which part should care about what memory, easily
-resulting in Segfaults and other hard to debug issues). The benefits to using
-Rust instead of Python are only apparent if Performance or Safety (of
+and better tooling, while still having the same if not slightly better
+performance. A massive advantage is the easiness of adding parallelism, and the
+modularity of Rust code. Libraries in Rust can easily be stacked, and the
+compiler will complain if the memory is not handled the way it should be (in
+C++ it is hard to correctly manage all memory, especially from libraries,
+easily resulting in segfaults and other issues hard to debug). The benefits to
+using Rust instead of Python are only apparent if performance or safety (of
 execution, at runtime) is needed - which is the case here.
 
-\todo{Add motivation for this whole Hi-C part}
 
 
 
