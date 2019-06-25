@@ -1,10 +1,6 @@
 \chapter{Background}\label{chap:background}
-Explain the math and notation.
 % \input{figures/background/algBackpropagation}
 % \input{figures/background/figTikz}
-
-\todo{Add section about DNA?}
-% \section{Deoxyribonucleic acid}\label{sec:dna}
 
 \section{Chromosome Conformation Capture and Hi-C}\label{sec:c3}\label{sec:hic}
 
@@ -16,11 +12,11 @@ Explain the math and notation.
 Chromatin usually describes different levels of how DNA organizes itself. The
 well-known double-helix is only the lowest of several structural layers.
 
-Looking at it from the outside (highest structural layer), DNA seems to be kind
-of like a big ball of wool. With the help of Hi-C (and similar methods) we can
-visualize spacial proximity. Regulating \draft{correct wording?} genes also
-have effect on their spatial neighbourhood, not only on the neighbourhood
-going up and down the strand of DNA.
+Looking at it from the outside (highest structural layer), DNA looks similar to
+a big ball of wool. With the help of Hi-C (or other methods) we can visualize
+the spatial proximity.
+
+% Gene markers tend to also have effect on their spatial neighbourhood, not only on the neighbourhood going up and down the strand of DNA.
 
 
 
@@ -28,64 +24,83 @@ Chromosome Conformation Technologies describe several similar methods to
 compare genomic loci. They all start by:
 
 \begin{itemize}
-    \item creating chromatin cross-links
-    \item digesting the cross-linked chromatin and
-    \item ligating the ends
+    \item creating chromatin cross-links (\secref{sec:crosslinking})
+    \item digesting the cross-linked chromatin (\secref{sec:digestion}) and
+    \item ligating the ends (\secref{sec:ligation})
 \end{itemize}
 
 to get a reversed cross-link sequence.
 
-\subsection{Cross-linking DNA}
+We will, however focus on Hi-C only, which follows up with:
 
-The first step, as shown in \figref{fig:HiC} is to cross-link DNA strands that
-are close to each other spatially. This is done by adding formaldehyde, which
-bonds sufficiently close strands together.
+\begin{itemize}
+    \item shortening the crosslinks by sonication (\secref{sec:sonication}),
+    \item filtering leaving only those with biotin (\secref{sec:pulldown}) and
+    \item sequencing (\secref{sec:sequencing}).
+\end{itemize}
+
+The full process can be seen in \figref{fig:HiC}.
+
+\subsection{Cross-linking DNA}\label{sec:crosslinking}
+
+The first step is to cross-link DNA strands that are close to each other
+spatially (see \figref{fig:HiC} for reference). This is done by adding
+formaldehyde, which bonds sufficiently close strands together.
 
 A chromatin cross-link is two entirely different parts of the genome held
 together by a chemical bond with formaldehyde. This process cannot be
-specifically controlled, so only 'regions near each other' are connected, not
-necessarily two 'known to be close' regions.
+specifically controlled, so only `regions near each other' are connected, not
+necessarily two `known to be close' regions.
 
-\subsection{Digestion}
+\subsection{Digestion}\label{sec:digestion}
 
-The next step is cutting the whole ball of wool apart in certain intervals. For
-this, restriction-enzymes are used (specifically restriction endonuclease).
-Commonly used enzyme here would be EcoR1 or HindIII \todo{add reference or
-sth}, cutting the genome about every 4000 base-pairs.
+The next step is cutting the ball of wool apart in intervals. For this,
+restriction-enzymes are used (specifically restriction endonuclease). Commonly
+used enzymes for this are EcoR1 or HindIII, cutting the genome every 4000 base-pairs
+\draft{info taken from wikipedia, add some other source}.
 
-This is cutting the whole genome apart, leaving some (cross-) linked and some unlinked parts.
+This will result in a lot of cross-linked fragments, as well as not-cross-linked ones.
 
-\subsection{Ligation}
+\subsection{Ligation}\label{sec:ligation}
 
-Next, we randomly ligate (connect together) ends which we previously cut apart.
-This is done using biotin \todo{more details!}.
-Some of the reconnected will have been together before as well, so this is
-usually done in less concentrated environments. The goal here is to get the
-previously linked parts to be connected.
+After reducing the concentration of fragments, DNA ligase is added, to ligate
+(weld together) dangling fragment ends. The reduction in concentration is done
+since mostly fragments close together are ligated, and we intend to ligate
+fragments held together by formaldehyde. Also, Biotin is added to mark the
+points of ligation. This will let us filter out a lot of fragments that have
+not been ligated later on.
 
-\subsection{Reverse Cross-links}
 
-\extend{This}
-As soon as the formaldehyde is removed, reverse cross-links remain.
-\todo{where does the name come from / what does it mean} 
-\todo{How is the formaldehyde removed}
+\subsection{Reverse Cross-links}\label{sec:revcrosslink}
 
-\subsection{Sonication}
+% Source: http://www.protocol-online.org/biology-forums/posts/10475.html
+Adding a high concentration of salt for some time will reverse the
+cross-linking through formaldehyde, leaving us with our two originally
+spatially close fragments ligated and with a biotin-marker.
 
-\todo{actually write this.}
-% - they are being sonicated with certain frequencies, so that they break apart
-%   in shorter fragments
-% - question: is biotin a shock-absorbar, which is why it's not breaking at these points?
+Our fragments, however, are too long to sequence them effectively (remember
+that we have now ligated fragments of around 8000 base-pairs, most sequencing
+methods can only deal with sequence lengths of a few hundred base-pairs).
 
-\subsection{Removal of biotin}
+\subsection{Sonication}\label{sec:sonication}
 
-\todo{actually write this.}
-% - called pull down
-% - removal of biotin
+The next step is to put them under influence of ultrasonic waves, breaking them
+apart in much shorter fragments (due to long sequences not being able to absorb
+frequent shocks well), short enough to actually enable sequencing.
 
-\subsection{Sequencing}
+\subsection{Filtering and Removal of Biotin}\label{sec:pulldown}
 
-\todo{actually write this.}
+Here we filter all the fragments, leaving only those having a biotin-marker
+(see \secref{sec:ligation}) and thus have been ligated earlier. Subsequently
+we remove the marker, since it would get in the way of sequencing.
+
+\subsection{Sequencing}\label{sec:sequencing}
+
+Sequencing, short for DNA sequencing, describes processes of measuring a DNA
+sequence. There are several techniques for doing this, most use PCR (Polymerase
+Chain Reaction) before or while sequencing, which duplicates the fragments
+several times, to sequence them more accurately.
+
 % - putting the 3' and 5' ends there
 % - usual PCR methods
 
@@ -130,12 +145,14 @@ As soon as the formaldehyde is removed, reverse cross-links remain.
 Required concepts:
 \begin{itemize}
     \item Biology:
-    \item Chromosome Conformation Capture
-    \item Hi-C  + pipeline
     \item The iterative algorithm (again ?)
     \item analysis that can be done further
     \item outlook. Meaning: What can be done, when having the 3C-Data?
 \end{itemize}
+
+
+
+\section{Further Processing}\label{sec:furtherprocessing}
 
 
 
