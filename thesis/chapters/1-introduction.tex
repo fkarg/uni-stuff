@@ -9,10 +9,10 @@ However, a basic assumption about the structure of the genome can be made,
 which is that every location has the same amount of interactions (with other
 locations) as every other location. The data does not show this due to the
 several aforementioned inaccuracies. Algorithms such as ICE (Iterative
-Correction and Eigenvector decomposition, \secref{sec:ice}) or KR (Knight-Ruiz,
-\secref{sec:kr}) can be applied to ``normalize'' the matrix nonetheless.
+Correction and Eigenvector decomposition, \secref{sec:ICE}) or KR (Knight-Ruiz,
+\secref{sec:KR}) can be applied to ``normalize'' the matrix nonetheless.
 
-ICE, the algorithm implented in this work, ``normalizes'' the data we
+ICE, the algorithm implemented in this work, ``normalizes'' the data we
 have iteratively. Eigenvector decomposition of the normalized data can then
 give us new insights on local chromatin states or global patterns of
 chromosomal interaction \cite{imakaev2012iterative}.
@@ -57,7 +57,7 @@ As we will see, \todo{run experiments!!}
 Fundamentally, every part in our genome has the same amount of summed up
 interactions with other parts of the genome. The algorithm takes severe
 advantage of this property, downright enforcing it. A full description can be
-found in \secref{sec:ice}.
+found in \secref{sec:ICE}.
 
 
 \section{Operation}\label{sec:operation}
@@ -75,7 +75,7 @@ amount of available RAM \extend{Give rough factors!}.
 
 \subsection{Motivation for Hi-C}
 
-Within cells, the three-dimensional structure of chromatin can now be analysed
+Within cells, the three-dimensional structure of chromatin can now be analyzed
 using techniques based on chromatin conformation capture, including Hi-C. With
 Hi-C, we can construct spatial proximity maps over the whole genome, giving us
 clues as to which regions are close to each other.

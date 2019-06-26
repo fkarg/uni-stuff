@@ -24,17 +24,20 @@ Chromosome Conformation Technologies describe several similar methods to
 compare genomic loci. They all start by:
 
 \begin{itemize}
-    \item creating chromatin cross-links (\secref{sec:crosslinking})
-    \item digesting the cross-linked chromatin (\secref{sec:digestion}) and
-    \item ligating the ends (\secref{sec:ligation})
+    \item creating chromatin cross-links (\secref{sec:crosslinking}),
+    \item digesting the cross-linked chromatin (\secref{sec:digestion}),
+    \item ligating the ends and marking with Biotin (\secref{sec:ligation}) and
+    \item reversing the cross-link (\secref{sec:revcrosslink})
 \end{itemize}
 
-to get a reversed cross-link sequence.
+to get a sequence with two parts, those parts have been spatially close
+to each other and were marked with Biotin during ligation.
 
-We will, however focus on Hi-C only, which follows up with:
+Other Chromosome Conformation Technologies proceed differently, Hi-C, our
+focus, continues with the following steps:
 
 \begin{itemize}
-    \item shortening the crosslinks by sonication (\secref{sec:sonication}),
+    \item shortening the cross-links by sonication (\secref{sec:sonication}),
     \item filtering leaving only those with biotin (\secref{sec:pulldown}) and
     \item sequencing (\secref{sec:sequencing}).
 \end{itemize}
@@ -45,7 +48,7 @@ The full process can be seen in \figref{fig:HiC}.
 
 The first step is to cross-link DNA strands that are close to each other
 spatially (see \figref{fig:HiC} for reference). This is done by adding
-formaldehyde, which bonds sufficiently close strands together.
+formaldehyde, which bonds (links) sufficiently close strands together.
 
 A chromatin cross-link is two entirely different parts of the genome held
 together by a chemical bond with formaldehyde. This process cannot be
@@ -57,7 +60,7 @@ necessarily two `known to be close' regions.
 The next step is cutting the ball of wool apart in intervals. For this,
 restriction-enzymes are used (specifically restriction endonuclease). Commonly
 used enzymes for this are EcoR1 or HindIII, cutting the genome every 4000 base-pairs
-\draft{info taken from wikipedia, add some other source}.
+\draft{info taken from Wikipedia, add some other source}.
 
 This will result in a lot of cross-linked fragments, as well as not-cross-linked ones.
 
@@ -90,9 +93,9 @@ frequent shocks well), short enough to actually enable sequencing.
 
 \subsection{Filtering and Removal of Biotin}\label{sec:pulldown}
 
-Here we filter all the fragments, leaving only those having a biotin-marker
-(see \secref{sec:ligation}) and thus have been ligated earlier. Subsequently
-we remove the marker, since it would get in the way of sequencing.
+Here we `pull-down' fragments marked with biotin, filtering all the fragments
+and leaving only those having been ligated earlier (see \secref{sec:ligation}).
+Subsequently we remove the marker, since it would get in the way of sequencing.
 
 \subsection{Sequencing}\label{sec:sequencing}
 
@@ -140,19 +143,68 @@ several times, to sequence them more accurately.
 
 
 % Background:
-\todo{Cite/introduce/... the given papers, and introduce the required concepts}
+% \todo{Cite/introduce/... the given papers, and introduce the required concepts}
 
-Required concepts:
-\begin{itemize}
-    \item Biology:
-    \item The iterative algorithm (again ?)
-    \item analysis that can be done further
-    \item outlook. Meaning: What can be done, when having the 3C-Data?
-\end{itemize}
+% Required concepts:
+% \begin{itemize}
+%     \item Biology:
+%     \item The iterative algorithm (again ?)
+%     \item analysis that can be done further
+%     \item outlook. Meaning: What can be done, when having the 3C-Data?
+% \end{itemize}
 
 
+% \section{Further Processing}\label{sec:furtherprocessing}
 
-\section{Further Processing}\label{sec:furtherprocessing}
+% what happens after sequencing?
+
+
+\section{Iterative Correction and Eigenvector decomposition}\label{sec:ICE}
+
+The Algorithm as defined in \cite{imakaev2012iterative} (Supplementary Note): \\
+``We perform iterative correction on the resulting contact maps to obtain
+biases $B_i$ and `true' $T_{ij}$ relative contact probabilities by explicitly
+solving the system of equations:
+
+$$ O_{ij} = B_i B_j T_{ij} $$
+$$ \sum^N_{i=1, |i-j|>1} T_{ij} = 1$$
+
+[...] \\
+After the vector of biases is computed, the corrected map of relative
+contact probabilities is obtained by $T_{ij} = O_{ij} / (B_i B_j)$.
+Algorithmically, the iterative correction is implemented as follows. We start
+by creating a working copy of the matrix $O_{ij}$, denoted $W_{ij}$ as the
+iterative process gradually changes this matrix to $T_{ij}$. We initialize the
+iterative procedure by setting each element of the vector of total biases $B$
+to 1. We begin each iteration by calculating the coverage $S_i = \sum_j
+W_{ij}$. Next, additional biases $\Delta B_i$ are calculated by renormalizing
+$S_i$ to have the unit mean $\Delta B_i = S_i /$ mean $(S_i)$. We then divide
+$W_{ij}$ by $\Delta B_i \Delta B_j$ for all $(i, j)$ and update the total
+vector of biases by multiplying by the additional biases. Iterations are
+repeated until the variance of the additional biases becomes negligible; at
+this point $W_{ij}$ has converged to $T_{ij}$.'' \\
+
+In between, a couple of other corrections are described. Later, also in the
+supplementary note from \cite{imakaev2012iterative}, about Eigenvectors:
+
+``\textbf{Eigenvector analysis of interchromosomal contact map.} \\
+Eigenvector analysis of a corrected interchromosomal contact map $T$ involves
+expanding the matrix as a sum of outer products between eigenvectors, $E^k_i$,
+weighted by their eigenvalues:
+
+$$ T_{ij} = \sum_k \lambda_k E^k_i E^k_j + \langle T \rangle$$
+
+where $\langle T \rangle$ denotes the mean value of the matrix, and the
+magnitude of the eigenvalue $\lambda_k$ describes the amount of information
+captured by the corresponding eigenvector $E^k$, where $k$ runs from 1 to $N$.
+Eigenvectors are then sorted by the absolute value of their eigenvalues, and
+eigenvectors corresponding to the three largest eigenvalues, $E^1$, $E^2$ and
+$E^3$, are used for further analysis [..]. Iterative correction is a key
+prerequisite for eigenvector expansion; performing eigenvector expansion (or
+principal-component analysis, PCA) on the raw data entangles biases and
+eigenvectors, making the result nontransparent and bias dependent. Moreover,
+$E^1$ is clearly interpretable as the solution to a linear model of chromatin
+interaction preferences.''
 
 
 
