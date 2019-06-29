@@ -25,10 +25,12 @@ We will not do the Eigenvector decomposition, but the iterative correction
 
 This work is part of the HiCExplorer (\secref{sec:hicexplorer}) tool from the
 Deeptools (\secref{sec:deeptools}) framework. HiCExplorer is mainly written in
-Python, which turned out to currently be a bottleneck for the iterative
-correction, taking quite some time for currently reasonable-sized data.
+Python, being limited by the high resource requirements of the iteration process.
 
-As we will see, \todo{run experiments!!}
+As we will see, the implementation in rust is faster even when using only one
+core.
+
+\todo{run experiments!!}
 
 
 % with this implementation needing too much working memory (RAM) for the
@@ -60,26 +62,18 @@ advantage of this property, downright enforcing it. A full description can be
 found in \secref{sec:ICE}.
 
 
-\section{Operation}\label{sec:operation}
-
-\todo{Change Name!}
-smb can be run on any Unix-based operating system (tested using ubuntu-18.04)
-with Python, Rust and common development packages installed (e.g.
-\verb!libopenssl-dev python3-dev build-essential! ...). For best performance, the
-size of the matrix should correlate with the number of available cores and the
-amount of available RAM \extend{Give rough factors!}.
-
-
 
 \section{Motivation}\label{sec:motivation}
 
 \subsection{Motivation for Hi-C}
 
 Within cells, the three-dimensional structure of chromatin can now be analyzed
-using techniques based on chromatin conformation capture, including Hi-C. With
-Hi-C, we can construct spatial proximity maps over the whole genome, giving us
-clues as to which regions are close to each other.
-
+using techniques based on chromatin conformation capture (C3), including Hi-C.
+With Hi-C \draft{what is the long name?}, we can construct spatial proximity
+maps over the whole genome, giving us clues as to which regions are close to
+each other. With C3 it can be tested if two genomic locations are close to each
+other, but with Hi-C we get (biased but still) all spatial connections of the
+genome at once.
 
 \subsection{Motivation for Rust}
 
@@ -89,7 +83,7 @@ performance. A massive advantage is the easiness of adding parallelism, and the
 modularity of Rust code. Libraries in Rust can easily be stacked, and the
 compiler will complain if the memory is not handled the way it should be (in
 C++ it is hard to correctly manage all memory, especially from libraries,
-easily resulting in segfaults and other issues hard to debug). The benefits to
+easily resulting in segfaults and similar issues hard to debug). The benefits to
 using Rust instead of Python are only apparent if performance or safety (of
 execution, at runtime) is needed - which is the case here.
 

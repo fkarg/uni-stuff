@@ -1,40 +1,68 @@
 \chapter{Related Work}\label{chap:relatedwork}
 
-% Related Work:
-\todo{introduce original implementation in python and KR-algorithm in C++}
+Since the main work is the implementation in Rust as well as the testing of an
+integrating in Python, related work includes the original implementation in
+Python as well as the recent implementation of the KR-algorithm in C++.
+We will take a look at how they have been implemented, advantages and
+disadvantages.
 
-\section{Deeptools}\label{sec:deeptools}
+ The description of the implemented algorithm can be found in \secref{sec:ICE}.
 
-
-\todo{introduce the whole deeptools framework}
-
-
-\section{HiCExplorer}\label{sec:hicexplorer}
-\todo{introduce hicexplorer}
-% analysing Hi-C data: building this interaction-matrix, correcting it,
-% analysing it, compute stuff with it, ..., visualising the results.
 
 \section{Python implementation}\label{sec:python}
 
-As the deeptools-framework is mainly written in Python, and as this algorithm
-is an important one, it was originally implemented in Python. This
-implementation however requires too much working memory, limiting the size of
-usable matrices, which is why a different implementation was asked for.
+\draft{describe python implementation, advantages, disadvantages, specific implementation details (numpy, scipy, ...)}
 
-Rust and Python are two quite different programming languages, which is why a
-direct ``translation'' is not even possible. Both are semantically speaking the
-same, but details differ. Since Rust has a much finer control about memory and
-the applying of functions to data structures, some operations have been
-separated while others have been combined.
+The original implementation was written in Python, since the
+deepTools-framework is mainly written in Python. This implementation is using
+common python dependencies extensively, including the Compressed Sparse Row
+Matrix (CSR Matrix) implementation from \verb|scipy| (documentation can be
+found
+here\footnote{\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html},
+accessed 2019-06-26}), as well as the scientific number manipulation library
+\verb|numpy|\footnote{\url{https://www.numpy.org/}, accessed 2019-06-26}.
 
-The biggest difference, however, is that in Rust certain tasks can easily be
-parallelized - even after originally writing it for only one core. For smaller
-matrices the overhead can be quite big, for one of our test matrices the optimum was using 'only' three of the available 32 cores (this still gave an improvement of \todo{get numbers!}).
+The implementation itself is considerably short, the file having only 86 Lines,
+including imports and frequent comments. The advantage of using Python here is
+showing, as most imports are not for functionality, but rather for timing and
+logging. With the iteration itself starting no earlier than Line 40, most
+are High-Level \verb|numpy| / \verb|scipy| commands, some being themselves
+implemented in C/C++ to be sufficiently fast.
 
-% but for bigger matrices this is qutie the improvement.
+There is practically no downside to this implementation, except for the high
+requirements for resources, especially working memory (RAM), and Pythons not really existing paralellisation.
+\extend{update after results, compare requirements}
+
+For reference, the Python-implementation can be found
+here\footnote{\url{https://github.com/deeptools/HiCExplorer/blob/master/hicexplorer/iterativeCorrection.py},
+accessed 2019-06-26}.
+
+
+
 
 \section{KR-algorithm}\label{sec:KR}
 
-\todo{read paper + introduce here}
+\draft{describe C++ implementation (the algorithm only superficially), advantages, disadvantages, specific implementation details (C-API, calls from Python to C++, ...)}
 
-\todo{is that really everything related?}
+What follows is a short description to the Algorithm known as Knight-Ruiz from
+\cite{knight2013fast}, as this algorithm is inherently different from ICE being
+described later and implemented in both other implementations
+(the ICE algorithm is described in \secref{sec:ICE}).
+
+
+
+
+
+\todo{read paper / algorithm + introduce here}
+
+For reference, the implementation of the KR algorithm can be found here\footnote{\url{https://github.com/deeptools/Knight-Ruiz-Matrix-balancing-algorithm}, accessed 2019-06-26}.
+
+
+
+
+
+
+
+
+
+

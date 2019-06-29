@@ -3,63 +3,469 @@
 
 \section{Problem}\label{sec:problem}
 
+\draft{This is the thesis-problem-description, can I just use this without citing?}
+In the three-dimensional space of a cell the DNA forms a structure that looks
+like a ball of wool. Obviously, many points of contacts of the DNA wire with
+itself, called DNA interactions, exists in this ``ball of wool'' and form a
+structure including DNA loops. However, many of these contacts are random
+contacts or measurement errors that need to be corrected. A Python
+implementation existts but is limited for high resolution data due to high
+memory usage. This master project aims to reimplement a more memory efficient
+method in C++.
+
+
+\section{Iterative Correction and Eigenvector decomposition (Algorithm)}\label{sec:ICE}
+
+
+The Algorithm as defined in \cite{imakaev2012iterative} (Supplementary Note): \\
+``We perform iterative correction on the resulting contact maps to obtain
+biases $B_i$ and `true' $T_{ij}$ relative contact probabilities by explicitly
+solving the system of equations:
+
+$$ O_{ij} = B_i B_j T_{ij} $$
+$$ \sum^N_{i=1, |i-j|>1} T_{ij} = 1$$
+
+[...] \\
+After the vector of biases is computed, the corrected map of relative
+contact probabilities is obtained by $T_{ij} = O_{ij} / (B_i B_j)$.
+Algorithmically, the iterative correction is implemented as follows. We start
+by creating a working copy of the matrix $O_{ij}$, denoted $W_{ij}$ as the
+iterative process gradually changes this matrix to $T_{ij}$. We initialize the
+iterative procedure by setting each element of the vector of total biases $B$
+to 1. We begin each iteration by calculating the coverage $S_i = \sum_j
+W_{ij}$. Next, additional biases $\Delta B_i$ are calculated by renormalizing
+$S_i$ to have the unit mean $\Delta B_i = S_i /$ mean $(S_i)$. We then divide
+$W_{ij}$ by $\Delta B_i \Delta B_j$ for all $(i, j)$ and update the total
+vector of biases by multiplying by the additional biases. Iterations are
+repeated until the variance of the additional biases becomes negligible; at
+this point $W_{ij}$ has converged to $T_{ij}$.'' \\
+
+\newpage
+
+In between, a couple of other corrections are described. Later, also in the
+supplementary note from \cite{imakaev2012iterative}, about Eigenvectors:
+
+``\textbf{Eigenvector analysis of interchromosomal contact map.} \\
+Eigenvector analysis of a corrected interchromosomal contact map $T$ involves
+expanding the matrix as a sum of outer products between eigenvectors, $E^k_i$,
+weighted by their eigenvalues:
+
+$$ T_{ij} = \sum_k \lambda_k E^k_i E^k_j + \langle T \rangle$$
+
+where $\langle T \rangle$ denotes the mean value of the matrix, and the
+magnitude of the eigenvalue $\lambda_k$ describes the amount of information
+captured by the corresponding eigenvector $E^k$, where $k$ runs from 1 to $N$.
+Eigenvectors are then sorted by the absolute value of their eigenvalues, and
+eigenvectors corresponding to the three largest eigenvalues, $E^1$, $E^2$ and
+$E^3$, are used for further analysis [..]. Iterative correction is a key
+prerequisite for eigenvector expansion; performing eigenvector expansion (or
+principal-component analysis, PCA) on the raw data entangles biases and
+eigenvectors, making the result nontransparent and bias dependent. Moreover,
+$E^1$ is clearly interpretable as the solution to a linear model of chromatin
+interaction preferences.''
+
+
+
+
+\newpage
+\section{Operation}\label{sec:operation}
+
+
+\subsection{Installation}\label{sec:install}
+
+\todo{Change Name!}
+smb can be run on any Unix-based operating system (tested using ubuntu-18.04)
+with Conda, Python and common development packages installed (e.g.
+\verb!libopenssl-dev python3-dev build-essential! ...). For the installation
+itself just enter \verb|conda install -c kargf smb|.
+
+\textbf{For using, not building, installation of Rust is not needed.}
+
+
+\subsection{Build}\label{sec:build}
+
+To build the package, assuming you have conda installed, execute the following
+commands:
+
+\begin{verbatim}
+
+# first, install rust:
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+# alternatively install rust with conda:
+conda install -c conda-forge rust
+
+# confirm install:
+cargo --version
+rustc --version
+
+# download repository and navigate in it
+git clone https://github.com/fkarg/HiC-rs
+cd HiC-rs
+
+# navigate to the rust code and compile (optional)
+cd smb
+cargo build
+cd ..
+
+# install missing python dependencies
+pip install -r requirements.txt
+
+# execute the setup.py (will also compile rust if not done yet)
+python setup.py build
+
+\end{verbatim}
+
+
+\todo{update packages!!}
 
 
 % The approach usually starts with the problem definition and continues with what you have done. Try to give an intuition first and describe everything with words and then be more formal like `Let $g$ be ...'.
 
-\todo{remove emotional touch (killer feature, weird bugs, ...)}
 
 
+
+\newpage
+\section{Differences between Rust and Python}\label{sec:differences}
+
+Rust and Python are two quite different programming languages, a direct
+``translation'' is not possible. Both implementations are the same semantically,
+but details differ. Since Rust has a much finer control about memory and the
+applying of functions to data structures, some operations have been explicitly
+separated while others have been combined.
+
+The biggest difference, however, is that in Rust certain tasks can easily be
+parallelized; even after originally writing it for only one core. An example
+would be:
+
+\vline
+\begin{lstlisting}[language=Rust]
+let otherlist = somelist.iter().map(|&v|
+                heavy_operation(v)).collect();
+\end{lstlisting}
+\vline
+
+In this code, some \verb|heavy_operation| is being applied iteratively for every element in \verb|somelist| and later assigned to \verb|otherlist|.
+
+This can easily be parallelized by changing it to the following:
+
+\vline
+\begin{lstlisting}[language=Rust]
+use rayon::prelude::*;
+
+let otherlist = somelist.par_iter().map(|&v|
+                heavy_operation(v)).collect();
+\end{lstlisting}
+\vline
+
+The difference here being the imported \verb|rayon::prelude::*| and instead of
+\verb|iter| now applying \verb|par_iter| to the original list.
+
+
+
+
+
+\newpage
+\section{Using Rust}\label{sec:rust}
+
+
+\subsection{Testing the integration of Rust}
+
+\draft{Focus: Testing the integration of Rust}
+
+
+\subsection{Introducing Rust}
+\draft{Also: Why Rust?}
+
+
+\subsection{Advantages of Rust}
+\draft{advantages to numpy/scipy?}
+
+
+\subsection{Disadvantages of Rust}
+\draft{disadvantages?}
+
+
+
+
+
+
+
+\newpage
 \section{Choosing the right API to call Rust from Python}\label{sec:api}
-
-\todo{Add footnotes. Research how this works}
 
 There are three main ways to execute Rust code from Python. In the following, common techniques are investigated.
 
-One common way is rust-cpython. This library requires Rust 1.25 or higher (current versions are 1.33/34/35 for stable/beta/nightly respectively). Rust-cpython grants access to the python gil (global interpreter lock) with which Python code can be evaluated and Python objects modified. The resulting library (directly from compiled rust) can easily be imported into Python (but needs to be renamed). Native Rust code requires some wrapping first, as shown here:
+One common way is rust-cpython. This library requires Rust 1.25 or higher
+(current versions are 1.33/34/35 for stable/beta/nightly respectively).
+Rust-cpython grants access to the python gil (global interpreter lock) with
+which Python code can be evaluated and Python objects modified. The resulting
+library (directly from compiled rust) can easily be imported into Python (but
+needs to be renamed). Native Rust code requires some wrapping first, as shown
+here:
+
+\vline
 \begin{lstlisting}[language=Rust]
 #[macro_use] extern crate cpython;
 use cpython::{PyResult, Python};
 // add bindings to the generated python module
-// N.B: names: "librust2py" must be the name of the `.so` or `.pyd` file
-py_module_initializer!(librust2py, initlibrust2py, PyInit_librust2py, |py, m| {
-    m.add(py, "__doc__", "This module is implemented in Rust.")?;
-    m.add(py, "sum_as_string", py_fn!(py, sum_as_string_py(a: i64, b:i64)))?;
+// N.B: names: "librust2py" must be the name of
+// the `.so` or `.pyd` file
+py_module_initializer!(librust2py,
+        initlibrust2py, PyInit_librust2py, |py, m| {
+    m.add(py, "__doc__",
+        "This module is implemented in Rust.")?;
+    m.add(py, "sum_as_string",
+        py_fn!(py, sum_as_string_py(a: i64, b:i64)))?;
     Ok(())
 });
 // logic implemented as a normal rust function
 fn sum_as_string(a:i64, b:i64) -> String {
     format!("{}", a + b).to_string()
 }
-// rust-cpython aware function. All of our python interface could be
-// declared in a separate module.
-// Note that the py_fn!() macro automatically converts the arguments from
-// Python objects to Rust values; and the Rust return value back into a Python object.
-fn sum_as_string_py(_: Python, a:i64, b:i64) -> PyResult<String> {
+// rust-cpython aware function. All of our python
+// interface could be declared in a separate module.
+// Note that the py_fn!() macro automatically converts
+// the arguments from Python objects to Rust values;
+// and the Rust return value back into a Python object.
+fn sum_as_string_py(_: Python, a:i64, b:i64)
+        -> PyResult<String>
+{
     let out = sum_as_string(a, b);
     Ok(out)
 }
 \end{lstlisting}
-This kind of wrapping, though quite common and based on the Python C-API makes it hard to write idiomatic Code in Rust. Also, since Python is directly affected, the interactions with Python need to be considered while writing Rust-Code. In computer science one does usually not intentionally strive for complexity.
+\vline
 
-Another common approach is using the pyO3-library, which started off as a fork of rust-cpython, but has since seen quite drastic changes. For example, its using requires at least Rust version ‘1.30.0-nightly 2018-08-18’.
-This has been updated to ‘1.34.0-nightly 2019-02-06’ with the most recently update. This is due to the usage of several unstable features, most of which have recently been able to be promoted to stable. Still missing is Specialisation though, which has at the time of writing still a long way to go. The library would also result in an easily importable (needs to be renamed first, still) cdylib (same as rust-cpython). The still intermingled way of writing the interface (certainly better but not by much compared to rust-cpython) as well as the dependency on unstable nightly rust versions led to the decision of not using it either.
+This kind of wrapping, though quite common and based on the Python C-API makes
+it hard to write idiomatic Code in Rust. Also, since Python is directly
+affected, the interactions with Python need to be considered while writing
+Rust-Code. In computer science one does usually not intentionally strive for
+complexity.
+
+Another common approach is using the pyO3-library, which started off as a fork
+of rust-cpython, but has since seen quite drastic changes. For example, its
+using requires at least Rust version ‘1.30.0-nightly 2018-08-18’ (or, in the
+newest version, ‘1.34.0-nightly 2019-02-06’). This is due to the usage of
+unstable features, most of which have recently been able to be promoted to
+stable. Unstable features are only available in the nightly toolchain.  Still
+missing is Specialisation, which has at the time of writing still a long way to
+go.  The library would also result in an easily importable (needs to be renamed
+first, still) cdylib (same as rust-cpython). The still intermingled way of
+writing the interface (certainly better but not by much compared to
+rust-cpython) as well as the dependency on unstable nightly rust versions led
+to the decision of not using it either.
 
 The third way, that is actually been promoted in the official Rust docs, is to
 generate a dylib and import that in python. No renaming necessary, but the
 communication between Rust and Python is a bit more low-level. The main wrapper
 is on the side of Python, transforming Arguments to Pointers and
 C-Representations, whilst the Rust part needs to conform to C-practices, which
-includes receiving a list by getting a pointer and the length of it. Other than
-that, the Rust code has some additional \verb!\#[no_mangle]! and \verb!\#[repr(C)]!
-(procedural) macros, which result in these parts actually accessible from e.g.
-Python or C. Since like this neither language depends on something only
-internal (or combinatorial), and both just depend upon the ‘common, unchanging’
-C-interface, this seems to be the preferred way.
+includes receiving a list by getting a pointer to the first element and the
+length of it. Other than that, the Rust code has additional
+\verb!\#[no_mangle]! and \verb!\#[repr(C)]!  (procedural) macros, preventing
+the compiler to mangle (renaming of functions) and guaranteeing the memory
+layout to be as it would be in C. Since like this neither language depends on
+something only internal (or combinatorial), and both just depend upon the
+‘common, unchanging’ C-interface, this seems to be the preferred way.
+
+
+
+\newpage
+\section{General Approach}\label{sec:approach}
+
+\todo{Introduce main approach}
+
+\draft{Steps: read papers, test communication between Python and Rust (API), implementing CSRMatrix, implementing algorithm, fixing bugs (in-memory), making buildable (milksnake, conda), further bug fixing, some testing, building test-suite and a lot of bugfixing, reading papers again, starting to write stuff down.}
+
+
+\subsection{Beginning}
+
+Having read the provided papers (\cite{imakaev2012iterative},
+\cite{lieberman2009comprehensive} and \cite{wingett2015hicup}) I started
+looking in the Python-implementation. First things first I started testing the
+feasability of communicating between Rust and Python. The only available way
+for this is the raw C-API both adhere to.
+
+
+\subsection{Feasability Testing}
+
+Having succeded in calling functions in Rust, and passing the arguments
+correctly, I started to look in the Python-implementation again. Since in
+python \verb|numpy| and \verb|scipy| were used quite extensively (especially
+the Compressed Sparse Row Matrix from \verb|scipy| and available operations
+through \verb|numpy|) and there was no library available providing
+functionality similar enough, I implemented the minimal version of a CSRMatrix
+that would be needed, and tested its functionality.
+
+
+\subsection{Implementation of the algorithm}
+
+The initial translation from Python to rust happened more or less on a
+line-by-line basis, as much as this was possible. Seeing the
+Python-implementation section-wise as a comment I started out with a comparably
+naive translation from Python to Rust. As I did not have
+\verb|numpy|/\verb|scipy| available, specific operations had to be done
+differently, and I needed to care a lot more about the memory (of the
+variables, also their availability) than the Python-implementation did.
+
+
+\subsection{Testing and Bugfixing}
+
+Having succeded at convincing the compiler, I wanted to test my implementation.
+The compiler in Rust is quite capable, reducing common bugs tremendously.
+My knowledge about Rust not being on the expert-level, I made the error of not
+writing back the changes made to the matrix in the matrix (more specifically,
+the part that should have done that was being handed a immutable matrix). This
+and some smaller bugs got solved easily, so I set up a small testing
+environment, even calling from python.
+
+
+\subsection{Idiomatic Rust}
+
+While gradually transforming the naive Python-translation to idiomatic Rust, at
+some point results ended up being \verb|NaN| pretty fast. A while of
+debugging later, I reduced it to the following situation:
+
+\vline
+\begin{lstlisting}[language=Rust]
+// let list1 = vec![0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0];
+// let list2 = vec![0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+println!("{}, sum: {}", list1, list1.iter().sum());
+println!("{}, sum: {}", list2, list2.iter().sum());
+\end{lstlisting}
+\vline
+
+Here the output was still ``sum: 1'' and ``sum: 0''. One iteration later however, all the elements have only been multiplied with some factors, their product being \verb|0.16|.
+
+\vline
+\begin{lstlisting}[language=Rust]
+// let list1 = vec![0.0, 0.0, 0.0, 0.16000000000003, 0.0, 0.0, 0.0, 0.0];
+// let list2 = vec![0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+println!("{}, sum: {}", list1, list1.iter().sum());
+println!("{}, sum: {}", list2, list2.iter().sum());
+\end{lstlisting}
+\vline
+
+The expected output here would be ``sum: 0.16'' and ``sum: 0'', or something
+around that. However, the actual results were ``sum: 0.4'' and ``sum: inf''. As
+it turns out, the factor they have been subject to was indeed \verb|0.16|,
+however it was \verb|0.16| with high fraction values. This means that summation
+of \verb|0.16| and \verb|0.0| (the zero also having high fraction) is being
+sufficiently inaccurate to not be accurately represented by floating point
+values. With this happening multiple times, it was unavoidable.
+
+The same happened with the summation of the innocious-looking \verb|0.0|. They
+had high fractions from the original multiplication by
+\verb|0.160000000000003|, their continued summation resulting in an overflow.
+This new number just happens to be one of the representations of \verb|inf|.
+
+
+\subsection{Packaging}
+
+Next was the Packaging of my code. As my work should be used from within the
+HiCExplorer, My part is supposed to be available as a python-package. The only
+real python dependcy (apart from those required for packages) ended up being
+milksnake, itself a helper for compiling the rust part of my package.
+
+The conda-part was not as easy though, as milksnake was not resolvable there. I
+ended up porting \verb|milksnake| as a conda package. This turned out to be a
+nontrivial task, as \verb|conda skeleton pypi milksnake| created a package
+conda could not build, the issue here being that milksnake was only provided as
+a \verb|*.zip| file and conda had hardcoded the format \verb|*.tar.gz|.
+
+Additionally I set up a buildserver, adding some tests and fixing smaller bugs.
+
+
+\subsection{Parallelizing}
+
+Nearing the end of my work, I set up ways to test and compare my implementation
+with the other. One of the last things I did was adding Parallelization.
+
+
+
+\section{Testing}\label{sec:testing}
+I ran a total of 416 different configurations to test for a total of 3
+different parameters. The first two are the same for all, the third applies
+only to this implementation. I tested the original Python-implementation as
+well as the new KR in C++.
+
+\begin{itemize}
+    \item Size of Matrix (four different ones)
+    \item Number of chromosomes (8 different sizes)
+    \item Number of threads (11 different numbers)
+\end{itemize}
+
+\newpage
+The sizes of the matrices for reference (biggest to smallest):
+
+\begin{verbatim}
+# Matrix information file. Created with HiCExplorer's hicInfo version 3.0
+File:   matrix.h5
+Size:   309,581
+Bin_length:     10000
+Sum of matrix:  2416588411.2530212
+Chromosomes:    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+                14, 15, 16, 17, 18, 19, 20, 21, 22, X, Y, MT
+Non-zero elements:      2,111,867,476
+Minimum (non zero):     0.008667398294551536
+Maximum:        139544.65657933566
+NaN bins:       25948
+
+# Matrix information file. Created with HiCExplorer's hicInfo version 3.0
+File:   25kb_raw.h5
+Size:   123,841
+Bin_length:     25000
+Sum of matrix:  2378265786.0
+Chromosomes:    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+                14, 15, 16, 17, 18, 19, 20, 21, 22, X, Y, MT
+Non-zero elements:      1,530,533,003
+Minimum (non zero):     1
+Maximum:        320932
+NaN bins:       9290
+\end{verbatim}
+\newpage
+\begin{verbatim}
+# Matrix information file. Created with HiCExplorer's hicInfo version 3.0
+File:   50kb_raw.h5
+Size:   61,928
+Bin_length:     50000
+Sum of matrix:  2333794628.0
+Chromosomes:    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+                14, 15, 16, 17, 18, 19, 20, 21, 22, X, Y, MT
+Non-zero elements:      1,053,216,825
+Minimum (non zero):     1
+Maximum:        320932
+NaN bins:       4514
+
+# Matrix information file. Created with HiCExplorer's hicInfo version 3.0
+File:   small_test_matrix.h5
+Size:   33,754
+Bin_length:     5000
+Sum of matrix:  35778.0
+Chromosomes:    chr2RHet, chr3RHet, chr2LHet, chr4, chrYHet, chr3L, chr2L,
+                chrU, chrX, chrXHet, chr2R, chr3R, chrUextra, chrM, chr3LHet
+Non-zero elements:      69,213
+Minimum (non zero):     1
+Maximum:        8
+NaN bins:       0
+\end{verbatim}
+
+
+\extend{building matrix-test-suite and getting results}
+
+
+% \section{Encoundered Problems}\label{sec:problems}
+%
+% \extend{add encountered Problem: Packages, milksnake, conda, ...}
+%
+% \extend{add encountered Problem: small memory bug in rust (actually mut-changing the matrix)}
+%
+% \extend{add encountered Problem: weird bug regarding nans/infs}
+%
+% \extend{add encountered Problem: bug regarding termination (?)}
 
 
 
 
-% Approach
-\todo{Introduce main approach, problems I came across and more}
 
