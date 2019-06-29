@@ -3,19 +3,18 @@
 
 \section{Problem}\label{sec:problem}
 
-\draft{This is the thesis-problem-description, can I just use this without citing?}
 In the three-dimensional space of a cell the DNA forms a structure that looks
-like a ball of wool. Obviously, many points of contacts of the DNA wire with
-itself, called DNA interactions, exists in this ``ball of wool'' and form a
-structure including DNA loops. However, many of these contacts are random
-contacts or measurement errors that need to be corrected. A Python
-implementation existts but is limited for high resolution data due to high
-memory usage. This master project aims to reimplement a more memory efficient
-method in C++.
+close to that of a ball of wool. Obviously, many points of contacts of the DNA
+wire with itself, called DNA interactions, exist in this ``ball of wool'' and
+form structures including DNA loops. However, many of these contacts are
+random contacts or measurement errors that need to be corrected. A Python
+implementation exists but is limited for high resolution data due to high
+memory usage. This [..] project aims to reimplement a more memory efficient
+method in C++ (which ended up being Rust).
+
 
 
 \section{Iterative Correction and Eigenvector decomposition (Algorithm)}\label{sec:ICE}
-
 
 The Algorithm as defined in \cite{imakaev2012iterative} (Supplementary Note): \\
 ``We perform iterative correction on the resulting contact maps to obtain
@@ -171,27 +170,83 @@ The difference here being the imported \verb|rayon::prelude::*| and instead of
 
 \subsection{Testing the integration of Rust}
 
-\draft{Focus: Testing the integration of Rust}
+\todo{Answer this question later!!}
+
+One of the main questions for this work was to find out if it is possible to
+integrate Rust in Python for the HiCExplorer, and if it makes sense to do so.
+
+For Rust and Python to interact, there are of course several ways. Those
+integrating a library written in Rust to allow them to be called from Python
+will be described in depth in \secref{sec:api}.
 
 
 \subsection{Introducing Rust}
-\draft{Also: Why Rust?}
+
+``Rust is a systems programming language that runs blazingly fast, prevents
+segfaults, and guarantees thread safety'' - this was, up until recently, the
+motto of Rust. It recently got changed into ``A language empowering everyone 
+to build reliable and efficient software.'' At the core of Rust is a compiler
+applying linear typing, rsulting in the concepts of Ownership and Lifetimes.
+These concepts, even though notoriously hard to learn, are the main reason the
+rust compiler can guarantee thread safety, can prevent segfaults, and can run
+blazingly fast.
+
+Rust does not have a garbage collector, but frees memory the moment it is not
+needed anymore, which it knows through the Lifetime every variable and
+reference (pointer) has. Ownership prevents you from modifying data structures
+in unintended ways, and combined with lifetimes, preventing almost all
+segfaults. Also, it runs blazingly fast, comparable to
+C\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust.html},
+accessed 2019-06-26}, and
+C++\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust-gpp.html},
+accessed 2019-06-26}.
+
+This is but an introduction to Rust, but the tooling must be mentioned. Rust
+has a dedicated package manager called \verb|cargo|. Packages are available
+through \url{https://crates.io}. Also there are tools like \verb|rustfmt| or
+\verb|cargo-fix| (a subcommand that can be added later), that format Rust code
+after predefined guidelines, or fixes most compiler warnings automatically,
+respectively.
+
+Rust has continuosly claimed StackOverflows position of `most Loved
+Language'\footnote{\url{https://insights.stackoverflow.com/survey/2019\#technology-\_-most-loved-dreaded-and-wanted-languages}, accessed 2019-06-26}
+for the last few years, while both C and C++ rank comparatavely high in the
+category `dreaded'.
+
+More information about Rust can be found here\footnote{\url{https://www.rust-lang.org/}, accessed 2019-06-26}.
 
 
 \subsection{Advantages of Rust}
-\draft{advantages to numpy/scipy?}
 
+The advantage of using Rust over using \verb|numpy| / \verb|scipy| from Python
+for this work might not be immediately obvious, since the CSRMatrix had to be
+implemented. We considered using the \verb|numpy| C-API for a while, but its
+too big to be actually useful for our use-case.
+
+The advantage here is actually much simpler: since we barely need any of the
+features provided, implementing them ourselves is not much work and gives us
+way more fine grained control as to what is actually happening.
+
+This includes the paralellization of some parts of the code, which might not
+have been possible if ther were some other library doing things in its own way
+(numpy using the C-API would be an example here).
+
+A future advantage is also the modularity of Rust code, meaning in the future
+additional external libraries (and with them, features) could easily be integrated.
 
 \subsection{Disadvantages of Rust}
-\draft{disadvantages?}
+
+The disadvantages follow pretty much directly from looking at the advantages,
+we do not need much, but we had to implement it ourselves, there is not
+too much functionality in the case of the CSRMatrix, only the utterly necessary
+parts. This obviously limits the applicability of this code, no effort has been
+made to create a generalized solution - several CSRMatrix implementations
+already exist in Rust, none coming remotely close to the one in \verb|scipy|,
+but ours is falling short of all the others by a wide margin (at least in most
+categories).
 
 
 
-
-
-
-
-\newpage
 \section{Choosing the right API to call Rust from Python}\label{sec:api}
 
 There are three main ways to execute Rust code from Python. In the following, common techniques are investigated.

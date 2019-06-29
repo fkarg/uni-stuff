@@ -34,3 +34,5 @@ thesis/out
 *.lot
 *.out
 *.toc
+
+.ipynb*
