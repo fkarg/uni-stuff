@@ -17,7 +17,7 @@ a big ball of wool. With the help of chromosome conformation technologies
 spatial proximity can be visualized
 
 
-\section{Chromosome Conformation Technologies}\label{sec:3c}\label{sec:hic}
+\section{Chromosome Conformation Technologies}\label{sec:cct}
 
 \input{figures/background/figChromosome_conformation_techniques}
 
@@ -49,7 +49,7 @@ cross-linked fragments, as well as not-cross-linked ones.
 
 After reducing the concentration of fragments, DNA ligase is added, to ligate
 (weld together) dangling fragment ends. For this a reduction in concentration
-is done since mostly fragments close together are ligated, and we intend to
+is done since mostly fragments close together are ligated, it is intend to
 ligate fragments linked together by formaldehyde.
 
 In HiC, Biotin is added in this step to mark ligated fragments. This allows
@@ -64,9 +64,10 @@ cross-linking through formaldehyde, leaving us with our two originally
 spatially close fragments ligated and with a biotin-marker.
 
 
-Our fragments, however, are too long to sequence them effectively (remember
-that we have now ligated fragments of around 8000 base-pairs, most sequencing
-methods can only deal with sequence lengths of a few hundred base-pairs).
+Note that at this point, our fragments are too long to sequence them.
+They are now ligated fragments of around 8000 base-pairs, most sequencing
+methods can only deal with sequence lengths of a few hundred base-pairs at
+most.
 
 
 
@@ -133,6 +134,36 @@ millions of 5C primers, making this method unsuitable.
 
 
 \subsection{Hi-C}\label{sec:HiC}
+
+Hi-C (as shown by \figref{fig:hic}) was developed in 2009 by Liebermann-Aiden et al.
+\cite{lieberman2009comprehensive}. After the common steps noted earlier, unique
+to Hi-C is the following sequence of sonication, pulldown (filtering based on
+biotin markers) and sequencing.
+
+\subsubsection{Sonication}\label{sec:sonication}
+
+Putting the ligated DNA-fragments under the influence of ultrasonic waves is
+breaking them apart in much shorter fragments (due to long sequences not being
+able to absorb frequent shocks well), shearing them apart in sequences short
+enough to enable sequencing.
+
+\subsubsection{Filtering and Removal of Biotin}\label{sec:pulldown}
+
+`pulling-down' fragments marked with biotin leaves only those having been
+marked, and thus ligated, earlier (see \secref{sec:ligation}). Subsequently the
+marker is removed, as it would hinder further sequencing.
+
+\subsubsection{Sequencing}\label{sec:sequencing}
+
+Sequencing, short for DNA sequencing, describes processes of measuring a DNA
+sequence. There are several techniques for doing this, most use PCR (Polymerase
+Chain Reaction) before or while sequencing, which duplicating fragments
+several times, allowing them to be sequenced more accurately.
+
+% - putting the 3' and 5' ends there
+% - usual PCR methods
+
+
 % Hi-C (all-vs-all)
 % Hi-C uses high-throughput sequencing to find the nucleotide sequence of
 % fragments.[2][22] The original protocol used paired end sequencing, which
@@ -144,7 +175,9 @@ millions of 5C primers, making this method unsuitable.
 % possible pairwise interactions between fragments are tested.
 
 
-% Researchers attempt to study the extent of Hi-C's detection through a study focusing on screening primary brain tumours.[30] Prior to screening tumours, Hi-C was primarily focused on cell lines.[31]
+% Researchers attempt to study the extent of Hi-C's detection through a study
+% focusing on screening primary brain tumours.[30] Prior to screening tumours,
+% Hi-C was primarily focused on cell lines.[31]
 
 
 \subsection{Other methods}\label{sec:other3c}
