@@ -1,5 +1,8 @@
 \chapter{Approach}\label{chap:approach}
 
+\draft{Probleme bisher werden jetzt gelöst indem wir Rust verwend}
+
+\todo{Ausführlich Problemstellung, Rust to Python interface}
 
 \section{Problem}\label{sec:problem}
 
@@ -16,7 +19,7 @@ method in C++ (which ended up being Rust).
 
 \section{Iterative Correction and Eigenvector decomposition (Algorithm)}\label{sec:ICE}
 
-The Algorithm as defined in \cite{imakaev2012iterative} (Supplementary Note): \\
+The Algorithm as defined in \cite{imakaev2012iterative} (Supplementary Material): \\
 ``We perform iterative correction on the resulting contact maps to obtain
 biases $B_i$ and `true' $T_{ij}$ relative contact probabilities by explicitly
 solving the system of equations:
@@ -44,6 +47,10 @@ this point $W_{ij}$ has converged to $T_{ij}$.'' \\
 In between, a couple of other corrections are described. Later, also in the
 supplementary note from \cite{imakaev2012iterative}, about Eigenvectors:
 
+\todo{remove part about eigenvector stuff}
+
+\todo{cite 'requirement of Iterative correction' when introducing Eigenvector stuff}
+
 ``\textbf{Eigenvector analysis of interchromosomal contact map.} \\
 Eigenvector analysis of a corrected interchromosomal contact map $T$ involves
 expanding the matrix as a sum of outer products between eigenvectors, $E^k_i$,
@@ -69,10 +76,15 @@ interaction preferences.''
 \newpage
 \section{Operation}\label{sec:operation}
 
+\todo{rename: ....}
+
+\todo{Change Name!!}
 
 \subsection{Installation}\label{sec:install}
 
-\todo{Change Name!}
+\todo{for installing using conda add dependencies}
+
+\todo{Change Name!!}
 smb can be run on any Unix-based operating system (tested using ubuntu-18.04)
 with Conda, Python and common development packages installed (e.g.
 \verb!libopenssl-dev python3-dev build-essential! ...). For the installation
@@ -114,6 +126,8 @@ pip install -r requirements.txt
 python setup.py build
 
 \end{verbatim}
+
+\todo{change pip to conda}
 
 
 \todo{update packages!!}
@@ -175,10 +189,18 @@ The difference here being the imported \verb|rayon::prelude::*| and instead of
 One of the main questions for this work was to find out if it is possible to
 integrate Rust in Python for the HiCExplorer, and if it makes sense to do so.
 
+\todo{rewrite}
+
 For Rust and Python to interact, there are of course several ways. Those
 integrating a library written in Rust to allow them to be called from Python
 will be described in depth in \secref{sec:api}.
 
+
+\todo{restructure: Introducing Rust (4.3), Advantages Rust (4.3.1), Disadvantages Rust (4.3.2), Differences Rust Python (4.3.3)}
+
+\todo{move integration of Rust to 4.4}
+
+\todo{move 'Operation' to 'Using this implementation' in 4.5}
 
 \subsection{Introducing Rust}
 
@@ -190,6 +212,12 @@ applying linear typing, rsulting in the concepts of Ownership and Lifetimes.
 These concepts, even though notoriously hard to learn, are the main reason the
 rust compiler can guarantee thread safety, can prevent segfaults, and can run
 blazingly fast.
+
+\todo{introduce ownership really}
+
+\todo{introduce lifetimes really}
+
+\todo{rewrite on abstrict niveau for computer scientists}
 
 Rust does not have a garbage collector, but frees memory the moment it is not
 needed anymore, which it knows through the Lifetime every variable and
@@ -319,11 +347,11 @@ C-Representations, whilst the Rust part needs to conform to C-practices, which
 includes receiving a list by getting a pointer to the first element and the
 length of it. Other than that, the Rust code has additional
 \verb!\#[no_mangle]! and \verb!\#[repr(C)]!  (procedural) macros, preventing
-the compiler to mangle (renaming of functions) and guaranteeing the memory
-layout to be as it would be in C. Since like this neither language depends on
-something only internal (or combinatorial), and both just depend upon the
-‘common, unchanging’ C-interface, this seems to be the preferred way.
-
+the compiler to mangle (renaming of functions) and guaranteeing the
+representation in the memory layout to be as it would be in C. Since like this
+neither language depends on something only internal (or combinatorial), and
+both just depend upon the ‘common, unchanging’ C-interface, this seems to be
+the preferred way.  
 
 
 \newpage
@@ -336,14 +364,17 @@ something only internal (or combinatorial), and both just depend upon the
 
 \subsection{Beginning}
 
+\todo{Rewrite to passive voice}
+
 Having read the provided papers (\cite{imakaev2012iterative},
 \cite{lieberman2009comprehensive} and \cite{wingett2015hicup}) I started
 looking in the Python-implementation. First things first I started testing the
 feasability of communicating between Rust and Python. The only available way
 for this is the raw C-API both adhere to.
 
-
 \subsection{Feasability Testing}
+
+\todo{Rewrite to passive voice}
 
 Having succeded in calling functions in Rust, and passing the arguments
 correctly, I started to look in the Python-implementation again. Since in
@@ -356,6 +387,8 @@ that would be needed, and tested its functionality.
 
 \subsection{Implementation of the algorithm}
 
+\todo{Rewrite to passive voice}
+
 The initial translation from Python to rust happened more or less on a
 line-by-line basis, as much as this was possible. Seeing the
 Python-implementation section-wise as a comment I started out with a comparably
@@ -367,6 +400,8 @@ variables, also their availability) than the Python-implementation did.
 
 \subsection{Testing and Bugfixing}
 
+\todo{Rewrite to passive voice}
+
 Having succeded at convincing the compiler, I wanted to test my implementation.
 The compiler in Rust is quite capable, reducing common bugs tremendously.
 My knowledge about Rust not being on the expert-level, I made the error of not
@@ -377,6 +412,8 @@ environment, even calling from python.
 
 
 \subsection{Idiomatic Rust}
+
+\todo{Rewrite to passive voice}
 
 While gradually transforming the naive Python-translation to idiomatic Rust, at
 some point results ended up being \verb|NaN| pretty fast. A while of
@@ -418,6 +455,8 @@ This new number just happens to be one of the representations of \verb|inf|.
 
 \subsection{Packaging}
 
+\todo{Rewrite to passive voice}
+
 Next was the Packaging of my code. As my work should be used from within the
 HiCExplorer, My part is supposed to be available as a python-package. The only
 real python dependcy (apart from those required for packages) ended up being
@@ -434,12 +473,18 @@ Additionally I set up a buildserver, adding some tests and fixing smaller bugs.
 
 \subsection{Parallelizing}
 
+\todo{Rewrite to passive voice}
+
 Nearing the end of my work, I set up ways to test and compare my implementation
 with the other. One of the last things I did was adding Parallelization.
 
+\todo{add: compare paralellization in C++ and Python, accessing memory, why it is possible to easily add this, ...}
 
 
 \section{Testing}\label{sec:testing}
+
+\todo{Rewrite to passive voice}
+
 I ran a total of 416 different configurations to test for a total of 3
 different parameters. The first two are the same for all, the third applies
 only to this implementation. I tested the original Python-implementation as
@@ -450,6 +495,8 @@ well as the new KR in C++.
     \item Number of chromosomes (8 different sizes)
     \item Number of threads (11 different numbers)
 \end{itemize}
+
+\todo{add: data is primary data, from: GM12878 something rao2014}
 
 \newpage
 The sizes of the matrices for reference (biggest to smallest):
@@ -521,6 +568,8 @@ NaN bins:       0
 % \extend{add encountered Problem: bug regarding termination (?)}
 
 
+\todo{look for better rust presenter in latex}
 
+\todo{add the integration of travis more}
 
 

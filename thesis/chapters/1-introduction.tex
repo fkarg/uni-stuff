@@ -1,9 +1,44 @@
 \chapter{Introduction}\label{chap:introduction}
 
+\todo{include feedback!}
+% Feedback:
+% Why do we care about the 3D structure -> about the structure, influencing
+% enhancer-promoter interactions, existing in reality in 3D and we have barely
+% information, we want to understand this
+%
+% gene regulation also happening in 3D, way bigger why we want this
+%
+% around 1.5 Pages here
+%
+% removing the Eigenvector part, only mention it at the analysis, or when
+% introducing the algorithm
+%
+% also mention: we have that data -> why do we want to correct it to begin with
+%
+% 'storytelling' introduction:
+% - first: HiC and why it is interesting
+% - errors that can happen to the data
+% - super small introduction to rust
+%
+% sequencing errors:
+% - some reagions are more sensible for biotin labeling enrichments
+% - PCR duplicates: regions have multiple reads
+% - mapping: certain locations are unclear, could be mapped to several different ones
+% - random interactions -> may be technical errors or correct
+% - mapping: location wrong, highly repetitive regions
+% - illumina: more likely to get certain mapping errors
+% - mapping algorithm has bias itself
+% - mismatches likelier for longer reads
+% => Errors do exist, but do not really know which ones or how to filter them out
+
+\todo{Add Glossary?}
+
 Hi-C is a method commonly used for getting 3D-information of genomes. Such
 technologies tend to suffer from technical (e.g. sequencing, mapping)
 \cite{pmid21646344} and biological factors (e.g. distinct chromatin states)
-\cite{pmid19693276}, making them inherently inaccurate.
+\cite{pmid19693276}, making them inherently inaccurate. In particular, 
+
+\todo{cite the papers for KR and ICE at the first introduction}
 
 However, a basic assumption about the structure of the genome can be made,
 which is that every location has the same amount of interactions (with other
@@ -22,6 +57,10 @@ We will not do the Eigenvector decomposition, but the iterative correction
 
 
 \section{Core setup}\label{sec:setup}
+
+\todo{remove deepTools entirely}
+
+\todo{include general setup; HiCExplorer running on Linux/Mac, Python, numpy, scipy, KR in C++, Missing interface from python to C but missing to RUST}
 
 This work is part of the HiCExplorer (\secref{sec:hicexplorer}) tool from the
 Deeptools (\secref{sec:deeptools}) framework. HiCExplorer is mainly written in
@@ -55,6 +94,8 @@ Python, being limited by the high resource requirements of the iteration process
 % Wolff: Jede Position im Genom hat in der Summe die gleiche anzahl an
 %        interaktionen mit anderen Positionen des Genoms.
 
+\todo{move this section to storytelliing in introduction}
+
 Fundamentally, every part in our genome has the same amount of summed up
 interactions with other parts of the genome. The algorithm takes severe
 advantage of this property, downright enforcing it. A full description can be
@@ -66,8 +107,10 @@ found in \secref{sec:ICE}.
 
 \subsection{Motivation for Hi-C}
 
+\todo{include in storytelling}
+
 Within cells, the three-dimensional structure of chromatin can now be analyzed
-using techniques based on chromatin conformation capture (C3), including Hi-C.
+using techniques based on chromatin conformation capture (3C), including Hi-C.
 With Hi-C \draft{what is the long name?}, we can construct spatial proximity
 maps over the whole genome, giving us clues as to which regions are close to
 each other. With C3 it can be tested if two genomic locations are close to each
@@ -85,7 +128,31 @@ C++ it is hard to correctly manage all memory, especially from libraries,
 easily resulting in segfaults and similar issues hard to debug). The benefits to
 using Rust instead of Python are only apparent if performance or safety (of
 execution, at runtime) is needed - which is the case here.
+\todo{explain this more: thread safety, modularity, stackability, hard to debug C++}
 
 
 
+\todo{more formal language}
+
+
+
+\section{Concrete Task}
+
+\todo{Concrete task definition as 1.1}
+
+This work is mainly testing the integration between Rust and Python, intending
+to answer the queston if this is a better implementation.
+
+In the three-dimensional space of a cell the DNA forms a structure that looks
+close to that of a ball of wool. Obviously, many points of contacts of the DNA
+wire with itself, called DNA interactions, exist in this ``ball of wool'' and
+form structures including DNA loops. However, many of these contacts are
+random contacts or measurement errors that need to be corrected. A Python
+implementation exists but is limited for high resolution data due to high
+memory usage. This [..] project aims to reimplement a more memory efficient
+method in C++ (which ended up being Rust).
+
+
+% concrete task: python to rust, better implementation possible?
+\todo{around half a page to one}
 
