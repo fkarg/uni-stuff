@@ -1,127 +1,258 @@
 \chapter{Background}\label{chap:background}
-% \input{figures/background/algBackpropagation}
-% \input{figures/background/figTikz}
 
-\section{Chromosome Conformation Capture and Hi-C}\label{sec:c3}\label{sec:hic}
+\todo{remove deepTools entirely}
 
-\input{figures/background/figsHiC}
+\todo{Add Glossary?}
 
-\subsection{Overview}
+\todo{use more formal language}
+
+\todo{write poolmanagers for printing}
 
 
-\draft{stroytelling, where is all of this coming from, all these steps need to be refernced}
-
-\todo{put stuff in lowercase (Chromosome Conformation Capture / Technologies}
-
-\todo{remove subsections and combine them}
-
-\todo{introduce 3-C, 4-C, 5-C, then Hi-C, also add to reference}
-
-\todo{3-C, Dekker 2012: one vs one}
-
-\todo{4-C, Simonis 2006, Zhao 2006}
-
-\todo{5-C, Dostie 2006}
-
-\draft{more storytelling}
-
-\draft{rewrite this part}
 
 Chromatin usually describes different levels of how DNA organizes itself. The
 well-known double-helix is only the lowest of several structural layers.
-
 Looking at it from the outside (highest structural layer), DNA looks similar to
-a big ball of wool. With the help of Hi-C (or other methods) we can visualize
-the spatial proximity.
-
-% Gene markers tend to also have effect on their spatial neighbourhood, not only on the neighbourhood going up and down the strand of DNA.
+a big ball of wool. With the help of chromosome conformation technologies
+spatial proximity can be visualized
 
 
+\section{Chromosome Conformation Technologies}\label{sec:3c}\label{sec:hic}
 
-Chromosome Conformation Technologies describe several similar methods to
-compare genomic loci. They all start by:
+\input{figures/background/figChromosome_conformation_techniques}
 
-\begin{itemize}
-    \item creating chromatin cross-links (\secref{sec:crosslinking}),
-    \item digesting the cross-linked chromatin (\secref{sec:digestion}),
-    \item ligating the ends and marking with Biotin (\secref{sec:ligation}) and
-    \item reversing the cross-link (\secref{sec:revcrosslink})
-\end{itemize}
+\subsection{Common steps}\label{sec:common}
 
-to get a sequence with two parts, those parts have been spatially close
-to each other and were marked with Biotin during ligation.
+As can be seen in \figref{fig:cct}, The first steps, crosslinking, digestion,
+ligation and the reversal of crosslinking, are the same for all 3-C-based methods.
 
-Other Chromosome Conformation Technologies proceed differently, Hi-C, our
-focus, continues with the following steps:
-
-\begin{itemize}
-    \item shortening the cross-links by sonication (\secref{sec:sonication}),
-    \item filtering leaving only those with biotin (\secref{sec:pulldown}) and
-    \item sequencing (\secref{sec:sequencing}).
-\end{itemize}
-
-The full process can be seen in \figref{fig:HiC}.
-
-\subsection{Cross-linking DNA}\label{sec:crosslinking}
+\subsubsection{Cross-linking DNA}\label{sec:crosslinking}
 
 The first step is to cross-link DNA strands that are close to each other
-spatially (see \figref{fig:HiC} for reference). This is done by adding
-formaldehyde, which bonds (links) sufficiently close strands together.
+spatially (see \figref{fig:cct} or \figref{fig:HiC} for reference). This is done by adding
+formaldehyde, which connects (links) sufficiently close strands together.
 
 A chromatin cross-link is two entirely different parts of the genome held
 together by a chemical bond with formaldehyde. This process cannot be
-specifically controlled, so only `regions near each other' are connected, not
-necessarily two `known to be close' regions.
+specifically controlled, so only `regions near each other' are connected, but
+not necessarily all regions that are known to be spatially close.
 
-\subsection{Digestion}\label{sec:digestion}
+\subsubsection{Digestion}\label{sec:digestion}
 
 The next step is cutting the ball of wool apart in intervals. For this,
 restriction-enzymes are used (specifically restriction endonuclease). Commonly
-used enzymes for this are DpnII or HindIII, cutting the genome every 4000 base-pairs
-\draft{info taken from Wikipedia, add some other source}.
-\todo{Restriction encymes: \cite{liebermann2009comprehensive}}
+used enzymes for this are DpnII or HindIII, cutting the genome every 4000
+base-pairs \cite{liebermann2009comprehensive}. This will result in a lot of
+cross-linked fragments, as well as not-cross-linked ones.
 
-This will result in a lot of cross-linked fragments, as well as not-cross-linked ones.
-
-\subsection{Ligation}\label{sec:ligation}
+\subsubsection{Ligation}\label{sec:ligation}
 
 After reducing the concentration of fragments, DNA ligase is added, to ligate
-(weld together) dangling fragment ends. The reduction in concentration is done
-since mostly fragments close together are ligated, and we intend to ligate
-fragments held together by formaldehyde. Also, Biotin is added to mark the
-points of ligation. This will let us filter out a lot of fragments that have
-not been ligated later on.
+(weld together) dangling fragment ends. For this a reduction in concentration
+is done since mostly fragments close together are ligated, and we intend to
+ligate fragments linked together by formaldehyde.
+
+In HiC, Biotin is added in this step to mark ligated fragments. This allows
+filtering out most fragments that have not been ligated in a later step.
 
 
-\subsection{Reverse Cross-links}\label{sec:revcrosslink}
+\subsubsection{Reverse Cross-links}\label{sec:revcrosslink}
 
 % Source: http://www.protocol-online.org/biology-forums/posts/10475.html
 Adding a high concentration of salt for some time will reverse the
 cross-linking through formaldehyde, leaving us with our two originally
 spatially close fragments ligated and with a biotin-marker.
 
+
 Our fragments, however, are too long to sequence them effectively (remember
 that we have now ligated fragments of around 8000 base-pairs, most sequencing
 methods can only deal with sequence lengths of a few hundred base-pairs).
 
-\subsection{Sonication}\label{sec:sonication}
 
-The next step is to put them under influence of ultrasonic waves, breaking them
-apart in much shorter fragments (due to long sequences not being able to absorb
-frequent shocks well), short enough to actually enable sequencing.
 
-\subsection{Filtering and Removal of Biotin}\label{sec:pulldown}
 
-Here we `pull-down' fragments marked with biotin, filtering all the fragments
-and leaving only those having been ligated earlier (see \secref{sec:ligation}).
-Subsequently we remove the marker, since it would get in the way of sequencing.
+\subsection{3-C}\label{sec:3C} 
 
-\subsection{Sequencing}\label{sec:sequencing}
+In 2002 Dekker et al. \cite{dekker2002capturing} developed a method test for interactions
+between a single pair of genomic loci. Candidates for promoter-enhancer
+interactions can be tested using this method.
+After the reversal of cross-links (\secref{sec:revcrosslink}), the fragments
+\extend{what is (semi-)quantitive PCR?}
 
-Sequencing, short for DNA sequencing, describes processes of measuring a DNA
-sequence. There are several techniques for doing this, most use PCR (Polymerase
-Chain Reaction) before or while sequencing, which duplicates the fragments
-several times, to sequence them more accurately.
+
+\subsection{4-C}\label{sec:4C}
+
+Chromosome conformation capture-on-chip (4C) was developed in 2006 by Simonis
+et al. \cite{simonis2006nuclear}, a method to test interactions between
+one genomic loci to all others. This is done by adding a second ligation-step
+(see \secref{sec:ligation}, \figref{fig:cct} for reference) creating loops from
+the DNA fragments and applying inverse-PCR (method to specifically amplify the
+unknown parts when beginning and ending parts are known, for this the loops are
+cut within the known section). Afterwards, this may get sequenced. Due to
+inverse-PCR knowledge about both interacting chromosomal regions is not needed.
+Results are highly reproducible for close regions \draft{find source for this}.
+
+\extend{What is a microarray?}
+
+% 4C (one-vs-all)
+% Chromosome conformation capture-on-chip (4C) captures interactions between
+% one locus and all other genomic loci. It involves a second ligation step, to
+% create self-circularized DNA fragments, which are used to perform inverse
+% PCR. Inverse PCR allows the known sequence to be used to amplify the unknown
+% sequence ligated to it.[2][19] In contrast to 3C and 5C, the 4C technique
+% does not require the prior knowledge of both interacting chromosomal regions.
+% Results obtained using 4C are highly reproducible with most of the
+% interactions that are detected between regions proximal to one another. On a
+% single microarray, approximately a million interactions can be
+% analyzed.[citation needed]
+
+
+
+\subsection{5-C}\label{sec:5C}
+
+Chromosome conformation capture carbon copy (5C) was developed in 2006 by
+Dostie et al. \cite{dostie2006chromosome}, this method is able to test a region
+for interactions with itself, such region being no bigger than a megabase. This
+is done by adding universal primers to all fragments from such a region.
+5-C has relatively low coverage, but is useful to analyse complex interactions
+of specified loci of interest. Genome-wide interaction measuring would require
+millions of 5C primers, making this method unsuitable.
+
+% 5C (many-vs-many)
+% Chromosome conformation capture carbon copy (5C) detects interactions between
+% all restriction fragments within a given region, with this region's size
+% typically no greater than a megabase.[2][20] This is done by ligating
+% universal primers to all fragments. However, 5C has relatively low coverage.
+% The 5C technique overcomes the junctional problems at the intramolecular
+% ligation step and is useful for constructing complex interactions of specific
+% loci of interest. This approach is unsuitable for conducting genome-wide
+% complex interactions since that will require millions of 5C primers to be
+% used.
+
+
+
+
+\subsection{Hi-C}\label{sec:HiC}
+% Hi-C (all-vs-all)
+% Hi-C uses high-throughput sequencing to find the nucleotide sequence of
+% fragments.[2][22] The original protocol used paired end sequencing, which
+% retrieves a short sequence from each end of each ligated fragment. As such,
+% for a given ligated fragment, the two sequences obtained should represent two
+% different restriction fragments that were ligated together in the random
+% ligation step. The pair of sequences are individually aligned to the genome,
+% thus determining the fragments involved in that ligation event. Hence, all
+% possible pairwise interactions between fragments are tested.
+
+
+% Researchers attempt to study the extent of Hi-C's detection through a study focusing on screening primary brain tumours.[30] Prior to screening tumours, Hi-C was primarily focused on cell lines.[31]
+
+
+\subsection{Other methods}\label{sec:other3c}
+
+\draft{compactly explain the other methods, reference some other source}
+
+
+\extend{current state}
+
+
+
+
+\input{figures/background/figsHiC}
+
+\subsection{Overview ... ?}
+
+\draft{stroytelling, where is all of this coming from, all these steps need to be refernced}
+
+\todo{remove subsections and combine them}
+
+\todo{introduce 3-C, 4-C, 5-C, then Hi-C, also add to reference}
+
+% Gene markers tend to also have effect on their spatial neighbourhood, not only on the neighbourhood going up and down the strand of DNA.
+
+
+
+% Chromosome conformation technologies describe several similar methods to
+% compare genomic loci. They all start by:
+% 
+% \begin{itemize}
+%     \item creating chromatin cross-links (\secref{sec:crosslinking}),
+%     \item digesting the cross-linked chromatin (\secref{sec:digestion}),
+%     \item ligating the ends and marking with Biotin (\secref{sec:ligation}) and
+%     \item reversing the cross-link (\secref{sec:revcrosslink})
+% \end{itemize}
+% 
+% to get a sequence with two parts, those parts have been spatially close
+% to each other and were marked with Biotin during ligation.
+% 
+% Other chromosome conformation technologies proceed differently, Hi-C, our
+% focus, continues with the following steps:
+% 
+% \begin{itemize}
+%     \item shortening the cross-links by sonication (\secref{sec:sonication}),
+%     \item filtering leaving only those with biotin (\secref{sec:pulldown}) and
+%     \item sequencing (\secref{sec:sequencing}).
+% \end{itemize}
+% 
+% The full process can be seen in \figref{fig:HiC}.
+
+% \subsection{Cross-linking DNA}\label{sec:crosslinking}
+% 
+% The first step is to cross-link DNA strands that are close to each other
+% spatially (see \figref{fig:HiC} for reference). This is done by adding
+% formaldehyde, which bonds (links) sufficiently close strands together.
+% 
+% A chromatin cross-link is two entirely different parts of the genome held
+% together by a chemical bond with formaldehyde. This process cannot be
+% specifically controlled, so only `regions near each other' are connected, not
+% necessarily two `known to be close' regions.
+% 
+% \subsection{Digestion}\label{sec:digestion}
+% 
+% The next step is cutting the ball of wool apart in intervals. For this,
+% restriction-enzymes are used (specifically restriction endonuclease). Commonly
+% used enzymes for this are DpnII or HindIII, cutting the genome every 4000
+% base-pairs \cite{liebermann2009comprehensive}. This will result in a lot of
+% cross-linked fragments, as well as not-cross-linked ones.
+% 
+% \subsection{Ligation}\label{sec:ligation}
+% 
+% After reducing the concentration of fragments, DNA ligase is added, to ligate
+% (weld together) dangling fragment ends. The reduction in concentration is done
+% since mostly fragments close together are ligated, and we intend to ligate
+% fragments held together by formaldehyde. Also, Biotin is added to mark the
+% points of ligation. This will let us filter out a lot of fragments that have
+% not been ligated later on.
+% 
+% 
+% \subsection{Reverse Cross-links}\label{sec:revcrosslink}
+% 
+% % Source: http://www.protocol-online.org/biology-forums/posts/10475.html
+% Adding a high concentration of salt for some time will reverse the
+% cross-linking through formaldehyde, leaving us with our two originally
+% spatially close fragments ligated and with a biotin-marker.
+% 
+% Our fragments, however, are too long to sequence them effectively (remember
+% that we have now ligated fragments of around 8000 base-pairs, most sequencing
+% methods can only deal with sequence lengths of a few hundred base-pairs).
+% 
+% \subsection{Sonication}\label{sec:sonication}
+% 
+% The next step is to put them under influence of ultrasonic waves, breaking them
+% apart in much shorter fragments (due to long sequences not being able to absorb
+% frequent shocks well), short enough to actually enable sequencing.
+% 
+% \subsection{Filtering and Removal of Biotin}\label{sec:pulldown}
+% 
+% Here we `pull-down' fragments marked with biotin, filtering all the fragments
+% and leaving only those having been ligated earlier (see \secref{sec:ligation}).
+% Subsequently we remove the marker, since it would get in the way of sequencing.
+% 
+% \subsection{Sequencing}\label{sec:sequencing}
+% 
+% Sequencing, short for DNA sequencing, describes processes of measuring a DNA
+% sequence. There are several techniques for doing this, most use PCR (Polymerase
+% Chain Reaction) before or while sequencing, which duplicates the fragments
+% several times, to sequence them more accurately.
 
 % - putting the 3' and 5' ends there
 % - usual PCR methods
@@ -162,7 +293,7 @@ several times, to sequence them more accurately.
 
 
 % Background:
-% \todo{Cite/introduce/... the given papers, and introduce the required concepts}
+\todo{Cite/introduce/... the given papers, and introduce the required concepts}
 
 % Required concepts:
 % \begin{itemize}
@@ -179,26 +310,26 @@ several times, to sequence them more accurately.
 
 
 
-\newpage
-
-\section{deepTools}\label{sec:deeptools}
-
-\todo{remove that entirely}
-
-DNA sequencing is generating more data than ever before, for which deepTools,
-being a framework, has useful programs to ``process the mapped reads data for
-multiple quality checks, creating normalized coverage files in standard
-bedGraph and bigWig file
-formats''\footnote{\url{https://github.com/deeptools/deepTools}, accessed
-2019-06-26} and more. Using these normalized, standardized files, many
-visualizations showing the actual connections or functional
-annotations, can be made.
-
-
+% \newpage
+% 
+% \section{deepTools}\label{sec:deeptools}
+% 
+% \todo{remove that entirely}
+% 
+% DNA sequencing is generating more data than ever before, for which deepTools,
+% being a framework, has useful programs to ``process the mapped reads data for
+% multiple quality checks, creating normalized coverage files in standard
+% bedGraph and bigWig file
+% formats''\footnote{\url{https://github.com/deeptools/deepTools}, accessed
+% 2019-06-26} and more. Using these normalized, standardized files, many
+% visualizations showing the actual connections or functional
+% annotations, can be made.
+% 
+% 
 \section{HiCExplorer}\label{sec:hicexplorer}
 
 \todo{remove any mention of deepTools}
-
+% 
 HiCExplorar, being part of the deepTools-framework, is a collection of tools,
 that are used to process, analyze and visualize Hi-C data. Part of this
 collection are tools to convert between formats, correcting the data (which

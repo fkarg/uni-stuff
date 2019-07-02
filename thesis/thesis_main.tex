@@ -39,7 +39,7 @@
     \hypersetup{pageanchor=false}
 
     % enable/disable, depending on your chosen language
-    % \input{chapters/0_0-titlepage_en}
+    \input{chapters/0_0-titlepage_en}
     % % \input{chapters/0_0-titlepage_de}
 
     \pagestyle{plain} % remove chapter name from top, page number at the bottom
@@ -47,29 +47,29 @@
     % if you wang a more fancy header use \usepackage[automark,headsepline]{scrlayer-scrpage}
     % and read about it in the KOMA script documentation, https://www.ctan.org/pkg/koma-script
     \frontmatter  % roman page numbers
-    % \input{chapters/0_1-declaration}
-    % \input{chapters/0_2-abstract}
-    % \tableofcontents
-    % \listoffigures
+    \input{chapters/0_1-declaration}
+    \input{chapters/0_2-abstract}
+    \tableofcontents
+    \listoffigures
     % \listoftables
     % \listofalgorithms
     \hypersetup{pageanchor=true}  % re-enable hyperlinking
 
     \mainmatter  % Arabic page numbers
     \input{chapters/1-introduction}
-    % \input{chapters/3-background}
-    % \input{chapters/2-relatedwork}
-    % \input{chapters/4-approach}
-    % \input{chapters/5-experiments}
-    % \input{chapters/6-conclusions}
-    % \input{chapters/7-acknowledgments}
+    \input{chapters/3-background}
+    \input{chapters/2-relatedwork}
+    \input{chapters/4-approach}
+    \input{chapters/5-experiments}
+    \input{chapters/6-conclusions}
+    \input{chapters/7-acknowledgments}
 
     % If you want a list of your ToDos at the end of the document
     % don't forget to remove before submission!
     \input{todo_list}
 
     \bibliographystyle{ieeetr}
-    % \bibliography{bib/references.bib}
+    \bibliography{bib/references.bib}
     % bibliography is not in the table of contents per default, add it manually
     % enable the \renewcommand for german header
     % \renewcommand{\bibname}{Literaturverzeichnis}

@@ -1,5 +1,8 @@
 \chapter{Approach}\label{chap:approach}
 
+\todo{include general setup; HiCExplorer running on Linux/Mac, Python, numpy, scipy, KR in C++, Missing interface from python to C but missing to RUST - done ?}
+
+
 \draft{Probleme bisher werden jetzt gelöst indem wir Rust verwend}
 
 \todo{Ausführlich Problemstellung, Rust to Python interface}
@@ -18,6 +21,12 @@ method in C++ (which ended up being Rust).
 
 
 \section{Iterative Correction and Eigenvector decomposition (Algorithm)}\label{sec:ICE}
+
+
+% Wolff: Jede Position im Genom hat in der Summe die gleiche anzahl an
+%        interaktionen mit anderen Positionen des Genoms.
+
+\todo{put in own words}
 
 The Algorithm as defined in \cite{imakaev2012iterative} (Supplementary Material): \\
 ``We perform iterative correction on the resulting contact maps to obtain
@@ -182,7 +191,7 @@ The difference here being the imported \verb|rayon::prelude::*| and instead of
 \section{Using Rust}\label{sec:rust}
 
 
-\subsection{Testing the integration of Rust}
+\subsection{Testing the integration of Rust}\label{sec:integration}
 
 \todo{Answer this question later!!}
 
@@ -206,7 +215,7 @@ will be described in depth in \secref{sec:api}.
 
 ``Rust is a systems programming language that runs blazingly fast, prevents
 segfaults, and guarantees thread safety'' - this was, up until recently, the
-motto of Rust. It recently got changed into ``A language empowering everyone 
+motto of Rust. It recently got changed into ``A language empowering everyone
 to build reliable and efficient software.'' At the core of Rust is a compiler
 applying linear typing, rsulting in the concepts of Ownership and Lifetimes.
 These concepts, even though notoriously hard to learn, are the main reason the
@@ -255,7 +264,7 @@ The advantage here is actually much simpler: since we barely need any of the
 features provided, implementing them ourselves is not much work and gives us
 way more fine grained control as to what is actually happening.
 
-This includes the paralellization of some parts of the code, which might not
+This includes the parallelization of some parts of the code, which might not
 have been possible if ther were some other library doing things in its own way
 (numpy using the C-API would be an example here).
 
@@ -351,7 +360,7 @@ the compiler to mangle (renaming of functions) and guaranteeing the
 representation in the memory layout to be as it would be in C. Since like this
 neither language depends on something only internal (or combinatorial), and
 both just depend upon the ‘common, unchanging’ C-interface, this seems to be
-the preferred way.  
+the preferred way.
 
 
 \newpage
@@ -478,7 +487,7 @@ Additionally I set up a buildserver, adding some tests and fixing smaller bugs.
 Nearing the end of my work, I set up ways to test and compare my implementation
 with the other. One of the last things I did was adding Parallelization.
 
-\todo{add: compare paralellization in C++ and Python, accessing memory, why it is possible to easily add this, ...}
+\todo{add: compare parallelization in C++ and Python, accessing memory, why it is possible to easily add this, ...}
 
 
 \section{Testing}\label{sec:testing}

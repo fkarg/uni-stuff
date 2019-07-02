@@ -101,7 +101,7 @@
 
     % ------------------- layout -------------------
     % prevents floating objects from being placed ahead of their section
-    \let\mySection\section\renewcommand{\section}{\vline\suppressfloats[t]\mySection}
+    \let\mySection\section\renewcommand{\section}{\suppressfloats[t]\mySection}
     \let\mySubSection\subsection\renewcommand{\subsection}{\suppressfloats[t]\mySubSection}
 
 

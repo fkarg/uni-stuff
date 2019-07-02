@@ -15,7 +15,7 @@ disadvantages.
 
 \todo{hard to make things actually wrong, fast to implement}
 
-\todo{python having a global interpreter lock for its multiprocessing module, needing to copy the RAM, sometimes numpy is using paralellization, dependent on version}
+\todo{python having a global interpreter lock for its multiprocessing module, needing to copy the RAM, sometimes numpy is using parallelization, dependent on version}
 
 The original implementation was written in Python, since the
 deepTools-framework is mainly written in Python. This implementation is using
@@ -34,7 +34,7 @@ are High-Level \verb|numpy| / \verb|scipy| commands, some being themselves
 implemented in C/C++ to be sufficiently fast.
 
 There is practically no downside to this implementation, except for the high
-requirements for resources, especially working memory (RAM), and Pythons not really existing paralellisation.
+requirements for resources, especially working memory (RAM), and Pythons not really existing parallelisation.
 \extend{update after results, compare requirements}
 
 For reference, the Python-implementation can be found
@@ -55,6 +55,9 @@ described later and implemented in both other implementations
 
 \todo{add negatives of using C++}
 
+\extend{total support: at least one nonzero diagonal}
+
+\draft{compare implementations: libraries: eigen + openMP}
 
 
 \todo{read paper / algorithm + introduce here}

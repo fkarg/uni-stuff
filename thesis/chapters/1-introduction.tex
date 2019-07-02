@@ -1,6 +1,8 @@
 \chapter{Introduction}\label{chap:introduction}
 
-\todo{include feedback!}
+\draft{more formal language}
+
+% \todo{include feedback!}
 % Feedback:
 % Why do we care about the 3D structure -> about the structure, influencing
 % enhancer-promoter interactions, existing in reality in 3D and we have barely
@@ -32,14 +34,12 @@
 % - mismatches likelier for longer reads
 % => Errors do exist, but do not really know which ones or how to filter them out
 
-\todo{Add Glossary?}
-
 Even though much is known about the one-dimensional structure of our DNA, it
 also organizes itself in three-dimensional ways. Recently, with the advent of
 chromosome conformation capture (3C) technologies, it has become possible to gain
-insights in the three-dimensional structure as well. Gene-regulators have been
+insight into the three-dimensional structure as well. Gene-regulators have been
 intensively looked at in the one-dimensional case, but enhancer and promoter
-also have influence on their three-dimensional surroundings, making knowledge
+also have an influence on their three-dimensional surroundings, making knowledge
 about the spatial organization relevant.
 
 In this work, data gotten through Hi-C \cite{lieberman2009comprehensive} will
@@ -52,18 +52,17 @@ fragments and sequencing them. This will be explained in detail in
 
 However, such technologies tend to suffer from technical (e.g. sequencing,
 mapping) \cite{pmid21646344} and biological factors (e.g. distinct chromatin
-states) \cite{pmid19693276}, making them inherently inaccurate.
-
-Biases are unavoidable, in particular, as some regions are more sensible for
-biotin labeling enrichments (See \secref{sec:hic} why this is relevant) they
-will be measured more often when compared to others. PCR artifacts cannot be
-excluded \cite{acinas2005pcr}. Mapping locations may be unclear or not unique,
-introducing even more sources for possible biases. Certain sequencing methods
+states) \cite{pmid19693276}, making them inherently inaccurate.  Biases are
+unavoidable, in particular, as some regions are more sensible for biotin
+labeling enrichments (See \secref{sec:hic} why this is relevant) they will be
+measured more often when compared to others. PCR artifacts may be one of the
+reasons \cite{winget2015hicup}. Mapping locations may be unclear or not unique,
+introducing even more sources for possible biases. Sequencing methods
 have certain biases themselves. Some of the measured interactions are
 questionable, it is unclear if these are actual, spatially close points, or if
 it simply is a technical error or a randomly happened interaction.
 
-\todo{cite the papers for KR and ICE at the first introduction}
+% \section{Introducing Solutions}
 
 However, a basic but strong assumption about the structure of the genome can be
 made, which is that every location has the same amount of interactions (with
@@ -73,112 +72,49 @@ the several aforementioned inaccuracies. Algorithms such as ICE
 decomposition, \secref{sec:ICE}) or KR \cite{knight2013fast} (Knight-Ruiz,
 \secref{sec:KR}) can be applied to normalize the matrix nonetheless.
 
-ICE, the algorithm implemented in this work, normalizes the data iteratively.
-Eigenvector decomposition of the normalized data can then give new insights on
-local chromatin states or global patterns of chromosomal interaction, as was
-done here \cite{imakaev2012iterative}.
-
-We will not do the Eigenvector decomposition, but the iterative correction
-(``normalization'') before that.
 
 
-\section{Core setup}\label{sec:setup}
-
-\todo{remove deepTools entirely}
-
-\todo{include general setup; HiCExplorer running on Linux/Mac, Python, numpy, scipy, KR in C++, Missing interface from python to C but missing to RUST}
-
-This work is part of the HiCExplorer (\secref{sec:hicexplorer}) tool from the
-Deeptools (\secref{sec:deeptools}) framework. HiCExplorer is mainly written in
-Python, being limited by the high resource requirements of the iteration process.
-
-% As we will see, the implementation in rust is faster even when using only one core.
-
-\todo{run experiments!!}
-
-
-% with this implementation needing too much working memory (RAM) for the
-% iterative correction. For some time, the goal was to reduce memory usage by not
-% copying a huge matrix a couple of times. From the Rust side, it would have been
-% possible to read and write to the matrix in-memory, but we decided against
-% doing so due to concerns regarding correctness. Still, the focus is to
-% investigate which version requires less resources (CPU Time/RAM/...).
-
-
-% This is going to be an interesting comparison, since, the (before) default
-% Python-implementation was only using one core. Rust code written for
-% single-core applications can easily be turned to multicore code. During the
-% work of this project, an implementation of a different algorithm
-% (\secref{sec:KR}) written in C++ got added, so We'll compare with this one now
-% as well.
-
-\extend{Add more details!!}
-
-
-\section{Algorithm}\label{sec:algorithm}
-
-% Wolff: Jede Position im Genom hat in der Summe die gleiche anzahl an
-%        interaktionen mit anderen Positionen des Genoms.
-
-\todo{move this section to storytelliing in introduction}
-
-Fundamentally, every part in our genome has the same amount of summed up
-interactions with other parts of the genome. The algorithm takes severe
-advantage of this property, downright enforcing it. A full description can be
-found in \secref{sec:ICE}.
+% \section{Motivation}\label{sec:motivation}
+% 
+% \subsection{Motivation for Hi-C}
+% 
+% \todo{include in storytelling}
+% 
+% Within cells, the three-dimensional structure of chromatin can now be analyzed
+% using techniques based on chromatin conformation capture (3C), including Hi-C.
+% With Hi-C \draft{what is the long name?}, we can construct spatial proximity
+% maps over the whole genome, giving us clues as to which regions are close to
+% each other. With 3C it can be tested if two genomic locations are close to each
+% other, but with Hi-C we get (biased but still) all spatial connections of the
+% genome at once.
+% 
+% \subsection{Motivation for Rust}
+% 
+% There is several reasons for using Rust, including faster development than C++
+% and better tooling, while still having the same if not slightly better
+% performance. A massive advantage is the easiness of adding parallelism, and the
+% modularity of Rust code. Libraries in Rust can easily be stacked, and the
+% compiler will complain if the memory is not handled the way it should be (in
+% C++ it is hard to correctly manage all memory, especially from libraries,
+% easily resulting in segfaults and similar issues hard to debug). The benefits to
+% using Rust instead of Python are only apparent if performance or safety (of
+% execution, at runtime) is needed - which is the case here.
+% 
+% \todo{explain this more: thread safety, modularity, stackability, hard to debug C++}
 
 
 
-\section{Motivation}\label{sec:motivation}
+\section{Concrete Task definition}
 
-\subsection{Motivation for Hi-C}
-
-\todo{include in storytelling}
-
-Within cells, the three-dimensional structure of chromatin can now be analyzed
-using techniques based on chromatin conformation capture (3C), including Hi-C.
-With Hi-C \draft{what is the long name?}, we can construct spatial proximity
-maps over the whole genome, giving us clues as to which regions are close to
-each other. With C3 it can be tested if two genomic locations are close to each
-other, but with Hi-C we get (biased but still) all spatial connections of the
-genome at once.
-
-\subsection{Motivation for Rust}
-
-There is several reasons for using Rust, including faster development than C++
-and better tooling, while still having the same if not slightly better
-performance. A massive advantage is the easiness of adding parallelism, and the
-modularity of Rust code. Libraries in Rust can easily be stacked, and the
-compiler will complain if the memory is not handled the way it should be (in
-C++ it is hard to correctly manage all memory, especially from libraries,
-easily resulting in segfaults and similar issues hard to debug). The benefits to
-using Rust instead of Python are only apparent if performance or safety (of
-execution, at runtime) is needed - which is the case here.
-\todo{explain this more: thread safety, modularity, stackability, hard to debug C++}
+The main goals of this thesis include testing the integration between Rust (a
+systems programming language recently gaining in popularity, more information
+in \secref{sec:Rust}) and Python (\secref{sec:integration}), how easy it is to
+let both these languages interact, and how it compares to the other two current
+implementations (ICE in Python and KR in C++, more information can be found in
+\todo{section: python ice} and \secref{sec:KR} respectively). The overall goal
+however, is to try to implement a more resource efficient version, able to make
+effective use of parallel computations.
 
 
-
-\todo{more formal language}
-
-
-
-\section{Concrete Task}
-
-\todo{Concrete task definition as 1.1}
-
-This work is mainly testing the integration between Rust and Python, intending
-to answer the queston if this is a better implementation.
-
-In the three-dimensional space of a cell the DNA forms a structure that looks
-close to that of a ball of wool. Obviously, many points of contacts of the DNA
-wire with itself, called DNA interactions, exist in this ``ball of wool'' and
-form structures including DNA loops. However, many of these contacts are
-random contacts or measurement errors that need to be corrected. A Python
-implementation exists but is limited for high resolution data due to high
-memory usage. This [..] project aims to reimplement a more memory efficient
-method in C++ (which ended up being Rust).
-
-
-% concrete task: python to rust, better implementation possible?
 \todo{around half a page to one}
 
