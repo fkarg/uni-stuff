@@ -19,6 +19,7 @@
 % - first: HiC and why it is interesting
 % - errors that can happen to the data
 % - super small introduction to rust
+% - problem introduction
 %
 % sequencing errors:
 % - some reagions are more sensible for biotin labeling enrichments
@@ -33,24 +34,49 @@
 
 \todo{Add Glossary?}
 
-Hi-C is a method commonly used for getting 3D-information of genomes. Such
-technologies tend to suffer from technical (e.g. sequencing, mapping)
-\cite{pmid21646344} and biological factors (e.g. distinct chromatin states)
-\cite{pmid19693276}, making them inherently inaccurate. In particular, 
+Even though much is known about the one-dimensional structure of our DNA, it
+also organizes itself in three-dimensional ways. Recently, with the advent of
+chromosome conformation capture (3C) technologies, it has become possible to gain
+insights in the three-dimensional structure as well. Gene-regulators have been
+intensively looked at in the one-dimensional case, but enhancer and promoter
+also have influence on their three-dimensional surroundings, making knowledge
+about the spatial organization relevant.
+
+In this work, data gotten through Hi-C \cite{lieberman2009comprehensive} will
+be used. Hi-C is a method for getting 3D-information of genomes.  This is done
+by `strapping' together parts of the genome that are close by, cutting apart
+the genome with restriction enzymes, combining the ends of strapped-together
+fragments and sequencing them. This will be explained in detail in
+\secref{sec:hic}.
+
+
+However, such technologies tend to suffer from technical (e.g. sequencing,
+mapping) \cite{pmid21646344} and biological factors (e.g. distinct chromatin
+states) \cite{pmid19693276}, making them inherently inaccurate.
+
+Biases are unavoidable, in particular, as some regions are more sensible for
+biotin labeling enrichments (See \secref{sec:hic} why this is relevant) they
+will be measured more often when compared to others. PCR artifacts cannot be
+excluded \cite{acinas2005pcr}. Mapping locations may be unclear or not unique,
+introducing even more sources for possible biases. Certain sequencing methods
+have certain biases themselves. Some of the measured interactions are
+questionable, it is unclear if these are actual, spatially close points, or if
+it simply is a technical error or a randomly happened interaction.
 
 \todo{cite the papers for KR and ICE at the first introduction}
 
-However, a basic assumption about the structure of the genome can be made,
-which is that every location has the same amount of interactions (with other
-locations) as every other location. The data does not show this due to the
-several aforementioned inaccuracies. Algorithms such as ICE (Iterative
-Correction and Eigenvector decomposition, \secref{sec:ICE}) or KR (Knight-Ruiz,
-\secref{sec:KR}) can be applied to ``normalize'' the matrix nonetheless.
+However, a basic but strong assumption about the structure of the genome can be
+made, which is that every location has the same amount of interactions (with
+other locations) as every other location. The data does not show this due to
+the several aforementioned inaccuracies. Algorithms such as ICE
+\cite{imakaev2012iterative} (Iterative Correction and Eigenvector
+decomposition, \secref{sec:ICE}) or KR \cite{knight2013fast} (Knight-Ruiz,
+\secref{sec:KR}) can be applied to normalize the matrix nonetheless.
 
-ICE, the algorithm implemented in this work, ``normalizes'' the data we
-have iteratively. Eigenvector decomposition of the normalized data can then
-give us new insights on local chromatin states or global patterns of
-chromosomal interaction \cite{imakaev2012iterative}.
+ICE, the algorithm implemented in this work, normalizes the data iteratively.
+Eigenvector decomposition of the normalized data can then give new insights on
+local chromatin states or global patterns of chromosomal interaction, as was
+done here \cite{imakaev2012iterative}.
 
 We will not do the Eigenvector decomposition, but the iterative correction
 (``normalization'') before that.
