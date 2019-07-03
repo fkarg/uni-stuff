@@ -1,7 +1,5 @@
 \chapter{Background}\label{chap:background}
 
-\todo{remove deepTools entirely}
-
 \todo{Add Glossary?}
 
 \todo{use more formal language}
@@ -73,7 +71,7 @@ base-pairs at most.
 
 
 
-\subsection{3-C}\label{sec:3C} 
+\subsection{3-C}\label{sec:3C}
 
 In 2002 Dekker et al. \cite{dekker2002capturing} developed a method test for interactions
 between a single pair of genomic loci. Candidates for promoter-enhancer
@@ -85,15 +83,16 @@ After the reversal of cross-links (\secref{sec:revcrosslink}), the fragments
 
 \subsection{4-C}\label{sec:4C}
 
-Chromosome conformation capture-on-chip (4C) was developed in 2006 by Simonis
-et al. \cite{simonis2006nuclear}, a method to test interactions between
-one genomic loci to all others. This is done by adding a second ligation-step
-(see \secref{sec:ligation}, \figref{fig:cct} for reference) creating loops from
-the DNA fragments and applying inverse-PCR (method to specifically amplify the
-unknown parts when beginning and ending parts are known, for this the loops are
-cut within the known section). Afterwards, this may get sequenced. Due to
-inverse-PCR knowledge about both interacting chromosomal regions is not needed.
-Results are highly reproducible for close regions \draft{find source for this}.
+Chromosome conformation capture-on-chip (4C) was developed in 2006 by Simonis,
+Zhao et al. \cite{simonis2006nuclear} \cite{zhao2006circular}, a method to test
+interactions between one genomic loci to all others. This is done by adding a
+second ligation-step (see \secref{sec:ligation}, \figref{fig:cct} for
+reference) creating loops from the DNA fragments and applying inverse-PCR
+(method to specifically amplify the unknown parts when beginning and ending
+parts are known, for this the loops are cut within the known section).
+Afterwards, this may get sequenced. Due to inverse-PCR knowledge about both
+interacting chromosomal regions is not needed.  Results are highly reproducible
+for close regions \draft{find source for this}.
 
 \extend{What is a microarray?}
 
@@ -211,52 +210,116 @@ fundamentally different, they will not be covered in depth.
 
 \section{HiCExplorer}\label{sec:hicexplorer}
 
-\todo{remove any mention of deepTools}
+\input{figures/background/figHiCExplorer}
 
-HiCExplorar, being part of the deepTools-framework, is a collection of tools,
-that are used to process, analyze and visualize Hi-C data. Part of this
-collection are tools to convert between formats, correcting the data (which
-this is work is part of), normalizing it, analysing it in various ways, and
-extensively plotting it. Facilitated is, among othters ``the creation of
-contact matrices, correction of contacts, topologically associating domains
-(TAD) detection, A/B compartments, merging, reordering or chromosomes,
-conversion from different formats including cooler and detection of long-range
-contacts.''\footnotemark Those contact matrices may then be visualized, also
-showing other types of data, including ``genes, compartments, ChIP-seq coverage
-tracks, long range contacts and the visualization of
-viewpoints''\footnotemark[\value{footnote}].
-
-\todo{add images here about analysis}
-
+HiCExplorer \cite{wolff2018galaxy} is a collection of tools that are used to
+process, analyze and visualize Hi-C data. Part of this collection are tools to
+convert between formats, correcting the data (which this is work is part of),
+normalizing it, analysing it in various ways, and extensively plotting it.
+Facilitated is, among othters ``the creation of contact matrices, correction of
+contacts, topologically associating domains (TAD) detection, A/B compartments,
+merging, reordering or chromosomes, conversion from different formats including
+cooler and detection of long-range contacts.''\footnotemark Those contact
+matrices may then be visualized, also showing other types of data, including
+``genes, compartments, ChIP-seq coverage tracks, long range contacts and the
+visualization of viewpoints''\footnotemark[\value{footnote}]. An excerpt of
+possible visualizations can be seen in \figref{fig:HiCExplorer}.
 \footnotetext{\url{https://github.com/deeptools/HiCExplorer}, accessed 2019-06-26}
 
-% HiCExplorer facilitates the creation of contact matrices, correction of contacts, TAD detection, A/B compartments, merging, reordering or chromosomes, conversion from different formats including cooler and detection of long-range contacts. Moreover, it allows the visualization of multiple contact matrices along with other types of data like genes, compartments, ChIP-seq coverage tracks (and in general any type of genomic scores), long range contacts and the visualization of viewpoints.
-
-% \begin{verbatim}
-% hic2cool              hicCorrelate        hicPlotAverageRegions
-% hicAdjustMatrix       hicDetectLoops      hicPlotDistVsCounts
-% hicAggregateContacts  hicexplorer         hicPlotMatrix
-% hicAverageRegions     hicFindTADs         hicPlotTADs
-% hicBuildMatrix        hicInfo             hicPlotViewpoint
-% hicCompareMatrices    hicMergeMatrixBins  hicQC
-% hicConvertFormat      hicNormalize        hicSumMatrices
-% hicCorrectMatrix      hicPCA              hicTransform
-% \end{verbatim}
-
-% analysing Hi-C data: building this interaction-matrix, correcting it,
-% analysing it, compute stuff with it, ..., visualising the results.
 
 
+\subsection{Analysis}\label{sec:analysis}
+
+\input{figures/background/HiCMatricesModels}
+
+Corrected Hi-C data can then be further analysed, one such a possible further
+step being to search for TADs (topologically associated domains)
+\cite{ramirez2018high}, for this a TAD-seperation score is computed and local
+minima indicative of TAD boundaries are searched for. A visualized result of
+such a computation can be seen in \figref{fig:HiCExplorer}I. DNA is
+compartmentalized \cite{lieberman2009comprehensive} in different domains, as
+can be seen in \figref{fig:HiCMatricesModels}. They can be found by computing
+the Eigenvectors as described in \cite{lieberman2009comprehensive} or
+\cite{imakaev2012iterative} first. With this, a better understanding can be
+achieved when additionally visualized. Useful metrics include difference, ratio
+and log2ratio between two matrices. Replications or samples from different
+conditions can easily be compared when visualized. More information about the
+analysis capabilities of HiCExplorer can be found in \cite{wolff2018galaxy}.
+
+
+
+% Analysis
+%
+% hicFindTADs This utility can identify TADs from a given corrected contact
+% matrix by first computing a TAD-separation score and then identifying local
+% minima indicative of TAD boundaries (8). In contrast to other TAD
+% identification methods, this tool also returns the TAD-separation score,
+% which can be visualized in a genome browser or using hicPlotTADs. The
+% TAD-separation score contains useful information to identify strong and weak
+% boundaries and the density of contacts within TAD and can be visualized along
+% with the Hi-C matrix (see hicPlotTADs tool).
+%
+% hicPCA A/B compartments (1) refer to open and closed chromatin that is
+% spatially separated in the cell nucleus (30,31). We compute this using
+% eigenvector decomposition as described by Lieberman-Aiden (1) and using the
+% first and second eigenvector. The positive/negative values correspond to
+% open/closed chromatin. A visualization of A/B compartments is shown in Figure
+% 1D.
+%
+% hicTransform The three matrices used to compute the A/B compartments
+% (observed/expected, Pearson correlation and covariance matrices) are useful
+% during visualization to achieve a better understanding of the Hi-C data. To
+% enable this, hicTransform can compute these three matrices independently of
+% hicPCA, and the matrices can then be plotted using the visualization tools.
+%
+% hicCompareMatrices hicCompareMatrices allows the computation of difference,
+% ratio or log2ratio between two matrices. This is useful to compare replicates
+% or samples from different conditions. It can, for example, help to
+% characterize TAD structure modifications when followed by hicPlotMatrix
+% (Figure 1E).
+
+
+\subsection{Visualization}\label{sec:visualization}
+
+% Visualization
+%
+% hicPlotMatrix This tool is used to plot contact matrices for a collection of
+% individual chromosomes. It has multiple options to select the matrix colors
+% and the values range. Additionally, bigwig tracks can be attached to plot
+% additional features such as A/B compartments or ChIP-seq data. It is possible
+% to plot a multitude of domains; the entire interaction matrix, individual
+% chromosomes, multiple chromosomes, and various regions of interest (see
+% Figure 1D–F).
+%
+% hicPlotViewpoint The viewpoint plot supports a visualization of the number of
+% interactions around a specific reference point or region in the genome, and
+% makes the long-range interactions visible as shown in Figure 1G. The output
+% is comparable to what is obtained using the 4C-seq protocol.
+%
+% hicAggreateContacts Facilitates the analysis of long range-contacts by
+% visualizing the average contacts over multiple smaller matrices around a
+% given set of regions (Figure 1H).
+%
+% hicPlotTADs To visualize the computed TADs this tool flips the main diagonal
+% of the Hi-C contact matrix by 45° and marks the TADs with triangles. It is
+% possible to plot multiple matrices and add additional data like genes,
+% chromatin states, long-range interactions and any other feature that can be
+% represented as a bigwig or bedgraph file like methylation data, ChIP-seq, or
+% RNA-seq to visually correlate them with TADs and their boundaries. There are
+% multiple options to select the Hi-C matrix layout and colormap, different
+% ways to visualize genes and regions files and also multiple configurations to
+% plot coverage tracks like color, line width, line type, as dots, filled etc.
+% (Figure 1I).
+
+
+\draft{show some graphics of what analysis of such data can show}
+
+
+\todo{add images here about analysis}
 
 \todo{was kann man tun mit den visualisierungen, und auf welche wege visualisiert man das etc?  Auf welchem Wege: Z.b. mit Software des HiCExplorer: hicPlotMatrix, hicPlotTADs, hicAggregate. Die Visualisierungen braucht man um komplexere Inhalte leichter (und vor allem schnell) verstaendlich zu machen. Niemand sieht z.B. in einer Matrizen sehr schnell hoehere Zahlenwerte, als Heatmap dagegen dargestellt sieht man sofort dass da ein anderes Muster in einem Bereich ist.  }
 
 
 \todo{einführung in den HiCExplorer auf die ich verlinken könnte? Siehe eine der letzten Mails da hab ich ein Paper verlinkt.}
-
-
-
-\section{Analysis}\label{sec:furtherprocessing}
-
-\draft{show some graphics of what analysis of such data can show}
 
 
