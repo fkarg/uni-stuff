@@ -161,7 +161,7 @@ fundamentally different, they will not be covered in depth.
 
 \draft{explain them at least somewhat, reference to some other source}
 
-
+\extend{placeholder}
 
 
 % Chromatin is packaged into three-dimensional structures, that retain a
@@ -196,8 +196,6 @@ fundamentally different, they will not be covered in depth.
 
 
 
-\extend{current state}
-
 \section{HiCExplorer}\label{sec:hicexplorer}
 
 \input{figures/background/figHiCExplorer}
@@ -222,21 +220,22 @@ possible visualizations can be seen in \figref{fig:HiCExplorer}.
 
 \input{figures/background/HiCMatricesModels}
 
-Corrected Hi-C data can then be further analysed, one such a possible further
-step being to search for TADs (topologically associated domains)
-\cite{ramirez2018high}, for this a TAD-seperation score is computed and local
-minima indicative of TAD boundaries are searched for. A visualized result of
-such a computation can be seen in \figref{fig:HiCExplorer}I. DNA is
-compartmentalized \cite{lieberman2009comprehensive} in different domains, a
-model for this can be seen in \figref{fig:HiCMatricesModels}. They can be found
-by computing the Eigenvectors as described in \cite{lieberman2009comprehensive}
-or \cite{imakaev2012iterative} first. With this, a better understanding can be
+Corrected Hi-C data can then be further analysed, with \verb|hicFindTADs| one
+can search for TADs (topologically associated domains) \cite{ramirez2018high},
+for this a TAD-seperation score is computed and local minima indicative of TAD
+boundaries are searched for. A visualized result of such a computation can be
+seen in \figref{fig:HiCExplorer}I (created with \verb|hicPlotTADs|).
+
+DNA is compartmentalized \cite{lieberman2009comprehensive} in different
+domains, a model for this can be seen in \figref{fig:HiCMatricesModels}. They
+can be found by computing the Eigenvectors as described in
+\cite{lieberman2009comprehensive} or \cite{imakaev2012iterative} first by using
+\verb|hicPCA| and \verb|hicTransform|. With this, a better understanding can be
 achieved when additionally visualized. Useful metrics include difference, ratio
-and log2ratio between two matrices. Replications or samples from different
-conditions can easily be compared when visualized. More information about the
-analysis capabilities of HiCExplorer can be found in \cite{wolff2018galaxy}.
-
-
+and log2ratio between two matrices. For this, \verb|hicCompareMatrices| can be
+used.  Replications or samples from different conditions can easily be compared
+when visualized. More information about the analysis capabilities of
+HiCExplorer can be found in \cite{wolff2018galaxy}.
 
 % Analysis
 %
@@ -301,15 +300,22 @@ analysis capabilities of HiCExplorer can be found in \cite{wolff2018galaxy}.
 % plot coverage tracks like color, line width, line type, as dots, filled etc.
 % (Figure 1I).
 
+Visualizations are necessary when the goal is to understand complex structures
+fast or even at all. It is impossible look at rows of numbers and notice that
+one significantly higher value, which immediately catches the eye as a heatmap.
 
-\draft{show some graphics of what analysis of such data can show}
+Basic plotting of contact matrices (as seen in \figref{fig:HiCExplorer}F) can be
+done using \verb|hicPlotMatrix|. Options include region, color and value
+ranges, as well as plotting A/B compartments or other additional data when
+added. \verb|hicPlotViewpoint| can visualize the number of interactions around
+a specific reference region or point in the genome (see \figref{fig:HiCExplorer}G).
 
+Computed TADs (as described in \secref{sec:analysis}, see
+\figref{fig:HiCExplorer}I) can be plotted using \verb|hicPlotTADs|. This tool
+can plot multiple matrices and additional data. Contact matrices are rotated
+by 45°, and TADs are marked with triangles. The colormap, different ways for
+visualization, and several configurations to plot coverage tracks can be
+selected.
 
-\todo{add images here about analysis}
-
-\todo{was kann man tun mit den visualisierungen, und auf welche wege visualisiert man das etc?  Auf welchem Wege: Z.b. mit Software des HiCExplorer: hicPlotMatrix, hicPlotTADs, hicAggregate. Die Visualisierungen braucht man um komplexere Inhalte leichter (und vor allem schnell) verstaendlich zu machen. Niemand sieht z.B. in einer Matrizen sehr schnell hoehere Zahlenwerte, als Heatmap dagegen dargestellt sieht man sofort dass da ein anderes Muster in einem Bereich ist.  }
-
-
-\todo{einführung in den HiCExplorer auf die ich verlinken könnte? Siehe eine der letzten Mails da hab ich ein Paper verlinkt.}
-
-
+More information about plotting with HiCExplorer can be found in
+\cite{wolff2018galaxy}.

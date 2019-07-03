@@ -1,38 +1,29 @@
 \chapter{Related Work}\label{chap:relatedwork}
 
-\todo{remove deepTools entirely}
-
-\todo{Add Glossary?}
-
-\todo{use more formal language}
-
-\todo{write poolmanagers for printing}
-
-
 Since the main work is the implementation in Rust as well as the testing of an
 integrating in Python, related work includes the original implementation in
 Python as well as the recent implementation of the KR-algorithm in C++.
-We will take a look at how they have been implemented, advantages and
-disadvantages.
+Disadvantages and advantages of the respective implementations will be
+evaluated in the following.
 
- The description of the implemented algorithm can be found in \secref{sec:ICE}.
+The description of the implemented algorithm can be found in \secref{sec:ICE}.
 
 
 \section{Python implementation}\label{sec:python}
 
-\todo{remove deeptools, written python because HiCExplorer, not deepTools}
+\extend{current state}
 
-\todo{hard to make things actually wrong, fast to implement}
+\draft{hard to make things actually wrong, fast to implement}
 
-\todo{python having a global interpreter lock for its multiprocessing module, needing to copy the RAM, sometimes numpy is using parallelization, dependent on version}
+\draft{python having a global interpreter lock for its multiprocessing module,
+needing to copy the RAM, sometimes numpy is using parallelization, dependent on
+version}
 
-The original implementation was written in Python, since the
-deepTools-framework is mainly written in Python. This implementation is using
-common python dependencies extensively, including the Compressed Sparse Row
-Matrix (CSR Matrix) implementation from \verb|scipy| (more information can be found
-here\footnote{\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html},
-accessed 2019-06-26}), as well as the scientific number manipulation library
-\verb|numpy|\footnote{\url{https://www.numpy.org/}, accessed 2019-06-26}.
+The original implementation was written in Python, since HiCExplorer is mainly
+written in Python. This implementation is using common python dependencies
+extensively, including the Compressed Sparse Row Matrix (CSR Matrix)
+implementation from \verb|scipy|, as well as the scientific number manipulation
+library \verb|numpy|.
 
 The implementation itself is considerably short, the file having only 86 Lines,
 including imports and frequent comments. The advantage of using Python here is
