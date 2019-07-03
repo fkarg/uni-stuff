@@ -20,8 +20,7 @@ disadvantages.
 The original implementation was written in Python, since the
 deepTools-framework is mainly written in Python. This implementation is using
 common python dependencies extensively, including the Compressed Sparse Row
-Matrix (CSR Matrix) implementation from \verb|scipy| (documentation can be
-found
+Matrix (CSR Matrix) implementation from \verb|scipy| (more information can be found
 here\footnote{\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html},
 accessed 2019-06-26}), as well as the scientific number manipulation library
 \verb|numpy|\footnote{\url{https://www.numpy.org/}, accessed 2019-06-26}.
@@ -33,9 +32,14 @@ logging. With the iteration itself starting no earlier than Line 40, most
 are High-Level \verb|numpy| / \verb|scipy| commands, some being themselves
 implemented in C/C++ to be sufficiently fast.
 
-There is practically no downside to this implementation, except for the high
-requirements for resources, especially working memory (RAM), and Pythons not really existing parallelisation.
-\extend{update after results, compare requirements}
+The downsides of this implementation being that datastructures in Python are
+extensively objectified, meaning they require more working memory, and that
+even though Python has existing parallelism, a global interpreter lock (python
+is only interpreted usually, but this still holds for compiling with cpython)
+prevents multiple threads to use the same parts of memory without duplication.
+Since Python already has comparatively high memory requirements \draft{link
+high memory needs}, it is not practicable to add the same amount for every
+further core.
 
 For reference, the Python-implementation can be found
 here\footnote{\url{https://github.com/deeptools/HiCExplorer/blob/master/hicexplorer/iterativeCorrection.py},

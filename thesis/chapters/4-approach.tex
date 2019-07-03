@@ -196,7 +196,8 @@ The difference here being the imported \verb|rayon::prelude::*| and instead of
 \todo{Answer this question later!!}
 
 One of the main questions for this work was to find out if it is possible to
-integrate Rust in Python for the HiCExplorer, and if it makes sense to do so.
+integrate Rust in Python for the HiCExplorer, and evaluate the advantages
+versus disadvantages.
 
 \todo{rewrite}
 
@@ -213,6 +214,8 @@ will be described in depth in \secref{sec:api}.
 
 \subsection{Introducing Rust}
 
+\draft{explain more ...}
+
 ``Rust is a systems programming language that runs blazingly fast, prevents
 segfaults, and guarantees thread safety'' - this was, up until recently, the
 motto of Rust. It recently got changed into ``A language empowering everyone
@@ -226,7 +229,7 @@ blazingly fast.
 
 \todo{introduce lifetimes really}
 
-\todo{rewrite on abstrict niveau for computer scientists}
+\todo{rewrite on abstract niveau for computer scientists}
 
 Rust does not have a garbage collector, but frees memory the moment it is not
 needed anymore, which it knows through the Lifetime every variable and
@@ -237,6 +240,8 @@ C\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fast
 accessed 2019-06-26}, and
 C++\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust-gpp.html},
 accessed 2019-06-26}.
+
+\draft{introduce awesome tooling}
 
 This is but an introduction to Rust, but the tooling must be mentioned. Rust
 has a dedicated package manager called \verb|cargo|. Packages are available
@@ -286,7 +291,10 @@ categories).
 
 \section{Choosing the right API to call Rust from Python}\label{sec:api}
 
-There are three main ways to execute Rust code from Python. In the following, common techniques are investigated.
+There are three main ways to execute Rust code from Python. In the following,
+common techniques are investigated.
+
+\draft{versioning is not that relevant}
 
 One common way is rust-cpython. This library requires Rust 1.25 or higher
 (current versions are 1.33/34/35 for stable/beta/nightly respectively).
@@ -295,6 +303,8 @@ which Python code can be evaluated and Python objects modified. The resulting
 library (directly from compiled rust) can easily be imported into Python (but
 needs to be renamed). Native Rust code requires some wrapping first, as shown
 here:
+
+\todo{make the code ... readable}
 
 \vline
 \begin{lstlisting}[language=Rust]
@@ -362,6 +372,7 @@ neither language depends on something only internal (or combinatorial), and
 both just depend upon the ‘common, unchanging’ C-interface, this seems to be
 the preferred way.
 
+\draft{include a nice comparison table}
 
 \newpage
 \section{General Approach}\label{sec:approach}
@@ -396,6 +407,8 @@ that would be needed, and tested its functionality.
 
 \subsection{Implementation of the algorithm}
 
+\extend{Answer: could I call numpy from rust}
+
 \todo{Rewrite to passive voice}
 
 The initial translation from Python to rust happened more or less on a
@@ -410,6 +423,8 @@ variables, also their availability) than the Python-implementation did.
 \subsection{Testing and Bugfixing}
 
 \todo{Rewrite to passive voice}
+
+\draft{give examples for common bugs}
 
 Having succeded at convincing the compiler, I wanted to test my implementation.
 The compiler in Rust is quite capable, reducing common bugs tremendously.
@@ -427,6 +442,8 @@ environment, even calling from python.
 While gradually transforming the naive Python-translation to idiomatic Rust, at
 some point results ended up being \verb|NaN| pretty fast. A while of
 debugging later, I reduced it to the following situation:
+
+\draft{exclude mention of debugging}
 
 \vline
 \begin{lstlisting}[language=Rust]
@@ -467,8 +484,8 @@ This new number just happens to be one of the representations of \verb|inf|.
 \todo{Rewrite to passive voice}
 
 Next was the Packaging of my code. As my work should be used from within the
-HiCExplorer, My part is supposed to be available as a python-package. The only
-real python dependcy (apart from those required for packages) ended up being
+HiCExplorer, My part is supposed to be available as a python-package. The \draft{only
+real} python dependcy (apart from those required for packages) ended up being
 milksnake, itself a helper for compiling the rust part of my package.
 
 The conda-part was not as easy though, as milksnake was not resolvable there. I
@@ -562,6 +579,7 @@ Maximum:        8
 NaN bins:       0
 \end{verbatim}
 
+\todo{remove this verbatim part and make table instead}
 
 \extend{building matrix-test-suite and getting results}
 
