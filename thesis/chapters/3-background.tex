@@ -1,12 +1,5 @@
 \chapter{Background}\label{chap:background}
 
-\todo{Add Glossary?}
-
-\todo{use more formal language}
-
-\todo{write poolmanagers for printing}
-
-
 
 Chromatin usually describes different levels of how DNA organizes itself. The
 well-known double-helix is only the lowest of several structural layers.
@@ -24,8 +17,8 @@ spatial proximity can be visualized
 As can be seen in \figref{fig:cct}, The first steps, crosslinking, digestion,
 ligation and the reversal of crosslinking, are the same for all 3-C-based methods.
 
-\subsubsection{Cross-linking DNA}\label{sec:crosslinking}
 
+\textbf{Cross-linking DNA}\label{sec:crosslinking}
 The first step is to cross-link DNA strands that are close to each other
 spatially (see \figref{fig:cct} or \figref{fig:HiC} for reference). This is done by adding
 formaldehyde, which connects (links) sufficiently close strands together.
@@ -35,17 +28,17 @@ together by a chemical bond with formaldehyde. This process cannot be
 specifically controlled, so only `regions near each other' are connected, but
 not necessarily all regions that are known to be spatially close.
 
-\subsubsection{Digestion}\label{sec:digestion}
 
+\textbf{Digestion}\label{sec:digestion} 
 The next step is cutting the DNA, currently more similar to a ball of wool,
 apart in intervals. For this, restriction-enzymes are used (specifically
 restriction endonuclease). Commonly used enzymes for this are DpnII or HindIII,
-cutting the genome every 4000 base-pairs \cite{liebermann2009comprehensive}.
+cutting the genome every 4000 base-pairs \cite{lieberman2009comprehensive}.
 This will result in a lot of cross-linked fragments, as well as
 not-cross-linked ones.
 
-\subsubsection{Ligation}\label{sec:ligation}
 
+\textbf{Ligation}\label{sec:ligation} 
 After reducing the concentration of fragments, DNA ligase is added, to ligate
 (weld together) dangling fragment ends. For this a reduction in concentration
 is done since mostly fragments close together are ligated, it is intend to
@@ -55,9 +48,8 @@ In HiC, Biotin is added in this step to mark ligated fragments. This allows
 filtering out most fragments that have not been ligated in a later step.
 
 
-\subsubsection{Reverse Cross-links}\label{sec:revcrosslink}
-
 % Source: http://www.protocol-online.org/biology-forums/posts/10475.html
+\textbf{Reverse Cross-links}\label{sec:revcrosslink} 
 Adding a high concentration of salt for some time will reverse the
 cross-linking through formaldehyde, leaving us with our two originally
 spatially close fragments ligated and with a biotin-marker.
@@ -122,22 +114,20 @@ to Hi-C is the following sequence of sonication, pulldown (filtering based on
 biotin markers) and sequencing.
 
 
-\subsubsection{Sonication}\label{sec:sonication}
-
+\textbf{Sonication}\label{sec:sonication} 
 Putting the ligated DNA-fragments under the influence of ultrasonic waves is
 breaking them apart in much shorter fragments (due to long sequences not being
 able to absorb frequent shocks well), shearing them apart in sequences short
 enough to enable sequencing.
 
 
-\subsubsection{Filtering and Removal of Biotin}\label{sec:pulldown}
-
+\textbf{Filtering and Removal of Biotin}\label{sec:pulldown} 
 `pulling-down' fragments marked with biotin leaves only those having been
 marked, and thus ligated, earlier (see \secref{sec:ligation}). Subsequently the
 marker is removed, as it would hinder further sequencing.
 
-\subsubsection{Sequencing}\label{sec:sequencing}
 
+\textbf{Sequencing}\label{sec:sequencing} 
 Sequencing, short for DNA sequencing, describes processes of measuring a DNA
 sequence. There are several techniques for doing this, most use PCR (Polymerase
 Chain Reaction) before or while sequencing, which duplicating fragments
@@ -237,10 +227,10 @@ step being to search for TADs (topologically associated domains)
 \cite{ramirez2018high}, for this a TAD-seperation score is computed and local
 minima indicative of TAD boundaries are searched for. A visualized result of
 such a computation can be seen in \figref{fig:HiCExplorer}I. DNA is
-compartmentalized \cite{lieberman2009comprehensive} in different domains, as
-can be seen in \figref{fig:HiCMatricesModels}. They can be found by computing
-the Eigenvectors as described in \cite{lieberman2009comprehensive} or
-\cite{imakaev2012iterative} first. With this, a better understanding can be
+compartmentalized \cite{lieberman2009comprehensive} in different domains, a
+model for this can be seen in \figref{fig:HiCMatricesModels}. They can be found
+by computing the Eigenvectors as described in \cite{lieberman2009comprehensive}
+or \cite{imakaev2012iterative} first. With this, a better understanding can be
 achieved when additionally visualized. Useful metrics include difference, ratio
 and log2ratio between two matrices. Replications or samples from different
 conditions can easily be compared when visualized. More information about the
