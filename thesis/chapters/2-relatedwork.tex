@@ -17,6 +17,8 @@ extensively, including the Compressed Sparse Row Matrix (CSR Matrix)
 implementation from \verb|scipy|, as well as the scientific number manipulation
 library \verb|numpy|.
 
+\subsection{Advantages}
+
 The implementation itself is considerably short, the file having only 86 Lines,
 including imports and frequent comments. The advantage of using Python here is
 showing, as most lines are not for functionality itself, but for timing,
@@ -26,6 +28,8 @@ being themselves implemented in C/C++ to be sufficiently fast.
 
 Another advantage of Python in general are fast implementation times, which are
 possible through the concise syntax making the spotting of mistakes easier.
+
+\subsection{Disadvantages}
 
 The downsides of this implementation being that datastructures in Python are
 extensively objectified, meaning they require more working memory, and that
@@ -42,34 +46,41 @@ accessed 2019-06-26}.
 
 
 
-\extend{current state}
-
-\section{KR-algorithm}\label{sec:KR}
-
-\draft{describe C++ implementation (the algorithm only superficially), advantages, disadvantages, specific implementation details (C-API, calls from Python to C++, ...)}
+\section{KR-Algorithm}\label{sec:KR}
 
 What follows is a short description to the Algorithm known as Knight-Ruiz from
-\cite{knight2013fast}, as this algorithm is inherently different from ICE being
-described later and implemented in both other implementations
-(the ICE algorithm is described in \secref{sec:ICE}).
+\cite{knight2013fast}. Essentially, the algorithm is computing the same things,
+however it is taking advantage of conjugate gradients to solve the iterative
+steps faster.
 
-\todo{add negatives of using C++}
+\subsection{Implementation}
 
-\extend{total support: at least one nonzero diagonal}
+The KR-algorithm was originally implemented in Matlab, here we compare with a
+version in C++. Calls from Python to C++ can be done over the C-API with
+considerable help through Python-header files.
 
-\draft{compare implementations: libraries: eigen + openMP}
+\subsection{Avdantages}
 
+A commonly mentioned advantage of C++ is the speed of execution, and
+fine-grained control over Memory available. However, implementations in C++ can
+be several orders of magnitude faster than their respective implementation in
+Python. An advantage of the Algorithm itself is that as long as the matrix
+itself has total support (meaning that at least one diagonal has only positive
+nonzero values, this can be artificially done setting zeros to some small
+positive value), it will converge. Thus, it will converge for way more matrices
+than the ICE-algorithm. 
 
-\todo{read paper / algorithm + introduce here}
+\subsection{Disadvantages}
+
+Even though the execution is fast, the development process tends to be slow.
+This is due to the free memory control, which is hard to get right as this
+requires upholding of implicit assumptions at several places. As these
+assumptions are implicit only, it is easy to forget them or 'cut corners' when
+not possible. Those bugs leading to Segmentation-faults (accessing invalid
+memory) are notoriously hard to find, as they do not follow determinism.
+Parallelism is even harder to add, since data races (also nondeterministic) and
+other sources for hard-to-get right problems are added. Additionally, the
+syntax is considerably complex, making it rather hard to understand.
 
 For reference, the implementation of the KR algorithm can be found here\footnote{\url{https://github.com/deeptools/Knight-Ruiz-Matrix-balancing-algorithm}, accessed 2019-06-26}.
-
-
-
-
-
-
-
-
-
 
