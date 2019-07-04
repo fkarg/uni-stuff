@@ -11,15 +11,7 @@ The description of the implemented algorithm can be found in \secref{sec:ICE}.
 
 \section{Python implementation}\label{sec:python}
 
-\extend{current state}
-
-\draft{hard to make things actually wrong, fast to implement}
-
-\draft{python having a global interpreter lock for its multiprocessing module,
-needing to copy the RAM, sometimes numpy is using parallelization, dependent on
-version}
-
-The original implementation was written in Python, since HiCExplorer is mainly
+The original implementation was written in Python, since HiCExplorer is
 written in Python. This implementation is using common python dependencies
 extensively, including the Compressed Sparse Row Matrix (CSR Matrix)
 implementation from \verb|scipy|, as well as the scientific number manipulation
@@ -27,10 +19,13 @@ library \verb|numpy|.
 
 The implementation itself is considerably short, the file having only 86 Lines,
 including imports and frequent comments. The advantage of using Python here is
-showing, as most imports are not for functionality, but rather for timing and
-logging. With the iteration itself starting no earlier than Line 40, most
-are High-Level \verb|numpy| / \verb|scipy| commands, some being themselves
-implemented in C/C++ to be sufficiently fast.
+showing, as most lines are not for functionality itself, but for timing,
+logging and ease of debugging. With the iteration itself starting no earlier
+than Line 40, most are High-Level \verb|numpy| / \verb|scipy| commands, some
+being themselves implemented in C/C++ to be sufficiently fast.
+
+Another advantage of Python in general are fast implementation times, which are
+possible through the concise syntax making the spotting of mistakes easier.
 
 The downsides of this implementation being that datastructures in Python are
 extensively objectified, meaning they require more working memory, and that
@@ -47,6 +42,7 @@ accessed 2019-06-26}.
 
 
 
+\extend{current state}
 
 \section{KR-algorithm}\label{sec:KR}
 
