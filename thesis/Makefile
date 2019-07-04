@@ -15,7 +15,7 @@ dir:
 	mkdir -p $(OUT_DIR)/chapters
 
 $(PROJNAME).pdf: $(PROJNAME).tex
-	latexmk -outdir=$(OUT_DIR) -pdf -use-make -file-line-error $<
+	latexmk -outdir=$(OUT_DIR) -pdf -use-make -file-line-error -shell-escape $<
 	cp $(OUT_DIR)/$(PROJNAME).pdf $(PROJNAME).pdf
 
 cleanall:

@@ -36,3 +36,4 @@ thesis/out
 *.toc
 
 .ipynb*
+_*

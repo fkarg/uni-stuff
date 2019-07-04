@@ -1,15 +1,8 @@
 \chapter{Approach}\label{chap:approach}
 
-\extend{current state}
+% Rust has its own share of problems, but a lot of the aforementioned issues will
+% be adressed using Rust in this implementation.
 
-
-
-\todo{include general setup; HiCExplorer running on Linux/Mac, Python, numpy, scipy, KR in C++, Missing interface from python to C but missing to RUST - done ?}
-
-
-\draft{Probleme bisher werden jetzt gelöst indem wir Rust verwend}
-
-\todo{Ausführlich Problemstellung, Rust to Python interface}
 
 \section{Problem}\label{sec:problem}
 
@@ -19,12 +12,21 @@ wire with itself, called DNA interactions, exist in this ``ball of wool'' and
 form structures including DNA loops. However, many of these contacts are
 random contacts or measurement errors that need to be corrected. A Python
 implementation exists but is limited for high resolution data due to high
-memory usage. This [..] project aims to reimplement a more memory efficient
-method in C++ (which ended up being Rust).
+memory usage. This project aims to reimplement a more memory efficient
+method in Rust.
 
+
+\todo{interface from python to C but missing to RUST - done ?}
+
+\draft{Probleme bisher werden jetzt gelöst indem wir Rust verwend}
+
+\todo{Ausführlich Problemstellung, Rust to Python interface}
 
 
 \section{Iterative Correction and Eigenvector decomposition (Algorithm)}\label{sec:ICE}
+
+\extend{current state}
+
 
 
 % Wolff: Jede Position im Genom hat in der Summe die gleiche anzahl an
@@ -53,41 +55,176 @@ $S_i$ to have the unit mean $\Delta B_i = S_i /$ mean $(S_i)$. We then divide
 $W_{ij}$ by $\Delta B_i \Delta B_j$ for all $(i, j)$ and update the total
 vector of biases by multiplying by the additional biases. Iterations are
 repeated until the variance of the additional biases becomes negligible; at
-this point $W_{ij}$ has converged to $T_{ij}$.'' \\
+this point $W_{ij}$ has converged to $T_{ij}$.''
+
+
+
+
+\section{Introducing Rust}\label{sec:Rust}
+
+\draft{explain more ...}
+
+``Rust is a systems programming language that runs blazingly fast, prevents
+segfaults, and guarantees thread safety'' - this was, up until recently, the
+motto of Rust. It recently got changed into ``A language empowering everyone
+to build reliable and efficient software.'' At the core of Rust is a compiler
+applying linear typing, resulting in the concepts of Ownership and Lifetimes.
+These concepts, even though notoriously hard to learn, are the main reason the
+rust compiler can guarantee thread safety, can prevent segfaults, and can run
+blazingly fast.
+
+\subsection{Ownership}
+
+Ownership is the concept of `owning' content. Take the following code for
+example:
+\inputminted{Rust}{code_ownership.rs}
+
+Contrary to C or C++, Rust fails:
+
+\begin{verbatim}
+error[E0382]: use of moved value: `s1`
+ --> src/main.rs:5:28
+  |
+3 |     let s2 = s1;
+  |         -- value moved here
+4 |
+5 |     println!("{}, world!", s1);
+  |                            ^^ value used here after move
+  |
+  = note: move occurs because `s1` has type `std::string::String`,
+  which does not implement the `Copy` trait
+\end{verbatim}
+
+Or, more precisely, used to fail. This was until Non-Lexical-Lifetimes got
+introduced, making the compiler way smarter.
+
+\todo{introduce ownership really}
+
+\subsection{Borrowing}
+
+\draft{introduce immutable and mutable borrows}
+
+\subsection{Lifetimes}
+
+\draft{introduce lifetimes really}
+
+\todo{rewrite on abstract niveau for computer scientists}
+
+Rust does not have a garbage collector, but frees memory the moment it is not
+needed anymore, which it knows through the Lifetime every variable and
+reference (pointer) has. Ownership prevents you from modifying data structures
+in unintended ways, and combined with lifetimes, preventing almost all
+segfaults. Also, it runs blazingly fast, comparable to
+C\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust.html},
+accessed 2019-06-26}, and
+C++\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust-gpp.html},
+accessed 2019-06-26}.
+
+\draft{introduce awesome tooling}
+
+This is but an introduction to Rust, but the tooling must be mentioned. Rust
+has a dedicated package manager called \verb|cargo|. Packages are available
+through \url{https://crates.io}. Also there are tools like \verb|rustfmt| or
+\verb|cargo-fix| (a subcommand that can be added later), that format Rust code
+after predefined guidelines, or fixes most compiler warnings automatically,
+respectively.
+
+Rust has continuosly claimed StackOverflows position of `most Loved
+Language'\footnote{\url{https://insights.stackoverflow.com/survey/2019\#technology-\_-most-loved-dreaded-and-wanted-languages}, accessed 2019-06-26}
+for the last few years, while both C and C++ rank comparatavely high in the
+category `dreaded'.
+
+More information about Rust can be found here\footnote{\url{https://www.rust-lang.org/}, accessed 2019-06-26}.
+
+
+\subsection{Advantages of Rust}
+
+The advantage of using Rust over using \verb|numpy| / \verb|scipy| from Python
+for this work might not be immediately obvious, since the CSRMatrix had to be
+implemented. We considered using the \verb|numpy| C-API for a while, but its
+too big to be actually useful for our use-case.
+
+The advantage here is actually much simpler: since we barely need any of the
+features provided, implementing them ourselves is not much work and gives us
+way more fine grained control as to what is actually happening.
+
+This includes the parallelization of some parts of the code, which might not
+have been possible if ther were some other library doing things in its own way
+(numpy using the C-API would be an example here).
+
+A future advantage is also the modularity of Rust code, meaning in the future
+additional external libraries (and with them, features) could easily be integrated.
+
+
+\subsection{Disadvantages of Rust}
+
+The disadvantages follow pretty much directly from looking at the advantages,
+we do not need much, but we had to implement it ourselves, there is not
+too much functionality in the case of the CSRMatrix, only the utterly necessary
+parts. This obviously limits the applicability of this code, no effort has been
+made to create a generalized solution - several CSRMatrix implementations
+already exist in Rust, none coming remotely close to the one in \verb|scipy|,
+but ours is falling short of all the others by a wide margin (at least in most
+categories).
+
+
+
+\subsection{Differences between Rust and Python}\label{sec:differences}
+
+Rust and Python are two quite different programming languages, a direct
+``translation'' is not possible. Both implementations are the same semantically,
+but details differ. Since Rust has a much finer control about memory and the
+applying of functions to data structures, some operations have been explicitly
+separated while others have been combined.
+
+The biggest difference, however, is that in Rust certain tasks can easily be
+parallelized; even after originally writing it for only one core. An example
+would be:
+
+\inputminted{Rust}{code1.rs}
+
+In this code, some \verb|heavy_operation| is being applied iteratively for every element in \verb|somelist| and later assigned to \verb|otherlist|.
+
+This can easily be parallelized by changing it to the following:
+
+\inputminted{Rust}{code2.rs}
+
+The difference here being the imported \verb|rayon::prelude::*| and instead of
+\verb|iter| now applying \verb|par_iter| to the original list.
+
+
+
+
+
+
+\subsection{Integration of Rust}\label{sec:integration}
+
+\todo{Answer this question later!!}
+
+One of the main questions for this work was to find out if it is possible to
+integrate Rust in Python for the HiCExplorer, and evaluate the advantages
+versus disadvantages.
+
+\todo{rewrite}
+
+For Rust and Python to interact, there are of course several ways. Those
+integrating a library written in Rust to allow them to be called from Python
+will be described in depth in \secref{sec:api}.
+
+
+\todo{restructure: Introducing Rust (4.3), Advantages Rust (4.3.1), Disadvantages Rust (4.3.2), Differences Rust Python (4.3.3)}
+
+\todo{move integration of Rust to 4.4}
+
+\todo{move 'Operation' to 'Using this implementation' in 4.5}
+
+
+
+
+
 
 \newpage
-
-In between, a couple of other corrections are described. Later, also in the
-supplementary note from \cite{imakaev2012iterative}, about Eigenvectors:
-
-\todo{remove part about eigenvector stuff}
-
-\todo{cite 'requirement of Iterative correction' when introducing Eigenvector stuff}
-
-``\textbf{Eigenvector analysis of interchromosomal contact map.} \\
-Eigenvector analysis of a corrected interchromosomal contact map $T$ involves
-expanding the matrix as a sum of outer products between eigenvectors, $E^k_i$,
-weighted by their eigenvalues:
-
-$$ T_{ij} = \sum_k \lambda_k E^k_i E^k_j + \langle T \rangle$$
-
-where $\langle T \rangle$ denotes the mean value of the matrix, and the
-magnitude of the eigenvalue $\lambda_k$ describes the amount of information
-captured by the corresponding eigenvector $E^k$, where $k$ runs from 1 to $N$.
-Eigenvectors are then sorted by the absolute value of their eigenvalues, and
-eigenvectors corresponding to the three largest eigenvalues, $E^1$, $E^2$ and
-$E^3$, are used for further analysis [..]. Iterative correction is a key
-prerequisite for eigenvector expansion; performing eigenvector expansion (or
-principal-component analysis, PCA) on the raw data entangles biases and
-eigenvectors, making the result nontransparent and bias dependent. Moreover,
-$E^1$ is clearly interpretable as the solution to a linear model of chromatin
-interaction preferences.''
-
-
-
-
-\newpage
-\section{Operation}\label{sec:operation}
+\section{Using this implementation}\label{sec:using}
 
 \todo{rename: ....}
 
@@ -151,147 +288,6 @@ python setup.py build
 
 
 
-\newpage
-\section{Differences between Rust and Python}\label{sec:differences}
-
-Rust and Python are two quite different programming languages, a direct
-``translation'' is not possible. Both implementations are the same semantically,
-but details differ. Since Rust has a much finer control about memory and the
-applying of functions to data structures, some operations have been explicitly
-separated while others have been combined.
-
-The biggest difference, however, is that in Rust certain tasks can easily be
-parallelized; even after originally writing it for only one core. An example
-would be:
-
-\vline
-\begin{lstlisting}[language=Rust]
-let otherlist = somelist.iter().map(|&v|
-                heavy_operation(v)).collect();
-\end{lstlisting}
-\vline
-
-In this code, some \verb|heavy_operation| is being applied iteratively for every element in \verb|somelist| and later assigned to \verb|otherlist|.
-
-This can easily be parallelized by changing it to the following:
-
-\vline
-\begin{lstlisting}[language=Rust]
-use rayon::prelude::*;
-
-let otherlist = somelist.par_iter().map(|&v|
-                heavy_operation(v)).collect();
-\end{lstlisting}
-\vline
-
-The difference here being the imported \verb|rayon::prelude::*| and instead of
-\verb|iter| now applying \verb|par_iter| to the original list.
-
-
-
-
-
-\newpage
-\section{Using Rust}\label{sec:rust}
-
-
-\subsection{Testing the integration of Rust}\label{sec:integration}
-
-\todo{Answer this question later!!}
-
-One of the main questions for this work was to find out if it is possible to
-integrate Rust in Python for the HiCExplorer, and evaluate the advantages
-versus disadvantages.
-
-\todo{rewrite}
-
-For Rust and Python to interact, there are of course several ways. Those
-integrating a library written in Rust to allow them to be called from Python
-will be described in depth in \secref{sec:api}.
-
-
-\todo{restructure: Introducing Rust (4.3), Advantages Rust (4.3.1), Disadvantages Rust (4.3.2), Differences Rust Python (4.3.3)}
-
-\todo{move integration of Rust to 4.4}
-
-\todo{move 'Operation' to 'Using this implementation' in 4.5}
-
-\subsection{Introducing Rust}
-
-\draft{explain more ...}
-
-``Rust is a systems programming language that runs blazingly fast, prevents
-segfaults, and guarantees thread safety'' - this was, up until recently, the
-motto of Rust. It recently got changed into ``A language empowering everyone
-to build reliable and efficient software.'' At the core of Rust is a compiler
-applying linear typing, rsulting in the concepts of Ownership and Lifetimes.
-These concepts, even though notoriously hard to learn, are the main reason the
-rust compiler can guarantee thread safety, can prevent segfaults, and can run
-blazingly fast.
-
-\todo{introduce ownership really}
-
-\todo{introduce lifetimes really}
-
-\todo{rewrite on abstract niveau for computer scientists}
-
-Rust does not have a garbage collector, but frees memory the moment it is not
-needed anymore, which it knows through the Lifetime every variable and
-reference (pointer) has. Ownership prevents you from modifying data structures
-in unintended ways, and combined with lifetimes, preventing almost all
-segfaults. Also, it runs blazingly fast, comparable to
-C\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust.html},
-accessed 2019-06-26}, and
-C++\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust-gpp.html},
-accessed 2019-06-26}.
-
-\draft{introduce awesome tooling}
-
-This is but an introduction to Rust, but the tooling must be mentioned. Rust
-has a dedicated package manager called \verb|cargo|. Packages are available
-through \url{https://crates.io}. Also there are tools like \verb|rustfmt| or
-\verb|cargo-fix| (a subcommand that can be added later), that format Rust code
-after predefined guidelines, or fixes most compiler warnings automatically,
-respectively.
-
-Rust has continuosly claimed StackOverflows position of `most Loved
-Language'\footnote{\url{https://insights.stackoverflow.com/survey/2019\#technology-\_-most-loved-dreaded-and-wanted-languages}, accessed 2019-06-26}
-for the last few years, while both C and C++ rank comparatavely high in the
-category `dreaded'.
-
-More information about Rust can be found here\footnote{\url{https://www.rust-lang.org/}, accessed 2019-06-26}.
-
-
-\subsection{Advantages of Rust}
-
-The advantage of using Rust over using \verb|numpy| / \verb|scipy| from Python
-for this work might not be immediately obvious, since the CSRMatrix had to be
-implemented. We considered using the \verb|numpy| C-API for a while, but its
-too big to be actually useful for our use-case.
-
-The advantage here is actually much simpler: since we barely need any of the
-features provided, implementing them ourselves is not much work and gives us
-way more fine grained control as to what is actually happening.
-
-This includes the parallelization of some parts of the code, which might not
-have been possible if ther were some other library doing things in its own way
-(numpy using the C-API would be an example here).
-
-A future advantage is also the modularity of Rust code, meaning in the future
-additional external libraries (and with them, features) could easily be integrated.
-
-\subsection{Disadvantages of Rust}
-
-The disadvantages follow pretty much directly from looking at the advantages,
-we do not need much, but we had to implement it ourselves, there is not
-too much functionality in the case of the CSRMatrix, only the utterly necessary
-parts. This obviously limits the applicability of this code, no effort has been
-made to create a generalized solution - several CSRMatrix implementations
-already exist in Rust, none coming remotely close to the one in \verb|scipy|,
-but ours is falling short of all the others by a wide margin (at least in most
-categories).
-
-
 
 \section{Choosing the right API to call Rust from Python}\label{sec:api}
 
@@ -308,40 +304,7 @@ library (directly from compiled rust) can easily be imported into Python (but
 needs to be renamed). Native Rust code requires some wrapping first, as shown
 here:
 
-\todo{make the code ... readable}
-
-\vline
-\begin{lstlisting}[language=Rust]
-#[macro_use] extern crate cpython;
-use cpython::{PyResult, Python};
-// add bindings to the generated python module
-// N.B: names: "librust2py" must be the name of
-// the `.so` or `.pyd` file
-py_module_initializer!(librust2py,
-        initlibrust2py, PyInit_librust2py, |py, m| {
-    m.add(py, "__doc__",
-        "This module is implemented in Rust.")?;
-    m.add(py, "sum_as_string",
-        py_fn!(py, sum_as_string_py(a: i64, b:i64)))?;
-    Ok(())
-});
-// logic implemented as a normal rust function
-fn sum_as_string(a:i64, b:i64) -> String {
-    format!("{}", a + b).to_string()
-}
-// rust-cpython aware function. All of our python
-// interface could be declared in a separate module.
-// Note that the py_fn!() macro automatically converts
-// the arguments from Python objects to Rust values;
-// and the Rust return value back into a Python object.
-fn sum_as_string_py(_: Python, a:i64, b:i64)
-        -> PyResult<String>
-{
-    let out = sum_as_string(a, b);
-    Ok(out)
-}
-\end{lstlisting}
-\vline
+\inputminted{Rust}{code_cpython.rs}
 
 This kind of wrapping, though quite common and based on the Python C-API makes
 it hard to write idiomatic Code in Rust. Also, since Python is directly
@@ -449,25 +412,11 @@ debugging later, I reduced it to the following situation:
 
 \draft{exclude mention of debugging}
 
-\vline
-\begin{lstlisting}[language=Rust]
-// let list1 = vec![0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0];
-// let list2 = vec![0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
-println!("{}, sum: {}", list1, list1.iter().sum());
-println!("{}, sum: {}", list2, list2.iter().sum());
-\end{lstlisting}
-\vline
+\inputminted{Rust}{code_infsum1.rs}
 
 Here the output was still ``sum: 1'' and ``sum: 0''. One iteration later however, all the elements have only been multiplied with some factors, their product being \verb|0.16|.
 
-\vline
-\begin{lstlisting}[language=Rust]
-// let list1 = vec![0.0, 0.0, 0.0, 0.16000000000003, 0.0, 0.0, 0.0, 0.0];
-// let list2 = vec![0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
-println!("{}, sum: {}", list1, list1.iter().sum());
-println!("{}, sum: {}", list2, list2.iter().sum());
-\end{lstlisting}
-\vline
+\inputminted{Rust}{code_infsum2.rs}
 
 The expected output here would be ``sum: 0.16'' and ``sum: 0'', or something
 around that. However, the actual results were ``sum: 0.4'' and ``sum: inf''. As
