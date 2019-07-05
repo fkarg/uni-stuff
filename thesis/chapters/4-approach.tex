@@ -4,101 +4,99 @@
 % be adressed using Rust in this implementation.
 
 
-\section{Problem}\label{sec:problem}
+\section{Problem Description}\label{sec:problem}
 
-In the three-dimensional space of a cell the DNA forms a structure that looks
-close to that of a ball of wool. Obviously, many points of contacts of the DNA
-wire with itself, called DNA interactions, exist in this ``ball of wool'' and
-form structures including DNA loops. However, many of these contacts are
-random contacts or measurement errors that need to be corrected. A Python
-implementation exists but is limited for high resolution data due to high
-memory usage. This project aims to reimplement a more memory efficient
-method in Rust.
-
-
-\todo{interface from python to C but missing to RUST - done ?}
+\draft{Problem: ... what?}
 
 \draft{Probleme bisher werden jetzt gelöst indem wir Rust verwend}
 
-\todo{Ausführlich Problemstellung, Rust to Python interface}
+As noted in \secref{sec:task}, the main goals include testing the integration
+of Rust within Python, by implementing a counter-version to the original Python
+implementation of the iterative part of the ICE algorithm, and then comparing
+it with the original Python-implementation as well as the recent implementation
+of the KR-algorithm in C++.
 
+For this, the iterative correction algorithm will be introduced first.
+Afterwards, a short introduction to Rust and some of its core concepts is done,
+before introducing the 
 
-\section{Iterative Correction and Eigenvector decomposition (Algorithm)}\label{sec:ICE}
-
-\extend{current state}
 
 
 
 % Wolff: Jede Position im Genom hat in der Summe die gleiche anzahl an
 %        interaktionen mit anderen Positionen des Genoms.
 
-\todo{put in own words}
+\section{Iterative Correction and Eigenvector decomposition (Algorithm)}\label{sec:ICE}
 
-The Algorithm as defined in \cite{imakaev2012iterative} (Supplementary Material): \\
-``We perform iterative correction on the resulting contact maps to obtain
-biases $B_i$ and `true' $T_{ij}$ relative contact probabilities by explicitly
-solving the system of equations:
+In the following the algorithm as defined in the supplementary material to
+\cite{imakaev2012iterative} will be cited.
+The goal is a 
 
-$$ O_{ij} = B_i B_j T_{ij} $$
-$$ \sum^N_{i=1, |i-j|>1} T_{ij} = 1$$
 
-[...] \\
-After the vector of biases is computed, the corrected map of relative
-contact probabilities is obtained by $T_{ij} = O_{ij} / (B_i B_j)$.
-Algorithmically, the iterative correction is implemented as follows. We start
-by creating a working copy of the matrix $O_{ij}$, denoted $W_{ij}$ as the
-iterative process gradually changes this matrix to $T_{ij}$. We initialize the
-iterative procedure by setting each element of the vector of total biases $B$
-to 1. We begin each iteration by calculating the coverage $S_i = \sum_j
-W_{ij}$. Next, additional biases $\Delta B_i$ are calculated by renormalizing
-$S_i$ to have the unit mean $\Delta B_i = S_i /$ mean $(S_i)$. We then divide
-$W_{ij}$ by $\Delta B_i \Delta B_j$ for all $(i, j)$ and update the total
-vector of biases by multiplying by the additional biases. Iterations are
-repeated until the variance of the additional biases becomes negligible; at
-this point $W_{ij}$ has converged to $T_{ij}$.''
+% We perform iterative correction on the resulting contact maps to obtain
+% biases $B_i$ and `true' $T_{ij}$ relative contact probabilities by explicitly
+% solving the system of equations:
+
+% $$ O_{ij} = B_i B_j T_{ij} $$
+% $$ \sum^N_{i=1, |i-j|>1} T_{ij} = 1$$
+
+% [...] \\
+% After the vector of biases is computed, the corrected map of relative contact
+% probabilities is obtained by $T_{ij} = O_{ij} / (B_i B_j)$.  Algorithmically,
+% the iterative correction is implemented as follows. We start by creating a
+% working copy of the matrix $O_{ij}$, denoted $W_{ij}$ as the iterative
+% process gradually changes this matrix to $T_{ij}$. We initialize the
+% iterative procedure by setting each element of the vector of total biases $B$
+% to 1. We begin each iteration by calculating the coverage $S_i = \sum_j
+% W_{ij}$. Next, additional biases $\Delta B_i$ are calculated by renormalizing
+% $S_i$ to have the unit mean $\Delta B_i = S_i /$ mean $(S_i)$. We then divide
+% $W_{ij}$ by $\Delta B_i \Delta B_j$ for all $(i, j)$ and update the total
+% vector of biases by multiplying by the additional biases. Iterations are
+% repeated until the variance of the additional biases becomes negligible; at
+% this point $W_{ij}$ has converged to $T_{ij}$.
 
 
 
 
 \section{Introducing Rust}\label{sec:Rust}
 
-\draft{explain more ...}
+% \draft{explain more ...}
 
-``Rust is a systems programming language that runs blazingly fast, prevents
-segfaults, and guarantees thread safety'' - this was, up until recently, the
-motto of Rust. It recently got changed into ``A language empowering everyone
-to build reliable and efficient software.'' At the core of Rust is a compiler
-applying linear typing, resulting in the concepts of Ownership and Lifetimes.
-These concepts, even though notoriously hard to learn, are the main reason the
-rust compiler can guarantee thread safety, can prevent segfaults, and can run
-blazingly fast.
+% ``Rust is a systems programming language that runs blazingly fast, prevents
+% segfaults, and guarantees thread safety'' - this was, up until recently, the
+% motto of Rust. It recently got changed into ``A language empowering everyone
+% to build reliable and efficient software.'' At the core of Rust is a compiler
+% applying linear typing, resulting in the concepts of Ownership and Lifetimes.
+% These concepts, even though notoriously hard to learn, are the main reason the
+% rust compiler can guarantee thread safety, can prevent segfaults, and can run
+% blazingly fast.
 
 \subsection{Ownership}
 
-Ownership is the concept of `owning' content. Take the following code for
-example:
-\inputminted{Rust}{code_ownership.rs}
+% Ownership is the concept of `owning' content. Take the following code for
+% example:
+% \inputminted{Rust}{code_ownership.rs}
 
-Contrary to C or C++, Rust fails:
+% Contrary to C or C++, Rust fails:
 
-\begin{verbatim}
-error[E0382]: use of moved value: `s1`
- --> src/main.rs:5:28
-  |
-3 |     let s2 = s1;
-  |         -- value moved here
-4 |
-5 |     println!("{}, world!", s1);
-  |                            ^^ value used here after move
-  |
-  = note: move occurs because `s1` has type `std::string::String`,
-  which does not implement the `Copy` trait
-\end{verbatim}
+% \begin{verbatim}
+% error[E0382]: use of moved value: `s1`
+%  --> src/main.rs:5:28
+%   |
+% 3 |     let s2 = s1;
+%   |         -- value moved here
+% 4 |
+% 5 |     println!("{}, world!", s1);
+%   |                            ^^ value used here after move
+%   |
+%   = note: move occurs because `s1` has type `std::string::String`,
+%   which does not implement the `Copy` trait
+% \end{verbatim}
 
-Or, more precisely, used to fail. This was until Non-Lexical-Lifetimes got
-introduced, making the compiler way smarter.
+% Or, more precisely, used to fail. This was until Non-Lexical-Lifetimes got
+% introduced, making the compiler way smarter.
 
-\todo{introduce ownership really}
+% \todo{introduce ownership really}
 
 \subsection{Borrowing}
 
@@ -106,70 +104,103 @@ introduced, making the compiler way smarter.
 
 \subsection{Lifetimes}
 
-\draft{introduce lifetimes really}
+\draft{introduce lifetimes}
 
-\todo{rewrite on abstract niveau for computer scientists}
+% \todo{rewrite on abstract niveau for computer scientists}
 
-Rust does not have a garbage collector, but frees memory the moment it is not
-needed anymore, which it knows through the Lifetime every variable and
-reference (pointer) has. Ownership prevents you from modifying data structures
-in unintended ways, and combined with lifetimes, preventing almost all
-segfaults. Also, it runs blazingly fast, comparable to
-C\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust.html},
-accessed 2019-06-26}, and
-C++\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust-gpp.html},
-accessed 2019-06-26}.
+% Rust does not have a garbage collector, but frees memory the moment it is not
+% needed anymore, which it knows through the Lifetime every variable and
+% reference (pointer) has. Ownership prevents you from modifying data structures
+% in unintended ways, and combined with lifetimes, preventing almost all
+% segfaults. Also, it runs blazingly fast, comparable to
+% C\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust.html},
+% accessed 2019-06-26}, and
+% C++\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust-gpp.html},
+% accessed 2019-06-26}.
+
+\subsection{Tooling}
 
 \draft{introduce awesome tooling}
 
-This is but an introduction to Rust, but the tooling must be mentioned. Rust
-has a dedicated package manager called \verb|cargo|. Packages are available
-through \url{https://crates.io}. Also there are tools like \verb|rustfmt| or
-\verb|cargo-fix| (a subcommand that can be added later), that format Rust code
-after predefined guidelines, or fixes most compiler warnings automatically,
-respectively.
+% This is but an introduction to Rust, but the tooling must be mentioned. Rust
+% has a dedicated package manager called \verb|cargo|. Packages are available
+% through \url{https://crates.io}. Also there are tools like \verb|rustfmt| or
+% \verb|cargo-fix| (a subcommand that can be added later), that format Rust code
+% after predefined guidelines, or fixes most compiler warnings automatically,
+% respectively.
 
-Rust has continuosly claimed StackOverflows position of `most Loved
-Language'\footnote{\url{https://insights.stackoverflow.com/survey/2019\#technology-\_-most-loved-dreaded-and-wanted-languages}, accessed 2019-06-26}
-for the last few years, while both C and C++ rank comparatavely high in the
-category `dreaded'.
+% Rust has continuosly claimed StackOverflows position of `most Loved
+% Language'\footnote{\url{https://insights.stackoverflow.com/survey/2019\#technology-\_-most-loved-dreaded-and-wanted-languages}, accessed 2019-06-26}
+% for the last few years, while both C and C++ rank comparatavely high in the
+% category `dreaded'.
 
-More information about Rust can be found here\footnote{\url{https://www.rust-lang.org/}, accessed 2019-06-26}.
+% More information about Rust can be found here\footnote{\url{https://www.rust-lang.org/}, accessed 2019-06-26}.
 
 
 \subsection{Advantages of Rust}
 
-The advantage of using Rust over using \verb|numpy| / \verb|scipy| from Python
-for this work might not be immediately obvious, since the CSRMatrix had to be
-implemented. We considered using the \verb|numpy| C-API for a while, but its
-too big to be actually useful for our use-case.
+% Two parts, one, language, second, for this use-case
 
-The advantage here is actually much simpler: since we barely need any of the
-features provided, implementing them ourselves is not much work and gives us
-way more fine grained control as to what is actually happening.
+\draft{Parallelization, tooling, ownership, lifetimes, modularity, stackability, ...}
 
-This includes the parallelization of some parts of the code, which might not
-have been possible if ther were some other library doing things in its own way
-(numpy using the C-API would be an example here).
+\draft{writing CSRMatrix bare-metal (thus faster), also the language-features, ...}
 
-A future advantage is also the modularity of Rust code, meaning in the future
-additional external libraries (and with them, features) could easily be integrated.
+% The advantage of using Rust over using \verb|numpy| / \verb|scipy| from Python
+% for this work might not be immediately obvious, since the CSRMatrix had to be
+% implemented. We considered using the \verb|numpy| C-API for a while, but its
+% too big to be actually useful for our use-case.
+
+% The advantage here is actually much simpler: since we barely need any of the
+% features provided, implementing them ourselves is not much work and gives us
+% way more fine grained control as to what is actually happening.
+
+% This includes the parallelization of some parts of the code, which might not
+% have been possible if ther were some other library doing things in its own way
+% (numpy using the C-API would be an example here).
+
+% A future advantage is also the modularity of Rust code, meaning in the future
+% additional external libraries (and with them, features) could easily be integrated.
+
+% From: Rust vs Python
+%
+% The biggest difference, however, is that in Rust certain tasks can easily be
+% parallelized; even after originally writing it for only one core. An example
+% would be:
+%
+% \inputminted{Rust}{code1.rs}
+%
+% In this code, some \verb|heavy_operation| is being applied iteratively for every element in \verb|somelist| and later assigned to \verb|otherlist|.
+%
+% This can easily be parallelized by changing it to the following:
+%
+% \inputminted{Rust}{code2.rs}
+%
+% The difference here being the imported \verb|rayon::prelude::*| and instead of
+% \verb|iter| now applying \verb|par_iter| to the original list.
+
 
 
 \subsection{Disadvantages of Rust}
 
-The disadvantages follow pretty much directly from looking at the advantages,
-we do not need much, but we had to implement it ourselves, there is not
-too much functionality in the case of the CSRMatrix, only the utterly necessary
-parts. This obviously limits the applicability of this code, no effort has been
-made to create a generalized solution - several CSRMatrix implementations
-already exist in Rust, none coming remotely close to the one in \verb|scipy|,
-but ours is falling short of all the others by a wide margin (at least in most
-categories).
+% Two parts again, one, language, second, for this use-case
+
+\draft{includes: longer compilation time and additional time to get to be able
+to use all the features. Also, frequent updates. 'only' growing userbase}
+
+\draft{*need* to write this bare-metal, no generalized solution, ...}
+
+% The disadvantages follow pretty much directly from looking at the advantages,
+% we do not need much, but we had to implement it ourselves, there is not
+% too much functionality in the case of the CSRMatrix, only the utterly necessary
+% parts. This obviously limits the applicability of this code, no effort has been
+% made to create a generalized solution - several CSRMatrix implementations
+% already exist in Rust, none coming remotely close to the one in \verb|scipy|,
+% but ours is falling short of all the others by a wide margin (at least in most
+% categories).
 
 
 
-\subsection{Differences between Rust and Python}\label{sec:differences}
+\subsection{Comparing Rust and Python}\label{sec:rustvspython}
 
 Rust and Python are two quite different programming languages, a direct
 ``translation'' is not possible. Both implementations are the same semantically,
@@ -177,379 +208,370 @@ but details differ. Since Rust has a much finer control about memory and the
 applying of functions to data structures, some operations have been explicitly
 separated while others have been combined.
 
-The biggest difference, however, is that in Rust certain tasks can easily be
-parallelized; even after originally writing it for only one core. An example
-would be:
+\subsection{Comparing Rust with C/C++}\label{sec:rustvscc++}
 
-\inputminted{Rust}{code1.rs}
+\draft{make table with some numbers, maybe include Python}
 
-In this code, some \verb|heavy_operation| is being applied iteratively for every element in \verb|somelist| and later assigned to \verb|otherlist|.
 
-This can easily be parallelized by changing it to the following:
 
-\inputminted{Rust}{code2.rs}
 
-The difference here being the imported \verb|rayon::prelude::*| and instead of
-\verb|iter| now applying \verb|par_iter| to the original list.
 
+% \subsection{Integration of Rust}\label{sec:integration}
 
 
+% \todo{interface from python to C but missing to RUST}
 
+% \todo{Answer this question later!!}
 
+% One of the main questions for this work was to find out if it is possible to
+% integrate Rust in Python for the HiCExplorer, and evaluate the advantages
+% versus disadvantages.
 
-\subsection{Integration of Rust}\label{sec:integration}
+% \todo{rewrite}
 
-\todo{Answer this question later!!}
+% For Rust and Python to interact, there are of course several ways. Those
+% integrating a library written in Rust to allow them to be called from Python
+% will be described in depth in \secref{sec:api}.
 
-One of the main questions for this work was to find out if it is possible to
-integrate Rust in Python for the HiCExplorer, and evaluate the advantages
-versus disadvantages.
 
-\todo{rewrite}
+% \todo{restructure: Introducing Rust (4.3), Advantages Rust (4.3.1), Disadvantages Rust (4.3.2), Differences Rust Python (4.3.3)}
 
-For Rust and Python to interact, there are of course several ways. Those
-integrating a library written in Rust to allow them to be called from Python
-will be described in depth in \secref{sec:api}.
+% \todo{move integration of Rust to 4.4}
 
+% \todo{move 'Operation' to 'Using this implementation' in 4.5}
 
-\todo{restructure: Introducing Rust (4.3), Advantages Rust (4.3.1), Disadvantages Rust (4.3.2), Differences Rust Python (4.3.3)}
 
-\todo{move integration of Rust to 4.4}
 
-\todo{move 'Operation' to 'Using this implementation' in 4.5}
 
 
 
+% \newpage
+% \section{Using this implementation}\label{sec:using}
 
+% \todo{rename: ....}
 
+% \todo{Change Name!!}
 
-\newpage
-\section{Using this implementation}\label{sec:using}
+% \subsection{Installation}\label{sec:install}
 
-\todo{rename: ....}
+% \todo{for installing using conda add dependencies}
 
-\todo{Change Name!!}
+% \todo{Change Name!!}
+% smb can be run on any Unix-based operating system (tested using ubuntu-18.04)
+% with Conda, Python and common development packages installed (e.g.
+% \verb!libopenssl-dev python3-dev build-essential! ...). For the installation
+% itself just enter \verb|conda install -c kargf smb|.
 
-\subsection{Installation}\label{sec:install}
+% \textbf{For using, not building, installation of Rust is not needed.}
 
-\todo{for installing using conda add dependencies}
 
-\todo{Change Name!!}
-smb can be run on any Unix-based operating system (tested using ubuntu-18.04)
-with Conda, Python and common development packages installed (e.g.
-\verb!libopenssl-dev python3-dev build-essential! ...). For the installation
-itself just enter \verb|conda install -c kargf smb|.
+% \subsection{Build}\label{sec:build}
 
-\textbf{For using, not building, installation of Rust is not needed.}
+% To build the package, assuming you have conda installed, execute the following
+% commands:
 
+% \begin{verbatim}
 
-\subsection{Build}\label{sec:build}
+% # first, install rust:
+% curl https://sh.rustup.rs -sSf | sh -s -- -y
 
-To build the package, assuming you have conda installed, execute the following
-commands:
+% # alternatively install rust with conda:
+% conda install -c conda-forge rust
 
-\begin{verbatim}
+% # confirm install:
+% cargo --version
+% rustc --version
 
-# first, install rust:
-curl https://sh.rustup.rs -sSf | sh -s -- -y
+% # download repository and navigate in it
+% git clone https://github.com/fkarg/HiC-rs
+% cd HiC-rs
 
-# alternatively install rust with conda:
-conda install -c conda-forge rust
+% # navigate to the rust code and compile (optional)
+% cd smb
+% cargo build
+% cd ..
 
-# confirm install:
-cargo --version
-rustc --version
+% # install missing python dependencies
+% pip install -r requirements.txt
 
-# download repository and navigate in it
-git clone https://github.com/fkarg/HiC-rs
-cd HiC-rs
+% # execute the setup.py (will also compile rust if not done yet)
+% python setup.py build
 
-# navigate to the rust code and compile (optional)
-cd smb
-cargo build
-cd ..
+% \end{verbatim}
 
-# install missing python dependencies
-pip install -r requirements.txt
+% \todo{change pip to conda}
 
-# execute the setup.py (will also compile rust if not done yet)
-python setup.py build
 
-\end{verbatim}
+% \todo{update packages!!}
 
-\todo{change pip to conda}
 
+% % The approach usually starts with the problem definition and continues with what you have done. Try to give an intuition first and describe everything with words and then be more formal like `Let $g$ be ...'.
 
-\todo{update packages!!}
 
 
-% The approach usually starts with the problem definition and continues with what you have done. Try to give an intuition first and describe everything with words and then be more formal like `Let $g$ be ...'.
 
 
+% \subsection{Choosing the right API to call Rust from Python}\label{sec:api}
 
+% There are three main ways to execute Rust code from Python. In the following,
+% common techniques are investigated.
 
+% \draft{versioning is not that relevant}
 
-\section{Choosing the right API to call Rust from Python}\label{sec:api}
+% One common way is rust-cpython. This library requires Rust 1.25 or higher
+% (current versions are 1.33/34/35 for stable/beta/nightly respectively).
+% Rust-cpython grants access to the python gil (global interpreter lock) with
+% which Python code can be evaluated and Python objects modified. The resulting
+% library (directly from compiled rust) can easily be imported into Python (but
+% needs to be renamed). Native Rust code requires some wrapping first, as shown
+% here:
 
-There are three main ways to execute Rust code from Python. In the following,
-common techniques are investigated.
+% \inputminted{Rust}{code_cpython.rs}
 
-\draft{versioning is not that relevant}
+% This kind of wrapping, though quite common and based on the Python C-API makes
+% it hard to write idiomatic Code in Rust. Also, since Python is directly
+% affected, the interactions with Python need to be considered while writing
+% Rust-Code. In computer science one does usually not intentionally strive for
+% complexity.
 
-One common way is rust-cpython. This library requires Rust 1.25 or higher
-(current versions are 1.33/34/35 for stable/beta/nightly respectively).
-Rust-cpython grants access to the python gil (global interpreter lock) with
-which Python code can be evaluated and Python objects modified. The resulting
-library (directly from compiled rust) can easily be imported into Python (but
-needs to be renamed). Native Rust code requires some wrapping first, as shown
-here:
+% Another common approach is using the pyO3-library, which started off as a fork
+% of rust-cpython, but has since seen quite drastic changes. For example, its
+% using requires at least Rust version ‘1.30.0-nightly 2018-08-18’ (or, in the
+% newest version, ‘1.34.0-nightly 2019-02-06’). This is due to the usage of
+% unstable features, most of which have recently been able to be promoted to
+% stable. Unstable features are only available in the nightly toolchain.  Still
+% missing is Specialisation, which has at the time of writing still a long way to
+% go.  The library would also result in an easily importable (needs to be renamed
+% first, still) cdylib (same as rust-cpython). The still intermingled way of
+% writing the interface (certainly better but not by much compared to
+% rust-cpython) as well as the dependency on unstable nightly rust versions led
+% to the decision of not using it either.
 
-\inputminted{Rust}{code_cpython.rs}
+% The third way, that is actually been promoted in the official Rust docs, is to
+% generate a dylib and import that in python. No renaming necessary, but the
+% communication between Rust and Python is a bit more low-level. The main wrapper
+% is on the side of Python, transforming Arguments to Pointers and
+% C-Representations, whilst the Rust part needs to conform to C-practices, which
+% includes receiving a list by getting a pointer to the first element and the
+% length of it. Other than that, the Rust code has additional
+% \verb!\#[no_mangle]! and \verb!\#[repr(C)]!  (procedural) macros, preventing
+% the compiler to mangle (renaming of functions) and guaranteeing the
+% representation in the memory layout to be as it would be in C. Since like this
+% neither language depends on something only internal (or combinatorial), and
+% both just depend upon the ‘common, unchanging’ C-interface, this seems to be
+% the preferred way.
 
-This kind of wrapping, though quite common and based on the Python C-API makes
-it hard to write idiomatic Code in Rust. Also, since Python is directly
-affected, the interactions with Python need to be considered while writing
-Rust-Code. In computer science one does usually not intentionally strive for
-complexity.
+% \draft{include a nice comparison table}
 
-Another common approach is using the pyO3-library, which started off as a fork
-of rust-cpython, but has since seen quite drastic changes. For example, its
-using requires at least Rust version ‘1.30.0-nightly 2018-08-18’ (or, in the
-newest version, ‘1.34.0-nightly 2019-02-06’). This is due to the usage of
-unstable features, most of which have recently been able to be promoted to
-stable. Unstable features are only available in the nightly toolchain.  Still
-missing is Specialisation, which has at the time of writing still a long way to
-go.  The library would also result in an easily importable (needs to be renamed
-first, still) cdylib (same as rust-cpython). The still intermingled way of
-writing the interface (certainly better but not by much compared to
-rust-cpython) as well as the dependency on unstable nightly rust versions led
-to the decision of not using it either.
+% \newpage
+% \section{General Approach}\label{sec:approach}
 
-The third way, that is actually been promoted in the official Rust docs, is to
-generate a dylib and import that in python. No renaming necessary, but the
-communication between Rust and Python is a bit more low-level. The main wrapper
-is on the side of Python, transforming Arguments to Pointers and
-C-Representations, whilst the Rust part needs to conform to C-practices, which
-includes receiving a list by getting a pointer to the first element and the
-length of it. Other than that, the Rust code has additional
-\verb!\#[no_mangle]! and \verb!\#[repr(C)]!  (procedural) macros, preventing
-the compiler to mangle (renaming of functions) and guaranteeing the
-representation in the memory layout to be as it would be in C. Since like this
-neither language depends on something only internal (or combinatorial), and
-both just depend upon the ‘common, unchanging’ C-interface, this seems to be
-the preferred way.
+% \todo{Introduce main approach}
 
-\draft{include a nice comparison table}
+% \draft{Steps: read papers, test communication between Python and Rust (API), implementing CSRMatrix, implementing algorithm, fixing bugs (in-memory), making buildable (milksnake, conda), further bug fixing, some testing, building test-suite and a lot of bugfixing, reading papers again, starting to write stuff down.}
 
-\newpage
-\section{General Approach}\label{sec:approach}
 
-\todo{Introduce main approach}
+% \subsection{Beginning}
 
-\draft{Steps: read papers, test communication between Python and Rust (API), implementing CSRMatrix, implementing algorithm, fixing bugs (in-memory), making buildable (milksnake, conda), further bug fixing, some testing, building test-suite and a lot of bugfixing, reading papers again, starting to write stuff down.}
+% \todo{Rewrite to passive voice}
 
+% Having read the provided papers (\cite{imakaev2012iterative},
+% \cite{lieberman2009comprehensive} and \cite{wingett2015hicup}) I started
+% looking in the Python-implementation. First things first I started testing the
+% feasability of communicating between Rust and Python. The only available way
+% for this is the raw C-API both adhere to.
 
-\subsection{Beginning}
+% \subsection{Feasability Testing}
 
-\todo{Rewrite to passive voice}
+% \todo{Rewrite to passive voice}
 
-Having read the provided papers (\cite{imakaev2012iterative},
-\cite{lieberman2009comprehensive} and \cite{wingett2015hicup}) I started
-looking in the Python-implementation. First things first I started testing the
-feasability of communicating between Rust and Python. The only available way
-for this is the raw C-API both adhere to.
+% Having succeded in calling functions in Rust, and passing the arguments
+% correctly, I started to look in the Python-implementation again. Since in
+% python \verb|numpy| and \verb|scipy| were used quite extensively (especially
+% the Compressed Sparse Row Matrix from \verb|scipy| and available operations
+% through \verb|numpy|) and there was no library available providing
+% functionality similar enough, I implemented the minimal version of a CSRMatrix
+% that would be needed, and tested its functionality.
 
-\subsection{Feasability Testing}
 
-\todo{Rewrite to passive voice}
+% \subsection{Implementation of the algorithm}
 
-Having succeded in calling functions in Rust, and passing the arguments
-correctly, I started to look in the Python-implementation again. Since in
-python \verb|numpy| and \verb|scipy| were used quite extensively (especially
-the Compressed Sparse Row Matrix from \verb|scipy| and available operations
-through \verb|numpy|) and there was no library available providing
-functionality similar enough, I implemented the minimal version of a CSRMatrix
-that would be needed, and tested its functionality.
+% \extend{Answer: could I call numpy from rust}
 
+% \todo{Rewrite to passive voice}
 
-\subsection{Implementation of the algorithm}
+% The initial translation from Python to rust happened more or less on a
+% line-by-line basis, as much as this was possible. Seeing the
+% Python-implementation section-wise as a comment I started out with a comparably
+% naive translation from Python to Rust. As I did not have
+% \verb|numpy|/\verb|scipy| available, specific operations had to be done
+% differently, and I needed to care a lot more about the memory (of the
+% variables, also their availability) than the Python-implementation did.
 
-\extend{Answer: could I call numpy from rust}
 
-\todo{Rewrite to passive voice}
+% \subsection{Testing and Bugfixing}
 
-The initial translation from Python to rust happened more or less on a
-line-by-line basis, as much as this was possible. Seeing the
-Python-implementation section-wise as a comment I started out with a comparably
-naive translation from Python to Rust. As I did not have
-\verb|numpy|/\verb|scipy| available, specific operations had to be done
-differently, and I needed to care a lot more about the memory (of the
-variables, also their availability) than the Python-implementation did.
+% \todo{Rewrite to passive voice}
 
+% \draft{give examples for common bugs}
 
-\subsection{Testing and Bugfixing}
+% Having succeded at convincing the compiler, I wanted to test my implementation.
+% The compiler in Rust is quite capable, reducing common bugs tremendously.
+% My knowledge about Rust not being on the expert-level, I made the error of not
+% writing back the changes made to the matrix in the matrix (more specifically,
+% the part that should have done that was being handed a immutable matrix). This
+% and some smaller bugs got solved easily, so I set up a small testing
+% environment, even calling from python.
 
-\todo{Rewrite to passive voice}
 
-\draft{give examples for common bugs}
+% \subsection{Idiomatic Rust}
 
-Having succeded at convincing the compiler, I wanted to test my implementation.
-The compiler in Rust is quite capable, reducing common bugs tremendously.
-My knowledge about Rust not being on the expert-level, I made the error of not
-writing back the changes made to the matrix in the matrix (more specifically,
-the part that should have done that was being handed a immutable matrix). This
-and some smaller bugs got solved easily, so I set up a small testing
-environment, even calling from python.
+% \todo{Rewrite to passive voice}
 
+% While gradually transforming the naive Python-translation to idiomatic Rust, at
+% some point results ended up being \verb|NaN| pretty fast. A while of
+% debugging later, I reduced it to the following situation:
 
-\subsection{Idiomatic Rust}
+% \draft{exclude mention of debugging}
 
-\todo{Rewrite to passive voice}
+% \inputminted{Rust}{code_infsum1.rs}
 
-While gradually transforming the naive Python-translation to idiomatic Rust, at
-some point results ended up being \verb|NaN| pretty fast. A while of
-debugging later, I reduced it to the following situation:
+% Here the output was still ``sum: 1'' and ``sum: 0''. One iteration later however, all the elements have only been multiplied with some factors, their product being \verb|0.16|.
 
-\draft{exclude mention of debugging}
+% \inputminted{Rust}{code_infsum2.rs}
 
-\inputminted{Rust}{code_infsum1.rs}
+% The expected output here would be ``sum: 0.16'' and ``sum: 0'', or something
+% around that. However, the actual results were ``sum: 0.4'' and ``sum: inf''. As
+% it turns out, the factor they have been subject to was indeed \verb|0.16|,
+% however it was \verb|0.16| with high fraction values. This means that summation
+% of \verb|0.16| and \verb|0.0| (the zero also having high fraction) is being
+% sufficiently inaccurate to not be accurately represented by floating point
+% values. With this happening multiple times, it was unavoidable.
 
-Here the output was still ``sum: 1'' and ``sum: 0''. One iteration later however, all the elements have only been multiplied with some factors, their product being \verb|0.16|.
+% The same happened with the summation of the innocious-looking \verb|0.0|. They
+% had high fractions from the original multiplication by
+% \verb|0.160000000000003|, their continued summation resulting in an overflow.
+% This new number just happens to be one of the representations of \verb|inf|.
 
-\inputminted{Rust}{code_infsum2.rs}
 
-The expected output here would be ``sum: 0.16'' and ``sum: 0'', or something
-around that. However, the actual results were ``sum: 0.4'' and ``sum: inf''. As
-it turns out, the factor they have been subject to was indeed \verb|0.16|,
-however it was \verb|0.16| with high fraction values. This means that summation
-of \verb|0.16| and \verb|0.0| (the zero also having high fraction) is being
-sufficiently inaccurate to not be accurately represented by floating point
-values. With this happening multiple times, it was unavoidable.
+% \subsection{Packaging}
 
-The same happened with the summation of the innocious-looking \verb|0.0|. They
-had high fractions from the original multiplication by
-\verb|0.160000000000003|, their continued summation resulting in an overflow.
-This new number just happens to be one of the representations of \verb|inf|.
+% \todo{Rewrite to passive voice}
 
+% Next was the Packaging of my code. As my work should be used from within the
+% HiCExplorer, My part is supposed to be available as a python-package. The \draft{only
+% real} python dependcy (apart from those required for packages) ended up being
+% milksnake, itself a helper for compiling the rust part of my package.
 
-\subsection{Packaging}
+% The conda-part was not as easy though, as milksnake was not resolvable there. I
+% ended up porting \verb|milksnake| as a conda package. This turned out to be a
+% nontrivial task, as \verb|conda skeleton pypi milksnake| created a package
+% conda could not build, the issue here being that milksnake was only provided as
+% a \verb|*.zip| file and conda had hardcoded the format \verb|*.tar.gz|.
 
-\todo{Rewrite to passive voice}
+% Additionally I set up a buildserver, adding some tests and fixing smaller bugs.
 
-Next was the Packaging of my code. As my work should be used from within the
-HiCExplorer, My part is supposed to be available as a python-package. The \draft{only
-real} python dependcy (apart from those required for packages) ended up being
-milksnake, itself a helper for compiling the rust part of my package.
 
-The conda-part was not as easy though, as milksnake was not resolvable there. I
-ended up porting \verb|milksnake| as a conda package. This turned out to be a
-nontrivial task, as \verb|conda skeleton pypi milksnake| created a package
-conda could not build, the issue here being that milksnake was only provided as
-a \verb|*.zip| file and conda had hardcoded the format \verb|*.tar.gz|.
+% \subsection{Parallelizing}
 
-Additionally I set up a buildserver, adding some tests and fixing smaller bugs.
+% \todo{Rewrite to passive voice}
 
+% Nearing the end of my work, I set up ways to test and compare my implementation
+% with the other. One of the last things I did was adding Parallelization.
 
-\subsection{Parallelizing}
+% \todo{add: compare parallelization in C++ and Python, accessing memory, why it is possible to easily add this, ...}
 
-\todo{Rewrite to passive voice}
 
-Nearing the end of my work, I set up ways to test and compare my implementation
-with the other. One of the last things I did was adding Parallelization.
+% \subsection{Testing}\label{sec:testing}
 
-\todo{add: compare parallelization in C++ and Python, accessing memory, why it is possible to easily add this, ...}
+% \todo{Rewrite to passive voice}
 
+% I ran a total of 416 different configurations to test for a total of 3
+% different parameters. The first two are the same for all, the third applies
+% only to this implementation. I tested the original Python-implementation as
+% well as the new KR in C++.
 
-\section{Testing}\label{sec:testing}
+% \begin{itemize}
+%     \item Size of Matrix (four different ones)
+%     \item Number of chromosomes (8 different sizes)
+%     \item Number of threads (11 different numbers)
+% \end{itemize}
 
-\todo{Rewrite to passive voice}
+% \todo{add: data is primary data, from: GM12878 something rao2014}
 
-I ran a total of 416 different configurations to test for a total of 3
-different parameters. The first two are the same for all, the third applies
-only to this implementation. I tested the original Python-implementation as
-well as the new KR in C++.
+% \newpage
+% The sizes of the matrices for reference (biggest to smallest):
 
-\begin{itemize}
-    \item Size of Matrix (four different ones)
-    \item Number of chromosomes (8 different sizes)
-    \item Number of threads (11 different numbers)
-\end{itemize}
+% \begin{verbatim}
+% # Matrix information file. Created with HiCExplorer's hicInfo version 3.0
+% File:   matrix.h5
+% Size:   309,581
+% Bin_length:     10000
+% Sum of matrix:  2416588411.2530212
+% Chromosomes:    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+%                 14, 15, 16, 17, 18, 19, 20, 21, 22, X, Y, MT
+% Non-zero elements:      2,111,867,476
+% Minimum (non zero):     0.008667398294551536
+% Maximum:        139544.65657933566
+% NaN bins:       25948
 
-\todo{add: data is primary data, from: GM12878 something rao2014}
+% # Matrix information file. Created with HiCExplorer's hicInfo version 3.0
+% File:   25kb_raw.h5
+% Size:   123,841
+% Bin_length:     25000
+% Sum of matrix:  2378265786.0
+% Chromosomes:    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+%                 14, 15, 16, 17, 18, 19, 20, 21, 22, X, Y, MT
+% Non-zero elements:      1,530,533,003
+% Minimum (non zero):     1
+% Maximum:        320932
+% NaN bins:       9290
+% \end{verbatim}
+% \newpage
+% \begin{verbatim}
+% # Matrix information file. Created with HiCExplorer's hicInfo version 3.0
+% File:   50kb_raw.h5
+% Size:   61,928
+% Bin_length:     50000
+% Sum of matrix:  2333794628.0
+% Chromosomes:    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+%                 14, 15, 16, 17, 18, 19, 20, 21, 22, X, Y, MT
+% Non-zero elements:      1,053,216,825
+% Minimum (non zero):     1
+% Maximum:        320932
+% NaN bins:       4514
 
-\newpage
-The sizes of the matrices for reference (biggest to smallest):
+% # Matrix information file. Created with HiCExplorer's hicInfo version 3.0
+% File:   small_test_matrix.h5
+% Size:   33,754
+% Bin_length:     5000
+% Sum of matrix:  35778.0
+% Chromosomes:    chr2RHet, chr3RHet, chr2LHet, chr4, chrYHet, chr3L, chr2L,
+%                 chrU, chrX, chrXHet, chr2R, chr3R, chrUextra, chrM, chr3LHet
+% Non-zero elements:      69,213
+% Minimum (non zero):     1
+% Maximum:        8
+% NaN bins:       0
+% \end{verbatim}
 
-\begin{verbatim}
-# Matrix information file. Created with HiCExplorer's hicInfo version 3.0
-File:   matrix.h5
-Size:   309,581
-Bin_length:     10000
-Sum of matrix:  2416588411.2530212
-Chromosomes:    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
-                14, 15, 16, 17, 18, 19, 20, 21, 22, X, Y, MT
-Non-zero elements:      2,111,867,476
-Minimum (non zero):     0.008667398294551536
-Maximum:        139544.65657933566
-NaN bins:       25948
+% \todo{remove this verbatim part and make table instead}
 
-# Matrix information file. Created with HiCExplorer's hicInfo version 3.0
-File:   25kb_raw.h5
-Size:   123,841
-Bin_length:     25000
-Sum of matrix:  2378265786.0
-Chromosomes:    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
-                14, 15, 16, 17, 18, 19, 20, 21, 22, X, Y, MT
-Non-zero elements:      1,530,533,003
-Minimum (non zero):     1
-Maximum:        320932
-NaN bins:       9290
-\end{verbatim}
-\newpage
-\begin{verbatim}
-# Matrix information file. Created with HiCExplorer's hicInfo version 3.0
-File:   50kb_raw.h5
-Size:   61,928
-Bin_length:     50000
-Sum of matrix:  2333794628.0
-Chromosomes:    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
-                14, 15, 16, 17, 18, 19, 20, 21, 22, X, Y, MT
-Non-zero elements:      1,053,216,825
-Minimum (non zero):     1
-Maximum:        320932
-NaN bins:       4514
+% \extend{building matrix-test-suite and getting results}
 
-# Matrix information file. Created with HiCExplorer's hicInfo version 3.0
-File:   small_test_matrix.h5
-Size:   33,754
-Bin_length:     5000
-Sum of matrix:  35778.0
-Chromosomes:    chr2RHet, chr3RHet, chr2LHet, chr4, chrYHet, chr3L, chr2L,
-                chrU, chrX, chrXHet, chr2R, chr3R, chrUextra, chrM, chr3LHet
-Non-zero elements:      69,213
-Minimum (non zero):     1
-Maximum:        8
-NaN bins:       0
-\end{verbatim}
 
-\todo{remove this verbatim part and make table instead}
+% % \subsection{Encoundered Problems}\label{sec:problems}
+% %
+% % \extend{add encountered Problem: Packages, milksnake, conda, ...}
+% %
+% % \extend{add encountered Problem: small memory bug in rust (actually mut-changing the matrix)}
+% %
+% % \extend{add encountered Problem: weird bug regarding nans/infs}
+% %
+% % \extend{add encountered Problem: bug regarding termination (?)}
 
-\extend{building matrix-test-suite and getting results}
 
+% \todo{look for better rust presenter in latex}
 
-% \section{Encoundered Problems}\label{sec:problems}
-%
-% \extend{add encountered Problem: Packages, milksnake, conda, ...}
-%
-% \extend{add encountered Problem: small memory bug in rust (actually mut-changing the matrix)}
-%
-% \extend{add encountered Problem: weird bug regarding nans/infs}
-%
-% \extend{add encountered Problem: bug regarding termination (?)}
-
-
-\todo{look for better rust presenter in latex}
-
-\todo{add the integration of travis more}
+% \todo{add the integration of travis more}
 
 

@@ -70,7 +70,7 @@ Python. An advantage of the Algorithm itself is that as long as the matrix
 itself has total support (meaning that at least one diagonal has only positive
 nonzero values, this can be artificially done setting zeros to some small
 positive value), it will converge. Thus, it will converge for way more matrices
-than the ICE-algorithm. 
+than the ICE-algorithm.
 
 \subsection{Disadvantages}
 
@@ -82,7 +82,7 @@ not possible. Those bugs leading to Segmentation-faults (accessing invalid
 memory) are notoriously hard to find, as they do not follow determinism.
 Parallelism is even harder to add, since data races (also nondeterministic) and
 other sources for hard-to-get right problems are added. Additionally, the
-syntax is considerably complex, making it rather hard to understand.  
+syntax is considerably complex, making it rather hard to understand.
 For reference, the implementation of the KR algorithm can be found
 here\footnote{\url{https://github.com/deeptools/Knight-Ruiz-Matrix-balancing-algorithm},
 \\ accessed 2019-06-26}.

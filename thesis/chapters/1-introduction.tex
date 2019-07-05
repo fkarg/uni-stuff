@@ -104,7 +104,16 @@ decomposition, \secref{sec:ICE}) or KR \cite{knight2013fast} (Knight-Ruiz,
 
 
 
-\section{Concrete Task definition}
+\section{Concrete Task definition}\label{sec:task}
+
+In the three-dimensional space of a cell the DNA forms a structure that looks
+close to that of a ball of wool. Obviously, many points of contacts of the DNA
+wire with itself, called DNA interactions, exist in this ``ball of wool'' and
+form structures including DNA loops. However, many of these contacts are
+random contacts or measurement errors that need to be corrected. A Python
+implementation exists but is limited for high resolution data due to high
+memory usage. This project aims to reimplement a more memory efficient
+method in Rust.
 
 The main goals of this thesis include testing the integration between Rust (a
 systems programming language recently gaining in popularity, more information
@@ -115,6 +124,4 @@ implementations (ICE in Python and KR in C++, more information can be found in
 however, is to try to implement a more resource efficient version, able to make
 effective use of parallel computations.
 
-
-\extend{around half a page to one}
 
