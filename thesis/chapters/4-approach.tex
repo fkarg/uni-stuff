@@ -49,8 +49,8 @@ O_{ij} = B_i B_j T_{ij}
 % is computed, the corrected map of relative contact probabilities is obtained
 % by $T_{ij} = O_{ij} / (B_i B_j)$.
 
-\eqref{eq:1} is stating, that when we apply $B$ back again on our corrected
-matrix $T_{ij}$, we end up with our original matrix $O_{ij}$ again.
+\eqref{eq:1} is stating, that when applying $B$ back again on our corrected
+matrix $T_{ij}$, it will be the same as the original matrix $O_{ij}$ again.
 \eqref{eq:2} states, that the sum over the corrected matrix, over arbitrary
 elements in the upper left triangle, but only one from each column, sums up to
 one. $T_{ij}$ is doubly stochastic ($\forall_j\sum^N_{i=1}T_{ij} = 1$ and
@@ -113,8 +113,8 @@ Rust has a type system with strong guarantees, promising e.g. that all
 references (pointers) are valid, or thread safety (memory access from other
 threads does not result in data races / undeterminism). This is possible
 through concepts such as ownership and lifetimes. Even though one can program
-in an object oriented way, Rust is not object-oriented. It is however
-imperative, generic and functional.
+in an object oriented way, Rust is primarily not object-oriented. Additionally
+it is imperative, procedural, generic and functional.
 
 \textbf{Syntax}\label{sec:syntax}
 The concrete syntax seems similar to C/C++ (curly braces, function signatures),
@@ -122,7 +122,7 @@ however it is more similar to that of ML or Haskell. A particular example for
 this case are type classes called ``traits'' here, similar to C++ templates but
 inspired from Haskell, supporting polymorphism and generic types. Generic
 parameters can be constraints, by requiring that generic type to implement a
-certain Trait. 
+certain Trait.
 
 \textbf{Memory safety}\label{sec:memsafe}
 Rust is designed to be memory safe, and does not permit dangling pointers, null
@@ -160,31 +160,91 @@ guaranteed, limiting possible undefined behaviour tremendously.
 % time by the borrow checker, preventing dangling pointers and other forms of
 % undefined behavior.
 
-
-\subsection{Examples}\label{sec:examples}
-
-
 \textbf{Ownership}\label{sec:ownership}
-
-\draft{introduce ownership}
-
-% Rust has an ownership system where all values have a unique owner, where the
-% scope of the value is the same as the scope of the owner.[35][36] Values can
-% be passed by immutable reference using &T, by mutable reference using &mut T
-% or by value using T. At all times, there can either be multiple immutable
-% references or one mutable reference. The Rust compiler enforces these rules
-% at compile time and also checks that all references are valid.
-
+In Rust, all values have a unique owner, and the scope of the value is the same
+as the owners. Immutable references can be passed using \verb|&T|, mutable
+references by \verb|&mut T|. Pass by value works by passing \verb|T|. Only
+\textbf{one} mutable reference can exist at any point, or any number of
+immutable ones. This is enforced at compile-time.
 
 \textbf{Borrowing}\label{sec:borrowing}
-
-\draft{introduce immutable and mutable borrows}
-
+results directly from the concept of ownership. As mentioned, only one mutable
+borrow (reference) can happen at a time, however that borrowing variable can
+further borrow it to other variables or functions. The number of immutable
+borrows is unlimited, meaning there can be multiple references reading but not
+modifying part of the memory. This is necessary to guarantee memory safety, as
+only one mutable reference can write to it at any point in time, wherever that
+is (in the code).
 
 \textbf{Lifetimes}\label{sec:lifetimes}
+Lifetimes are the simple concept of keeping track how long each variable and
+each reference is `alive', this is preventing the simple case of `variables
+going out of scope' and returning a pointer to it, but can do the same in much
+more complex environments. Non-Lexical-Lifetimes also work together with
+borrowing, resulting in variables returning their borrow before the end of the
+scope, as will be see in the first example (\secref{sec:examples}).
 
-\draft{introduce lifetimes}
+\newpage
+\subsection{Examples}\label{sec:examples}
 
+\textbf{Ownership, Borrowing}
+
+\inputminted[linenos,fontsize=\small]{Rust}{code/code_ownership.rs}
+
+The compiler will throw the following error:
+{\small
+\begin{verbatim}
+error[E0502]: cannot borrow `v` as mutable because it is also borrowed as immutable
+ --> src/main.rs:5:5
+  |
+5 |     let x = &v[0];
+  |              - immutable borrow occurs here
+6 |     v.push("world");
+  |     ^^^^^^^^^^^^^^^ mutable borrow occurs here
+7 |
+8 |     println!("{}", x);
+  |                    - immutable borrow later used here
+\end{verbatim}}
+
+As the compiler is complaining, v needs a {\em mutable} borrow to modify
+\verb|v|, however \verb|x| still has an {\em immutable} borrow! The borrow from
+\verb|x| cannot be ended yet, because it should be printed later. As the mutable
+borrow from \verb|v| could modify it in a way such that the reference \verb|x|
+would be invalid (e.g. delete \verb|v|), this is a potential memory safety problem.
+However it is fine to print x first, and modify \verb|v| afterwards. The
+following happens when printing the second element of \verb|v| instead of \verb|x|
+in the last line, and printing \verb|x| before adding the second element of \verb|v|.
+{\small
+\begin{verbatim}
+Hello
+world
+\end{verbatim}}
+
+For reference, here is the code:
+\inputminted[linenos,fontsize=\small]{Rust}{code/code_ownership2.rs}
+
+\textbf{Lifetimes}
+
+Even though lifetimes exist, the compiler can figure them out itself most of
+the time. There are cases, however where this is not the case. Take for example
+the next case:
+
+\inputminted[linenos,fontsize=\small]{Rust}{code/code_lifetimes2.rs}
+
+{\small
+\begin{verbatim}
+error[E0106]: missing lifetime specifier
+ --> src/main.rs:1:33
+  |
+1 | fn longest(x: &str, y: &str) -> &str {
+  |                                 ^ expected lifetime parameter
+  |
+  = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `x` or `y`
+
+error: aborting due to previous error
+\end{verbatim}}
+
+\inputminted[linenos,fontsize=\small]{Rust}{code/code_lifetimes.rs}
 
 
 \textbf{Tooling}\label{sec:tools}
