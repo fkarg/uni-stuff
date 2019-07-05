@@ -107,65 +107,87 @@ to $T_{ij}$.
 
 \section{Introducing Rust}\label{sec:Rust}
 
-% \draft{explain more ...}
+Rust is classified as a high-level language, even though fine low-level control
+is possible. This is due the high amount of high-level zero-cost abstractions.
+Rust has a type system with strong guarantees, promising e.g. that all
+references (pointers) are valid, or thread safety (memory access from other
+threads does not result in data races / undeterminism). This is possible
+through concepts such as ownership and lifetimes. Even though one can program
+in an object oriented way, Rust is not object-oriented. It is however
+imperative, generic and functional.
 
-% ``Rust is a systems programming language that runs blazingly fast, prevents
-% segfaults, and guarantees thread safety'' - this was, up until recently, the
-% motto of Rust. It recently got changed into ``A language empowering everyone
-% to build reliable and efficient software.'' At the core of Rust is a compiler
-% applying linear typing, resulting in the concepts of Ownership and Lifetimes.
-% These concepts, even though notoriously hard to learn, are the main reason the
-% rust compiler can guarantee thread safety, can prevent segfaults, and can run
-% blazingly fast.
+\textbf{Syntax}\label{sec:syntax}
+The concrete syntax seems similar to C/C++ (curly braces, function signatures),
+however it is more similar to that of ML or Haskell. A particular example for
+this case are type classes called ``traits'' here, similar to C++ templates but
+inspired from Haskell, supporting polymorphism and generic types. Generic
+parameters can be constraints, by requiring that generic type to implement a
+certain Trait. 
 
-\subsection{Ownership}
+\textbf{Memory safety}\label{sec:memsafe}
+Rust is designed to be memory safe, and does not permit dangling pointers, null
+pointers, data races in safe code, or usage of uninitialized variables. In case
+a `null' is needed, the Option-type is provided. Thus, the compiler can
+guarantee the validity of all references at compile time using its
+borrow-checker.
 
-% Ownership is the concept of `owning' content. Take the following code for
-% example:
-% \inputminted{Rust}{code_ownership.rs}
+% The system is designed to be memory safe, and it does not permit null
+% pointers, dangling pointers, or data races in safe code.[30][31][32][33] Data
+% values can only be initialized through a fixed set of forms, all of which
+% require their inputs to be already initialized.[34] To replicate the function
+% in other languages of pointers being either valid or NULL, such as in linked
+% list or binary tree data structures, the Rust core library provides an option
+% type, which can be used to test if a pointer has Some value or None.[31] Rust
+% also introduces added syntax to manage lifetimes, and the compiler reasons
+% about these through its borrow checker.
 
-% Contrary to C or C++, Rust fails:
+\textbf{Memory management}\label{sec:memmanage}
+Rust does not have a garbage collector, instead, the resource acquisition is
+initialization (RAII) convention is used, with optional reference counting.
+Resource management is deterministic with very little overhead, favoring stack
+allocation without implicit boxing. References are not run time counted, as
+their usage is verified at compile time. with this, memory safety can be
+guaranteed, limiting possible undefined behaviour tremendously.
 
-% \begin{verbatim}
-% error[E0382]: use of moved value: `s1`
-%  --> src/main.rs:5:28
-%   |
-% 3 |     let s2 = s1;
-%   |         -- value moved here
-% 4 |
-% 5 |     println!("{}, world!", s1);
-%   |                            ^^ value used here after move
-%   |
-%   = note: move occurs because `s1` has type `std::string::String`,
-%   which does not implement the `Copy` trait
-% \end{verbatim}
+% Rust does not use an automated garbage collection system like those used by
+% Go, Java, or the .NET Framework. Instead, memory and other resources are
+% managed through the resource acquisition is initialization (RAII) convention,
+% with optional reference counting. Rust provides deterministic management of
+% resources, with very low overhead.[citation needed] Rust also favors stack
+% allocation of values and does not perform implicit boxing. There is also a
+% concept of references (using the & symbol), which do not involve run-time
+% reference counting. The safety of using such pointers is verified at compile
+% time by the borrow checker, preventing dangling pointers and other forms of
+% undefined behavior.
 
-% Or, more precisely, used to fail. This was until Non-Lexical-Lifetimes got
-% introduced, making the compiler way smarter.
 
-% \todo{introduce ownership really}
+\subsection{Examples}\label{sec:examples}
 
-\subsection{Borrowing}
+
+\textbf{Ownership}\label{sec:ownership}
+
+\draft{introduce ownership}
+
+% Rust has an ownership system where all values have a unique owner, where the
+% scope of the value is the same as the scope of the owner.[35][36] Values can
+% be passed by immutable reference using &T, by mutable reference using &mut T
+% or by value using T. At all times, there can either be multiple immutable
+% references or one mutable reference. The Rust compiler enforces these rules
+% at compile time and also checks that all references are valid.
+
+
+\textbf{Borrowing}\label{sec:borrowing}
 
 \draft{introduce immutable and mutable borrows}
 
-\subsection{Lifetimes}
+
+\textbf{Lifetimes}\label{sec:lifetimes}
 
 \draft{introduce lifetimes}
 
-% \todo{rewrite on abstract niveau for computer scientists}
 
-% Rust does not have a garbage collector, but frees memory the moment it is not
-% needed anymore, which it knows through the Lifetime every variable and
-% reference (pointer) has. Ownership prevents you from modifying data structures
-% in unintended ways, and combined with lifetimes, preventing almost all
-% segfaults. Also, it runs blazingly fast, comparable to
-% C\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust.html},
-% accessed 2019-06-26}, and
-% C++\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust-gpp.html},
-% accessed 2019-06-26}.
 
-\subsection{Tooling}
+\textbf{Tooling}\label{sec:tools}
 
 \draft{introduce awesome tooling}
 
@@ -251,7 +273,7 @@ to use all the features. Also, frequent updates. 'only' growing userbase}
 
 Rust and Python are two quite different programming languages, a direct
 ``translation'' is not possible. Both implementations are the same semantically,
-but details differ. Since Rust has a much finer control about memory and the
+however details differ. Since Rust has a much finer control of memory and the
 applying of functions to data structures, some operations have been explicitly
 separated while others have been combined.
 
@@ -260,10 +282,21 @@ separated while others have been combined.
 \draft{make table with some numbers, maybe include Python}
 
 
+% \todo{rewrite on abstract niveau for computer scientists}
+
+% Rust does not have a garbage collector, but frees memory the moment it is not
+% needed anymore, which it knows through the Lifetime every variable and
+% reference (pointer) has. Ownership prevents you from modifying data structures
+% in unintended ways, and combined with lifetimes, preventing almost all
+% segfaults. Also, it runs blazingly fast, comparable to
+% C\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust.html},
+% accessed 2019-06-26}, and
+% C++\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust-gpp.html},
+% accessed 2019-06-26}.
 
 
 
-% \subsection{Integration of Rust}\label{sec:integration}
+\subsection{Integration of Rust in Python}\label{sec:integration}
 
 
 % \todo{interface from python to C but missing to RUST}
@@ -293,7 +326,7 @@ separated while others have been combined.
 
 
 % \newpage
-% \section{Using this implementation}\label{sec:using}
+\subsection{Using this implementation}\label{sec:using}
 
 % \todo{rename: ....}
 
@@ -358,7 +391,7 @@ separated while others have been combined.
 
 
 
-% \subsection{Choosing the right API to call Rust from Python}\label{sec:api}
+\subsection{Choosing the right API to call Rust from Python}\label{sec:api}
 
 % There are three main ways to execute Rust code from Python. In the following,
 % common techniques are investigated.
@@ -411,7 +444,7 @@ separated while others have been combined.
 % \draft{include a nice comparison table}
 
 % \newpage
-% \section{General Approach}\label{sec:approach}
+\section{General Approach}\label{sec:approach}
 
 % \todo{Introduce main approach}
 
@@ -527,83 +560,6 @@ separated while others have been combined.
 % with the other. One of the last things I did was adding Parallelization.
 
 % \todo{add: compare parallelization in C++ and Python, accessing memory, why it is possible to easily add this, ...}
-
-
-% \subsection{Testing}\label{sec:testing}
-
-% \todo{Rewrite to passive voice}
-
-% I ran a total of 416 different configurations to test for a total of 3
-% different parameters. The first two are the same for all, the third applies
-% only to this implementation. I tested the original Python-implementation as
-% well as the new KR in C++.
-
-% \begin{itemize}
-%     \item Size of Matrix (four different ones)
-%     \item Number of chromosomes (8 different sizes)
-%     \item Number of threads (11 different numbers)
-% \end{itemize}
-
-% \todo{add: data is primary data, from: GM12878 something rao2014}
-
-% \newpage
-% The sizes of the matrices for reference (biggest to smallest):
-
-% \begin{verbatim}
-% # Matrix information file. Created with HiCExplorer's hicInfo version 3.0
-% File:   matrix.h5
-% Size:   309,581
-% Bin_length:     10000
-% Sum of matrix:  2416588411.2530212
-% Chromosomes:    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
-%                 14, 15, 16, 17, 18, 19, 20, 21, 22, X, Y, MT
-% Non-zero elements:      2,111,867,476
-% Minimum (non zero):     0.008667398294551536
-% Maximum:        139544.65657933566
-% NaN bins:       25948
-
-% # Matrix information file. Created with HiCExplorer's hicInfo version 3.0
-% File:   25kb_raw.h5
-% Size:   123,841
-% Bin_length:     25000
-% Sum of matrix:  2378265786.0
-% Chromosomes:    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
-%                 14, 15, 16, 17, 18, 19, 20, 21, 22, X, Y, MT
-% Non-zero elements:      1,530,533,003
-% Minimum (non zero):     1
-% Maximum:        320932
-% NaN bins:       9290
-% \end{verbatim}
-% \newpage
-% \begin{verbatim}
-% # Matrix information file. Created with HiCExplorer's hicInfo version 3.0
-% File:   50kb_raw.h5
-% Size:   61,928
-% Bin_length:     50000
-% Sum of matrix:  2333794628.0
-% Chromosomes:    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
-%                 14, 15, 16, 17, 18, 19, 20, 21, 22, X, Y, MT
-% Non-zero elements:      1,053,216,825
-% Minimum (non zero):     1
-% Maximum:        320932
-% NaN bins:       4514
-
-% # Matrix information file. Created with HiCExplorer's hicInfo version 3.0
-% File:   small_test_matrix.h5
-% Size:   33,754
-% Bin_length:     5000
-% Sum of matrix:  35778.0
-% Chromosomes:    chr2RHet, chr3RHet, chr2LHet, chr4, chrYHet, chr3L, chr2L,
-%                 chrU, chrX, chrXHet, chr2R, chr3R, chrUextra, chrM, chr3LHet
-% Non-zero elements:      69,213
-% Minimum (non zero):     1
-% Maximum:        8
-% NaN bins:       0
-% \end{verbatim}
-
-% \todo{remove this verbatim part and make table instead}
-
-% \extend{building matrix-test-suite and getting results}
 
 
 % % \subsection{Encoundered Problems}\label{sec:problems}
