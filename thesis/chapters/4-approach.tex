@@ -18,7 +18,7 @@ of the KR-algorithm in C++.
 
 For this, the iterative correction algorithm will be introduced first.
 Afterwards, a short introduction to Rust and some of its core concepts is done,
-before introducing the 
+before introducing the
 
 
 
@@ -30,30 +30,77 @@ before introducing the
 
 In the following the algorithm as defined in the supplementary material to
 \cite{imakaev2012iterative} will be cited.
-The goal is a 
 
+The goal is to obtain the the vector of biases $B_i$ and the `true' contact map
+$T_{ij}$ with their relative contact probabilities. This is done by explicitly
+solving the system of the following two equations:
 
-% We perform iterative correction on the resulting contact maps to obtain
-% biases $B_i$ and `true' $T_{ij}$ relative contact probabilities by explicitly
-% solving the system of equations:
-
-% $$ O_{ij} = B_i B_j T_{ij} $$
-% $$ \sum^N_{i=1, |i-j|>1} T_{ij} = 1$$
+\begin{equation} \label{eq:1}
+O_{ij} = B_i B_j T_{ij}
+\end{equation}
+\begin{equation} \label{eq:2}
+\sum^N_{i=1, |i-j|>1} T_{ij} = 1
+\end{equation}
 
 % [...] \\
-% After the vector of biases is computed, the corrected map of relative contact
-% probabilities is obtained by $T_{ij} = O_{ij} / (B_i B_j)$.  Algorithmically,
-% the iterative correction is implemented as follows. We start by creating a
-% working copy of the matrix $O_{ij}$, denoted $W_{ij}$ as the iterative
-% process gradually changes this matrix to $T_{ij}$. We initialize the
-% iterative procedure by setting each element of the vector of total biases $B$
-% to 1. We begin each iteration by calculating the coverage $S_i = \sum_j
-% W_{ij}$. Next, additional biases $\Delta B_i$ are calculated by renormalizing
-% $S_i$ to have the unit mean $\Delta B_i = S_i /$ mean $(S_i)$. We then divide
-% $W_{ij}$ by $\Delta B_i \Delta B_j$ for all $(i, j)$ and update the total
-% vector of biases by multiplying by the additional biases. Iterations are
-% repeated until the variance of the additional biases becomes negligible; at
-% this point $W_{ij}$ has converged to $T_{ij}$.
+% For a range of distributions, the maximum-likelihood solution for $B_i$ under
+% these constraints is the solution of the above equaltion, which can be found
+% by the simple iterative procedure described below. After the vector of biasesll
+% is computed, the corrected map of relative contact probabilities is obtained
+% by $T_{ij} = O_{ij} / (B_i B_j)$.
+
+\eqref{eq:1} is stating, that when we apply $B$ back again on our corrected
+matrix $T_{ij}$, we end up with our original matrix $O_{ij}$ again.
+\eqref{eq:2} states, that the sum over the corrected matrix, over arbitrary
+elements in the upper left triangle, but only one from each column, sums up to
+one. $T_{ij}$ is doubly stochastic ($\forall_j\sum^N_{i=1}T_{ij} = 1$ and
+$\forall_i\sum^N_{j=1}T_{ij} = 1$), \extend{does it say that it is the same?
+why is this actually valid?}
+
+
+In the algorithm, this is achieved in the following way. First, $W_{ij}$, a
+copy of $O_{ij}$ is created. This matrix will converge to $T_{ij}$ during the
+iterative process. The elements of $B$ are initialized with $1$.
+
+% Algorithmically, the iterative correction is implemented as follows. We start
+% by creating a working copy of the matrix $O_{ij}$, denoted $W_{ij}$ as the
+% iterative process gradually changes this matrix to $T_{ij}$. We initialize
+% the iterative procedure by setting each element of the vector of total biases
+% $B$ to 1.
+
+\begin{equation}\label{eq:3}
+    S_i = \sum_j W_{ij}
+\end{equation}
+\begin{equation}\label{eq:4}
+    \Delta B_i = S_i / mean(S_i)
+\end{equation}
+Each iteration starts by first calculating the coverage by summing up each row
+(or column, matrix is symmetric so this does not matter) (\eqref{eq:3}) and
+additional biases based on this by dividing them through their own mean
+(\eqref{eq:4}) \todo{their own? or the total? is this \_i here an accident?}.
+
+\newpage
+\begin{equation}\label{eq:5}
+    W_{ij} = W_{ij} / \Delta B_i \Delta B_j
+\end{equation}
+\begin{equation}\label{eq:6}
+    B_i = B_i \cdot \Delta B_i
+\end{equation}
+Then $W_{ij}$ is iterated by dividing by $\Delta B_i \cdot \Delta B_j$
+(\eqref{eq:5}), after which $B_i$ is iterated by multiplying with the current
+biases (\eqref{eq:6}). $W_{ij}$ accumulates divisions by $\Delta B_i$, just as
+$B_i$ accumulates the products of $\Delta B_i$. This is repeated until the
+variance of $\Delta B$ becomes negegible, at which point $W_{ij}$ has converged
+to $T_{ij}$.
+% We begin each iteration by calculating the coverage $S_i = \sum_j W_{ij}$.
+% Next, additional biases $\Delta B_i$ are calculated by renormalizing $S_i$ to
+% have the unit mean $\Delta B_i = S_i /$ mean $(S_i)$. We then divide $W_{ij}$
+% by $\Delta B_i \Delta B_j$ for all $(i, j)$ and update the total vector of
+% biases by multiplying by the additional biases. Iterations are repeated until
+% the variance of the additional biases becomes negligible; at this point
+% $W_{ij}$ has converged to $T_{ij}$.
+
+
 
 
 
