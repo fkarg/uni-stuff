@@ -16,6 +16,8 @@ implementation of the iterative part of the ICE algorithm, and then comparing
 it with the original Python-implementation as well as the recent implementation
 of the KR-algorithm in C++.
 
+\draft{Possible to improve memory? Testing Parallelization(?) Integration How? Describe Python to C/C++ short}
+
 For this, the iterative correction algorithm will be introduced first.
 Afterwards, a short introduction to Rust and some of its core concepts is done,
 before introducing the
@@ -30,6 +32,8 @@ before introducing the
 
 In the following the algorithm as defined in the supplementary material to
 \cite{imakaev2012iterative} will be cited.
+
+The Algorithm was proposed by Imakaev et al. 2012 \cite{imakaev2012iterative}
 
 The goal is to obtain the the vector of biases $B_i$ and the `true' contact map
 $T_{ij}$ with their relative contact probabilities. This is done by explicitly
@@ -72,12 +76,12 @@ iterative process. The elements of $B$ are initialized with $1$.
     S_i = \sum_j W_{ij}
 \end{equation}
 \begin{equation}\label{eq:4}
-    \Delta B_i = S_i / mean(S_i)
+    \Delta B_i = S_i / mean(S)
 \end{equation}
 Each iteration starts by first calculating the coverage by summing up each row
 (or column, matrix is symmetric so this does not matter) (\eqref{eq:3}) and
 additional biases based on this by dividing them through their own mean
-(\eqref{eq:4}) \todo{their own? or the total? is this \_i here an accident?}.
+(\eqref{eq:4}).
 
 \newpage
 \begin{equation}\label{eq:5}
@@ -106,6 +110,8 @@ to $T_{ij}$.
 
 
 \section{Introducing Rust}\label{sec:Rust}
+
+\draft{where is Rust from, history of Rust}
 
 Rust is classified as a high-level language, even though fine low-level control
 is possible. This is due the high amount of high-level zero-cost abstractions.
@@ -189,9 +195,11 @@ scope, as will be see in the first example (\secref{sec:examples}).
 
 \textbf{Ownership, Borrowing}
 
+By executing the following example code, the compiler will throw an error:
 \inputminted[linenos,fontsize=\small]{Rust}{code/code_ownership.rs}
 
-The compiler will throw the following error:
+\todo{Add references: Code and Output}
+
 {\small
 \begin{verbatim}
 error[E0502]: cannot borrow `v` as mutable because it is also borrowed as immutable
@@ -638,3 +646,7 @@ separated while others have been combined.
 % \todo{add the integration of travis more}
 
 
+\todo{biggest points: Python to rust and how it worked, give code examples but not too much}
+\todo{presentation: 1/3 für jeden, 1/3 für betreuer + vom fach, 1/3 ich bin experte}
+\todo{Link to github repository}
+\todo{Tag der abgabe: Github aufräumen und Dokumentieren}

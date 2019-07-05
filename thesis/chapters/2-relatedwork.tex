@@ -33,6 +33,10 @@ possible through the concise syntax making the spotting of mistakes easier.
 
 \subsection{Disadvantages}
 
+\draft{Include: Multithreading is locking the execution of the same part of
+code, processes allow that but require the same memory for writing in it,
+reading is fine}
+
 The downsides of this implementation being that datastructures in Python are
 extensively objectified, meaning they require more working memory, and that
 even though Python has existing parallelism, a global interpreter lock (python
