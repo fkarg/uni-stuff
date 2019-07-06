@@ -1,0 +1,10 @@
+error[E0502]: cannot borrow `v` as mutable, it is also borrowed as immutable
+ --> src/main.rs:5:5
+  |
+5 |     let x = &v[0];
+  |              - immutable borrow occurs here
+6 |     v.push("world");
+  |     ^^^^^^^^^^^^^^^ mutable borrow occurs here
+7 |
+8 |     println!("{}", x);
+  |                    - immutable borrow later used here

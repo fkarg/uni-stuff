@@ -10,6 +10,8 @@
     % between book and scrbook
     \usepackage{scrhack}
 
+    \usepackage{verbatim}
+    \usepackage{verbatimbox}
 
     % ------------------- layout, default -------------------
     % adjust the style of float's captions, separated from text to improve readabilty
@@ -93,6 +95,8 @@
     \renewcommand{\eqref}[1]{Equation~(\ref{#1})}
     \newcommand{\figref}[1]{Figure~\ref{#1}}
     \newcommand{\tabref}[1]{Table~\ref{#1}}
+    \newcommand{\coderef}[1]{Code Example~\ref{code:#1}}
+    \newcommand{\outref}[1]{Output~\ref{out:#1}}
 
     % ------------------- colors -------------------
     \definecolor{darkgreen}{rgb}{0.0, 0.5, 0.0}
@@ -153,21 +157,45 @@
     % 1.3 should be fine
     \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
 
-	% ToDo counters
-	\usepackage{ifthen} %für whiledo-Schleife
-	\newcounter{todos}
-	\setcounter{todos}{0}
-	\newcounter{extends}
-	\setcounter{extends}{0}
-	\newcounter{drafts}
-	\setcounter{drafts}{0}
+        % ToDo counters
+        \usepackage{ifthen} %für whiledo-Schleife
+        \newcounter{todos}
+        \setcounter{todos}{0}
+        \newcounter{extends}
+        \setcounter{extends}{0}
+        \newcounter{drafts}
+        \setcounter{drafts}{0}
+        \newcounter{code}
+        \setcounter{code}{0}
+        \newcounter{outputs}
+        \setcounter{outputs}{0}
 
-	% ------------------- marker commands -------------------
+        % ------------------- marker commands -------------------
     % ToDo command
-    \newcommand{\todo}[1]{\textbf{\textcolor{red}{(TODO: #1)}}\refstepcounter{todos}\label{todo \thetodos}}
-	\newcommand{\extend}[1]{\textbf{\textcolor{darkgreen}{(EXTEND: #1)}}\refstepcounter{extends}\label{extend \theextends}}
-	% Lighter color to note down quick drafts
-	\newcommand{\draft}[1]{\textbf{\textcolor{NavyBlue}{(DRAFT: #1)}}\refstepcounter{drafts}\label{draft \thedrafts}}
+        \newcommand{\todo}[1]{\textbf{\textcolor{red}{(TODO: #1)}}\refstepcounter{todos}\label{todo \thetodos}}
+        \newcommand{\extend}[1]{\textbf{\textcolor{darkgreen}{(EXTEND: #1)}}\refstepcounter{extends}\label{extend \theextends}}
+        % Lighter color to note down quick drafts
+        \newcommand{\draft}[1]{\textbf{\textcolor{NavyBlue}{(DRAFT: #1)}}\refstepcounter{drafts}\label{draft \thedrafts}}
 
-	% microtype with lmodern, see https://tex.stackexchange.com/questions/75305/microtype-warning-with-lmodern-package-and-koma-script
-	%\DeclareMicrotypeAlias{lmss}{cmr}
+        % microtype with lmodern, see https://tex.stackexchange.com/questions/75305/microtype-warning-with-lmodern-package-and-koma-script
+        %\DeclareMicrotypeAlias{lmss}{cmr}
+
+        \newenvironment{codeboxed}[1]
+                {\nobreak\nobreak\begin{center}#1\\[1ex]\begin{tabular}{|p{\textwidth}|}\hline}
+                {\\\hline\end{tabular}\end{center}}
+
+        % (Rust) Code Environment has two variables, the filename and some label.
+        \newcommand{\code}[2]{\refstepcounter{code}\label{code:#2}\begin{codeboxed}{Code Example \thecode}
+            \inputminted[linenos,fontsize=\small]{Rust}{code/#1}\end{codeboxed}}
+
+        \newcommand{\console}[2]{\refstepcounter{outputs}\label{out:#2}\begin{codeboxed}{Output Nr. \theoutputs}
+        {\small\verbatiminput{code/#1}}\end{codeboxed}}
+
+        % \newenvironment{coutput}[1]
+        %     {\refstepcounter{outputs}\label{out:#1}\begin{codeboxed}{Output Nr. \theoutputs}\small}
+        %     {\end{codeboxed}\normalsize}
+
+
+        % \newcommand{\todo}[1]{\textbf{\textcolor{red}{(TODO: #1)}}\refstepcounter{todos}\label{todo \thetodos}}
+
+
