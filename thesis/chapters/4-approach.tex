@@ -17,7 +17,7 @@ headers, and extensive support from Pythons package manager \verb|pip| and
 common packaging tools like \verb|setuptools|. For Rust, as it turns out, the
 support using Python headers is not as easy, and the support for building packages
 from Pythons side is early at best. Both of this will be covered in
-\secref{sec:integration} and \secref{sec:api} respectively. 
+\secref{sec:integration} and \secref{sec:api} respectively.
 
 % \draft{Possible to improve memory? Testing Parallelization(?) Integration How? Describe Python to C/C++ short}
 
@@ -28,10 +28,8 @@ from Pythons side is early at best. Both of this will be covered in
 
 \section{Iterative Correction and Eigenvector decomposition (Algorithm)}\label{sec:ICE}
 
-In the following the algorithm as defined in the supplementary material to
-\cite{imakaev2012iterative} will be cited.
-
-The Algorithm was proposed by Imakaev et al. 2012 \cite{imakaev2012iterative}
+The Algorithm was proposed by Imakaev et al. 2012 \cite{imakaev2012iterative},
+and is described in detail in their supplementary material.
 
 The goal is to obtain the the vector of biases $B_i$ and the `true' contact map
 $T_{ij}$ with their relative contact probabilities. This is done by explicitly
@@ -215,7 +213,7 @@ here\footnote{\url{https://www.rust-lang.org/}, accessed 2019-06-26}.
 
 
 \newpage
-\subsection{Examples}\label{sec:examples}
+\subsection{Code Examples}\label{sec:examples}
 
 \textbf{Demonstrating Ownership and Borrowing:}
 
@@ -236,6 +234,7 @@ However it is fine to print x first, and modify \verb|v| afterwards. In
 adding the second element of \verb|v| (as shown in \coderef{own2}).
 
 \code{code_ownership2.rs}{own2}
+
 \console{output2.txt}{out2}
 
 \newpage
@@ -324,6 +323,7 @@ algorithm, being only a tiny subset of the features provided by the
 \verb|scipy| implementation.
 
 
+
 \subsection{Comparing Rust and Python}\label{sec:rustvspython}
 
 Rust and Python are two quite different programming languages, a direct
@@ -338,14 +338,8 @@ errors and library misuse. For Rust, the compiler provides strong guarantees,
 requiring more development time up front but less to fix bugs.
 
 
+
 \subsection{Comparing Rust with C/C++}\label{sec:rustvscc++}
-
-
-The following table was done with information from the benchmarksgame comparing Rust with
-C\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust.html},
-accessed 2019-06-26}, and
-C++\footnote{\url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust-gpp.html},
-accessed 2019-06-26}. Runtime in seconds.
 
 \begin{table}[ht]
     \ra{1.3}
@@ -363,33 +357,124 @@ accessed 2019-06-26}. Runtime in seconds.
     regex-redux & \textbf{1.46} & 2.43 & 1.82 \\ \midrule
     Fastest in: & 3/10 & 4/10 & 4/10 \\
 \end{tabular}
+    \caption[Runtime Comparison Between Rust/C/C++]{\textbf{Comparing Runtime speeds.} Runtime measured in seconds. Numbers from the benchmarksgame\footnotemark.}
+    \label{tab:runtime}
 \end{table}
 
-Memory usages behaves alike. This means that Rust, C and C++ are at least
-similar in regards to computational resource requirenments, even when
-ignoing everything else.
+\footnotetext{
+Rust comparison with C: \url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust.html},
+and with C++: \url{https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust-gpp.html},
+both accessed 2019-06-26 }
 
-From a developer standpoint however, Rust has consistently been the `most loved
-Language` \cite{rustloved} for the last four years, whereas C and C++ both rank
-considerably high in the category `dreaded` \cite{rustloved}. Reasons why Rust
-may be such a loved language are listed in \secref{sec:RustAdvantages}. Due to
-the barely integrated external static analysis done for C/C++-code, both C and
-C++ have higher developer time needs, and are more prone to memory bugs
-\cite{pronememory}.
+As can be seen in \tabref{tab:runtime}, the runtime of Rust is very close to
+that of C and C++ (as is memory, not compared here). Both C and C++ are
+currently much more widely used, but there are already voices calling to
+replace C++ with
+Rust\footnote{\url{https://hub.packtpub.com/will-rust-replace-c/}, accessed
+2019-06-26}.
 
 
-% \todo{rewrite on abstract niveau for computer scientists}
+Resource needs may be close to the same, but from a developer standpoint Rust
+has consistently been the `most loved Language` \cite{rustloved} for the last
+four years, whereas both C and C++ both rank considerably high in the category
+`dreaded` \cite{rustloved}. Reasons why Rust may be such a loved language are
+listed in \secref{sec:RustAdvantages}. Due to the barely integrated external
+static analysis done for C/C++-code, both C and C++ are more prone to memory
+bugs \cite{pronememory}, thus having higher developer time requirenments.
 
-% Rust does not have a garbage collector, but frees memory the moment it is not
-% needed anymore, which it knows through the Lifetime every variable and
-% reference (pointer) has. Ownership prevents you from modifying data structures
-% in unintended ways, and combined with lifetimes, preventing almost all
-% segfaults. Also, it runs blazingly fast, comparable to
 
+
+
+
+\subsection{Choosing the right API to call Rust from Python}\label{sec:api}
+
+There are three main ways to execute Rust code from Python. In the following,
+the feasability of them for this thesis is evaluated. And compared in
+\tabref{apis}.
+
+\begin{stretchpars}
+\textbf{rust-cpython:} One common way is rust-cpython. This library requires
+Rust 1.25 or higher, the current stable version at the time of writing is 1.33.
+Rust-cpython grants access to the Python gil (global interpreter lock) with
+which Python code can be evaluated and Python objects modified. The resulting
+library can easily be
+\end{stretchpars}
+
+\code{code_cpython.rs}{cpython}
+
+imported into Python after renaming the compiled library. Native Rust code
+requires some wrapping first, as can be seen in \coderef{cpython}. The code is
+taken from the \verb|rust-cpython| example which can be found
+here\footnote{\url{https://github.com/dgrunwald/rust-cpython}, accessed
+2019-06-26}. \todo{correctly align!!}
+
+This wrapping, though quite common and based on the Python C-API makes
+it hard to write purely idiomatic Code in Rust. Since Python is directly
+affected, the interactions with Python need to be considered while writing
+Rust-Code, including the affecting of memory Python is managing. This was
+deemed too much complexity overhead.
+
+
+\textbf{pyO3:} Another common approach is using the \verb|pyO3|-library, which
+started off as a fork of rust-cpython, but has since seen drastic changes.
+However, as \verb|pyO3| continues to use unstable Rust features, it is only
+possible to compile this library with the nightly version of the compiler. Even
+though most unstable features have been stabilizied by now,
+Specialization\footnote{\url{https://github.com/rust-lang/rust/issues/31844},
+accessed 2019-06-26} is still missing several steps, as it is not sound
+regarding the type system yet, and not all questions are answered. Nightly
+features are subject to tremendous change, making this option a questionable at
+best for this implementation, as the goal is to have a stable implementation.
+
+
+\textbf{Generate dylib:} The described way in the official rust docs is to
+create a \verb|dylib| and import the resulting library in the respective
+language
+dynamically\footnote{\url{https://doc.rust-lang.org/1.2.0/book/rust-inside-other-languages.html}, \\
+accessed 2019-06-26}.  Here is no renaming necessary, but the
+communication between Rust and Python is more low-level. The main wrapper
+is on the side of Python, transforming Arguments to pointers and
+C-Representations. Rust needs to export an interface usable from C, which can
+be done by a simple \verb|extern|. Rust has the \verb!\#[no_mangle]! and
+\verb!\#[repr(C)]! (procedural) macros, preventing the compiler to mangle
+(renaming of functions) and guaranteeing the representation in the memory
+layout to be as it would be in C, when they need to be exported.
+
+
+\begin{table}[ht]
+    \ra{1.3}
+\begin{tabular}{@{}lllr@{}}
+    \textbf{API Comparison} & rust-cpython & pyO3 & dylib \\
+    \midrule
+    any renaming needed             & Yes    & Yes & \textbf{No} \\
+    stable Rust                     & \textbf{Yes}    & No  & \textbf{Yes} \\
+    platform-specific compilation flags & Yes & Yes & \textbf{No} \\
+    using Memory managed by Python  & Yes    & Yes & \textbf{Optional} \\
+    additional implementation effort                 & Medium & Medium & \textbf{Low} \\
+    difficulty of creating python packages        & \textbf{Easy}\footnotemark  & \textbf{Easy}\footnotemark[\value{footnote}] & Normal \\
+    \midrule
+    Good in: & 2/6 & 1/6 & \textbf{5/6} \\
+\end{tabular}
+    \caption[Comparison of different Interfaces between Rust and Python]{\textbf{Comparing different API interfaces.}}
+    \label{tab:interfaces}
+\end{table}
+
+\footnotetext{This was not tested, but pyo3-pack is a zero-configuration
+package builder, \url{https://github.com/PyO3/pyo3-pack}, accessed 2019-06-26.}
+
+When comparing the available options as can be seen in \tabref{tab:interfaces},
+dylib appers to be the best option. Thus, it got selected.
+
+
+% table things: renaming necessary, stable rust, using external memory, more effort for api
 
 
 \subsection{Integration of Rust in Python}\label{sec:integration}
 
+
+The integration of both C and C++ in Python are considerably straightforward
+and well-supported. Even though Rust is considerably new, a multitude of option
+exists. For this application however, None offered what was needed specifically.
 
 \todo{interface from python to C but missing to RUST}
 
@@ -405,13 +490,7 @@ For Rust and Python to interact, there are of course several ways. Those
 integrating a library written in Rust to allow them to be called from Python
 will be described in depth in \secref{sec:api}.
 
-
-% \todo{restructure: Introducing Rust (4.3), Advantages Rust (4.3.1), Disadvantages Rust (4.3.2), Differences Rust Python (4.3.3)}
-
-% \todo{move integration of Rust to 4.4}
-
-% \todo{move 'Operation' to 'Using this implementation' in 4.5}
-
+\draft{building process: several options, milksnake was used here}
 
 
 
@@ -477,68 +556,12 @@ will be described in depth in \secref{sec:api}.
 % \todo{update packages!!}
 
 
-% % The approach usually starts with the problem definition and continues with what you have done. Try to give an intuition first and describe everything with words and then be more formal like `Let $g$ be ...'.
-
-
-
-
-
-\subsection{Choosing the right API to call Rust from Python}\label{sec:api}
-
-% There are three main ways to execute Rust code from Python. In the following,
-% common techniques are investigated.
-
-% \draft{versioning is not that relevant}
-
-% One common way is rust-cpython. This library requires Rust 1.25 or higher
-% (current versions are 1.33/34/35 for stable/beta/nightly respectively).
-% Rust-cpython grants access to the python gil (global interpreter lock) with
-% which Python code can be evaluated and Python objects modified. The resulting
-% library (directly from compiled rust) can easily be imported into Python (but
-% needs to be renamed). Native Rust code requires some wrapping first, as shown
-% here:
-
-% \inputminted{Rust}{code_cpython.rs}
-
-% This kind of wrapping, though quite common and based on the Python C-API makes
-% it hard to write idiomatic Code in Rust. Also, since Python is directly
-% affected, the interactions with Python need to be considered while writing
-% Rust-Code. In computer science one does usually not intentionally strive for
-% complexity.
-
-% Another common approach is using the pyO3-library, which started off as a fork
-% of rust-cpython, but has since seen quite drastic changes. For example, its
-% using requires at least Rust version ‘1.30.0-nightly 2018-08-18’ (or, in the
-% newest version, ‘1.34.0-nightly 2019-02-06’). This is due to the usage of
-% unstable features, most of which have recently been able to be promoted to
-% stable. Unstable features are only available in the nightly toolchain.  Still
-% missing is Specialisation, which has at the time of writing still a long way to
-% go.  The library would also result in an easily importable (needs to be renamed
-% first, still) cdylib (same as rust-cpython). The still intermingled way of
-% writing the interface (certainly better but not by much compared to
-% rust-cpython) as well as the dependency on unstable nightly rust versions led
-% to the decision of not using it either.
-
-% The third way, that is actually been promoted in the official Rust docs, is to
-% generate a dylib and import that in python. No renaming necessary, but the
-% communication between Rust and Python is a bit more low-level. The main wrapper
-% is on the side of Python, transforming Arguments to Pointers and
-% C-Representations, whilst the Rust part needs to conform to C-practices, which
-% includes receiving a list by getting a pointer to the first element and the
-% length of it. Other than that, the Rust code has additional
-% \verb!\#[no_mangle]! and \verb!\#[repr(C)]!  (procedural) macros, preventing
-% the compiler to mangle (renaming of functions) and guaranteeing the
-% representation in the memory layout to be as it would be in C. Since like this
-% neither language depends on something only internal (or combinatorial), and
-% both just depend upon the ‘common, unchanging’ C-interface, this seems to be
-% the preferred way.
-
-% \draft{include a nice comparison table}
-
 % \newpage
 \section{General Approach}\label{sec:approach}
 
-% \todo{Introduce main approach}
+% % The approach usually starts with the problem definition and continues with what you have done. Try to give an intuition first and describe everything with words and then be more formal like `Let $g$ be ...'.
+
+\todo{Introduce main approach}
 
 % \draft{Steps: read papers, test communication between Python and Rust (API), implementing CSRMatrix, implementing algorithm, fixing bugs (in-memory), making buildable (milksnake, conda), further bug fixing, some testing, building test-suite and a lot of bugfixing, reading papers again, starting to write stuff down.}
 
@@ -670,7 +693,4 @@ will be described in depth in \secref{sec:api}.
 % \todo{add the integration of travis more}
 
 
-\todo{biggest points: Python to rust and how it worked, give code examples but not too much}
-\todo{presentation: 1/3 für jeden, 1/3 für betreuer + vom fach, 1/3 ich bin experte}
 \todo{Link to github repository}
-\todo{Tag der abgabe: Github aufräumen und Dokumentieren}
