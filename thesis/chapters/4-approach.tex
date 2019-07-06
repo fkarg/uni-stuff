@@ -194,9 +194,11 @@ is (in the code).
 Lifetimes are the simple concept of keeping track how long each variable and
 each reference is `alive', this is preventing the simple case of `variables
 going out of scope' and returning a pointer to it, but can do the same in much
-more complex environments. Non-Lexical-Lifetimes also work together with
-borrowing, resulting in variables returning their borrow before the end of the
-scope, as can be see in the first example of \secref{sec:examples}.
+more complex environments. Non-Lexical-Lifetimes\footnote{Introduced in version
+1.31 for the 2018-edition, and 1.36 for the 2015-edition. Before that, Code
+Example 2 would not compile.} also work together with borrowing, resulting in
+variables returning their borrow before the end of the scope, as can be see in
+the first example of \secref{sec:examples}.
 
 \textbf{Tooling:}\label{sec:tools}
 
@@ -245,7 +247,8 @@ to thread safety. In \coderef{par1} the function \verb|heavy_operation| is
 applied to every element in the list. For this, over the list \verb|somelist|
 is being iterated, and \verb|heavy_operation| mapped over by taking the values
 from the map-closure - Closures are comparable with lambda-functions from
-Python, in that they can take arguments and are unnamed functions. \\
+Python, in that they can take arguments and are unnamed functions.
+
 \coderef{par1} and \coderef{par2} demonstrate how easy it is to turn
 non-parallel code (\coderef{par1}) in parallelized code (\coderef{par2}).
 The difference here being the imported \verb|rayon::prelude::*| and instead of
@@ -463,10 +466,8 @@ layout to be as it would be in C, when they need to be exported.
 package builder, \url{https://github.com/PyO3/pyo3-pack}, accessed 2019-06-26.}
 
 When comparing the available options as can be seen in \tabref{tab:interfaces},
-dylib appers to be the best option. Thus, it got selected.
-
-
-% table things: renaming necessary, stable rust, using external memory, more effort for api
+dylib appers to be the best option. See \secref{sec:approach} for details
+regarding the communication between Python and Rust. \todo{link exact paragraph}
 
 
 \subsection{Integration of Rust in Python}\label{sec:integration}
@@ -474,24 +475,21 @@ dylib appers to be the best option. Thus, it got selected.
 
 The integration of both C and C++ in Python are considerably straightforward
 and well-supported. Even though Rust is considerably new, a multitude of option
-exists. For this application however, None offered what was needed specifically.
+exists, especially for both \verb|rust-cpython| and \verb|pyO3|. However, none
+fully offered what was needed for packaging Python with a dylib, and building
+it.
+\verb|setuptool-rust|\footnote{\url{https://github.com/PyO3/setuptools-rust},
+accessed 2019-06-26} sounded promising, but requires \verb|rust-cpython| or
+\verb|pyO3| bindings to work correctly. A different \verb|setuptools| extension
+called \verb|milksnake|\footnote{\url{https://github.com/getsentry/milksnake},
+accessed 2019-06-26}, a package specifically for the distribution of
+dynamically linked libraries with Python, promised to be capable of including
+both our library and the python-wrapper for it. This promise however turned out
+to be undocumented.
 
-\todo{interface from python to C but missing to RUST}
-
-\todo{Answer this question later!!}
-
-One of the main questions for this work was to find out if it is possible to
-integrate Rust in Python for the HiCExplorer, and evaluate the advantages
-versus disadvantages.
-
-\todo{rewrite}
-
-For Rust and Python to interact, there are of course several ways. Those
-integrating a library written in Rust to allow them to be called from Python
-will be described in depth in \secref{sec:api}.
-
-\draft{building process: several options, milksnake was used here}
-
+The implementation now uses \verb|milksnake| to resolve depencies like the
+not-yet compiled library, but the setuptools mechanisms for including the
+library itself and the Python wrapper.
 
 
 
