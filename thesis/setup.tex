@@ -180,9 +180,14 @@
         % microtype with lmodern, see https://tex.stackexchange.com/questions/75305/microtype-warning-with-lmodern-package-and-koma-script
         %\DeclareMicrotypeAlias{lmss}{cmr}
 
+
+        \newenvironment{stretchpars}
+            {\par\setlength{\parfillskip}{0pt}}
+            {\par}
+
         \newenvironment{codeboxed}[1]
-                {\nobreak\nobreak\begin{center}#1\\[1ex]\begin{tabular}{|p{\textwidth}|}\hline}
-                {\\\hline\end{tabular}\end{center}}
+                {\begin{minipage}{\linewidth}\begin{center}#1\\[1ex]\begin{tabular}{|p{\textwidth}|}\hline}
+                {\\\hline\end{tabular}\end{center}\end{minipage}}
 
         % (Rust) Code Environment has two variables, the filename and some label.
         \newcommand{\code}[2]{\refstepcounter{code}\label{code:#2}\begin{codeboxed}{Code Example \thecode}
