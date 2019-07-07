@@ -130,7 +130,7 @@ it is imperative, procedural, generic and functional.
 
 \subsection{Language Features}\label{sec:RustFeatures}
 
-\textbf{Syntax:}\label{sec:syntax}
+\paragraph{Syntax:}\label{sec:syntax}
 The concrete syntax seems similar to C/C++ (curly braces, function signatures),
 however it is more similar to that of ML or Haskell. A particular example for
 this case are type classes called traits here, similar to C++ templates but
@@ -138,7 +138,7 @@ inspired from Haskell, supporting polymorphism and generic types. Generic
 parameters can be constraints, by requiring that generic type to implement a
 certain Trait.
 
-\textbf{Memory safety:}\label{sec:memsafe}
+\paragraph{Memory safety:}\label{sec:memsafe}
 Rust is designed to be memory safe, and does not permit dangling pointers, null
 pointers, data races in safe code, or usage of uninitialized variables. In case
 a \verb|Null| is needed, the Option-type is provided. Thus, the compiler can
@@ -155,7 +155,7 @@ borrow-checker.
 % also introduces added syntax to manage lifetimes, and the compiler reasons
 % about these through its borrow checker.
 
-\textbf{Memory management:}\label{sec:memmanage}
+\paragraph{Memory management:}\label{sec:memmanage}
 Rust does not have a garbage collector, instead, the resource acquisition is
 initialization (RAII) convention is used, with optional reference counting.
 Resource management is deterministic with very little overhead, favoring stack
@@ -174,14 +174,14 @@ guaranteed, limiting possible undefined behaviour tremendously.
 % time by the borrow checker, preventing dangling pointers and other forms of
 % undefined behavior.
 
-\textbf{Ownership:}\label{sec:ownership}
+\paragraph{Ownership:}\label{sec:ownership}
 In Rust, all values have a unique owner, and the scope of the value is the same
 as the owners. Immutable references can be passed using \verb|&T|, mutable
 references by \verb|&mut T|. Pass by value works by passing \verb|T|. Only
 \textbf{one} mutable reference can exist at any point, or any number of
 immutable ones. This is enforced at compile-time.
 
-\textbf{Borrowing:}\label{sec:borrowing}
+\paragraph{Borrowing:}\label{sec:borrowing}
 Borrowing results directly from the concept of ownership. As mentioned, only one mutable
 borrow (reference) can happen at a time, however that borrowing variable can
 further borrow it to other variables or functions. The number of immutable
@@ -190,7 +190,7 @@ modifying part of the memory. This is necessary to guarantee memory safety, as
 only one mutable reference can write to it at any point in time, wherever that
 is (in the code).
 
-\textbf{Lifetimes:}\label{sec:lifetimes}
+\paragraph{Lifetimes:}\label{sec:lifetimes}
 Lifetimes are the simple concept of keeping track how long each variable and
 each reference is alive, this is preventing the simple case of variables
 going out of scope but returning a pointer to it. The compiler can keep track
@@ -201,7 +201,7 @@ also work together with borrowing, resulting in variables returning their
 borrow before the end of the scope, as can be see in the first example of
 \secref{sec:examples}.
 
-\textbf{Tooling:}\label{sec:tools}
+\paragraph{Tooling:}\label{sec:tools}
 
 The reason Rust is loved \cite{rustloved} this much is at least partly due to
 tooling. This includes the dedicated package manager \verb|cargo|, the linter
@@ -218,7 +218,7 @@ here\footnote{\url{https://www.rust-lang.org/}, accessed 2019-06-26}.
 \newpage
 \subsection{Code Examples}\label{sec:examples}
 
-\textbf{Demonstrating Ownership and Borrowing:}
+\paragraph{Demonstrating Ownership and Borrowing:}
 
 By executing \coderef{own1} the output from \outref{out1} will be returned.
 
@@ -241,7 +241,7 @@ adding the second element of \verb|v| (as shown in \coderef{own2}).
 \console{output2.txt}{out2}
 
 \newpage
-\textbf{Demonstrating Ease of Parallelization:}\label{demo:par}
+\paragraph{Demonstrating Ease of Parallelization:}\label{demo:par}
 
 Due to the strong guarantees from the compiler, Memory Safety can be extended
 to thread safety. In \coderef{par1} the function \verb|heavy_operation| is
@@ -265,7 +265,7 @@ The difference here being the imported \verb|rayon::prelude::*| and instead of
 
 % Two parts, one, language, second, for this use-case
 
-\textbf{In General:} As seen in \secref{sec:RustFeatures} and
+\paragraph{In General:} As seen in \secref{sec:RustFeatures} and
 \secref{sec:examples}, Rust has several high-level features ready to use,
 supporting the developer tremendously. Strong compiler guarantees allow easy
 parallelization and using Rust libraries without worry, since the compiler will
@@ -276,7 +276,7 @@ libraries which depend upon each other, instead of few big ones. Dependencies
 upon one hundred Rust libraries are not uncommon, and the strong guarantees
 from the compiler enforce correct usage.
 
-\textbf{For this project:} Even though high modularity exists, the Rust
+\paragraph{For this project:} Even though high modularity exists, the Rust
 ecosystem is comparatively young. meaning even though many libraries exist,
 they are not as complete as their Python/C/C++ counterparts. Since no
 implementation of CSRMatrix (compressed sparse row matrix) having the
@@ -311,7 +311,7 @@ the elapsed computation time.
 
 % Two parts again, one, language, second, for this use-case
 
-\textbf{In General:} General disadvantages of Rust include the young ecosystem
+\paragraph{In General:} General disadvantages of Rust include the young ecosystem
 with slightly less diversity, or too much feature-incomplete diversity. The
 steep learning curve in the beginning, needs to be mentioned, since Rusts
 features cannot be selectively activated. Compared to languages like GO, Rust
@@ -322,7 +322,7 @@ userbase is still growing, and many features frequently used in other
 languages, such as \verb|async| or specializations, are not yet available for
 users of the stable compiler.
 
-\textbf{For this project:} In particular, the unavailability of a CSRMatrix
+\paragraph{For this project:} In particular, the unavailability of a CSRMatrix
 implementation with the needed features is concerning. Thus, the current
 implementation does not have any more features than are needed for the current
 algorithm, being only a tiny subset of the features provided by the
@@ -399,7 +399,7 @@ the feasability of them for this thesis is evaluated. And compared in
 \tabref{apis}.
 
 \begin{stretchpars}
-\textbf{rust-cpython:} One common way is rust-cpython. This library requires
+\paragraph{rust-cpython:} One common way is rust-cpython. This library requires
 Rust 1.25 or higher, the current stable version at the time of writing is 1.33.
 Rust-cpython grants access to the Python gil (global interpreter lock) with
 which Python code can be evaluated and Python objects modified. The resulting
@@ -421,7 +421,7 @@ Rust-Code, including the affecting of memory Python is managing. This was
 deemed too much complexity overhead.
 
 
-\textbf{pyO3:} Another common approach is using the \verb|pyO3|-library, which
+\paragraph{pyO3:} Another common approach is using the \verb|pyO3|-library, which
 started off as a fork of rust-cpython, but has since seen drastic changes.
 However, as \verb|pyO3| continues to use unstable Rust features, it is only
 possible to compile this library with the nightly version of the compiler. Even
@@ -433,7 +433,7 @@ features are subject to tremendous change, making this option a questionable at
 best for this implementation, as the goal is to have a stable implementation.
 
 
-\textbf{Generate dylib:} The described way in the official rust docs is to
+\paragraph{Generate dylib:} The described way in the official rust docs is to
 create a \verb|dylib| and import the resulting library in the respective
 language
 dynamically\footnote{\url{https://doc.rust-lang.org/1.2.0/book/rust-inside-other-languages.html}, \\

@@ -64,8 +64,8 @@ questionable, it is unclear if these are actual, spatially close points, or if
 it simply is a technical error or a randomly happened interaction.
 
 However, a basic but strong assumption about the structure of the genome can be
-made, which is that every location has the same amount of interactions (with
-other locations) as every other location. The data does not show this due to
+made, which is that every location has the same amount of interactions with
+other locations as every other location. The data does not show this due to
 the several aforementioned inaccuracies. Algorithms such as ICE
 \cite{imakaev2012iterative} (Iterative Correction and Eigenvector
 decomposition, \secref{sec:ICE}) or KR \cite{knight2013fast} (Knight-Ruiz,
@@ -106,7 +106,7 @@ decomposition, \secref{sec:ICE}) or KR \cite{knight2013fast} (Knight-Ruiz,
 \section{Task Definition}\label{sec:task}
 
 In the three-dimensional space of a cell the DNA forms a structure that is
-scrambled all around the place. Obviously, there exist many points of contact
+distributed all over the place. Obviously, there exist many points of contact
 in the DNA, they even form noticable structures, such as DNA loops. Many
 measured points of contact are random interactions or measurement errors that
 need to be corrected. For this task, a Python implementation exists but is
@@ -114,10 +114,11 @@ limited for high resolution data due to high memory usage. This thesis aims to
 reimplement a more resource efficient method in Rust.
 
 The main goals include testing the integration between Rust, a systems
-programming language recently gaining in popularity (more information in
+programming language recently gaining in popularity (details in
 \secref{sec:Rust}), and Python, how easy it is to let both of these languages
-interact, and how it compares to the other two current implementations (ICE in
-Python and KR in C++, more information can be found in \secref{sec:python} and
-\secref{sec:KR} respectively). The overall goal is to try to implement a more
-resource efficient version, able to make effective use of parallel computing.
+interact, and how it compares to the other two current implementations, ICE in
+Python and KR in C++. More information about them can be found in
+\secref{sec:python} and \secref{sec:KR} respectively. The overall goal is to
+try to implement a more resource efficient version, able to make effective use
+of parallel computing.
 

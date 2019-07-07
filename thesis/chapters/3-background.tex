@@ -2,12 +2,12 @@
 
 \input{figures/background/Chromatin_Structures}
 
-Chromatin usually describes different levels of how DNA organizes itself. The
-well-known double-helix is only the lowest of several structural layers (major
-chromatin structures are shown in \figref{fig:chromatin}). Looking at it from the
-outside (highest structural layer), DNA is scrambled all around the place. With
-the help of chromosome conformation technologies spatial proximity can be
-visualized.
+Chromatin describes different levels of DNA organization. The well-known
+double-helix is only the lowest of several structural layers (major chromatin
+structures are shown in \figref{fig:chromatin}). Looking at it from the outside
+i.e. the highest structural layer, DNA is organized using different scaffolding
+proteins. With the help of chromosome conformation technologies the actual
+three dimensional structures can be confirmed.
 
 
 \input{figures/background/figChromosome_conformation_techniques}
@@ -20,7 +20,7 @@ As can be seen in \figref{fig:cct}, the first steps, crosslinking, digestion,
 ligation and the reversal of crosslinking, are the same for all 3-C-based methods.
 
 
-\textbf{Cross-linking DNA}\label{sec:crosslinking}
+\paragraph{Cross-linking DNA:}\label{sec:crosslinking}
 The first step is to cross-link DNA strands that are close to each other
 spatially (see \figref{fig:cct} or \figref{fig:HiC} for reference). This is done by adding
 formaldehyde, which connects (links) sufficiently close strands together.
@@ -31,62 +31,59 @@ specifically controlled, so only regions near each other are connected, but
 not necessarily all regions that are known to be spatially close.
 
 
-\textbf{Digestion}\label{sec:digestion}
+\paragraph{Digestion:}\label{sec:digestion}
 The next step is cutting the DNA apart in intervals. For this,
-restriction-enzymes are used (specifically restriction endonuclease). Commonly
-used enzymes for this are DpnII, NcoI or HindIII
-\cite{lieberman2009comprehensive}. This will result in a lot of cross-linked
-fragments, as well as not-cross-linked ones.
+restriction-enzymes i.e. restriction endonuclease are used. Commonly used
+enzymes for this are DpnII, NcoI or HindIII \cite{lieberman2009comprehensive}.
+This will result in a lot of cross-linked fragments, as well as
+not-cross-linked ones.
 
 
-\textbf{Ligation}\label{sec:ligation}
-After reducing the concentration of fragments, DNA ligase is added, to ligate
-(weld together) dangling fragment ends. For this a reduction in concentration
-is done since mostly fragments close together are ligated, it is intend to
-ligate fragments linked together by formaldehyde.
-
+\paragraph{Ligation:}\label{sec:ligation}
+After reducing the concentration of fragments, DNA ligase is added, to ligate,
+i.e. weld together, dangling fragment ends. For this a reduction in
+concentration is done, resulting in favouring the ligation of fragments linked
+together by fomaldehyde.
 In HiC, Biotin is added in this step to mark ligated fragments. This allows
 filtering out most fragments that have not been ligated in a later step.
 
 
-% Source: http://www.protocol-online.org/biology-forums/posts/10475.html
-\textbf{Reverse Cross-links}\label{sec:revcrosslink}
+\paragraph{Reverse Cross-links:}\label{sec:revcrosslink}
 Adding a high concentration of salt for some time will reverse the
-cross-linking through formaldehyde, leaving us with our two originally
-spatially close fragments ligated and with a biotin-marker.
+cross-linking through formaldehyde, leaving the originally spatially close
+fragments ligated and with a biotin-marker in the case of Hi-C.
+The reversal of cross-links results in DNA fragments with parts from two
+regions that may have been far away from each other.
 
-Note that at this point, the fragments are too long to sequence them.
-They are ligated fragments of around 8000 base-pairs, but most current
-sequencing methods can only deal with sequence lengths of a few hundred
-base-pairs at most.
-
+Note that at this point, the fragments are too long for sequencing. Most
+current sequencing methods can only sequence fragments with a few hundred base
+pairs length, but the ligated fragments are usually longer than that.
+% This is dealt with differently in the different methods.
 
 
 
 \subsection{3-C}\label{sec:3C}
 
-In 2002 Dekker et al. \cite{dekker2002capturing} developed a method test for interactions
-between a single pair of genomic loci. Candidates for promoter-enhancer
-interactions can be tested using this method.
-After the reversal of cross-links (\secref{sec:revcrosslink}), the fragments
-\extend{what is (semi-)quantitive PCR?}
-
+In 2002 Dekker et al. \cite{dekker2002capturing} developed a method to test for
+interactions between a single pair of genomic loci. Candidates for
+promoter-enhancer interactions can be tested using this method.
+In the original method, (semi-) quantitive PCR is used for sequencing, which
+has been superseded by modern sequencing methods.
 
 
 \subsection{4-C}\label{sec:4C}
 
-Chromosome conformation capture-on-chip (4C) was developed in 2006 by Simonis,
-Zhao et al. \cite{simonis2006nuclear} \cite{zhao2006circular}, a method to test
-interactions between one genomic loci to all others. This is done by adding a
-second ligation-step (see \secref{sec:ligation}, \figref{fig:cct} for
-reference) creating loops from the DNA fragments and applying inverse-PCR
-(method to specifically amplify the unknown parts when beginning and ending
-parts are known, for this the loops are cut within the known section).
-Afterwards, this may get sequenced. Due to inverse-PCR knowledge about both
-interacting chromosomal regions is not needed. Results are highly reproducible
-for close regions \draft{find source for this}.
-
-\extend{What is a microarray?}
+Chromosome conformation capture-on-chip (4C) was developed in 2006 by Simonis
+et al., Zhao et al. \cite{simonis2006nuclear} \cite{zhao2006circular}, a method
+to test interactions between one genomic location with all others. This is done
+by adding a second ligation-step (see \secref{sec:ligation} or \figref{fig:cct}
+for reference) creating loops from the DNA fragments and applying inverse-PCR.
+This is a method to specifically amplify unknown sequence parts when both
+beginning and ending parts are known. For this the loops are cut within the
+known section, followed by sequencing. Microarray describes a sequencing
+method no longer used. Since due to inverse-PCR knowledge about both
+interacting chromosomal regions is not needed, results are highly reproducible
+for close regions \todo{find source for this}.
 
 
 
@@ -98,7 +95,8 @@ for interactions with itself, such region being no bigger than a megabase. This
 is done by adding universal primers to all fragments from such a region.
 5-C has relatively low coverage, but is useful to analyse complex interactions
 of specified loci of interest. Genome-wide interaction measuring would require
-millions of 5C primers, making this method unsuitable.
+millions of 5C primers, making this method unsuitable. Microarray describes a
+sequencing method no longer used.
 
 
 
@@ -114,20 +112,20 @@ to Hi-C is the following sequence of sonication, pulldown (filtering based on
 biotin markers) and sequencing.
 
 
-\textbf{Sonication}\label{sec:sonication}
+\paragraph{Sonication:}\label{sec:sonication}
 Putting the ligated DNA-fragments under the influence of ultrasonic waves is
 breaking them apart in much shorter fragments (due to long sequences not being
 able to absorb frequent shocks well), shearing them apart in sequences short
 enough to enable sequencing.
 
 
-\textbf{Filtering and Removal of Biotin}\label{sec:pulldown}
+\paragraph{Filtering and Removal of Biotin:}\label{sec:pulldown}
 Pulling-down of fragments marked with biotin leaves only those marked with
 Biotin during earlier ligation (see \secref{sec:ligation}). Subsequently the
 marker is removed, as it would hinder further sequencing.
 
 
-\textbf{Sequencing}\label{sec:sequencing}
+\paragraph{Sequencing:}\label{sec:sequencing}
 Sequencing, short for DNA sequencing, describes processes of measuring a DNA
 sequence. There are several techniques for doing this, most use PCR (Polymerase
 Chain Reaction) before or while sequencing, which duplicating fragments
