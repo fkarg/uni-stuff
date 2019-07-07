@@ -28,8 +28,9 @@ from Pythons side is early at best. Both of this will be covered in
 
 \section{Iterative Correction and Eigenvector decomposition (Algorithm)}\label{sec:ICE}
 
-The Algorithm was proposed by Imakaev et al. 2012 \cite{imakaev2012iterative},
-and is described in detail in their supplementary material.
+The ICE algorithm was proposed by Imakaev et al. 2012
+\cite{imakaev2012iterative}, described in detail in their supplementary
+material, and defines an iterative correction approach as follows.
 
 The goal is to obtain the the vector of biases $B_i$ and the true contact map
 $T_{ij}$ with their relative contact probabilities. This is done by explicitly
@@ -109,13 +110,13 @@ to $T_{ij}$.
 \subsection{History}\label{sec:RustHistory}
 
 Rust started out 2006 as a personal project of Graydon Hoare, a Mozilla
-employee \cite{rustbegin}. Mozilla started sponsoring in 2009 \cite{rustbegin}.
-The first compiler was written in OCaml, but 2011 rustc was able to compile
-itself with the llvm backend \cite{rustcompile}. Starting with Rust 1.0, which
-itself got released on May 15, 2015 \cite{rustversions}, there was a new stable
-point version every six weeks \cite{rustversions}. Early on, Rust had frequent
-breaking changes \cite{rustchanges}, recently barely anyone had breakage when
-updating \cite{rustupdate}.
+employee \cite{rustbegin}. The Mozilla foundation started sponsoring in 2009
+\cite{rustbegin}. The first compiler was written in OCaml, but 2011 rustc was
+able to compile itself with the llvm backend \cite{rustcompile}. Starting with
+Rust 1.0, which itself got released on May 15, 2015 \cite{rustversions}, there
+was a new stable point version every six weeks \cite{rustversions}. Early on,
+Rust had frequent breaking changes \cite{rustchanges}, recently barely anyone
+had breakage when updating \cite{rustupdate}.
 
 \subsection{Categorization}\label{sec:RustCategory}
 
@@ -215,7 +216,6 @@ here\footnote{\url{https://www.rust-lang.org/}, accessed 2019-06-26}.
 
 
 
-\newpage
 \subsection{Code Examples}\label{sec:examples}
 
 \paragraph{Demonstrating Ownership and Borrowing:}
@@ -240,7 +240,6 @@ adding the second element of \verb|v| (as shown in \coderef{own2}).
 
 \console{output2.txt}{out2}
 
-\newpage
 \paragraph{Demonstrating Ease of Parallelization:}\label{demo:par}
 
 Due to the strong guarantees from the compiler, Memory Safety can be extended
