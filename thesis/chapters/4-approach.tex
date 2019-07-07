@@ -31,7 +31,7 @@ from Pythons side is early at best. Both of this will be covered in
 The Algorithm was proposed by Imakaev et al. 2012 \cite{imakaev2012iterative},
 and is described in detail in their supplementary material.
 
-The goal is to obtain the the vector of biases $B_i$ and the `true' contact map
+The goal is to obtain the the vector of biases $B_i$ and the true contact map
 $T_{ij}$ with their relative contact probabilities. This is done by explicitly
 solving the system of the following two equations:
 
@@ -133,7 +133,7 @@ it is imperative, procedural, generic and functional.
 \textbf{Syntax:}\label{sec:syntax}
 The concrete syntax seems similar to C/C++ (curly braces, function signatures),
 however it is more similar to that of ML or Haskell. A particular example for
-this case are type classes called ``traits'' here, similar to C++ templates but
+this case are type classes called traits here, similar to C++ templates but
 inspired from Haskell, supporting polymorphism and generic types. Generic
 parameters can be constraints, by requiring that generic type to implement a
 certain Trait.
@@ -141,7 +141,7 @@ certain Trait.
 \textbf{Memory safety:}\label{sec:memsafe}
 Rust is designed to be memory safe, and does not permit dangling pointers, null
 pointers, data races in safe code, or usage of uninitialized variables. In case
-a `null' is needed, the Option-type is provided. Thus, the compiler can
+a \verb|Null| is needed, the Option-type is provided. Thus, the compiler can
 guarantee the validity of all references at compile time using its
 borrow-checker.
 
@@ -192,13 +192,14 @@ is (in the code).
 
 \textbf{Lifetimes:}\label{sec:lifetimes}
 Lifetimes are the simple concept of keeping track how long each variable and
-each reference is `alive', this is preventing the simple case of `variables
-going out of scope' and returning a pointer to it, but can do the same in much
-more complex environments. Non-Lexical-Lifetimes\footnote{Introduced in version
-1.31 for the 2018-edition, and 1.36 for the 2015-edition. Before that, Code
-Example 2 would not compile.} also work together with borrowing, resulting in
-variables returning their borrow before the end of the scope, as can be see in
-the first example of \secref{sec:examples}.
+each reference is alive, this is preventing the simple case of variables
+going out of scope but returning a pointer to it. The compiler can keep track
+of this in even much more complex environments.
+Non-Lexical-Lifetimes\footnote{Introduced in version 1.31 for the 2018-edition,
+and 1.36 for the 2015-edition. Before that, Code Example 2 would not compile.}
+also work together with borrowing, resulting in variables returning their
+borrow before the end of the scope, as can be see in the first example of
+\secref{sec:examples}.
 
 \textbf{Tooling:}\label{sec:tools}
 
@@ -316,9 +317,10 @@ steep learning curve in the beginning, needs to be mentioned, since Rusts
 features cannot be selectively activated. Compared to languages like GO, Rust
 has considerably higher initial compile times. Even though breakage rarely
 happens \cite{rustupdate}, a new point-release happens every six weeks,
-frequently introducing new features. The userbase is still growing, and many
-features frequently used in other languages, such as \verb|async| or
-specializations, are not available for users of the stable compiler.
+frequently introducing new features requiring time to fully understand. The
+userbase is still growing, and many features frequently used in other
+languages, such as \verb|async| or specializations, are not yet available for
+users of the stable compiler.
 
 \textbf{For this project:} In particular, the unavailability of a CSRMatrix
 implementation with the needed features is concerning. Thus, the current
@@ -331,7 +333,7 @@ algorithm, being only a tiny subset of the features provided by the
 \subsection{Comparing Rust and Python}\label{sec:rustvspython}
 
 Rust and Python are two quite different programming languages, a direct
-``translation'' is not possible. Both implementations are the same semantically,
+translation is not possible. Both implementations are the same semantically,
 however details differ. Since Rust has a much finer control of memory and the
 applying of functions to data structures, some operations have been explicitly
 separated while others have been combined.

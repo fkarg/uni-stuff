@@ -1,7 +1,5 @@
 \chapter{Related Work}\label{chap:relatedwork}
 
-\extend{some section here to fill another page}
-
 Since the main work is the implementation in Rust as well as the testing of an
 integrating in Python, related work includes the original implementation in
 Python as well as the recent implementation of the KR-algorithm in C++.
@@ -33,18 +31,14 @@ possible through the concise syntax making the spotting of mistakes easier.
 
 \subsection{Disadvantages}
 
-\draft{Include: Multithreading is locking the execution of the same part of
-code, processes allow that but require the same memory for writing in it,
-reading is fine}
-
 The downsides of this implementation being that datastructures in Python are
 extensively objectified, meaning they require more working memory, and that
 even though Python has existing parallelism, a global interpreter lock (python
 is only interpreted usually, but this still holds for compiling with cpython)
-prevents multiple threads to use the same parts of memory without duplication.
-Since Python already has comparatively high memory requirements \draft{link
-high memory needs}, it is not practicable to add the same amount for every
-further core.
+prevents multiple threads to use the same parts of code and memory without
+duplication. Since Python already has comparatively high memory requirements
+\todo{link high memory needs}, it is not practicable to add the same amount
+for every further core.
 
 For reference, the Python-implementation can be found
 here\footnote{\url{https://github.com/deeptools/HiCExplorer/blob/master/hicexplorer/iterativeCorrection.py},
