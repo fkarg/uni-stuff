@@ -240,7 +240,7 @@ adding the second element of \verb|v| (as shown in \coderef{own2}).
 \console{output2.txt}{out2}
 
 \newpage
-\textbf{Demonstrating Ease of Parallelization:}
+\textbf{Demonstrating Ease of Parallelization:}\label{demo:par}
 
 Due to the strong guarantees from the compiler, Memory Safety can be extended
 to thread safety. In \coderef{par1} the function \verb|heavy_operation| is
@@ -278,10 +278,11 @@ from the compiler enforce correct usage.
 \textbf{For this project:} Even though high modularity exists, the Rust
 ecosystem is comparatively young. meaning even though many libraries exist,
 they are not as complete as their Python/C/C++ counterparts. Since no
-implementation of CSRMatrix having the required features, even though several
-existed, it was implemented again, adding the one necessary feature, and not
-implementing any other. This has the advantage of being a very specific
-solution, possibly faster and smaller than the general ones available.
+implementation of CSRMatrix (compressed sparse row matrix) having the
+required features, even though several existed, it was implemented again,
+adding the one necessary feature, and not implementing any other. This has
+the advantage of being a very specific solution, possibly faster and smaller
+than the general ones available.
 
 Also, as seen in \todo{Link section results}, Parallelization can decrease
 the elapsed computation time.
@@ -495,200 +496,133 @@ library itself and the Python wrapper.
 
 
 % \newpage
-\subsection{Using this implementation}\label{sec:using}
+\subsection{Using this Implementation}\label{sec:using}
 
-% \todo{rename: ....}
+\subsubsection{Installation}\label{sec:install}
 
-% \todo{Change Name!!}
+\todo{for installing using conda add dependencies}
 
-% \subsection{Installation}\label{sec:install}
+\verb|smb| can be run on any Unix-based operating system (tested using ubuntu-18.04)
+with Conda, Python and common development packages, e.g.
+\verb!libopenssl-dev!, \verb!python3-dev!, \verb!build-essential! and the like
+installed. For the installation itself just enter \verb|conda install -c kargf smb|.
 
-% \todo{for installing using conda add dependencies}
-
-% \todo{Change Name!!}
-% smb can be run on any Unix-based operating system (tested using ubuntu-18.04)
-% with Conda, Python and common development packages installed (e.g.
-% \verb!libopenssl-dev python3-dev build-essential! ...). For the installation
-% itself just enter \verb|conda install -c kargf smb|.
-
-% \textbf{For using, not building, installation of Rust is not needed.}
+\textbf{For using, not building, installation of Rust is not needed.}
 
 
-% \subsection{Build}\label{sec:build}
+\subsubsection{Build}\label{sec:build}
 
-% To build the package, assuming you have conda installed, execute the following
-% commands:
-
-% \begin{verbatim}
-
-% # first, install rust:
-% curl https://sh.rustup.rs -sSf | sh -s -- -y
-
-% # alternatively install rust with conda:
-% conda install -c conda-forge rust
-
-% # confirm install:
-% cargo --version
-% rustc --version
-
-% # download repository and navigate in it
-% git clone https://github.com/fkarg/HiC-rs
-% cd HiC-rs
-
-% # navigate to the rust code and compile (optional)
-% cd smb
-% cargo build
-% cd ..
-
-% # install missing python dependencies
-% pip install -r requirements.txt
-
-% # execute the setup.py (will also compile rust if not done yet)
-% python setup.py build
-
-% \end{verbatim}
-
-% \todo{change pip to conda}
+Detailed build instructions can be found in the corresponding GitHub
+repository: \url{https://github.com/fkarg/HiC-rs}. For this, an installation of
+Rust, as well as \verb|conda| and \verb|pip| are needed.
 
 
-% \todo{update packages!!}
-
-
-% \newpage
 \section{General Approach}\label{sec:approach}
 
-% % The approach usually starts with the problem definition and continues with what you have done. Try to give an intuition first and describe everything with words and then be more formal like `Let $g$ be ...'.
 
-\todo{Introduce main approach}
+\subsection{Beginning}
 
-% \draft{Steps: read papers, test communication between Python and Rust (API), implementing CSRMatrix, implementing algorithm, fixing bugs (in-memory), making buildable (milksnake, conda), further bug fixing, some testing, building test-suite and a lot of bugfixing, reading papers again, starting to write stuff down.}
+In the beginning, after consulting related material
+(\cite{imakaev2012iterative}, \cite{lieberman2009comprehensive} and
+\cite{wingett2015hicup}), the Python-implementation was studied for details.
+Then, the feasability of communicating between Rust and Python was tested
+first, see \secref{sec:api} for the selection of the API. For this, small
+examples passing a simple list back and forth were implemented.
 
+\subsection{Feasability Testing}
 
-% \subsection{Beginning}
-
-% \todo{Rewrite to passive voice}
-
-% Having read the provided papers (\cite{imakaev2012iterative},
-% \cite{lieberman2009comprehensive} and \cite{wingett2015hicup}) I started
-% looking in the Python-implementation. First things first I started testing the
-% feasability of communicating between Rust and Python. The only available way
-% for this is the raw C-API both adhere to.
-
-% \subsection{Feasability Testing}
-
-% \todo{Rewrite to passive voice}
-
-% Having succeded in calling functions in Rust, and passing the arguments
-% correctly, I started to look in the Python-implementation again. Since in
-% python \verb|numpy| and \verb|scipy| were used quite extensively (especially
-% the Compressed Sparse Row Matrix from \verb|scipy| and available operations
-% through \verb|numpy|) and there was no library available providing
-% functionality similar enough, I implemented the minimal version of a CSRMatrix
-% that would be needed, and tested its functionality.
+Next, the general feasability of the project was tested, this includes looking
+for usable libraries. The Python-implementation showed a strong dependency for
+\verb|numpy| and \verb|scipy|, but nothing similar was available for Rust.
+There are several good linear algebra libraries, and ports of numpy, however no
+CSRMatrix implementation providing usable iteration over its rows. There
+existed at least three different CSRMatrix implementations at the time of
+research, however as all of them were considerably lacking in features compared
+to the \verb|scipy| implementation and not many features were needed, it was
+implemented seperately with only the needed features, including being
+constructed through a C-API interface, and no effort was made to add the needed
+feature to any of the other implementations. During the implementation, tests
+for the CSRMatrix written in Rust were written in Python, testing the
+integration as well. This cought bugs like interpreting data as a different
+data type.
 
 
-% \subsection{Implementation of the algorithm}
+\subsection{Implementation of the Algorithm}
 
-% \extend{Answer: could I call numpy from rust}
-
-% \todo{Rewrite to passive voice}
-
-% The initial translation from Python to rust happened more or less on a
-% line-by-line basis, as much as this was possible. Seeing the
-% Python-implementation section-wise as a comment I started out with a comparably
-% naive translation from Python to Rust. As I did not have
-% \verb|numpy|/\verb|scipy| available, specific operations had to be done
-% differently, and I needed to care a lot more about the memory (of the
-% variables, also their availability) than the Python-implementation did.
+Initially, the writing of the algorithm happened by trying to translate the
+algorithm line by line from Python. As this is not possible due to the
+considerably different programming languages, it happened paragraph-wise,
+rather. This first transcription was considerably naive, and not idiomatic for
+Rust. Even though a \verb|numpy| port existed, it was not used as the actually
+needed operations were considerably little, and probably faster without porting
+to \verb|numpy| first. Most operations themselves were on \verb|scipy|
+CSRMatrix implementation, and no port of \verb|scipy| was available. This way,
+direct control over all critical parts of execution was assumed.
 
 
-% \subsection{Testing and Bugfixing}
+\subsection{Testing and Bugfixing}
 
-% \todo{Rewrite to passive voice}
-
-% \draft{give examples for common bugs}
-
-% Having succeded at convincing the compiler, I wanted to test my implementation.
-% The compiler in Rust is quite capable, reducing common bugs tremendously.
-% My knowledge about Rust not being on the expert-level, I made the error of not
-% writing back the changes made to the matrix in the matrix (more specifically,
-% the part that should have done that was being handed a immutable matrix). This
-% and some smaller bugs got solved easily, so I set up a small testing
-% environment, even calling from python.
+Just as it does in Haskell (and probably any other strongly typed language),
+the concept of compiler driven development exstist. This means that e.g. for
+refactoring, some part is modified, and then compiler errors and warnings are
+fixed one after another. As soon as the compiler does not complain any more,
+the new functionality might not yet be implemented, but the new field or
+renamed function is now being referenced correctly everywhere. A test suite in
+Rust as well as in Python was set up. In rust, variables are immutable by
+default, testing led to changing a borrowed reference to a borrowed mutable
+reference at two points, and looking into slices again in detail.
 
 
-% \subsection{Idiomatic Rust}
+\subsection{Idiomatic Rust and summing high fractions}
 
-% \todo{Rewrite to passive voice}
+\code{code_infsum1.rs}{inf1}
 
-% While gradually transforming the naive Python-translation to idiomatic Rust, at
-% some point results ended up being \verb|NaN| pretty fast. A while of
-% debugging later, I reduced it to the following situation:
+\code{code_infsum2.rs}{inf2}
 
-% \draft{exclude mention of debugging}
-
-% \inputminted{Rust}{code_infsum1.rs}
-
-% Here the output was still ``sum: 1'' and ``sum: 0''. One iteration later however, all the elements have only been multiplied with some factors, their product being \verb|0.16|.
-
-% \inputminted{Rust}{code_infsum2.rs}
-
-% The expected output here would be ``sum: 0.16'' and ``sum: 0'', or something
-% around that. However, the actual results were ``sum: 0.4'' and ``sum: inf''. As
-% it turns out, the factor they have been subject to was indeed \verb|0.16|,
-% however it was \verb|0.16| with high fraction values. This means that summation
-% of \verb|0.16| and \verb|0.0| (the zero also having high fraction) is being
-% sufficiently inaccurate to not be accurately represented by floating point
-% values. With this happening multiple times, it was unavoidable.
-
-% The same happened with the summation of the innocious-looking \verb|0.0|. They
-% had high fractions from the original multiplication by
-% \verb|0.160000000000003|, their continued summation resulting in an overflow.
-% This new number just happens to be one of the representations of \verb|inf|.
+While gradually transforming the naive Python-translation to idiomatic Rust, at
+some point results ended up being \verb|NaN| pretty fast. Two step sbefore
+results ended up being \verb|NaN| the situation was as described in
+\coderef{inf1}. Here everything worked fine, summing up over a considerably
+short list produced the expected results. Only one iteration later these
+elements have been multiplied with several factors, their product being
+\verb|0.16|. This in and by itself should not have changed anything big,
+however looking at \coderef{inf2} their sums were now not exactly what one
+would expect at first, with one non-zero number among zeros being equal to
+another one and a sum of zeros being \verb|inf| for some reason. As it turns
+out, the factor they have been subject to was indeed \verb|0.16|, however it
+was \verb|0.16| with high fraction values. This means that summation of
+\verb|0.16| and \verb|0.0| (the zero also having a high fraction) is being
+sufficiently inaccurate to not be accurately represented by floating point
+values, resulting in \verb|0.4| instead of the expected \verb|0.16| after
+adding only four times. The same happened with the summation of the
+innocious-looking \verb|0.0|. They had high fractions from the original
+multiplication by \verb|0.16000000000000003|, their continued summation
+probably resulting in an overflow. This new number just happens to be one of
+the many representations of \verb|inf|.
 
 
-% \subsection{Packaging}
-
-% \todo{Rewrite to passive voice}
-
-% Next was the Packaging of my code. As my work should be used from within the
-% HiCExplorer, My part is supposed to be available as a python-package. The \draft{only
-% real} python dependcy (apart from those required for packages) ended up being
-% milksnake, itself a helper for compiling the rust part of my package.
-
-% The conda-part was not as easy though, as milksnake was not resolvable there. I
-% ended up porting \verb|milksnake| as a conda package. This turned out to be a
-% nontrivial task, as \verb|conda skeleton pypi milksnake| created a package
-% conda could not build, the issue here being that milksnake was only provided as
-% a \verb|*.zip| file and conda had hardcoded the format \verb|*.tar.gz|.
-
-% Additionally I set up a buildserver, adding some tests and fixing smaller bugs.
+\subsection{Packaging}
 
 
-% \subsection{Parallelizing}
-
-% \todo{Rewrite to passive voice}
-
-% Nearing the end of my work, I set up ways to test and compare my implementation
-% with the other. One of the last things I did was adding Parallelization.
-
-% \todo{add: compare parallelization in C++ and Python, accessing memory, why it is possible to easily add this, ...}
-
-
-% % \subsection{Encoundered Problems}\label{sec:problems}
-% %
-% % \extend{add encountered Problem: Packages, milksnake, conda, ...}
-% %
-% % \extend{add encountered Problem: small memory bug in rust (actually mut-changing the matrix)}
-% %
-% % \extend{add encountered Problem: weird bug regarding nans/infs}
-% %
-% % \extend{add encountered Problem: bug regarding termination (?)}
+Part of the goal is to package the code for easy use from the HiCExplorer as a
+\verb|conda| package. The only Python dependency after \verb|setuptools| and
+\verb|pip| ended up being \verb|milksnake|, an extension for \verb|setuptools|
+for packaging dynamically linked libraries, particularly ones written in Rust.
+This is described in \secref{sec:integration} in more detail. As
+\verb|milksnake| was not available as a conda package, it ended up getting
+ported. Initially, \verb|conda skeleton pypi milksnake| created a package that
+even conda could not build, with the issue being that milksnake was only
+provided as a \verb|*.zip| file and conda had hardcoded the format
+\verb|*.tar.gz|. After doing this, a travis build server (with tests) was set
+up, to continuously monitor further progress.
 
 
-% \todo{look for better rust presenter in latex}
+\subsection{Parallelizing}
 
-% \todo{add the integration of travis more}
+As is demonstrated in \secref{demo:par}, the parallelization of Rust code can
+be really easy. This is why this was done last, as nothing really needed to
+change. by any tremendous amount. There is another variant for parallelizing
+code in Rust (with explicit threads) which was also tested, but it provided no
+further benefit and proved to be too much overhead. This might not be the case
+for truly big matrices however.
 
-
-\todo{Link to github repository}

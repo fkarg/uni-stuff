@@ -1,7 +1,5 @@
 \chapter{Introduction}\label{chap:introduction}
 
-\draft{more formal language}
-
 % \todo{include feedback!}
 % Feedback:
 % Why do we care about the 3D structure -> about the structure, influencing
@@ -35,38 +33,38 @@
 % => Errors do exist, but do not really know which ones or how to filter them out
 
 \draft{rewrite. Make more fluent for readers.}
+
 \draft{remove ``stuff'' and (stuff)}
 
-Even though much is known about the one-dimensional structure of our DNA, it
-also organizes itself in three-dimensional ways. Recently, with the advent of
-chromosome conformation capture (3C) technologies, it has become possible to gain
-insight into the three-dimensional structure as well. Gene-regulators have been
-intensively looked at in the one-dimensional case, but enhancer and promoter
-also have an influence on their three-dimensional surroundings, making knowledge
-about the spatial organization relevant.
+Enhancers are usually searched for within a distance of 1 Mb up or downstream
+of promoters \cite{pennacchio2013enhancers}. Structures such as DNA loops (see
+\figref{fig:HiCMatricesModels}) can bring together an enhancer with a promoter
+that is far more distant than 1 Mb however \cite{pennacchio2013enhancers}. With
+Hi-C interactions over the whole genome \cite{lieberman2009comprehensive}, and
+even across genomes can be measured \cite{rao20143d}. For the further study of
+enhancer-promoter interactions it is important to also include information
+about long-range three dimensional genomic interactions.
 
-In this work, data gotten through Hi-C \cite{lieberman2009comprehensive} will
-be used. Hi-C is a method for getting 3D-information of genomes.  This is done
-by `strapping' together parts of the genome that are close by, cutting apart
-the genome with restriction enzymes, combining the ends of strapped-together
-fragments and sequencing them. This will be explained in detail in
-\secref{sec:hic}.
+In this work, data obtained from Hi-C (see \chapref{chap:experiments} for
+details) will be used. Hi-C is a method for aquiring 3D-information of genomes.
+This is done by strapping together parts of the genome that are close by,
+cutting the genome apart with restriction enzymes, combining the ends of
+strapped-together fragments and using high throughput methods for sequencing
+them. This is explained in detail in \secref{sec:HiC}.
 
 
-However, such technologies tend to suffer from technical (e.g. sequencing,
-mapping) \cite{pmid21646344} and biological factors (e.g. distinct chromatin
-states) \cite{pmid19693276}, making them inherently inaccurate.  Biases are
-unavoidable, in particular, as some regions are more sensible for biotin
-labeling enrichments (See \secref{sec:hic} why this is relevant) they will be
+Such technologies tend to suffer from biological, e.g. different chromatin
+states \cite{pmid19693276}, and technical factors, e.g. sequencing and mapping
+\cite{pmid21646344}, making them inherently inaccurate. Biases are unavoidable,
+in particular, as some regions are more sensible for biotin labeling
+enrichments (See \secref{sec:pulldown} why this is relevant) they will be
 measured more often when compared to others. PCR artifacts may be one of the
-reasons \cite{winget2015hicup}. Mapping locations may be unclear or not unique,
-introducing even more sources for possible biases. Sequencing methods
+reasons \cite{wingett2015hicup}. Mapping locations may be unclear or not
+unique, introducing even more sources for possible biases. Sequencing methods
 have certain biases themselves. Some of the measured interactions are
 questionable, it is unclear if these are actual, spatially close points, or if
 it simply is a technical error or a randomly happened interaction.
 
-% \section{Introducing Solutions}
-\extend{not however so many times!}
 However, a basic but strong assumption about the structure of the genome can be
 made, which is that every location has the same amount of interactions (with
 other locations) as every other location. The data does not show this due to
@@ -109,25 +107,19 @@ decomposition, \secref{sec:ICE}) or KR \cite{knight2013fast} (Knight-Ruiz,
 
 \section{Task Definition}\label{sec:task}
 
-\todo{Bilder: Image dapted from anstatt Image from ...}
-
-\todo{Prüfungsamt abklären: Digitale Kopie? -> AJ Müller}
-
 In the three-dimensional space of a cell the DNA forms a structure that is
 scrambled all around the place. Obviously, there exist many points of contact
-in the DNA, they even form noticable structures, such as DNA loops. However,
-many of these contacts are random contacts or measurement errors that need to
-be corrected. A Python implementation exists but is limited for high resolution
-data due to high memory usage. This thesis aims to reimplement a more resource
-efficient method in Rust.
+in the DNA, they even form noticable structures, such as DNA loops. Many
+measured points of contact are random interactions or measurement errors that
+need to be corrected. For this task, a Python implementation exists but is
+limited for high resolution data due to high memory usage. This thesis aims to
+reimplement a more resource efficient method in Rust.
 
-The main goals of this thesis include testing the integration between Rust (a
-systems programming language recently gaining in popularity, more information
-in \secref{sec:Rust}) and Python (\secref{sec:integration}), how easy it is to
-let both these languages interact, and how it compares to the other two current
-implementations (ICE in Python and KR in C++, more information can be found in
-\secref{sec:python} and \secref{sec:KR} respectively). The overall goal
-however, is to try to implement a more resource efficient version, able to make
-effective use of parallel computations.
-
+The main goals include testing the integration between Rust, a systems
+programming language recently gaining in popularity (more information in
+\secref{sec:Rust}), and Python, how easy it is to let both of these languages
+interact, and how it compares to the other two current implementations (ICE in
+Python and KR in C++, more information can be found in \secref{sec:python} and
+\secref{sec:KR} respectively). The overall goal is to try to implement a more
+resource efficient version, able to make effective use of parallel computing.
 
