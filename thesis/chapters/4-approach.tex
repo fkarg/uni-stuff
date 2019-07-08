@@ -1,7 +1,7 @@
 \chapter{Approach}\label{chap:approach}
 
 % Rust has its own share of problems, but a lot of the aforementioned issues will
-% be adressed using Rust in this implementation.
+% be adressed by using Rust in this implementation.
 
 
 \section{Problem Description}\label{sec:problem}
@@ -18,9 +18,6 @@ common packaging tools like \verb|setuptools|. For Rust, as it turns out, the
 support using Python headers is not as easy, and the support for building packages
 from Pythons side is early at best. Both of this will be covered in
 \secref{sec:integration} and \secref{sec:api} respectively.
-
-% \draft{Possible to improve memory? Testing Parallelization(?) Integration How? Describe Python to C/C++ short}
-
 
 
 % Wolff: Jede Position im Genom hat in der Summe die gleiche anzahl an
@@ -626,4 +623,8 @@ change. by any tremendous amount. There is another variant for parallelizing
 code in Rust (with explicit threads) which was also tested, but it provided no
 further benefit and proved to be too much overhead. This might not be the case
 for truly big matrices however.
+
+\todo{Add summary regarding Rust}
+\draft{put note somewhere that this server is different from the earlier
+mentioned travis test server, make distinction clear}
 

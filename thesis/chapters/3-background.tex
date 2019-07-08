@@ -10,8 +10,6 @@ proteins. With the help of chromosome conformation technologies the actual
 three dimensional structures can be confirmed.
 
 
-\input{figures/background/figChromosome_conformation_techniques}
-
 \section{Chromosome Conformation Technologies}\label{sec:cct}
 
 \subsection{Common steps}\label{sec:common}
@@ -46,6 +44,8 @@ concentration is done, resulting in favouring the ligation of fragments linked
 together by fomaldehyde.
 In HiC, Biotin is added in this step to mark ligated fragments. This allows
 filtering out most fragments that have not been ligated in a later step.
+
+\input{figures/background/figChromosome_conformation_techniques}
 
 
 \paragraph{Reverse Cross-links:}\label{sec:revcrosslink}
@@ -193,8 +193,6 @@ hold no further significance for this thesis, they will not be covered further.
 
 \section{HiCExplorer}\label{sec:hicexplorer}
 
-\input{figures/background/figHiCExplorer}
-
 HiCExplorer \cite{wolff2018galaxy} is a software to process, analyze and
 visualize Hi-C data. Part of this software are tools to build the interaction
 matrix, convert between formats, correcting the data (which this is work is
@@ -202,13 +200,15 @@ part of), analysing it in various ways or extensively plotting it.
 Facilitated is, among others, the creation of contact matrices, detection of
 topologically associating domains (TAD) and A/B compartments, merging of
 matrices, and detection of long-range contacts\footnotemark. Those contact
-matrices may then be visualized, and other data tracks may be added. This
+matrices may then be visualized, and other data tracks may be added. This \draft{this is about pyGenomeTracks, add info}
 includes annotated genes, compartments, ChIP-seq coverage tracks, viewpoints
 and long range contacts\footnotemark[\value{footnote}]. An excerpt of possible
 visualizations can be seen in \figref{fig:HiCExplorer}. HiCExplorer can be
 installed on Linux and MacOS.
 
 \footnotetext{\url{https://github.com/deeptools/HiCExplorer}, accessed 2019-06-26}
+
+\input{figures/background/figHiCExplorer}
 
 
 
