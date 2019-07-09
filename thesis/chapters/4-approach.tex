@@ -10,7 +10,7 @@ As noted in \secref{sec:task}, the main goals include testing the integration
 of Rust within Python, by implementing a counter-version to the original Python
 implementation of the iterative part of the ICE algorithm, and then comparing
 it with the original Python-implementation as well as the recent implementation
-of the KR-algorithm in C++. It will be tested if the memory efficiacy can be
+of the KR-algorithm in C++. It will be tested if the memory efficacy can be
 improved, also how well the parallelization using Rust works really, and how
 the integration from Python to Rust works. For C/C++ there exist the Python
 headers, and extensive support from Pythons package manager \verb|pip| and
@@ -87,7 +87,7 @@ Then $W_{ij}$ is iterated by dividing by $\Delta B_i \cdot \Delta B_j$
 (\eqref{eq:5}), after which $B_i$ is iterated by multiplying with the current
 biases (\eqref{eq:6}). $W_{ij}$ accumulates divisions by $\Delta B_i$, just as
 $B_i$ accumulates the products of $\Delta B_i$. This is repeated until the
-variance of $\Delta B$ becomes negegible, at which point $W_{ij}$ has converged
+variance of $\Delta B$ becomes negligible, at which point $W_{ij}$ has converged
 to $T_{ij}$.
 % We begin each iteration by calculating the coverage $S_i = \sum_j W_{ij}$.
 % Next, additional biases $\Delta B_i$ are calculated by renormalizing $S_i$ to
@@ -121,7 +121,7 @@ Rust is classified as a high-level language, even though fine low-level control
 is possible. This is due the high amount of high-level zero-cost abstractions.
 Rust has a type system with strong guarantees, promising e.g. that all
 references (pointers) are valid, or thread safety (memory access from other
-threads does not result in data races / undeterminism). This is possible
+threads does not result in data races or nondeterminism). This is possible
 through concepts such as ownership and lifetimes. Even though one can program
 in an object oriented way, Rust is primarily not object-oriented. Additionally
 it is imperative, procedural, generic and functional.
@@ -159,7 +159,7 @@ initialization (RAII) convention is used, with optional reference counting.
 Resource management is deterministic with very little overhead, favoring stack
 allocation without implicit boxing. References are not run time counted, as
 their usage is verified at compile time. with this, memory safety can be
-guaranteed, limiting possible undefined behaviour tremendously.
+guaranteed, limiting possible undefined behavior tremendously.
 
 % Rust does not use an automated garbage collection system like those used by
 % Go, Java, or the .NET Framework. Instead, memory and other resources are
@@ -314,7 +314,7 @@ features cannot be selectively activated. Compared to languages like GO, Rust
 has considerably higher initial compile times. Even though breakage rarely
 happens \cite{rustupdate}, a new point-release happens every six weeks,
 frequently introducing new features requiring time to fully understand. The
-userbase is still growing, and many features frequently used in other
+user base is still growing, and many features frequently used in other
 languages, such as \verb|async| or specializations, are not yet available for
 users of the stable compiler.
 \draft{steep early learning curve of Rust mentioned in the disadvantages?}
@@ -384,7 +384,7 @@ four years, whereas both C and C++ both rank considerably high in the category
 `dreaded` \cite{rustloved}. Reasons why Rust may be such a loved language are
 listed in \secref{sec:RustAdvantages}. Due to the barely integrated external
 static analysis done for C/C++-code, both C and C++ are more prone to memory
-bugs \cite{pronememory}, thus having higher developer time requirenments.
+bugs \cite{pronememory}, thus having higher developer time requirements.
 
 
 
@@ -393,7 +393,7 @@ bugs \cite{pronememory}, thus having higher developer time requirenments.
 \subsection{Choosing the right API to call Rust from Python}\label{sec:api}
 
 There are three main ways to execute Rust code from Python. In the following,
-the feasability of them for this thesis is evaluated. And compared in
+the feasibility of them for this thesis is evaluated. And compared in
 \tabref{apis}.
 
 \begin{stretchpars}
@@ -419,11 +419,9 @@ Rust-Code, including the affecting of memory Python is managing. This was
 deemed too much complexity overhead.
 
 
-\paragraph{pyO3:} Another common approach is using the \verb|pyO3|-library, which
-started off as a fork of rust-cpython, but has since seen drastic changes.
 However, as \verb|pyO3| continues to use unstable Rust features, it is only
 possible to compile this library with the nightly version of the compiler. Even
-though most unstable features have been stabilizied by now,
+though most unstable features have been stabilized by now,
 Specialization\footnote{\url{https://github.com/rust-lang/rust/issues/31844},
 accessed 2019-06-26} is still missing several steps, as it is not sound
 regarding the type system yet, and not all questions are answered. Nightly
@@ -463,11 +461,11 @@ layout to be as it would be in C, when they need to be exported.
     \label{tab:interfaces}
 \end{table}
 
-\footnotetext{This was not tested, but pyo3-pack is a zero-configuration
+\footnotetext{This was not tested, but pyO3-pack is a zero-configuration
 package builder, \url{https://github.com/PyO3/pyo3-pack}, accessed 2019-06-26.}
 
 When comparing the available options as can be seen in \tabref{tab:interfaces},
-dylib appers to be the best option. See \secref{sec:approach} for details
+dylib appears to be the best option. See \secref{sec:approach} for details
 regarding the communication between Python and Rust. \todo{link exact paragraph}
 
 
@@ -488,7 +486,7 @@ dynamically linked libraries with Python, promised to be capable of including
 both our library and the python-wrapper for it. This promise however turned out
 to be undocumented.
 
-The implementation now uses \verb|milksnake| to resolve depencies like the
+The implementation now uses \verb|milksnake| to resolve dependencies like the
 not-yet compiled library, but the setuptools mechanisms for including the
 library itself and the Python wrapper.
 
@@ -525,13 +523,13 @@ Rust, as well as \verb|conda| and \verb|pip| are needed.
 In the beginning, after consulting related material
 (\cite{imakaev2012iterative}, \cite{lieberman2009comprehensive} and
 \cite{wingett2015hicup}), the Python-implementation was studied for details.
-Then, the feasability of communicating between Rust and Python was tested
+Then, the feasibility of communicating between Rust and Python was tested
 first, see \secref{sec:api} for the selection of the API. For this, small
 examples passing a simple list back and forth were implemented.
 
-\subsection{Feasability Testing}
+\subsection{Feasibility Testing}
 
-Next, the general feasability of the project was tested, this includes looking
+Next, the general feasibility of the project was tested, this includes looking
 for usable libraries. The Python-implementation showed a strong dependency for
 \verb|numpy| and \verb|scipy|, but nothing similar was available for Rust.
 There are several good linear algebra libraries, and ports of numpy, however no
@@ -539,11 +537,11 @@ CSRMatrix implementation providing usable iteration over its rows. There
 existed at least three different CSRMatrix implementations at the time of
 research, however as all of them were considerably lacking in features compared
 to the \verb|scipy| implementation and not many features were needed, it was
-implemented seperately with only the needed features, including being
+implemented separately with only the needed features, including being
 constructed through a C-API interface, and no effort was made to add the needed
 feature to any of the other implementations. During the implementation, tests
 for the CSRMatrix written in Rust were written in Python, testing the
-integration as well. This cought bugs like interpreting data as a different
+integration as well. This caught bugs like interpreting data as a different
 data type.
 
 
@@ -563,7 +561,7 @@ direct control over all critical parts of execution was assumed.
 \subsection{Testing and Bugfixing}
 
 Just as it does in Haskell (and probably any other strongly typed language),
-the concept of compiler driven development exstist. This means that e.g. for
+the concept of compiler driven development exists. This means that e.g. for
 refactoring, some part is modified, and then compiler errors and warnings are
 fixed one after another. As soon as the compiler does not complain any more,
 the new functionality might not yet be implemented, but the new field or
@@ -580,7 +578,7 @@ reference at two points, and looking into slices again in detail.
 \code{code_infsum2.rs}{inf2}
 
 While gradually transforming the naive Python-translation to idiomatic Rust, at
-some point results ended up being \verb|NaN| pretty fast. Two step sbefore
+some point results ended up being \verb|NaN| pretty fast. Two steps before
 results ended up being \verb|NaN| the situation was as described in
 \coderef{inf1}. Here everything worked fine, summing up over a considerably
 short list produced the expected results. Only one iteration later these
@@ -595,7 +593,7 @@ was \verb|0.16| with high fraction values. This means that summation of
 sufficiently inaccurate to not be accurately represented by floating point
 values, resulting in \verb|0.4| instead of the expected \verb|0.16| after
 adding only four times. The same happened with the summation of the
-innocious-looking \verb|0.0|. They had high fractions from the original
+innocuous-looking \verb|0.0|. They had high fractions from the original
 multiplication by \verb|0.16000000000000003|, their continued summation
 probably resulting in an overflow. This new number just happens to be one of
 the many representations of \verb|inf|.
@@ -613,7 +611,7 @@ This is described in \secref{sec:integration} in more detail. As
 ported. Initially, \verb|conda skeleton pypi milksnake| created a package that
 even conda could not build, with the issue being that milksnake was only
 provided as a \verb|*.zip| file and conda had hardcoded the format
-\verb|*.tar.gz|. After doing this, a travis build server (with tests) was set
+\verb|*.tar.gz|. After doing this, a Travis build server (with tests) was set
 up, to continuously monitor further progress.
 
 
@@ -628,5 +626,5 @@ for truly big matrices however.
 
 \todo{Add summary regarding Rust}
 \draft{put note somewhere that this server is different from the earlier
-mentioned travis test server, make distinction clear}
+mentioned Travis test server, make distinction clear}
 

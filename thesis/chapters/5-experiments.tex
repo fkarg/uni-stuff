@@ -27,7 +27,7 @@ See \tabref{tab:specs} for the specification of the test server.
     \end{tabular}
     \caption[Server Specification]
     {\textbf{Server Specification.} \\
-    For reproducabilty, here are technical details about the hardware the
+    For reproducibility, here are technical details about the hardware the
     following tests were run on.}
     \label{tab:specs}
 \end{table}
@@ -161,7 +161,7 @@ correcting the 50kb matrix was 12GByte.
 
 \input{figures/results/maxmem}
 
-Maximum required memory, or maxmimum resident set size, describes the highest
+Maximum required memory, or maximum resident set size, describes the highest
 amount of memory needed at any point during execution. Maximum resident set size
 is compared in \figref{fig:maxresident}.
 
@@ -182,7 +182,7 @@ the other language, while in the python version memory needs are considerably
 lower during this process.
 
 In Rust, indices are of type \verb|usize|, which size is platform-dependent. In
-the case of the testserver (more details in \secref{sec:specs} and
+the case of the test server (more details in \secref{sec:specs} and
 \tabref{tab:specs}) this is the size of a \verb|int64|, whereas coming from
 Python (and thus most likely in C++) it is only a \verb|int32|. Indices are a
 considerable amount of memory in the case of a CSRMatrix, as there are more
@@ -210,7 +210,7 @@ Loading includes pre-processing the to-be corrected matrices. Pre-processing
 steps include removal of zero-values, \verb|NaN|s from the dataset and
 heavy outliers, as they would affect correction. However, even though the same
 steps were performed in all cases, load times had significant outliers, as can
-be seen in \figref{fig:loadtimes}. Here, loading times from seperate runs are
+be seen in \figref{fig:loadtimes}. Here, loading times from separate runs are
 shown. The runs differ in that they were run in different configurations, which
 start to differ after loading, as explained in more detail in
 \secref{sec:multicore}. However as there is no difference up to this point,
@@ -228,7 +228,7 @@ available, except for deviations in this data, without knowledge what the
 actual values would have been.
 
 Loading times in \figref{fig:loadtimes}b do not differ by proportions as high,
-but the clearly visible disparity is not something favourable.
+but the clearly visible disparity is not something favorable.
 % longest seen from the shortest is 33\% longer\footnote{(6 - 4.5) / 4.5
 % = 33\%}, and the shortest is 25\% shorter when compared to the
 % longest\footnote{(6 - 4.5) / 6 = 25\%}.
@@ -303,7 +303,7 @@ for how to distribute them is still added, even in the case of using only one
 core. This overhead is spreaded across several cores as well, but even using 12
 cores is not sufficient for amortizing the additional overhead. The scheduler
 of \verb|rayon|, the used library for this, is a work-stealing scheduler,
-meaning that initially every thread in the threadpool gets a roughly equal
+meaning that initially every thread in the thread pool gets a roughly equal
 amount, and as soon as one core is done earlier than the others, its stealing
 work from other cores. Initially all work is distributed over the available
 threads in chunks. This initial distribution makes up a significant amount of
@@ -323,7 +323,7 @@ heavier operations instead.
 \input{figures/results/multirun_50}
 
 However, as can be seen in \figref{fig:memmulti}, memory is not negatively
-affected in any way when parallizing. Regarding memory, the same holds true for
+affected in any way when parallelizing. Regarding memory, the same holds true for
 the 50kb matrix. Pure computation times for the 50kb matrix as seen in
 \figref{fig:mrun50} do not seem to offer a clear trend regarding the usage of
 multiple cores.
@@ -343,7 +343,7 @@ One essential point of a reimplementation is the correctness of of the output.
 As can be seen in \figref{fig:plotted}, the output from both the original ICE
 implementation and the KR version are pretty much the same. The output of the
 RUST implementation is closer to the original values however. Due to time
-contraints the differences between the output matrix in the Rust implementation
+constraints the differences between the output matrix in the Rust implementation
 could not be further explored, but are likely due to different thresholds in
 the implementation of the algorithm.
 

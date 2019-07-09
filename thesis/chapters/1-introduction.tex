@@ -44,7 +44,7 @@ using Hi-C data can identify hundreds of thousands of putative enhancers and
 their target genes \cite{ron2017promoter}.
 
 In this work, data obtained from Hi-C (see \chapref{chap:results} for
-details) will be used. Hi-C is a method for aquiring 3D-information of genomes.
+details) will be used. Hi-C is a method for acquiring 3D-information of genomes.
 This is done by strapping together parts of the genome that are close by,
 cutting the genome apart with restriction enzymes, combining the ends of
 strapped-together fragments and using high throughput methods for sequencing
@@ -55,7 +55,7 @@ Such technologies tend to suffer from biological, e.g. different chromatin
 states \cite{pmid19693276}, and technical factors, e.g. sequencing and mapping
 \cite{pmid21646344}, making them inherently inaccurate. Biases are unavoidable,
 in particular, as some regions are more sensible for biotin labeling
-enrichments (See \secref{sec:pulldown} why this is relevant) they will be
+enrichment (See \secref{sec:pulldown} why this is relevant) they will be
 measured more often when compared to others. PCR artifacts may be one of the
 reasons \cite{wingett2015hicup}. Mapping locations may be unclear or not
 unique, introducing even more sources for possible biases. Sequencing methods
@@ -107,11 +107,11 @@ decomposition, \secref{sec:ICE}) or KR \cite{knight2013fast} (Knight-Ruiz,
 
 In the three-dimensional space of a cell the DNA forms a structure that is
 distributed all over the place. Obviously, there exist many points of contact
-in the DNA, they even form noticable structures, such as DNA loops. Many
+in the DNA, they even form noticeable structures, such as DNA loops. Many
 measured points of contact are random interactions or measurement errors that
 need to be corrected. For this task, a Python implementation exists but is
 limited for high resolution data due to high memory usage. This thesis aims to
-reimplement a more resource efficient method in Rust.
+re-implement a more resource efficient method in Rust.
 
 The main goals include testing the integration between Rust, a systems
 programming language recently gaining in popularity (details in
