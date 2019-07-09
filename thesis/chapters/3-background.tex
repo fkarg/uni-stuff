@@ -1,7 +1,5 @@
 \chapter{Background}\label{chap:background}
 
-\input{figures/background/Chromatin_Structures}
-
 Chromatin describes different levels of DNA organization. The well-known
 double-helix is only the lowest of several structural layers (major chromatin
 structures are shown in \figref{fig:chromatin}). Looking at it from the outside
@@ -29,6 +27,8 @@ specifically controlled, so only regions near each other are connected, but
 not necessarily all regions that are known to be spatially close.
 
 
+\input{figures/background/Chromatin_Structures}
+
 \paragraph{Digestion:}\label{sec:digestion}
 The next step is cutting the DNA apart in intervals. For this,
 restriction-enzymes i.e. restriction endonuclease are used. Commonly used
@@ -39,8 +39,8 @@ non-cross-linked ones.
 
 \paragraph{Ligation:}\label{sec:ligation}
 After reducing the concentration of fragments, DNA ligase is added, to ligate,
-i.e. weld together dangling fragment ends. For this a reduction in
-concentration is done, thus favoring the ligation of fragments linked
+i.e. weld together dangling fragment ends. For this, a reduction in
+concentration is performed, thus favoring the ligation of fragments linked
 together by formaldehyde.
 In HiC, Biotin is added in this step to mark ligated fragments. This allows
 filtering out most fragments that have not been ligated in a later step.
@@ -75,34 +75,31 @@ has been superseded by modern sequencing methods.
 \subsection{4-C}\label{sec:4C}
 
 Chromosome conformation capture-on-chip (4C) was developed in 2006 by Simonis
-et al., Zhao et al. \cite{simonis2006nuclear} \cite{zhao2006circular}, a method
+et al. \cite{simonis2006nuclear}, Zhao et al. \cite{zhao2006circular}, a method
 to test interactions between one genomic location with all others. This is done
-by adding a second ligation-step (see \secref{sec:ligation} or \figref{fig:cct}
+by adding a second ligation-step (see \secref{sec:ligation} and \figref{fig:cct}
 for reference) creating loops from the DNA fragments and applying inverse-PCR.
 This is a method to specifically amplify unknown sequence parts when both
-beginning and ending parts are known. For this the loops are cut within the
-known section, followed by sequencing. Microarray describes a sequencing
-method no longer used. Since due to inverse-PCR knowledge about both
-interacting chromosomal regions is not needed, results are highly reproducible
-for close regions \todo{find source for this}.
-
+the beginning and end parts are known. For this the loops are cut within the
+known section, followed by sequencing.
+% For inverse-PCR knowledge about both interacting chromosomal regions is not
+% needed, thus results are highly reproducible for close regions.
 
 
 \subsection{5-C}\label{sec:5C}
 
 Chromosome conformation capture carbon copy (5C) was developed in 2006 by
-Dostie et al. \cite{dostie2006chromosome}, this method is able to test a region
-for interactions with itself, such region being no bigger than a megabase. This
-is done by adding universal primers to all fragments from such a region.
-5-C has relatively low coverage, but is useful to analyze complex interactions
-of specified loci of interest. Genome-wide interaction measuring would require
-millions of 5C primers, making this method unsuitable. Microarray describes a
-sequencing method no longer used.
+Dostie et al. \cite{dostie2006chromosome}. This method is able to test a region
+for interactions with itself, with such a region being no bigger than a
+megabase. For this, universal primers are added to all fragments from such a
+region. 5-C has relatively low coverage, but is useful to analyze complex
+interactions of specified loci of interest. Genome-wide interaction measuring
+would require millions of 5C primers, making this method unsuitable.
 
 
+\newpage
 
 \input{figures/background/figsHiC}
-
 
 
 \subsection{Hi-C}\label{sec:HiC}
@@ -111,6 +108,10 @@ Hi-C (as shown by \figref{fig:HiC}) was developed in 2009 by Liebermann-Aiden et
 \cite{lieberman2009comprehensive}. After the common steps noted earlier, unique
 to Hi-C is the following sequence of sonication, pulldown (filtering based on
 biotin markers) and sequencing.
+
+\input{figures/background/figHiCExplorer}
+
+\input{figures/background/HiCMatricesModels}
 
 
 \paragraph{Sonication:}\label{sec:sonication}
@@ -127,10 +128,9 @@ marker is removed, as it would hinder further sequencing.
 
 
 \paragraph{Sequencing:}\label{sec:sequencing}
-Sequencing, short for DNA sequencing, describes processes of measuring a DNA
-sequence. There are several techniques for doing this, most use PCR (Polymerase
-Chain Reaction) before or while sequencing, which duplicating fragments
-several times, allowing them to be sequenced more accurately.
+Sequencing, short for DNA sequencing, describes processes of measuring the base
+pairs of a DNA sequence. There are several techniques for doing this, most use
+PCR (Polymerase Chain Reaction) as a step before or while sequencing.
 
 % - putting the 3' and 5' ends there
 % - usual PCR methods
@@ -191,33 +191,30 @@ hold no further significance for this thesis, they will not be covered further.
 
 
 
-
+\newpage
 \section{HiCExplorer}\label{sec:hicexplorer}
 
 HiCExplorer \cite{wolff2018galaxy} is a software to process, analyze and
 visualize Hi-C data. Part of this software are tools to build the interaction
-matrix, convert between formats, correcting the data (which this is work is
+matrix, convert between formats, correcting the data (which this work is
 part of), analyzing it in various ways or extensively plotting it.
 Facilitated is, among others, the creation of contact matrices, detection of
-topologically associating domains (TAD) and A/B compartments, merging of
-matrices, and detection of long-range contacts\footnotemark. Those contact
-matrices may then be visualized, and other data tracks may be added. This \draft{this is about pyGenomeTracks, add info}
-includes annotated genes, compartments, ChIP-seq coverage tracks, viewpoints
-and long range contacts\footnotemark[\value{footnote}]. An excerpt of possible
-visualizations can be seen in \figref{fig:HiCExplorer}. HiCExplorer can be
-installed on Linux and Mac OS.
+topologically associating domains (TAD) \cite{ulianov2016active} and A/B
+compartments \cite{lieberman2009comprehensive}, merging of matrices, and
+detection of long-range contacts\footnotemark. Those contact matrices may then
+be visualized, and other data tracks may be added using \verb|pyGenomeTracks|.
+This includes annotated genes, compartments, ChIP-seq coverage tracks,
+viewpoints and long range contacts\footnotemark[\value{footnote}]. An excerpt
+of possible visualizations can be seen in \figref{fig:HiCExplorer}. HiCExplorer
+is available on both Linux and Mac OS.
 
 \footnotetext{\url{https://github.com/deeptools/HiCExplorer}, accessed 2019-06-26}
-
-\input{figures/background/figHiCExplorer}
 
 
 
 \subsection{Analysis}\label{sec:analysis}
 
-\input{figures/background/HiCMatricesModels}
-
-Corrected Hi-C data can then be further analyzed, with \verb|hicFindTADs| one
+Corrected Hi-C data can then be further analyzed. With \verb|hicFindTADs| one
 can search for TADs (topologically associated domains) \cite{ramirez2018high},
 for this a TAD-separation score is computed and local minima indicative of TAD
 boundaries are searched for. A visualized result of such a computation can be
@@ -298,8 +295,9 @@ be found in \cite{wolff2018galaxy}.
 % (Figure 1I).
 
 Visualizations are necessary when the goal is to understand complex structures
-fast or even at all. It is impossible look at rows of numbers and notice that
-one significantly higher value, which immediately catches the eye as a heatmap.
+fast or even at all. It is impossible to look at rows of numbers and notice
+that one significantly higher value, which would immediately catch the eye when
+represented as a heatmap.
 
 Basic plotting of contact matrices (as seen in \figref{fig:HiCExplorer}F) can be
 done using \verb|hicPlotMatrix|. Options include region, color and value
@@ -311,8 +309,8 @@ Computed TADs (as described in \secref{sec:analysis}, see
 \figref{fig:HiCExplorer}I) can be plotted using \verb|hicPlotTADs|. This tool
 can plot multiple matrices and additional data. Contact matrices are rotated
 by 45°, and TADs are marked with triangles. The colormap, different ways for
-visualization, and several configurations to plot coverage tracks can be
-selected.
+visualization, and several options for plotting coverage tracks can be
+configured.
 
 More information about plotting with HiCExplorer can be found in
 \cite{wolff2018galaxy}.

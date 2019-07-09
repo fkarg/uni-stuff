@@ -1,18 +1,20 @@
 \chapter{Related Work}\label{chap:relatedwork}
 
-The main work is the implementation in Rust as well as the testing of the
-integration with Python. Related work includes the original implementation in
-Python as well as the recent implementation of the KR-algorithm in C++.
-Disadvantages and advantages of the respective implementations will be
-evaluated in the following.
+The main focus of this work is the implementation of the ICE matrix correction
+algorithm in Rust, as well as the testing of this Rust implementations
+integration with Python. Related work includes the original implementation of
+the ICE algorithm in Python as well as the recent implementation of the
+similar KR-algorithm in C++. Disadvantages and advantages of the respective
+implementations will be evaluated in the following.
 
-The description of the implemented algorithm can be found in \secref{sec:ICE}.
+A formulaic description of the implemented algorithm can be found in
+\secref{sec:ICE}.
 
 
 \section{Python implementation}\label{sec:python}
 
 The original implementation was written in Python, since HiCExplorer is
-written in Python. This implementation is using common python dependencies
+written in Python. This implementation used common python dependencies
 extensively, including the compressed sparse row matrix (CSRMatrix)
 implementation from \verb|scipy|, as well as the scientific number manipulation
 library \verb|numpy|.
@@ -20,27 +22,28 @@ library \verb|numpy|.
 \subsection{Advantages}
 
 The implementation itself is considerably short, the file having only 86 Lines,
-including imports and frequent comments. The advantage of using Python here is
-showing, as most lines are not for functionality itself, but for timing,
-logging and ease of debugging. With the iteration itself starting no earlier
-than Line 40, most are High-Level \verb|numpy| / \verb|scipy| commands, some
-being themselves implemented in C/C++ to be sufficiently fast.
+part of which are imports and frequent comments. The advantage of using Python
+here is verbosity, as most lines are not for the functionality itself, but for
+timing, logging and ease of debugging. With the iteration of the ICE algorithm
+starting no earlier than line 40, most are high-level \verb|numpy| /
+\verb|scipy| commands, some being themselves implemented in C/C++ to be
+sufficiently fast.
 
-Another advantage of Python in general are fast implementation times, which are
+Another advantage of Python in general is fast implementation times, which are
 possible through the concise syntax making the spotting of mistakes easier.
-
 \subsection{Disadvantages}
 
-The downsides of this implementation being that data structures in Python are
-extensively objectified, meaning they require more working memory, and that
-even though Python has existing parallelism, a global interpreter lock (python
-is only interpreted usually, but this still holds for compiling with cpython)
-prevents multiple threads to use the same parts of code and memory without
-duplication. Since Python already has comparatively high memory requirements
-\todo{link high memory needs}, it is not practicable to add the same amount
-for every further core.
+The downsides of this implementation are that data structures in Python are
+extensively objectified, meaning they require more working memory. Additionally,
+even though Python has existing parallelism, a global interpreter lock prevents
+multiple threads to use the same parts of code and memory without duplication
+(Python is only interpreted usually, but this still holds for compiling with
+CPython). Since Python already has comparatively high memory requirements,
+it is not practicable to add the same amount for every further core (details
+about memory needs can be found in \secref{sec:memory}).
 
-For reference, the Python-implementation can be found
+
+For further reference, the Python-implementation can be found
 here\footnote{\url{https://github.com/deeptools/HiCExplorer/blob/master/hicexplorer/iterativeCorrection.py},
 accessed 2019-06-26}.
 
@@ -48,40 +51,46 @@ accessed 2019-06-26}.
 
 \section{KR-Algorithm}\label{sec:KR}
 
-What follows is a short description to the Algorithm known as Knight-Ruiz from
-\cite{knight2013fast}. Essentially, the algorithm is computing the same steps,
-but it is taking advantage of conjugate gradients, thus needing potentially
-less iterations.
+What follows is a short description to the Knight-Ruiz-algorithm from
+\cite{knight2013fast}. Essentially, the algorithm is using conjugate gradients
+to converge faster, but those steps are computationally more expensive
+compared to steps from the ICE algorithm.
 
 \subsection{Implementation}
 
-The KR-algorithm was originally implemented in Matlab, here we compare with a
-version in C++. Calls from Python to C++ can be done over the C-API with
-considerable help through Python-header files.
+The KR-algorithm was originally implemented in Matlab, but here we compare with
+a version implemented in C++. Calls from Python to C++ can be done over the
+C-API with considerable help through Python-header files. There is extensive
+support for building and packaging C/C++ code for Python available.
 
 \subsection{Advantages}
 
 A commonly mentioned advantage of C++ is the speed of execution, and
-fine-grained control over Memory available. However, implementations in C++ can
-be several orders of magnitude faster than their respective implementation in
+fine-grained control over Memory available. Implementations in C++ can be
+several orders of magnitude faster than their respective implementation in
 Python. An advantage of the Algorithm itself is that as long as the matrix
-itself has total support (meaning that at least one diagonal has only positive
-nonzero values, this can be artificially done setting zeros to some small
-positive value), it will converge. Thus, it will converge for way more matrices
+itself has total support, it will converge (meaning that at least one diagonal
+has only positive nonzero values, which can be artificially done setting zeros
+to some small positive value). Thus, it will converge for many more matrices
 than the ICE-algorithm.
 
 \subsection{Disadvantages}
 
 Even though the execution is fast, the development process tends to be slow.
 This is due to the free memory control, which is hard to get right as this
-requires upholding of implicit assumptions at several places. As these
+requires the upkeep of several implicit assumptions at several places. As these
 assumptions are implicit only, it is easy to forget them or 'cut corners' when
-not possible. Those bugs leading to Segmentation-faults (accessing invalid
-memory) are notoriously hard to find, as they do not follow determinism.
-Parallelism is even harder to add, since data races (also non-deterministic) and
-other sources for hard-to-get right problems are added. Additionally, the
-syntax is considerably complex, making it rather hard to understand.
-For reference, the implementation of the KR algorithm can be found
+not possible. Those bugs leading to segmentation-faults, i.e. accessing invalid
+memory, are notoriously hard to find, as they do not follow deterministic logic.
+Parallelism is even harder to add, since data races and race conditions, both
+non-deterministic, and other sources for hard-to-get right problems are added.
+Additionally, the syntax is considerably complex, making it rather hard to
+understand.
+
+For further reference, the implementation of the KR algorithm can be found
 here\footnote{\url{https://github.com/deeptools/Knight-Ruiz-Matrix-balancing-algorithm},
 \\ accessed 2019-06-26}.
+
+
+
 

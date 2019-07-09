@@ -65,14 +65,13 @@ mapped loci also contribute to the ambiguity of the data, introducing even more
 potential causes for bias. Specific sequencing methods also have certain
 inherent biases \cite{aird2011analyzing}. The measured Hi-C interactions are
 often questionable, since it is unclear if some of these interaction are
-spatially close points, or if they are artefacts of technical errors, or even
+spatially nearby points, or if they are artefacts of technical errors, or even
 just randomly-occurring interactions.
 
 However, a basic but strong assumption about the structure of the genome can be
 made, which is that every location has the same amount of interactions with
 other locations, as every other location. The data does not always show this
 due to the several aforementioned unwanted biological and technical factors.
-
 Corrective algorithms such as ICE \cite{imakaev2012iterative} (Iterative
 Correction and Eigenvector decomposition, \secref{sec:ICE}) or KR
 \cite{knight2013fast} (Knight-Ruiz, \secref{sec:KR}) can however still be
@@ -83,25 +82,21 @@ applied to correct the matrix.
 \section{Task Definition}\label{sec:task}
 
 
-In the three-dimensional space of a cell the DNA forms a complex structure that is
-distributed all over the place. Due to this structure, there exist many points of contact
-in the DNA which form noticeable sub-structures, such as DNA loops. Many
-of these measured points of contact are random interactions, or measurement errors that
-need to be corrected. For this task, a Python implementation exists but it is
-% In the three-dimensional space of a cell the DNA forms a structure that is
-% distributed all over the place. Obviously, there exist many points of contact
-% in the DNA, they even form noticeable structures, such as DNA loops. Many
-% measured points of contact are random interactions or measurement errors that
-% need to be corrected. For this task, a Python implementation exists but is
-limited for high resolution data due to high memory usage. This thesis aims to
-re-implement a more resource efficient method in Rust.
+In the three-dimensional space of a cell the DNA forms a complex structure that
+is distributed all over the place. Due to this structure, there exist many
+points of contact in the DNA which form noticeable sub-structures, such as DNA
+loops. Many of these measured points of contact are random interactions, or
+measurement errors that need to be corrected. For this task, a Python
+implementation exists but it is limited for high resolution data due to high
+memory usage. This thesis aims to re-implement a more resource efficient method
+in Rust.
 
 The main goals include: testing the integration between Rust, a systems
 programming language recently gaining in popularity (details in
-\secref{sec:Rust}), and Python; testing the inter-process communication between these two languages;
-and comparing the two current matrix correction implementations, ICE in
-Python and KR in C++. More information about these can be found in
-\secref{sec:python} and \secref{sec:KR}, respectively. The overall goal is to
-try to implement a more resource efficient version, able to make effective use
-of parallel computing.
+\secref{sec:Rust}), and Python; testing the inter-process communication between
+these two languages; and comparing the two current matrix correction
+implementations, ICE in Python and KR in C++. More information about these can
+be found in \secref{sec:python} and \secref{sec:KR}, respectively. The overall
+goal is to try to implement a more resource efficient version, able to make
+effective use of parallel computing.
 
