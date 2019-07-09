@@ -9,18 +9,20 @@ Both Memory needs and Runtime length have been discussed extensively in
 seen in \tabref{tab:compmem} for memory and \figref{fig:runtime} for runtime.
 In short: the new ICE implementation in Rust requires a considerable amount of
 memory less than the Python implementation, during correction. After the
-correction, it peaks at a slightly higher value than the Python requires at any
-point in time. KR is in the middle for both, memory-wise. Additionally, the new
-implementation requires only about half the runtime length compared to the
-Python implementation, beating KR by about 10 minutes in both test cases.
+correction, it peaks at a slightly higher value than the Python implementation
+requires at any point in time. KR is in the middle for both, memory-wise.
+Additionally, the new implementation requires only about half the runtime
+length compared to the Python implementation, beating KR by about 10 minutes in
+both test cases.
 
 
 \paragraph{Unused Potential:}\label{sec:potential} This includes the further
 optimization of both the C++ and Rust versions, and increasing their level of
 integration. Apparently, a revision of the KR implementation is in progress,
 needing considerably less memory for bigger matrices. The Rust version could be
-revised to make more effective use of parallelizable opportunities, and
-integrated better in the Python part to reduce peak memory usage tremendously.
+revised to make more effective use of opportunities for parallelization, and
+integrated better in the Python part in order to reduce peak memory usage
+tremendously.
 
 
 \paragraph{Overall:} each of the current implementations has their own
@@ -49,14 +51,14 @@ One of the biggest remaining open questions is regarding the more effective use
 of multi-core hardware, as to how much it would be possible to actually do
 this, in Rust or any other language, and how much of a benefit it would bring.
 Both the pre-processing and post-processing mainly use only one core during
-their execution. Some of it may not at all be parallizable, but there is
+their execution. Some of it may not at all be parallelizable, but there are
 probably several low-hanging fruits regarding optimization.
 
-Other questions are regarding the in \secref{sec:potential} mentioned currently
-unused potential, particularly the closer integration from within Python, as it
-would directly affect memory requirements. A pure implementation in either C++
-or Rust is likely to need less memory than when integrated with Python,
-based on the numbers and the reasons for the numbers seen in
+Other questions are regarding the currently unused potential mentioned in
+\secref{sec:potential}, particularly the closer integration from within Python,
+as it would directly affect memory requirements. A pure implementation in
+either C++ or Rust is likely to need less memory than when integrated with
+Python, based on the numbers and the reasons for the numbers seen in
 \secref{sec:maxmem} about peak memory usage.
 
 Based on available data, the available resources are far from sufficient for
@@ -68,11 +70,6 @@ answered: For the biggest matrices, is KR still only the second fastest, or
 will it actually be faster and more memory efficient than this implementation?
 
 
-\draft{closer integration can be done by modifying the matrix in-memory from Python}
-
-
-
-
 
 
 
@@ -82,9 +79,6 @@ will it actually be faster and more memory efficient than this implementation?
 
 \newpage
 
-
-
-\todo{Python and KR implementation: Advantages and Disadvantages for both Implementation and language?}
 
 \draft{use more formal language}
 

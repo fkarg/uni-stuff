@@ -174,11 +174,11 @@ of the original matrix is then corrected in Python again before saving the
 corrected matrix.
 
 When loading the matrix in the beginning, a considerable amount of working
-memory is needed. However, the highest needs of memory are, at least for KR and
-the RUST version, happening after the correction, when the corrected values are
+memory is needed. However, the highest needs of memory are, at least for the KR and
+RUST versions, happening after the correction, when the corrected values are
 set, the correction factors added and then saved. This might be due to
 duplicate artifacts in memory, needing to be in memory in both Python and
-the other language, while in the python version memory needs are considerably
+the other language, while in the Python version memory needs are considerably
 lower during this process.
 
 In Rust, indices are of type \verb|usize|, which is of platform-dependent size.
@@ -214,8 +214,8 @@ be seen in \figref{fig:loadtimes}. Here, loading times from separate runs are
 shown. The runs differ in that they were run in different configurations, which
 start to differ after loading, as explained in more detail in
 \secref{sec:multicore}. However as there is no difference up to this point,
-they can very well be compared. Considering that there should no difference, it
-is shocking to see that significant differences between loading times exist.
+they can very well be compared. Considering that there should be no difference,
+it is shocking to see that significant differences between loading times exist.
 
 In the case of \figref{fig:loadtimes}a, most loading times are within half a
 minute of each other, which could still be called deterministic considering the
@@ -240,16 +240,14 @@ but the clearly visible disparity is not something favorable.
     \begin{tabular}{lrrr}
         \textbf{Overall memory comparison} & ICE & KR & RUST \\
         \midrule
-        During iteration (50kb) &   54.6 & 43.1 & \textbf{39}   \\
+        During correction (50kb) &   54.6 & 43.1 & \textbf{39}   \\
         Maximum          (50kb) &   \textbf{69.2} & 77.6 & 81.7 \\
-        During iteration (25kb) &   110 & 86 & \textbf{57}  \\
+        During correction (25kb) &   110 & 86 & \textbf{57}  \\
         Maximum          (25kb) &   \textbf{110} & 112.7 & 118.6 \\
     \end{tabular}
     \caption[Memory needs comparison]
     {\textbf{Overall comparison} between required memory for different
-    situations. The ICE values for Maximum resident values are not considered,
-    as they are probably wrong for some reason. See \secref{sec:maxmem} for
-    details.}
+    matrices during correction and maximum values.}
     \label{tab:compmem}
 \end{table}
 
@@ -277,7 +275,7 @@ a seventh of the total runtime, \figref{fig:runtime}b and \figref{fig:runtime}a
 respectively.
 
 An open question remains as to why this difference is roughly the same, even
-though the python implementation needs about twice as much time, as does the
+though the Python implementation needs about twice as much time, as does the
 Rust one. It might be that the KR implementation is faster for considerably
 bigger matrices. Testing this was not possible as the memory of the provided
 virtual machine (see \secref{sec:specs} and \secref{sec:maxmem} for details)
@@ -300,20 +298,20 @@ of parallelizing list summations as well, total runtime becomes similar to the
 original ICE implementation, as there are several summations for each
 iteration. Even though the operations themselves are rather small, the overhead
 for how to distribute them is still added, even in the case of using only one
-core. This overhead is spreaded across several cores as well, but even using 12
+core. This overhead is spread across several cores as well, but even using 12
 cores is not sufficient for amortizing the additional overhead. The scheduler
-of \verb|rayon|, the used library for this, is a work-stealing scheduler,
-meaning that initially every thread in the thread pool gets a roughly equal
-amount, and as soon as one core is done earlier than the others, its stealing
-work from other cores. Initially all work is distributed over the available
-threads in chunks. This initial distribution makes up a significant amount of
-overhead. In the case of 16 Threads (and above in cases tested), the main
-overhead is coming from too many threads having finished earlier and stealing
-work from each other.
+of \verb|rayon|, the library used for this, is a work-stealing scheduler,
+which means that initially every thread in the thread pool gets a roughly an
+equal amount of work to do. As soon as one core is done earlier than the
+others, it is stealing work from other cores. Initially all work is distributed
+to the available threads in chunks. This initial distribution incurs a
+significant amount of overhead. In the case of 16 Threads (and above in cases
+tested), the main overhead is coming from too many threads having finished
+earlier and stealing work from each other.
 
 Even though the current version does support parallelization, it does not
-provide benefits. They might only visualize for even bigger matrices, where the
-amount of needed work amortizes the initial overhead better. Additionally,
+provide benefits. They might only realize for even bigger matrices, where the
+amount of work needed amortizes the initial overhead better. Additionally,
 there is more potential for combining operations for parallelization. For some,
 this is clearly not possible, but for several it would be possible to combine
 them, reducing the overhead for parallelization at one point, and parallelizing
@@ -331,7 +329,8 @@ multiple cores.
 
 \paragraph{Conclusion:} Using multiple cores for this implementation does not
 provide any benefit, however it does have significant downsides other than
-longer runtime. The algorithm may be rewritten to allow better multicore usage.
+longer runtime. The algorithm may be rewritten to make better use of multiple
+processors.
 
 
 
@@ -339,7 +338,7 @@ longer runtime. The algorithm may be rewritten to allow better multicore usage.
 
 \input{figures/results/plotted}
 
-One essential point of a reimplementation is the correctness of of the output.
+One essential point of a reimplementation is the correctness of the output.
 As can be seen in \figref{fig:plotted}, the output from both the original ICE
 implementation and the KR version are pretty much the same. The output of the
 RUST implementation is closer to the original values however. Due to time
