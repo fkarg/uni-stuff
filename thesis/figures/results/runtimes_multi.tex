@@ -1,12 +1,17 @@
 
 \begin{figure}[!tbp]
-\begin{centering}
-    % \subfloat[Runtime in minutes for correcting 50kb Matrix]
-    {\includegraphics[scale=0.8]{figures/results/compute_multi_25}}
-    \caption[Multicore comparison]
-    {\textbf{Algorithm Runtimes} for correcting the different matrices. Smaller is better.}
-    \label{fig:computetime25}
-\end{centering}
+    \begin{centering}
+        % \subfloat[Runtime in minutes for correcting 50kb Matrix]
+        {\includegraphics[scale=0.8]{figures/results/compute_multi_25}}
+        \caption[Multicore comparison]
+        {\textbf{Multicore runtimes} for correcting the 25kb matrix. These are pure
+        computation times, excluding both pre-processing and post-processing. The
+        multicore-variant at one core is slightly worse than the two-core version.
+        Thus the non-multicore single-core version was included instead. No numbers
+        for ICE and KR are available.
+        Smaller is better.}
+        \label{fig:computetime25}
+    \end{centering}
 \end{figure}
 
 
