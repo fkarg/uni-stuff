@@ -1,6 +1,6 @@
 \chapter{Related Work}\label{chap:relatedwork}
 
-The main worrk is the implementation in Rust as well as the testing of the
+The main work is the implementation in Rust as well as the testing of the
 integration with Python. Related work includes the original implementation in
 Python as well as the recent implementation of the KR-algorithm in C++.
 Disadvantages and advantages of the respective implementations will be
@@ -31,7 +31,7 @@ possible through the concise syntax making the spotting of mistakes easier.
 
 \subsection{Disadvantages}
 
-The downsides of this implementation being that datastructures in Python are
+The downsides of this implementation being that data structures in Python are
 extensively objectified, meaning they require more working memory, and that
 even though Python has existing parallelism, a global interpreter lock (python
 is only interpreted usually, but this still holds for compiling with cpython)
@@ -59,7 +59,7 @@ The KR-algorithm was originally implemented in Matlab, here we compare with a
 version in C++. Calls from Python to C++ can be done over the C-API with
 considerable help through Python-header files.
 
-\subsection{Avdantages}
+\subsection{Advantages}
 
 A commonly mentioned advantage of C++ is the speed of execution, and
 fine-grained control over Memory available. However, implementations in C++ can
@@ -78,7 +78,7 @@ requires upholding of implicit assumptions at several places. As these
 assumptions are implicit only, it is easy to forget them or 'cut corners' when
 not possible. Those bugs leading to Segmentation-faults (accessing invalid
 memory) are notoriously hard to find, as they do not follow determinism.
-Parallelism is even harder to add, since data races (also nondeterministic) and
+Parallelism is even harder to add, since data races (also non-deterministic) and
 other sources for hard-to-get right problems are added. Additionally, the
 syntax is considerably complex, making it rather hard to understand.
 For reference, the implementation of the KR algorithm can be found

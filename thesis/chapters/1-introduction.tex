@@ -34,6 +34,7 @@
 
 \draft{rewrite. Make more fluent for readers.}
 
+
 Enhancers are
 small protein-binding regions of DNA,
 usually searched for within a distance of 1 Mbp up or downstream
@@ -52,10 +53,23 @@ searching for these TADs\cite{ron2017promoter}.
 
 In this work, data obtained from Hi-C will be used (see \chapref{chap:results} for
 details). Hi-C is a method for acquiring the 3D information of genomes.
+% Enhancers are usually searched for within a distance of 1 Mb up or downstream
+% of promoters \cite{pennacchio2013enhancers}. Structures such as DNA loops (see
+% \figref{fig:HiCMatricesModels}) can bring together an enhancer with a promoter
+% that is far more distant than 1 Mb however \cite{pennacchio2013enhancers}. With
+% Hi-C, interactions over the whole genome \cite{lieberman2009comprehensive} and
+% even across genomes can be measured \cite{rao20143d}. Computational methods
+% using Hi-C data can identify hundreds of thousands of putative enhancers and
+% their target genes \cite{ron2017promoter}.
+% 
+% In this work, data obtained from Hi-C (see \chapref{chap:results} for
+% details) will be used. Hi-C is a method for acquiring 3D-information of genomes.
+
 This is done by strapping together parts of the genome that are close by,
 and cutting the genome apart with restriction enzymes, combining the ends of
 strapped-together fragments, and using high throughput methods to sequence
 them. This is explained in detail in \secref{sec:HiC}.
+
 
 
 Such technologies tend to suffer from unwanted biological and technical factors, such as different chromatin
@@ -70,6 +84,19 @@ introducing even more potential causes for bias. Specific sequencing methods als
 have certain inherent biases \cite{aird2011analyzing}. The measured Hi-C interactions are
 often questionable, since it is unclear if some of these interaction are spatially close points, or if
 they are artefacts of technical errors, or even just randomly-occurring interactions.
+
+% Such technologies tend to suffer from biological, e.g. different chromatin
+% states \cite{pmid19693276}, and technical factors, e.g. sequencing and mapping
+% \cite{pmid21646344}, making them inherently inaccurate. Biases are unavoidable,
+% in particular, as some regions are more sensible for biotin labeling
+% enrichment (See \secref{sec:pulldown} why this is relevant) they will be
+% measured more often when compared to others. PCR artifacts may be one of the
+% reasons \cite{wingett2015hicup}. Mapping locations may be unclear or not
+% unique, introducing even more sources for possible biases. Sequencing methods
+% have certain biases themselves. Some of the measured interactions are
+% questionable, it is unclear if these are actual, spatially close points, or if
+% it simply is a technical error or a randomly happened interaction.
+
 
 However, a basic but strong assumption about the structure of the genome can be
 made, which is that every location has the same amount of interactions with
@@ -114,11 +141,17 @@ decomposition, \secref{sec:ICE}) or KR \cite{knight2013fast} (Knight-Ruiz,
 
 \section{Task Definition}\label{sec:task}
 
+
 In the three-dimensional space of a cell the DNA forms a complex structure that is
 distributed all over the place. Due to this structure, there exist many points of contact
 in the DNA which form noticeable sub-structures, such as DNA loops. Many
 of these measured points of contact are random interactions, or measurement errors that
 need to be corrected. For this task, a Python implementation exists but it is
+% In the three-dimensional space of a cell the DNA forms a structure that is
+% distributed all over the place. Obviously, there exist many points of contact
+% in the DNA, they even form noticeable structures, such as DNA loops. Many
+% measured points of contact are random interactions or measurement errors that
+% need to be corrected. For this task, a Python implementation exists but is
 limited for high resolution data due to high memory usage. This thesis aims to
 re-implement a more resource efficient method in Rust.
 

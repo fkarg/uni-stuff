@@ -14,8 +14,8 @@ three dimensional structures can be confirmed.
 
 \subsection{Common steps}\label{sec:common}
 
-As can be seen in \figref{fig:cct}, the first steps, crosslinking, digestion,
-ligation and the reversal of crosslinking, are the same for all 3-C-based methods.
+As can be seen in \figref{fig:cct}, the first steps, cross-linking, digestion,
+ligation and the reversal of cross-linking, are the same for all 3-C-based methods.
 
 
 \paragraph{Cross-linking DNA:}\label{sec:crosslinking}
@@ -40,8 +40,8 @@ not-cross-linked ones.
 \paragraph{Ligation:}\label{sec:ligation}
 After reducing the concentration of fragments, DNA ligase is added, to ligate,
 i.e. weld together, dangling fragment ends. For this a reduction in
-concentration is done, resulting in favouring the ligation of fragments linked
-together by fomaldehyde.
+concentration is done, resulting in favoring the ligation of fragments linked
+together by formaldehyde.
 In HiC, Biotin is added in this step to mark ligated fragments. This allows
 filtering out most fragments that have not been ligated in a later step.
 
@@ -67,7 +67,7 @@ pairs length, but the ligated fragments are usually longer than that.
 In 2002 Dekker et al. \cite{dekker2002capturing} developed a method to test for
 interactions between a single pair of genomic loci. Candidates for
 promoter-enhancer interactions can be tested using this method.
-In the original method, (semi-) quantitive PCR is used for sequencing, which
+In the original method, (semi-) quantitative PCR is used for sequencing, which
 has been superseded by modern sequencing methods.
 
 
@@ -93,7 +93,7 @@ Chromosome conformation capture carbon copy (5C) was developed in 2006 by
 Dostie et al. \cite{dostie2006chromosome}, this method is able to test a region
 for interactions with itself, such region being no bigger than a megabase. This
 is done by adding universal primers to all fragments from such a region.
-5-C has relatively low coverage, but is useful to analyse complex interactions
+5-C has relatively low coverage, but is useful to analyze complex interactions
 of specified loci of interest. Genome-wide interaction measuring would require
 millions of 5C primers, making this method unsuitable. Microarray describes a
 sequencing method no longer used.
@@ -154,7 +154,7 @@ several times, allowing them to be sequenced more accurately.
 \subsection{Other methods}\label{sec:other3c}
 
 As can be seen in \figref{fig:cct} other methods, such as ChIP-loop or ChIA-PET
-exist. They are different from the digestion step onwards, with their
+exist. They are different from the digestion step onward, with their
 subsequent steps using immunoprecipitation (antibodies) for filtering. As they
 hold no further significance for this thesis, they will not be covered further.
 
@@ -196,7 +196,7 @@ hold no further significance for this thesis, they will not be covered further.
 HiCExplorer \cite{wolff2018galaxy} is a software to process, analyze and
 visualize Hi-C data. Part of this software are tools to build the interaction
 matrix, convert between formats, correcting the data (which this is work is
-part of), analysing it in various ways or extensively plotting it.
+part of), analyzing it in various ways or extensively plotting it.
 Facilitated is, among others, the creation of contact matrices, detection of
 topologically associating domains (TAD) and A/B compartments, merging of
 matrices, and detection of long-range contacts\footnotemark. Those contact
@@ -204,7 +204,7 @@ matrices may then be visualized, and other data tracks may be added. This \draft
 includes annotated genes, compartments, ChIP-seq coverage tracks, viewpoints
 and long range contacts\footnotemark[\value{footnote}]. An excerpt of possible
 visualizations can be seen in \figref{fig:HiCExplorer}. HiCExplorer can be
-installed on Linux and MacOS.
+installed on Linux and Mac OS.
 
 \footnotetext{\url{https://github.com/deeptools/HiCExplorer}, accessed 2019-06-26}
 
@@ -216,9 +216,9 @@ installed on Linux and MacOS.
 
 \input{figures/background/HiCMatricesModels}
 
-Corrected Hi-C data can then be further analysed, with \verb|hicFindTADs| one
+Corrected Hi-C data can then be further analyzed, with \verb|hicFindTADs| one
 can search for TADs (topologically associated domains) \cite{ramirez2018high},
-for this a TAD-seperation score is computed and local minima indicative of TAD
+for this a TAD-separation score is computed and local minima indicative of TAD
 boundaries are searched for. A visualized result of such a computation can be
 seen in \figref{fig:HiCExplorer}I (created with \verb|hicPlotTADs|).
 
