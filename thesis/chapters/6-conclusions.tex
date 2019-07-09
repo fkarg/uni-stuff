@@ -1,4 +1,91 @@
-\chapter{Conclusion}\label{chap:conclusion}
+\chapter{Conclusions}\label{chap:conclusion}
+
+
+\section{Comparing the Different Implementations}
+
+\paragraph{Memory and Runtime:}
+Both Memory needs and Runtime length have been discussed extensively in
+\secref{sec:memory} and \secref{sec:runtime} respectively. Comparisons can be
+seen in \tabref{tab:compmem} for memory and \figref{fig:runtime} for runtime.
+In short: the new ICE implementation in Rust requires a considerable amount of
+memory less than the Python implementation, during correction. After the
+correction, it peaks at a slightly higher value than the Python requires at any
+point in time. KR is in the middle for both, memory-wise. Additionally, the new
+implementation requires only about half the runtime length compared to the
+Python implementation, beating KR by about 10 minutes in both test cases.
+
+
+\paragraph{Unused Potential:}\label{sec:potential} This includes the further
+optimization of both the C++ and Rust versions, and increasing their level of
+integration. Apparently, a revision of the KR implementation is in progress,
+needing considerably less memory for bigger matrices. The Rust version could be
+revised to make more effektive use of parallelizable opportunities, and
+integrated better in the Python part to reduce peak memory usage tremendously.
+
+
+\paragraph{Overall:} each of the current implementations has their own
+advantages and disadvantages, providing more flexibility for adapting to
+differently constrained resource environments.
+
+
+\section{Python interacting with Rust:} Even though there have been
+difficulties for getting the code packaged, it worked surprisingly well after
+this was fixed. There is still work ongoing to make Rust usage from Python
+considerably easier. It is well needed, as there is not one standard
+approach but several partially similar, but exclusive ones.
+
+The approach recommended by the official Rust Book turned out to be not as easy
+as expected regarding packaging. However, two other common approaches make
+significant promises regarding this. Thus, it is probably easier to package
+Rust code for Python using either one of the two other integration approaches
+described in \secref{sec:api}.
+
+\textbf{Overall, more extensive testing for integration approaches is recommended.}
+
+
+\section{Open questions}
+
+One of the biggest remaining open questions is regarding the more effective use
+of multi-core hardware, as to how much it would be possible to actually do
+this, in Rust or any other language, and how much of a benefit it would bring.
+Both the pre-processing and post-processing mainly use only one core during
+their execution. Some of it may not at all be parallizable, but there is
+probably several low-hanging fruits regarding optimization.
+
+Other questions are regarding the in \secref{sec:potential} mentioned currently
+unused potential, particularly the closer integration from within Python, as it
+would directly affect memory requirements. A pure implementation in either C++
+or Rust is likely to need less memory than when integrated with Python,
+based on the numbers and the reasons for the numbers seen in
+\secref{sec:maxmem} about peak memory usage.
+
+Based on available data, the available resources are far from sufficient for
+comparing runtimes of considerably bigger matrices (see \secref{sec:specs} for
+available resources, and \secref{sec:data} for data about the compared
+matrices).
+However, with sufficient resources at least this open question could be
+answered: For the biggest matrices, is KR still only the second fastest, or
+will it actually be faster and more memory efficient than this implementation?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+
+\todo{Python and KR implementation: Advantages and Disadvantages for both Implementation and language?}
+
 
 \todo{run aspell at least once}
 
