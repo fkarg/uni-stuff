@@ -5,8 +5,8 @@ as `RUST', and the original Python implementation as `ICE'. This is done
 consistently as a compromise to avoid confusion regarding two differently
 colored `ICE' columns and too long identifiers. It should be clear that `RUST'
 is not representative for the language, but only for this particular
-implementation, also implementing ICE, not to confused with `ICE', the Python
-implementation.
+implementation, also implementing ICE, not to be confused with `ICE', the
+Python implementation.
 
 \section{Server Specification}\label{sec:specs}
 
@@ -132,7 +132,7 @@ respectively (see \figref{fig:loadtimes} for reference).
 \subsection{During Correction}\label{sec:itermem}
 
 Memory needs, at least for the iterative correction, have cycles. These cycles
-correspond to the in \secref{sec:ICE} described steps, as the additional bias
+correspond to the steps described in \secref{sec:ICE}, as the additional bias
 matrices are not needed at any point other than for the correction itself. This
 might be different for the implementation itself however, as e.g. in the Rust
 implementation the memory needed for temporary biases is initialized before the
@@ -143,14 +143,14 @@ correction of the 25kb connection matrix can be seen in \figref{fig:memiter25}.
 As can be clearly seen, even though the recent KR implementation needs less
 memory than the original ICE implementation, the new ICE implementation in Rust
 needs even less, about half the amount the pure Python implementation needs.
-Note that these are only comparisons of memory needs during iteration, there is
+Note that these are only comparisons of memory needs during iteration. There is
 a different amount of memory needed for pre-processing and post-processing.
 
 As can be seen in \figref{fig:memiter50}a, no reliable data except for the Rust
 implementation exists for memory needs during computing of the 50kb matrix. In
 \figref{fig:memiter50}b there is an extrapolation based on the data for the
-25kb matrix and observed data, These values should not be taken at face value,
-but they should not be too far off the truth. Here, the advantage of Rust
+25kb matrix and observed data. These values should not be taken at face value,
+but they should not be too far off the truth either. Here, the advantage of Rust
 diminishes. Parts of the memory are still used from the initial pre-processing,
 and the provided matrix itself (to the regarding algorithm) was only a copy.
 Directly after loading (but before starting iteration), the needed memory when
@@ -181,10 +181,10 @@ duplicate artifacts in memory, needing to be in memory in both Python and
 the other language, while in the python version memory needs are considerably
 lower during this process.
 
-In Rust, indices are of type \verb|usize|, which size is platform-dependent. In
-the case of the test server (more details in \secref{sec:specs} and
-\tabref{tab:specs}) this is the size of a \verb|int64|, whereas coming from
-Python (and thus most likely in C++) it is only a \verb|int32|. Indices are a
+In Rust, indices are of type \verb|usize|, which is of platform-dependent size.
+In the case of the test server (more details in \secref{sec:specs} and
+\tabref{tab:specs}) this is the size of an \verb|int64|, whereas coming from
+Python (and thus most likely in C++) it is only an \verb|int32|. Indices are a
 considerable amount of memory in the case of a CSRMatrix, as there are more
 indices than there are actual elements in the matrix, and the elements are only
 of type \verb|float32|.
