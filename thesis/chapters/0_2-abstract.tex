@@ -1,11 +1,24 @@
 \chapter*{Abstract}
 
-foo
 
-
-\draft{}
-
-\todo{Write!}
+Modern sequencing methods create never seen before amounts of data for how our
+DNA is folding in three-dimensional space. This is important, because
+promoter-enhancer interactions require spatial proximity to influence the
+creation of proteines and working of cells. This is contrary to a common
+assumption to search for promoter-enhancer-pairs only within one mega-base-pair
+distance of each other. With the help of Hi-C technologies, long-range
+interactions can be discovered. However, these technologies suffer from a
+multitude of technical and biological biases, making it hard to interpret the
+data in a meaningful way. But, strong assumptions about how the data should
+look like, can be made. Several methods exist to correct the data based on
+these assumption. These methods are prone to require high memory usage. In this
+work, such a method was reimplemented in Rust, with the objective to lower
+memory usage and computation time. Since most of the other software parts are
+written in Python, the integration of both langugaes was tested as well. During
+correction of the data, the implementation from this work requires considerably
+less working memory. Based on the size of the data set it might require only
+half in both available working memory and computation time, when compared to
+the current implementation of this algorithm.
 
 
 
@@ -14,10 +27,26 @@ foo
 
 \chapter*{Zusammenfassung}
 
-bar
+Moderne Verfahren der Gensequenzierung liefern noch nie dagewesene Datenmengen
+darüber, wie unsere DNS im dreidimensionalen Raum angeordnet ist.
+Promoter-Enhancer Interaktionen finden hauptsächlich in räumlicher Nähe statt,
+und sie können auch gegen häufige Annahmen auch weit außerhalb der Distanz von
+einem Megabasenpaar liegen. Mit Hilfe von Hi-C Technologien können
+Interaktionen über sehr große Distanzen festgestellt werden. Diese Verfahren
+leiden allerdings unter einer Vielzahl technischer und biologischer
+Verzerrungen, die es schwer machen aus den enthaltenen Daten sinnvolle
+Informationen zu ziehen. Allerdings können starke Annahmen darüber getroffen
+werden wie die Daten aussehen sollten, und basierend darauf gibt es mehrere
+Verfahren um die erhaltenen Daten entsprechend anzupassen. Solche Verfahren
+haben üblicherweise das Problem, verhältnismäßig hohe Anforderungen an den
+benötigten Arbeitsspeicher zu stellen.
+In dieser Arbeit wurde ein solches Verfahren in Rust reimplementiert,
+mit der Hoffnung, die hohen Arbeitsspeicher- und Rechenzeitanforderungen
+zu senken. Da der restliche Teil der Software in Python geschrieben ist, wurde
+auch die Zusammenarbeit der beiden Programmiersprachen getestet.
+Während der Datenanpassung benötigt die Implementation dieser Arbeit sehr viel
+weniger Arbeitsspeicher, abhängig von der Größe des Datensatzes nur halb so
+viel, und rechnet nur halb so lange wie die bisherige Implementation dieses
+Algorithmus.
 
 
-\draft{}
-
-
-\todo{Schreiben!}

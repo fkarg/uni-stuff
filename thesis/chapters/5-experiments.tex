@@ -21,18 +21,18 @@ See \tabref{tab:specs} for the specification of the test server.
         Working Memory (RAM) & 120 GByte \\ \\
         \textbf{Processor Specification} & \\
         \midrule
-        Processor & Intel® Xeon® E5-2630V4\footnotemark \\
+        Processor & Intel® Xeon® E5-2630V4 \\
         Number of Cores/Threads & 10 / 20 \\
         Base/Turbo frequency & 2.2 GHz / 3.1 GHz \\
     \end{tabular}
     \caption[Server Specification]
     {\textbf{Server Specification.} \\
     For reproducibility, here are technical details about the hardware the
-    following tests were run on.}
+    following tests were run on. More details at \cite{processor}.}
     \label{tab:specs}
 \end{table}
 
-\footnotetext{\url{https://ark.intel.com/content/www/us/en/ark/products/92981/intel-xeon-processor-e5-2630-v4-25m-cache-2-20-ghz.html}, accessed 2019-06-26}
+% \footnotetext{\url{https://ark.intel.com/content/www/us/en/ark/products/92981/intel-xeon-processor-e5-2630-v4-25m-cache-2-20-ghz.html}, accessed 2019-06-26}
 
 
 \newpage
@@ -40,20 +40,21 @@ See \tabref{tab:specs} for the specification of the test server.
 
 \begin{table}[ht]
     \ra{1.3}
-    \begin{tabular}{@{}lcr@{}}
+    \begin{tabular}{@{}lrr@{}}
         % \textbf{Matrix Details} & & & \\
         \textbf{Name}       & 25kb\_raw.h5  & 50kb\_raw.h5  \\
         \midrule
         Filesize            & 1.1 GByte     & 732 MByte     \\
-        Size                & 123'841       & 61'928        \\
-        Bin length          & 25'000        & 50'000        \\
-        Non-zero elements   & 1'530'533'003 & 1'053'216'825 \\
+        Size                & \verb|123,841|       & \verb|61,928| \\
+        Bin length          & \verb|25,000|        & \verb|50,000| \\
+        Non-zero elements   & \verb|1,530,533,003| & \verb|1,053,216,825| \\
     \end{tabular}
     \caption[Test Data]
     {\textbf{Test Data overview}.
 
-    A third matrix, with a bin length of 10'000 was available, for which the
-    existing working memory was not sufficient.} \label{tab:testdata}
+    A third matrix, with a bin length of 10,000 was provided, for which the
+    available working memory was not sufficient. Effectively, they all contain the same data.}
+    \label{tab:testdata}
 \end{table}
 
 % \begin{verbatim}
@@ -136,7 +137,7 @@ correspond to the steps described in \secref{sec:ICE}, as the additional bias
 matrices are not needed at any point other than for the correction itself. This
 might be different for the implementation itself however, as e.g. in the Rust
 implementation the memory needed for temporary biases is initialized before the
-first iteration and is freed only after the last iteration finished.
+first iteration and is freed only after the last iteration is finished.
 
 A comparison of the three implementations regarding memory requirements during
 correction of the 25kb connection matrix can be seen in \figref{fig:memiter25}.
@@ -174,12 +175,12 @@ of the original matrix is then corrected in Python again before saving the
 corrected matrix.
 
 When loading the matrix in the beginning, a considerable amount of working
-memory is needed. However, the highest needs of memory are, at least for the KR and
-RUST versions, happening after the correction, when the corrected values are
-set, the correction factors added and then saved. This might be due to
-duplicate artifacts in memory, needing to be in memory in both Python and
-the other language, while in the Python version memory needs are considerably
-lower during this process.
+memory is needed. For the RUST and KR versions at least, peak memory usage is
+happening after correction. Here, the corrected maitrx overwrites the loaded
+matrix, and the correction factors are added to this datastructure and then
+saved. This might be due to duplicate artifacts in memory, needing to be in
+memory in both Python and the other language, while in the Python version
+memory needs are considerably lower during this process.
 
 In Rust, indices are of type \verb|usize|, which is of platform-dependent size.
 In the case of the test server (more details in \secref{sec:specs} and
@@ -215,7 +216,7 @@ shown. The runs differ in that they were run in different configurations, which
 start to differ after loading, as explained in more detail in
 \secref{sec:multicore}. However as there is no difference up to this point,
 they can very well be compared. Considering that there should be no difference,
-it is shocking to see that significant differences between loading times exist.
+it is unsettling to see that significant differences between loading times exist.
 
 In the case of \figref{fig:loadtimes}a, most loading times are within half a
 minute of each other, which could still be called deterministic considering the
@@ -247,13 +248,13 @@ but the clearly visible disparity is not something favorable.
     \end{tabular}
     \caption[Memory needs comparison]
     {\textbf{Overall comparison} between required memory for different
-    matrices during correction and maximum values.}
+    matrices during correction and maximum values. Lower is better.}
     \label{tab:compmem}
 \end{table}
 
-As can be seen in \tabref{tab:compmem}, regarding memory usage each of the
-algorithms has some advantage and another disadvantage. If working memory is a
-critical resource, the question as to which is more critical, long-term lower
+As can be seen in \tabref{tab:compmem}, each of the algorithms has some
+advantage and some disadvantage regarding memory usage. If working memory is
+a critical resource, the question as to which is more critical, long-term lower
 usage, or lower spike usage, becomes decisive for the selection of the
 algorithm.
 
@@ -324,7 +325,7 @@ However, as can be seen in \figref{fig:memmulti}, memory is not negatively
 affected in any way when parallelizing. Regarding memory, the same holds true for
 the 50kb matrix. Pure computation times for the 50kb matrix as seen in
 \figref{fig:mrun50} do not seem to offer a clear trend regarding the usage of
-multiple cores.
+multiple cores. This might have been caused by other users on this virtual server.
 
 
 \paragraph{Conclusion:} Using multiple cores for this implementation does not
