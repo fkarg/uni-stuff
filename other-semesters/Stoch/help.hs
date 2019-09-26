@@ -1,5 +1,6 @@
+{-# LANGUAGE FlexibleContexts #-}
 
-
+-- | n!
 fac :: (Integral a) => a -> a
 fac 0 = 1
 fac 1 = 1
@@ -8,9 +9,81 @@ fac n = n * fac (n - 1)
 ifac :: (Integral a, Num b) => a -> b
 ifac = fromIntegral . fac
 
-
+-- | Binomial of  a over b
+binom :: (Integral a) => a -> a -> a
+-- binom a b | b < 0 = 0
 binom a b | b > a = binom b a
 binom a b = fac a `div` (fac b * fac (a - b))
+
+ib a b = fromIntegral $ binom a b
+
+
+-- | Binomial distribution
+-- | E = np
+-- | Var = np(1-p)
+binomial :: (Floating a, Integral b) => a -> b -> b -> a
+binomial p n x | x < 0 = 0
+binomial p n x | n - x < 0 = 0
+binomial p n x = (ib n x) * (p ** fromIntegral x) * ((1 - p) ** (fromIntegral $ n - x))
+
+
+-- | Poisson distribution
+-- | E = l
+-- | Var = l
+poi :: (Floating a, Integral b) => a -> b -> a
+poi l k = ((l ^ k) / (ifac k)) * exp (-l)
+
+
+hyp :: (Integral a, Fractional b) => a -> a -> a -> a -> b
+hyp aN aK n k = (ib aK k * ib (aN - aK) (n - k)) / (ib aN n)
+
+
+-- | Geometric distribution
+-- | E = 1/p
+-- | Var = 1/p^2 - 1/p = (1-p)/p^2
+geo :: (Floating a, Integral b) => a -> b -> a
+geo p n = p * (1-p) ^ n
+
+
+-- | Distributions and their mean as well as variance
+--
+-- | Bernoulli distribution
+-- | B(p) -> only two cases, 1 or 0
+-- | E = p
+-- | Var = p(1-p)
+--
+-- | Binomial distribution
+-- | B(n, p)(k) = (binom n x) * (p ** fromIntegral x) * ((1 - p) ** (fromIntegral $ n - x))
+-- | E = np
+-- | Var = np(1-p)
+--
+-- | Poisson distribution
+-- | Poi(l)(k) = (l^k / fac k) * e ^ -l
+-- | E = l
+-- | Var = l
+--
+-- | Geometric distribution
+-- | Geo(p)(n) = p * (1 - p)^n
+-- | E = 1/p
+-- | Var = 1/p^2 - 1/p = (1-p)/p^2
+--
+-- | Normal distribution
+-- | N(u, s) = 
+-- | E = u
+-- | Var = s^2
+--
+-- | Uniform distribution
+-- | U(a, b)(_x) = 1 / (b - a)
+-- | E = (a + b) / 2
+-- | Var = (b - a)^2 / 12
+--
+-- | Exponential distribution
+-- | Exp(l)(x)
+
+
+
+
+
 
 range = [0..999]
 lr = length range
@@ -49,3 +122,5 @@ primes4 = 2 : [ x | x <- [3,5..], isprime x]
 
 isprime x = all (\p -> x `mod` p > 0) (factorsToTry x)
 factorsToTry x = takeWhile (\p -> p*p <= x) primes4
+
+main = undefined
